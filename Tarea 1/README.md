@@ -106,3 +106,8 @@ python test_data_structures.py
 | **Cola** | `enqueue` | O(1) |
 | **Cola** | `dequeue` | O(n) (Limitación de listas en Python) |
 | **Tabla Hash** | `insert`, `get`, `delete` | O(1) en promedio |
+
+
+## Liga Github 
+
+https://github.com/Bdelas777/CompiladoresElda/tree/main/Tarea%201
