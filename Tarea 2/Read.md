@@ -23,19 +23,16 @@ Este repositorio contiene ejemplos de implementación de calculadoras simples ut
 
 ### 🐍 PLY
 ```bash
+
 pip install ply
 python PlyExample.py
 🦫 Goyacc
 bash
-Copiar
-Editar
 goyacc -o calc.go calc.y
 go build calc.go
 ./calc
 🏗️ ANTLR
 bash
-Copiar
-Editar
 pip install antlr4-python3-runtime
 java -jar antlr-4.13.1-complete.jar -Dlanguage=Python3 -visitor calculator.g4
 python main.py
