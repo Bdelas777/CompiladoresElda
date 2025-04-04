@@ -8,7 +8,7 @@ import ply.yacc as yacc
 # Lista de nombres de tokens
 tokens = (
     'NUMBER',
-    'PLUS',0
+    'PLUS',
     'MINUS',
     'TIMES',
     'DIVIDE',
@@ -113,7 +113,6 @@ if __name__ == "__main__":
     while True:
         try:
             s = input('calc > ')
-            
             if s == 'exit':
                 break
             result = calcular(s)
