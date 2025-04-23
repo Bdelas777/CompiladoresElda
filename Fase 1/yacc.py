@@ -23,8 +23,11 @@ def p_dec_funs(p):
     if p[1] == None:
         p[0] = []
     else:
-        p[0] = [p[1]] + p[2]
-    print(f"DEBUG [dec_funs]: Function count: {len(p[0])}")
+        if isinstance(p[2], list):
+            p[0] = [p[1]] + p[2]
+        else:
+            p[0] = [p[1]]
+    print(f"DEBUG [dec_funs]: Function count: {len(p[0]) if p[0] else 0}")
 
 # Variables declaration
 def p_vars(p):
@@ -52,7 +55,7 @@ def p_rep_var(p):
 
 def p_variable(p):
     '''variable : TOKEN_ID mas_ids TOKEN_COLON type TOKEN_SEMICOLON'''
-    ids = [p[1]] + p[2]
+    ids = [p[1]] + (p[2] if p[2] else [])
     print(f"DEBUG [variable]: Declaring {len(ids)} variables of type {p[4]}: {ids}")
     p[0] = ('variable', ids, p[4])
 
@@ -63,7 +66,7 @@ def p_mas_ids(p):
         p[0] = []
         print(f"DEBUG [mas_ids]: No more IDs")
     else:
-        p[0] = [p[2]] + p[3]
+        p[0] = [p[2]] + (p[3] if p[3] else [])
         print(f"DEBUG [mas_ids]: Additional IDs: {p[0]}")
 
 # Types
@@ -76,8 +79,8 @@ def p_type(p):
 # Body
 def p_body(p):
     '''body : TOKEN_LBRACE dec_statements TOKEN_RBRACE'''
-    print(f"DEBUG [body]: Processing code block with {len(p[2])} statements")
-    p[0] = ('body', p[2])
+    print(f"DEBUG [body]: Processing code block with {len(p[2]) if p[2] else 0} statements")
+    p[0] = ('body', p[2] if p[2] else [])
     print(f"DEBUG [body]: Code block processed")
 
 def p_dec_statements(p):
@@ -88,10 +91,10 @@ def p_dec_statements(p):
         p[0] = []
         print(f"DEBUG [dec_statements]: No statements")
     else:
-        if p[2] == []:
-            p[0] = [p[1]]
-        else:
+        if isinstance(p[2], list):
             p[0] = [p[1]] + p[2]
+        else:
+            p[0] = [p[1]]
         print(f"DEBUG [dec_statements]: Total statements: {len(p[0])}")
 
 # Statements
@@ -108,7 +111,7 @@ def p_statement(p):
 # Print statement
 def p_print(p):
     '''print : TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON'''
-    print(f"DEBUG [print]: Processing print statement with {len(p[3])} expressions")
+    print(f"DEBUG [print]: Processing print statement with {len(p[3]) if p[3] else 0} expressions")
     p[0] = ('print', p[3])
 
 def p_expresiones(p):
@@ -116,10 +119,10 @@ def p_expresiones(p):
                    | expresion comas'''
     print(f"DEBUG [expresiones]: Processing expressions")
     if isinstance(p[1], str):  # TOKEN_CTE_STRING
-        p[0] = [('string', p[1])] + p[2]
+        p[0] = [('string', p[1])] + (p[2] if p[2] else [])
         print(f"DEBUG [expresiones]: String literal found: {p[1]}")
     else:
-        p[0] = [p[1]] + p[2]
+        p[0] = [p[1]] + (p[2] if p[2] else [])
     print(f"DEBUG [expresiones]: Total expressions: {len(p[0])}")
 
 def p_comas(p):
@@ -130,11 +133,12 @@ def p_comas(p):
     if p[1] == None:
         p[0] = []
         print(f"DEBUG [comas]: No more expressions")
-    elif p[2] == 'TOKEN_CTE_STRING':
-        p[0] = [('string', p[2])] + p[3]
+    elif p[2] == 'TOKEN_CTE_STRING' or isinstance(p[2], str):
+        value = p[2] if isinstance(p[2], str) else 'unknown'
+        p[0] = [('string', value)] + (p[3] if p[3] else [])
         print(f"DEBUG [comas]: String literal in comas")
     else:
-        p[0] = [p[2]] + p[3]
+        p[0] = [p[2]] + (p[3] if p[3] else [])
         print(f"DEBUG [comas]: Additional expressions found")
 
 # Cycle (while)
@@ -210,14 +214,17 @@ def p_exp(p):
         print(f"DEBUG [exp]: Expression with operator: {p[2][0]}")
 
 def p_suma_resta(p):
-    '''suma_resta : opcion_mas_menos exp
+    '''suma_resta : opcion_mas_menos termino suma_resta
                   | empty'''
     print(f"DEBUG [suma_resta]: Processing addition/subtraction")
     if p[1] == None:
         p[0] = None
         print(f"DEBUG [suma_resta]: No addition/subtraction")
     else:
-        p[0] = (p[1], p[2])
+        if p[3] == None:
+            p[0] = (p[1], p[2])
+        else:
+            p[0] = (p[1], ('operation', p[2], p[3][0], p[3][1]))
         print(f"DEBUG [suma_resta]: Operator: {p[1]}")
 
 def p_opcion_mas_menos(p):
@@ -238,14 +245,17 @@ def p_termino(p):
         print(f"DEBUG [termino]: Term with operator: {p[2][0]}")
 
 def p_multi_div(p):
-    '''multi_div : operacion_mul_div termino
+    '''multi_div : operacion_mul_div factor multi_div
                  | empty'''
     print(f"DEBUG [multi_div]: Processing multiplication/division")
     if p[1] == None:
         p[0] = None
         print(f"DEBUG [multi_div]: No multiplication/division")
     else:
-        p[0] = (p[1], p[2])
+        if p[3] == None:
+            p[0] = (p[1], p[2])
+        else:
+            p[0] = (p[1], ('operation', p[2], p[3][0], p[3][1]))
         print(f"DEBUG [multi_div]: Operator: {p[1]}")
 
 def p_operacion_mul_div(p):
@@ -289,19 +299,26 @@ def p_opciones_mas_menos(p):
 
 def p_id_cte(p):
     '''id_cte : TOKEN_ID
-              | cte'''
-    if isinstance(p[1], tuple):  # cte
-        print(f"DEBUG [id_cte]: Processing constant: {p[1][1]}")
+              | cte
+              | f_call_expr'''
+    if isinstance(p[1], tuple):  # cte or function call
+        print(f"DEBUG [id_cte]: Processing complex value")
         p[0] = p[1]
     else:  # TOKEN_ID
         print(f"DEBUG [id_cte]: Processing identifier: {p[1]}")
         p[0] = ('id', p[1])
 
+def p_f_call_expr(p):
+    '''f_call_expr : TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN'''
+    print(f"DEBUG [f_call_expr]: Processing function call expression: {p[1]}")
+    p[0] = ('function_call_expr', p[1], p[3] if p[3] else [])
+    print(f"DEBUG [f_call_expr]: Function call expression processed")
+
 # Functions
 def p_funs(p):
     '''funs : TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN var body TOKEN_SEMICOLON'''
     print(f"DEBUG [funs]: Processing function: {p[2]}")
-    p[0] = ('function', p[2], p[4], p[6], p[7])
+    p[0] = ('function', p[2], p[4] if p[4] else [], p[6], p[7])
     print(f"DEBUG [funs]: Function {p[2]} processed")
 
 def p_tipo(p):
@@ -325,17 +342,18 @@ def p_def_tipo(p):
     print(f"DEBUG [def_tipo]: Total parameters: {len(p[0])}")
 
 def p_coma(p):
-    '''coma : TOKEN_COMMA def_tipo coma
+    '''coma : TOKEN_COMMA TOKEN_ID TOKEN_COLON type coma
             | empty'''
     print(f"DEBUG [coma]: Processing comma in parameters")
     if p[1] == None:
         p[0] = None
         print(f"DEBUG [coma]: No more parameters")
     else:
-        if p[3] == None:
-            p[0] = p[2]
+        new_param = ('param', p[2], p[4])
+        if p[5] == None:
+            p[0] = [new_param]
         else:
-            p[0] = p[2] + p[3]
+            p[0] = [new_param] + p[5]
         print(f"DEBUG [coma]: Additional parameters found")
 
 def p_var(p):
@@ -352,8 +370,8 @@ def p_var(p):
 def p_f_call(p):
     '''f_call : TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON'''
     print(f"DEBUG [f_call]: Processing function call to: {p[1]}")
-    p[0] = ('function_call', p[1], p[3])
-    print(f"DEBUG [f_call]: Function call processed with {len(p[3])} arguments")
+    p[0] = ('function_call', p[1], p[3] if p[3] else [])
+    print(f"DEBUG [f_call]: Function call processed")
 
 def p_def_exp(p):
     '''def_exp : expresion coma2
@@ -363,7 +381,7 @@ def p_def_exp(p):
         p[0] = []
         print(f"DEBUG [def_exp]: No arguments")
     else:
-        p[0] = [p[1]] + p[2]
+        p[0] = [p[1]] + (p[2] if p[2] else [])
         print(f"DEBUG [def_exp]: Total arguments: {len(p[0])}")
 
 def p_coma2(p):
@@ -374,7 +392,7 @@ def p_coma2(p):
         p[0] = []
         print(f"DEBUG [coma2]: No more arguments")
     else:
-        p[0] = [p[2]] + p[3]
+        p[0] = [p[2]] + (p[3] if p[3] else [])
         print(f"DEBUG [coma2]: Additional arguments found")
 
 # Assignment

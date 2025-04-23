@@ -1,5 +1,21 @@
-# babyduck_lexer.py
+# lex.py - Scanner/Lexer for BabyDuck language
 import ply.lex as lex
+
+# Reserved words
+reserved = {
+    'program': 'TOKEN_PROGRAM',
+    'var': 'TOKEN_VAR',
+    'int': 'TOKEN_INT',
+    'float': 'TOKEN_FLOAT',
+    'if': 'TOKEN_IF',
+    'else': 'TOKEN_ELSE',
+    'while': 'TOKEN_WHILE',
+    'do': 'TOKEN_DO',
+    'print': 'TOKEN_PRINT',
+    'void': 'TOKEN_VOID',
+    'main': 'TOKEN_MAIN',
+    'end': 'TOKEN_END'
+}
 
 # List of token names
 tokens = [
@@ -22,28 +38,9 @@ tokens = [
     'TOKEN_RPAREN',
     'TOKEN_LBRACE',
     'TOKEN_RBRACE',
-]
+] + list(reserved.values())
 
-# Reserved words
-reserved = {
-    'program': 'TOKEN_PROGRAM',
-    'var': 'TOKEN_VAR',
-    'int': 'TOKEN_INT',
-    'float': 'TOKEN_FLOAT',
-    'if': 'TOKEN_IF',
-    'else': 'TOKEN_ELSE',
-    'while': 'TOKEN_WHILE',
-    'do': 'TOKEN_DO',
-    'print': 'TOKEN_PRINT',
-    'void': 'TOKEN_VOID',
-    'main': 'TOKEN_MAIN',
-    'end': 'TOKEN_END',
-}
-
-# Add reserved words to tokens list
-tokens += list(reserved.values())
-
-# Regular expression rules for simple tokens
+# Regular expressions for simple tokens
 t_TOKEN_PLUS = r'\+'
 t_TOKEN_MINUS = r'-'
 t_TOKEN_MULT = r'\*'
@@ -60,33 +57,41 @@ t_TOKEN_RPAREN = r'\)'
 t_TOKEN_LBRACE = r'\{'
 t_TOKEN_RBRACE = r'\}'
 
-# Regular expression rules with actions
+# Regular expression for identifiers
+def t_TOKEN_ID(t):
+    r'[a-zA-Z][a-zA-Z0-9_]*'
+    t.type = reserved.get(t.value, 'TOKEN_ID')
+    return t
+
+# Regular expression for float constants
 def t_TOKEN_CTE_FLOAT(t):
     r'[0-9]+\.[0-9]+'
     t.value = float(t.value)
     return t
 
+# Regular expression for integer constants
 def t_TOKEN_CTE_INT(t):
     r'[0-9]+'
     t.value = int(t.value)
     return t
 
+# Regular expression for string literals
 def t_TOKEN_CTE_STRING(t):
     r'"[^"]*"'
-    t.value = t.value[1:-1]  # Remove quotes
+    t.value = t.value[1:-1]  # Remove quotation marks
     return t
 
-def t_TOKEN_ID(t):
-    r'[a-zA-Z][a-zA-Z0-9_]*'
-    t.type = reserved.get(t.value, 'TOKEN_ID')
-    return t
+# Comments
+def t_COMMENT(t):
+    r'\#.*'
+    pass  # No return value, token is discarded
 
 # Define a rule to track line numbers
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-# Characters to ignore (whitespace and tabs)
+# A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
 # Error handling rule
@@ -97,25 +102,34 @@ def t_error(t):
 # Build the lexer
 lexer = lex.lex()
 
-# For testing the lexer directly
+# For testing
 if __name__ == "__main__":
-    # Test input
     data = '''
     program test;
     var x, y: int;
+    var z: float;
     
-    void main() {
-        x = 10;
-        y = 3.14;
-        if (x > 5) {
-            print("x is greater than 5");
+    main {
+        x = 5;
+        y = 10;
+        z = 3.14;
+        
+        if (x > y) {
+            print("x is greater than y");
+        } else {
+            print("y is greater or equal to x");
         };
-    } end
+        
+        while (z > 0.0) do {
+            print(z);
+            z = z - 1.0;
+        };
+    }
+    end
     '''
     
-    # Give the lexer the input
     lexer.input(data)
     
     # Tokenize
     for tok in lexer:
-        print(f"Token: {tok.type}, Value: {tok.value}")
+        print(tok)
