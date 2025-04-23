@@ -1,0 +1,1939 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funs TOKEN_MAIN body TOKEN_END
+Rule 2     dec_var -> vars
+Rule 3     dec_var -> empty
+Rule 4     dec_funs -> funs dec_funs
+Rule 5     dec_funs -> empty
+Rule 6     vars -> TOKEN_VAR variable rep_var
+Rule 7     rep_var -> variable rep_var
+Rule 8     rep_var -> empty
+Rule 9     variable -> TOKEN_ID mas_ids TOKEN_COLON type TOKEN_SEMICOLON
+Rule 10    mas_ids -> TOKEN_COMMA TOKEN_ID mas_ids
+Rule 11    mas_ids -> empty
+Rule 12    type -> TOKEN_INT
+Rule 13    type -> TOKEN_FLOAT
+Rule 14    body -> TOKEN_LBRACE dec_statements TOKEN_RBRACE
+Rule 15    dec_statements -> statement dec_statements
+Rule 16    dec_statements -> empty
+Rule 17    statement -> assign
+Rule 18    statement -> condition
+Rule 19    statement -> cycle
+Rule 20    statement -> f_call
+Rule 21    statement -> print
+Rule 22    print -> TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON
+Rule 23    expresiones -> TOKEN_CTE_STRING comas
+Rule 24    expresiones -> expresion comas
+Rule 25    comas -> TOKEN_COMMA expresion comas
+Rule 26    comas -> TOKEN_COMMA TOKEN_CTE_STRING comas
+Rule 27    comas -> empty
+Rule 28    cycle -> TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON
+Rule 29    condition -> TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON
+Rule 30    else -> TOKEN_ELSE body
+Rule 31    else -> empty
+Rule 32    cte -> TOKEN_CTE_INT
+Rule 33    cte -> TOKEN_CTE_FLOAT
+Rule 34    expresion -> exp comparar
+Rule 35    comparar -> signo exp
+Rule 36    comparar -> empty
+Rule 37    signo -> TOKEN_GT
+Rule 38    signo -> TOKEN_LT
+Rule 39    signo -> TOKEN_NE
+Rule 40    exp -> termino suma_resta
+Rule 41    suma_resta -> opcion_mas_menos exp
+Rule 42    suma_resta -> empty
+Rule 43    opcion_mas_menos -> TOKEN_PLUS
+Rule 44    opcion_mas_menos -> TOKEN_MINUS
+Rule 45    termino -> factor multi_div
+Rule 46    multi_div -> operacion_mul_div termino
+Rule 47    multi_div -> empty
+Rule 48    operacion_mul_div -> TOKEN_DIV
+Rule 49    operacion_mul_div -> TOKEN_MULT
+Rule 50    factor -> definicion
+Rule 51    factor -> operaciones
+Rule 52    definicion -> TOKEN_LPAREN expresion TOKEN_RPAREN
+Rule 53    operaciones -> opciones_mas_menos id_cte
+Rule 54    opciones_mas_menos -> TOKEN_PLUS
+Rule 55    opciones_mas_menos -> TOKEN_MINUS
+Rule 56    opciones_mas_menos -> empty
+Rule 57    id_cte -> TOKEN_ID
+Rule 58    id_cte -> cte
+Rule 59    funs -> TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN var body TOKEN_SEMICOLON
+Rule 60    tipo -> def_tipo
+Rule 61    tipo -> empty
+Rule 62    def_tipo -> TOKEN_ID TOKEN_COLON type coma
+Rule 63    coma -> TOKEN_COMMA def_tipo coma
+Rule 64    coma -> empty
+Rule 65    var -> vars
+Rule 66    var -> empty
+Rule 67    f_call -> TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON
+Rule 68    def_exp -> expresion coma2
+Rule 69    def_exp -> empty
+Rule 70    coma2 -> TOKEN_COMMA expresion coma2
+Rule 71    coma2 -> empty
+Rule 72    assign -> TOKEN_ID TOKEN_ASSIGN expresion TOKEN_SEMICOLON
+Rule 73    empty -> <empty>
+
+Terminals, with rules where they appear
+
+TOKEN_ASSIGN         : 72
+TOKEN_COLON          : 9 62
+TOKEN_COMMA          : 10 25 26 63 70
+TOKEN_CTE_FLOAT      : 33
+TOKEN_CTE_INT        : 32
+TOKEN_CTE_STRING     : 23 26
+TOKEN_DIV            : 48
+TOKEN_DO             : 28
+TOKEN_ELSE           : 30
+TOKEN_END            : 1
+TOKEN_FLOAT          : 13
+TOKEN_GT             : 37
+TOKEN_ID             : 1 9 10 57 59 62 67 72
+TOKEN_IF             : 29
+TOKEN_INT            : 12
+TOKEN_LBRACE         : 14
+TOKEN_LPAREN         : 22 28 29 52 59 67
+TOKEN_LT             : 38
+TOKEN_MAIN           : 1
+TOKEN_MINUS          : 44 55
+TOKEN_MULT           : 49
+TOKEN_NE             : 39
+TOKEN_PLUS           : 43 54
+TOKEN_PRINT          : 22
+TOKEN_PROGRAM        : 1
+TOKEN_RBRACE         : 14
+TOKEN_RPAREN         : 22 28 29 52 59 67
+TOKEN_SEMICOLON      : 1 9 22 28 29 59 67 72
+TOKEN_VAR            : 6
+TOKEN_VOID           : 59
+TOKEN_WHILE          : 28
+error                : 
+
+Nonterminals, with rules where they appear
+
+assign               : 17
+body                 : 1 28 29 30 59
+coma                 : 62 63
+coma2                : 68 70
+comas                : 23 24 25 26
+comparar             : 34
+condition            : 18
+cte                  : 58
+cycle                : 19
+dec_funs             : 1 4
+dec_statements       : 14 15
+dec_var              : 1
+def_exp              : 67
+def_tipo             : 60 63
+definicion           : 50
+else                 : 29
+empty                : 3 5 8 11 16 27 31 36 42 47 56 61 64 66 69 71
+exp                  : 34 35 41
+expresion            : 24 25 28 29 52 68 70 72
+expresiones          : 22
+f_call               : 20
+factor               : 45
+funs                 : 4
+id_cte               : 53
+mas_ids              : 9 10
+multi_div            : 45
+opcion_mas_menos     : 41
+opciones_mas_menos   : 53
+operacion_mul_div    : 46
+operaciones          : 51
+print                : 21
+programa             : 0
+rep_var              : 6 7
+signo                : 35
+statement            : 15
+suma_resta           : 40
+termino              : 40 46
+tipo                 : 59
+type                 : 9 62
+var                  : 59
+variable             : 6 7
+vars                 : 2 65
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funs TOKEN_MAIN body TOKEN_END
+
+    TOKEN_PROGRAM   shift and go to state 2
+
+    programa                       shift and go to state 1
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> TOKEN_PROGRAM . TOKEN_ID TOKEN_SEMICOLON dec_var dec_funs TOKEN_MAIN body TOKEN_END
+
+    TOKEN_ID        shift and go to state 3
+
+
+state 3
+
+    (1) programa -> TOKEN_PROGRAM TOKEN_ID . TOKEN_SEMICOLON dec_var dec_funs TOKEN_MAIN body TOKEN_END
+
+    TOKEN_SEMICOLON shift and go to state 4
+
+
+state 4
+
+    (1) programa -> TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON . dec_var dec_funs TOKEN_MAIN body TOKEN_END
+    (2) dec_var -> . vars
+    (3) dec_var -> . empty
+    (6) vars -> . TOKEN_VAR variable rep_var
+    (73) empty -> .
+
+    TOKEN_VAR       shift and go to state 8
+    TOKEN_VOID      reduce using rule 73 (empty -> .)
+    TOKEN_MAIN      reduce using rule 73 (empty -> .)
+
+    dec_var                        shift and go to state 5
+    vars                           shift and go to state 6
+    empty                          shift and go to state 7
+
+state 5
+
+    (1) programa -> TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var . dec_funs TOKEN_MAIN body TOKEN_END
+    (4) dec_funs -> . funs dec_funs
+    (5) dec_funs -> . empty
+    (59) funs -> . TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN var body TOKEN_SEMICOLON
+    (73) empty -> .
+
+    TOKEN_VOID      shift and go to state 12
+    TOKEN_MAIN      reduce using rule 73 (empty -> .)
+
+    dec_funs                       shift and go to state 9
+    funs                           shift and go to state 10
+    empty                          shift and go to state 11
+
+state 6
+
+    (2) dec_var -> vars .
+
+    TOKEN_VOID      reduce using rule 2 (dec_var -> vars .)
+    TOKEN_MAIN      reduce using rule 2 (dec_var -> vars .)
+
+
+state 7
+
+    (3) dec_var -> empty .
+
+    TOKEN_VOID      reduce using rule 3 (dec_var -> empty .)
+    TOKEN_MAIN      reduce using rule 3 (dec_var -> empty .)
+
+
+state 8
+
+    (6) vars -> TOKEN_VAR . variable rep_var
+    (9) variable -> . TOKEN_ID mas_ids TOKEN_COLON type TOKEN_SEMICOLON
+
+    TOKEN_ID        shift and go to state 14
+
+    variable                       shift and go to state 13
+
+state 9
+
+    (1) programa -> TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funs . TOKEN_MAIN body TOKEN_END
+
+    TOKEN_MAIN      shift and go to state 15
+
+
+state 10
+
+    (4) dec_funs -> funs . dec_funs
+    (4) dec_funs -> . funs dec_funs
+    (5) dec_funs -> . empty
+    (59) funs -> . TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN var body TOKEN_SEMICOLON
+    (73) empty -> .
+
+    TOKEN_VOID      shift and go to state 12
+    TOKEN_MAIN      reduce using rule 73 (empty -> .)
+
+    funs                           shift and go to state 10
+    dec_funs                       shift and go to state 16
+    empty                          shift and go to state 11
+
+state 11
+
+    (5) dec_funs -> empty .
+
+    TOKEN_MAIN      reduce using rule 5 (dec_funs -> empty .)
+
+
+state 12
+
+    (59) funs -> TOKEN_VOID . TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN var body TOKEN_SEMICOLON
+
+    TOKEN_ID        shift and go to state 17
+
+
+state 13
+
+    (6) vars -> TOKEN_VAR variable . rep_var
+    (7) rep_var -> . variable rep_var
+    (8) rep_var -> . empty
+    (9) variable -> . TOKEN_ID mas_ids TOKEN_COLON type TOKEN_SEMICOLON
+    (73) empty -> .
+
+    TOKEN_ID        shift and go to state 14
+    TOKEN_VOID      reduce using rule 73 (empty -> .)
+    TOKEN_MAIN      reduce using rule 73 (empty -> .)
+    TOKEN_LBRACE    reduce using rule 73 (empty -> .)
+
+    variable                       shift and go to state 18
+    rep_var                        shift and go to state 19
+    empty                          shift and go to state 20
+
+state 14
+
+    (9) variable -> TOKEN_ID . mas_ids TOKEN_COLON type TOKEN_SEMICOLON
+    (10) mas_ids -> . TOKEN_COMMA TOKEN_ID mas_ids
+    (11) mas_ids -> . empty
+    (73) empty -> .
+
+    TOKEN_COMMA     shift and go to state 22
+    TOKEN_COLON     reduce using rule 73 (empty -> .)
+
+    mas_ids                        shift and go to state 21
+    empty                          shift and go to state 23
+
+state 15
+
+    (1) programa -> TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funs TOKEN_MAIN . body TOKEN_END
+    (14) body -> . TOKEN_LBRACE dec_statements TOKEN_RBRACE
+
+    TOKEN_LBRACE    shift and go to state 25
+
+    body                           shift and go to state 24
+
+state 16
+
+    (4) dec_funs -> funs dec_funs .
+
+    TOKEN_MAIN      reduce using rule 4 (dec_funs -> funs dec_funs .)
+
+
+state 17
+
+    (59) funs -> TOKEN_VOID TOKEN_ID . TOKEN_LPAREN tipo TOKEN_RPAREN var body TOKEN_SEMICOLON
+
+    TOKEN_LPAREN    shift and go to state 26
+
+
+state 18
+
+    (7) rep_var -> variable . rep_var
+    (7) rep_var -> . variable rep_var
+    (8) rep_var -> . empty
+    (9) variable -> . TOKEN_ID mas_ids TOKEN_COLON type TOKEN_SEMICOLON
+    (73) empty -> .
+
+    TOKEN_ID        shift and go to state 14
+    TOKEN_VOID      reduce using rule 73 (empty -> .)
+    TOKEN_MAIN      reduce using rule 73 (empty -> .)
+    TOKEN_LBRACE    reduce using rule 73 (empty -> .)
+
+    variable                       shift and go to state 18
+    rep_var                        shift and go to state 27
+    empty                          shift and go to state 20
+
+state 19
+
+    (6) vars -> TOKEN_VAR variable rep_var .
+
+    TOKEN_VOID      reduce using rule 6 (vars -> TOKEN_VAR variable rep_var .)
+    TOKEN_MAIN      reduce using rule 6 (vars -> TOKEN_VAR variable rep_var .)
+    TOKEN_LBRACE    reduce using rule 6 (vars -> TOKEN_VAR variable rep_var .)
+
+
+state 20
+
+    (8) rep_var -> empty .
+
+    TOKEN_VOID      reduce using rule 8 (rep_var -> empty .)
+    TOKEN_MAIN      reduce using rule 8 (rep_var -> empty .)
+    TOKEN_LBRACE    reduce using rule 8 (rep_var -> empty .)
+
+
+state 21
+
+    (9) variable -> TOKEN_ID mas_ids . TOKEN_COLON type TOKEN_SEMICOLON
+
+    TOKEN_COLON     shift and go to state 28
+
+
+state 22
+
+    (10) mas_ids -> TOKEN_COMMA . TOKEN_ID mas_ids
+
+    TOKEN_ID        shift and go to state 29
+
+
+state 23
+
+    (11) mas_ids -> empty .
+
+    TOKEN_COLON     reduce using rule 11 (mas_ids -> empty .)
+
+
+state 24
+
+    (1) programa -> TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funs TOKEN_MAIN body . TOKEN_END
+
+    TOKEN_END       shift and go to state 30
+
+
+state 25
+
+    (14) body -> TOKEN_LBRACE . dec_statements TOKEN_RBRACE
+    (15) dec_statements -> . statement dec_statements
+    (16) dec_statements -> . empty
+    (17) statement -> . assign
+    (18) statement -> . condition
+    (19) statement -> . cycle
+    (20) statement -> . f_call
+    (21) statement -> . print
+    (73) empty -> .
+    (72) assign -> . TOKEN_ID TOKEN_ASSIGN expresion TOKEN_SEMICOLON
+    (29) condition -> . TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON
+    (28) cycle -> . TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON
+    (67) f_call -> . TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON
+    (22) print -> . TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON
+
+    TOKEN_RBRACE    reduce using rule 73 (empty -> .)
+    TOKEN_ID        shift and go to state 39
+    TOKEN_IF        shift and go to state 40
+    TOKEN_WHILE     shift and go to state 41
+    TOKEN_PRINT     shift and go to state 42
+
+    dec_statements                 shift and go to state 31
+    statement                      shift and go to state 32
+    empty                          shift and go to state 33
+    assign                         shift and go to state 34
+    condition                      shift and go to state 35
+    cycle                          shift and go to state 36
+    f_call                         shift and go to state 37
+    print                          shift and go to state 38
+
+state 26
+
+    (59) funs -> TOKEN_VOID TOKEN_ID TOKEN_LPAREN . tipo TOKEN_RPAREN var body TOKEN_SEMICOLON
+    (60) tipo -> . def_tipo
+    (61) tipo -> . empty
+    (62) def_tipo -> . TOKEN_ID TOKEN_COLON type coma
+    (73) empty -> .
+
+    TOKEN_ID        shift and go to state 43
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+
+    tipo                           shift and go to state 44
+    def_tipo                       shift and go to state 45
+    empty                          shift and go to state 46
+
+state 27
+
+    (7) rep_var -> variable rep_var .
+
+    TOKEN_VOID      reduce using rule 7 (rep_var -> variable rep_var .)
+    TOKEN_MAIN      reduce using rule 7 (rep_var -> variable rep_var .)
+    TOKEN_LBRACE    reduce using rule 7 (rep_var -> variable rep_var .)
+
+
+state 28
+
+    (9) variable -> TOKEN_ID mas_ids TOKEN_COLON . type TOKEN_SEMICOLON
+    (12) type -> . TOKEN_INT
+    (13) type -> . TOKEN_FLOAT
+
+    TOKEN_INT       shift and go to state 48
+    TOKEN_FLOAT     shift and go to state 49
+
+    type                           shift and go to state 47
+
+state 29
+
+    (10) mas_ids -> TOKEN_COMMA TOKEN_ID . mas_ids
+    (10) mas_ids -> . TOKEN_COMMA TOKEN_ID mas_ids
+    (11) mas_ids -> . empty
+    (73) empty -> .
+
+    TOKEN_COMMA     shift and go to state 22
+    TOKEN_COLON     reduce using rule 73 (empty -> .)
+
+    mas_ids                        shift and go to state 50
+    empty                          shift and go to state 23
+
+state 30
+
+    (1) programa -> TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funs TOKEN_MAIN body TOKEN_END .
+
+    $end            reduce using rule 1 (programa -> TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funs TOKEN_MAIN body TOKEN_END .)
+
+
+state 31
+
+    (14) body -> TOKEN_LBRACE dec_statements . TOKEN_RBRACE
+
+    TOKEN_RBRACE    shift and go to state 51
+
+
+state 32
+
+    (15) dec_statements -> statement . dec_statements
+    (15) dec_statements -> . statement dec_statements
+    (16) dec_statements -> . empty
+    (17) statement -> . assign
+    (18) statement -> . condition
+    (19) statement -> . cycle
+    (20) statement -> . f_call
+    (21) statement -> . print
+    (73) empty -> .
+    (72) assign -> . TOKEN_ID TOKEN_ASSIGN expresion TOKEN_SEMICOLON
+    (29) condition -> . TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON
+    (28) cycle -> . TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON
+    (67) f_call -> . TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON
+    (22) print -> . TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON
+
+    TOKEN_RBRACE    reduce using rule 73 (empty -> .)
+    TOKEN_ID        shift and go to state 39
+    TOKEN_IF        shift and go to state 40
+    TOKEN_WHILE     shift and go to state 41
+    TOKEN_PRINT     shift and go to state 42
+
+    statement                      shift and go to state 32
+    dec_statements                 shift and go to state 52
+    empty                          shift and go to state 33
+    assign                         shift and go to state 34
+    condition                      shift and go to state 35
+    cycle                          shift and go to state 36
+    f_call                         shift and go to state 37
+    print                          shift and go to state 38
+
+state 33
+
+    (16) dec_statements -> empty .
+
+    TOKEN_RBRACE    reduce using rule 16 (dec_statements -> empty .)
+
+
+state 34
+
+    (17) statement -> assign .
+
+    TOKEN_ID        reduce using rule 17 (statement -> assign .)
+    TOKEN_IF        reduce using rule 17 (statement -> assign .)
+    TOKEN_WHILE     reduce using rule 17 (statement -> assign .)
+    TOKEN_PRINT     reduce using rule 17 (statement -> assign .)
+    TOKEN_RBRACE    reduce using rule 17 (statement -> assign .)
+
+
+state 35
+
+    (18) statement -> condition .
+
+    TOKEN_ID        reduce using rule 18 (statement -> condition .)
+    TOKEN_IF        reduce using rule 18 (statement -> condition .)
+    TOKEN_WHILE     reduce using rule 18 (statement -> condition .)
+    TOKEN_PRINT     reduce using rule 18 (statement -> condition .)
+    TOKEN_RBRACE    reduce using rule 18 (statement -> condition .)
+
+
+state 36
+
+    (19) statement -> cycle .
+
+    TOKEN_ID        reduce using rule 19 (statement -> cycle .)
+    TOKEN_IF        reduce using rule 19 (statement -> cycle .)
+    TOKEN_WHILE     reduce using rule 19 (statement -> cycle .)
+    TOKEN_PRINT     reduce using rule 19 (statement -> cycle .)
+    TOKEN_RBRACE    reduce using rule 19 (statement -> cycle .)
+
+
+state 37
+
+    (20) statement -> f_call .
+
+    TOKEN_ID        reduce using rule 20 (statement -> f_call .)
+    TOKEN_IF        reduce using rule 20 (statement -> f_call .)
+    TOKEN_WHILE     reduce using rule 20 (statement -> f_call .)
+    TOKEN_PRINT     reduce using rule 20 (statement -> f_call .)
+    TOKEN_RBRACE    reduce using rule 20 (statement -> f_call .)
+
+
+state 38
+
+    (21) statement -> print .
+
+    TOKEN_ID        reduce using rule 21 (statement -> print .)
+    TOKEN_IF        reduce using rule 21 (statement -> print .)
+    TOKEN_WHILE     reduce using rule 21 (statement -> print .)
+    TOKEN_PRINT     reduce using rule 21 (statement -> print .)
+    TOKEN_RBRACE    reduce using rule 21 (statement -> print .)
+
+
+state 39
+
+    (72) assign -> TOKEN_ID . TOKEN_ASSIGN expresion TOKEN_SEMICOLON
+    (67) f_call -> TOKEN_ID . TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON
+
+    TOKEN_ASSIGN    shift and go to state 53
+    TOKEN_LPAREN    shift and go to state 54
+
+
+state 40
+
+    (29) condition -> TOKEN_IF . TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON
+
+    TOKEN_LPAREN    shift and go to state 55
+
+
+state 41
+
+    (28) cycle -> TOKEN_WHILE . TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON
+
+    TOKEN_LPAREN    shift and go to state 56
+
+
+state 42
+
+    (22) print -> TOKEN_PRINT . TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON
+
+    TOKEN_LPAREN    shift and go to state 57
+
+
+state 43
+
+    (62) def_tipo -> TOKEN_ID . TOKEN_COLON type coma
+
+    TOKEN_COLON     shift and go to state 58
+
+
+state 44
+
+    (59) funs -> TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo . TOKEN_RPAREN var body TOKEN_SEMICOLON
+
+    TOKEN_RPAREN    shift and go to state 59
+
+
+state 45
+
+    (60) tipo -> def_tipo .
+
+    TOKEN_RPAREN    reduce using rule 60 (tipo -> def_tipo .)
+
+
+state 46
+
+    (61) tipo -> empty .
+
+    TOKEN_RPAREN    reduce using rule 61 (tipo -> empty .)
+
+
+state 47
+
+    (9) variable -> TOKEN_ID mas_ids TOKEN_COLON type . TOKEN_SEMICOLON
+
+    TOKEN_SEMICOLON shift and go to state 60
+
+
+state 48
+
+    (12) type -> TOKEN_INT .
+
+    TOKEN_SEMICOLON reduce using rule 12 (type -> TOKEN_INT .)
+    TOKEN_COMMA     reduce using rule 12 (type -> TOKEN_INT .)
+    TOKEN_RPAREN    reduce using rule 12 (type -> TOKEN_INT .)
+
+
+state 49
+
+    (13) type -> TOKEN_FLOAT .
+
+    TOKEN_SEMICOLON reduce using rule 13 (type -> TOKEN_FLOAT .)
+    TOKEN_COMMA     reduce using rule 13 (type -> TOKEN_FLOAT .)
+    TOKEN_RPAREN    reduce using rule 13 (type -> TOKEN_FLOAT .)
+
+
+state 50
+
+    (10) mas_ids -> TOKEN_COMMA TOKEN_ID mas_ids .
+
+    TOKEN_COLON     reduce using rule 10 (mas_ids -> TOKEN_COMMA TOKEN_ID mas_ids .)
+
+
+state 51
+
+    (14) body -> TOKEN_LBRACE dec_statements TOKEN_RBRACE .
+
+    TOKEN_END       reduce using rule 14 (body -> TOKEN_LBRACE dec_statements TOKEN_RBRACE .)
+    TOKEN_SEMICOLON reduce using rule 14 (body -> TOKEN_LBRACE dec_statements TOKEN_RBRACE .)
+    TOKEN_ELSE      reduce using rule 14 (body -> TOKEN_LBRACE dec_statements TOKEN_RBRACE .)
+
+
+state 52
+
+    (15) dec_statements -> statement dec_statements .
+
+    TOKEN_RBRACE    reduce using rule 15 (dec_statements -> statement dec_statements .)
+
+
+state 53
+
+    (72) assign -> TOKEN_ID TOKEN_ASSIGN . expresion TOKEN_SEMICOLON
+    (34) expresion -> . exp comparar
+    (40) exp -> . termino suma_resta
+    (45) termino -> . factor multi_div
+    (50) factor -> . definicion
+    (51) factor -> . operaciones
+    (52) definicion -> . TOKEN_LPAREN expresion TOKEN_RPAREN
+    (53) operaciones -> . opciones_mas_menos id_cte
+    (54) opciones_mas_menos -> . TOKEN_PLUS
+    (55) opciones_mas_menos -> . TOKEN_MINUS
+    (56) opciones_mas_menos -> . empty
+    (73) empty -> .
+
+    TOKEN_LPAREN    shift and go to state 67
+    TOKEN_PLUS      shift and go to state 69
+    TOKEN_MINUS     shift and go to state 70
+    TOKEN_ID        reduce using rule 73 (empty -> .)
+    TOKEN_CTE_INT   reduce using rule 73 (empty -> .)
+    TOKEN_CTE_FLOAT reduce using rule 73 (empty -> .)
+
+    expresion                      shift and go to state 61
+    exp                            shift and go to state 62
+    termino                        shift and go to state 63
+    factor                         shift and go to state 64
+    definicion                     shift and go to state 65
+    operaciones                    shift and go to state 66
+    opciones_mas_menos             shift and go to state 68
+    empty                          shift and go to state 71
+
+state 54
+
+    (67) f_call -> TOKEN_ID TOKEN_LPAREN . def_exp TOKEN_RPAREN TOKEN_SEMICOLON
+    (68) def_exp -> . expresion coma2
+    (69) def_exp -> . empty
+    (34) expresion -> . exp comparar
+    (73) empty -> .
+    (40) exp -> . termino suma_resta
+    (45) termino -> . factor multi_div
+    (50) factor -> . definicion
+    (51) factor -> . operaciones
+    (52) definicion -> . TOKEN_LPAREN expresion TOKEN_RPAREN
+    (53) operaciones -> . opciones_mas_menos id_cte
+    (54) opciones_mas_menos -> . TOKEN_PLUS
+    (55) opciones_mas_menos -> . TOKEN_MINUS
+    (56) opciones_mas_menos -> . empty
+
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+    TOKEN_ID        reduce using rule 73 (empty -> .)
+    TOKEN_CTE_INT   reduce using rule 73 (empty -> .)
+    TOKEN_CTE_FLOAT reduce using rule 73 (empty -> .)
+    TOKEN_LPAREN    shift and go to state 67
+    TOKEN_PLUS      shift and go to state 69
+    TOKEN_MINUS     shift and go to state 70
+
+    def_exp                        shift and go to state 72
+    expresion                      shift and go to state 73
+    empty                          shift and go to state 74
+    exp                            shift and go to state 62
+    termino                        shift and go to state 63
+    factor                         shift and go to state 64
+    definicion                     shift and go to state 65
+    operaciones                    shift and go to state 66
+    opciones_mas_menos             shift and go to state 68
+
+state 55
+
+    (29) condition -> TOKEN_IF TOKEN_LPAREN . expresion TOKEN_RPAREN body else TOKEN_SEMICOLON
+    (34) expresion -> . exp comparar
+    (40) exp -> . termino suma_resta
+    (45) termino -> . factor multi_div
+    (50) factor -> . definicion
+    (51) factor -> . operaciones
+    (52) definicion -> . TOKEN_LPAREN expresion TOKEN_RPAREN
+    (53) operaciones -> . opciones_mas_menos id_cte
+    (54) opciones_mas_menos -> . TOKEN_PLUS
+    (55) opciones_mas_menos -> . TOKEN_MINUS
+    (56) opciones_mas_menos -> . empty
+    (73) empty -> .
+
+    TOKEN_LPAREN    shift and go to state 67
+    TOKEN_PLUS      shift and go to state 69
+    TOKEN_MINUS     shift and go to state 70
+    TOKEN_ID        reduce using rule 73 (empty -> .)
+    TOKEN_CTE_INT   reduce using rule 73 (empty -> .)
+    TOKEN_CTE_FLOAT reduce using rule 73 (empty -> .)
+
+    expresion                      shift and go to state 75
+    exp                            shift and go to state 62
+    termino                        shift and go to state 63
+    factor                         shift and go to state 64
+    definicion                     shift and go to state 65
+    operaciones                    shift and go to state 66
+    opciones_mas_menos             shift and go to state 68
+    empty                          shift and go to state 71
+
+state 56
+
+    (28) cycle -> TOKEN_WHILE TOKEN_LPAREN . expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON
+    (34) expresion -> . exp comparar
+    (40) exp -> . termino suma_resta
+    (45) termino -> . factor multi_div
+    (50) factor -> . definicion
+    (51) factor -> . operaciones
+    (52) definicion -> . TOKEN_LPAREN expresion TOKEN_RPAREN
+    (53) operaciones -> . opciones_mas_menos id_cte
+    (54) opciones_mas_menos -> . TOKEN_PLUS
+    (55) opciones_mas_menos -> . TOKEN_MINUS
+    (56) opciones_mas_menos -> . empty
+    (73) empty -> .
+
+    TOKEN_LPAREN    shift and go to state 67
+    TOKEN_PLUS      shift and go to state 69
+    TOKEN_MINUS     shift and go to state 70
+    TOKEN_ID        reduce using rule 73 (empty -> .)
+    TOKEN_CTE_INT   reduce using rule 73 (empty -> .)
+    TOKEN_CTE_FLOAT reduce using rule 73 (empty -> .)
+
+    expresion                      shift and go to state 76
+    exp                            shift and go to state 62
+    termino                        shift and go to state 63
+    factor                         shift and go to state 64
+    definicion                     shift and go to state 65
+    operaciones                    shift and go to state 66
+    opciones_mas_menos             shift and go to state 68
+    empty                          shift and go to state 71
+
+state 57
+
+    (22) print -> TOKEN_PRINT TOKEN_LPAREN . expresiones TOKEN_RPAREN TOKEN_SEMICOLON
+    (23) expresiones -> . TOKEN_CTE_STRING comas
+    (24) expresiones -> . expresion comas
+    (34) expresion -> . exp comparar
+    (40) exp -> . termino suma_resta
+    (45) termino -> . factor multi_div
+    (50) factor -> . definicion
+    (51) factor -> . operaciones
+    (52) definicion -> . TOKEN_LPAREN expresion TOKEN_RPAREN
+    (53) operaciones -> . opciones_mas_menos id_cte
+    (54) opciones_mas_menos -> . TOKEN_PLUS
+    (55) opciones_mas_menos -> . TOKEN_MINUS
+    (56) opciones_mas_menos -> . empty
+    (73) empty -> .
+
+    TOKEN_CTE_STRING shift and go to state 78
+    TOKEN_LPAREN    shift and go to state 67
+    TOKEN_PLUS      shift and go to state 69
+    TOKEN_MINUS     shift and go to state 70
+    TOKEN_ID        reduce using rule 73 (empty -> .)
+    TOKEN_CTE_INT   reduce using rule 73 (empty -> .)
+    TOKEN_CTE_FLOAT reduce using rule 73 (empty -> .)
+
+    expresiones                    shift and go to state 77
+    expresion                      shift and go to state 79
+    exp                            shift and go to state 62
+    termino                        shift and go to state 63
+    factor                         shift and go to state 64
+    definicion                     shift and go to state 65
+    operaciones                    shift and go to state 66
+    opciones_mas_menos             shift and go to state 68
+    empty                          shift and go to state 71
+
+state 58
+
+    (62) def_tipo -> TOKEN_ID TOKEN_COLON . type coma
+    (12) type -> . TOKEN_INT
+    (13) type -> . TOKEN_FLOAT
+
+    TOKEN_INT       shift and go to state 48
+    TOKEN_FLOAT     shift and go to state 49
+
+    type                           shift and go to state 80
+
+state 59
+
+    (59) funs -> TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN . var body TOKEN_SEMICOLON
+    (65) var -> . vars
+    (66) var -> . empty
+    (6) vars -> . TOKEN_VAR variable rep_var
+    (73) empty -> .
+
+    TOKEN_VAR       shift and go to state 8
+    TOKEN_LBRACE    reduce using rule 73 (empty -> .)
+
+    var                            shift and go to state 81
+    vars                           shift and go to state 82
+    empty                          shift and go to state 83
+
+state 60
+
+    (9) variable -> TOKEN_ID mas_ids TOKEN_COLON type TOKEN_SEMICOLON .
+
+    TOKEN_ID        reduce using rule 9 (variable -> TOKEN_ID mas_ids TOKEN_COLON type TOKEN_SEMICOLON .)
+    TOKEN_VOID      reduce using rule 9 (variable -> TOKEN_ID mas_ids TOKEN_COLON type TOKEN_SEMICOLON .)
+    TOKEN_MAIN      reduce using rule 9 (variable -> TOKEN_ID mas_ids TOKEN_COLON type TOKEN_SEMICOLON .)
+    TOKEN_LBRACE    reduce using rule 9 (variable -> TOKEN_ID mas_ids TOKEN_COLON type TOKEN_SEMICOLON .)
+
+
+state 61
+
+    (72) assign -> TOKEN_ID TOKEN_ASSIGN expresion . TOKEN_SEMICOLON
+
+    TOKEN_SEMICOLON shift and go to state 84
+
+
+state 62
+
+    (34) expresion -> exp . comparar
+    (35) comparar -> . signo exp
+    (36) comparar -> . empty
+    (37) signo -> . TOKEN_GT
+    (38) signo -> . TOKEN_LT
+    (39) signo -> . TOKEN_NE
+    (73) empty -> .
+
+    TOKEN_GT        shift and go to state 88
+    TOKEN_LT        shift and go to state 89
+    TOKEN_NE        shift and go to state 90
+    TOKEN_SEMICOLON reduce using rule 73 (empty -> .)
+    TOKEN_COMMA     reduce using rule 73 (empty -> .)
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+
+    comparar                       shift and go to state 85
+    signo                          shift and go to state 86
+    empty                          shift and go to state 87
+
+state 63
+
+    (40) exp -> termino . suma_resta
+    (41) suma_resta -> . opcion_mas_menos exp
+    (42) suma_resta -> . empty
+    (43) opcion_mas_menos -> . TOKEN_PLUS
+    (44) opcion_mas_menos -> . TOKEN_MINUS
+    (73) empty -> .
+
+    TOKEN_PLUS      shift and go to state 94
+    TOKEN_MINUS     shift and go to state 95
+    TOKEN_GT        reduce using rule 73 (empty -> .)
+    TOKEN_LT        reduce using rule 73 (empty -> .)
+    TOKEN_NE        reduce using rule 73 (empty -> .)
+    TOKEN_SEMICOLON reduce using rule 73 (empty -> .)
+    TOKEN_COMMA     reduce using rule 73 (empty -> .)
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+
+    suma_resta                     shift and go to state 91
+    opcion_mas_menos               shift and go to state 92
+    empty                          shift and go to state 93
+
+state 64
+
+    (45) termino -> factor . multi_div
+    (46) multi_div -> . operacion_mul_div termino
+    (47) multi_div -> . empty
+    (48) operacion_mul_div -> . TOKEN_DIV
+    (49) operacion_mul_div -> . TOKEN_MULT
+    (73) empty -> .
+
+    TOKEN_DIV       shift and go to state 99
+    TOKEN_MULT      shift and go to state 100
+    TOKEN_PLUS      reduce using rule 73 (empty -> .)
+    TOKEN_MINUS     reduce using rule 73 (empty -> .)
+    TOKEN_GT        reduce using rule 73 (empty -> .)
+    TOKEN_LT        reduce using rule 73 (empty -> .)
+    TOKEN_NE        reduce using rule 73 (empty -> .)
+    TOKEN_SEMICOLON reduce using rule 73 (empty -> .)
+    TOKEN_COMMA     reduce using rule 73 (empty -> .)
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+
+    multi_div                      shift and go to state 96
+    operacion_mul_div              shift and go to state 97
+    empty                          shift and go to state 98
+
+state 65
+
+    (50) factor -> definicion .
+
+    TOKEN_DIV       reduce using rule 50 (factor -> definicion .)
+    TOKEN_MULT      reduce using rule 50 (factor -> definicion .)
+    TOKEN_PLUS      reduce using rule 50 (factor -> definicion .)
+    TOKEN_MINUS     reduce using rule 50 (factor -> definicion .)
+    TOKEN_GT        reduce using rule 50 (factor -> definicion .)
+    TOKEN_LT        reduce using rule 50 (factor -> definicion .)
+    TOKEN_NE        reduce using rule 50 (factor -> definicion .)
+    TOKEN_SEMICOLON reduce using rule 50 (factor -> definicion .)
+    TOKEN_COMMA     reduce using rule 50 (factor -> definicion .)
+    TOKEN_RPAREN    reduce using rule 50 (factor -> definicion .)
+
+
+state 66
+
+    (51) factor -> operaciones .
+
+    TOKEN_DIV       reduce using rule 51 (factor -> operaciones .)
+    TOKEN_MULT      reduce using rule 51 (factor -> operaciones .)
+    TOKEN_PLUS      reduce using rule 51 (factor -> operaciones .)
+    TOKEN_MINUS     reduce using rule 51 (factor -> operaciones .)
+    TOKEN_GT        reduce using rule 51 (factor -> operaciones .)
+    TOKEN_LT        reduce using rule 51 (factor -> operaciones .)
+    TOKEN_NE        reduce using rule 51 (factor -> operaciones .)
+    TOKEN_SEMICOLON reduce using rule 51 (factor -> operaciones .)
+    TOKEN_COMMA     reduce using rule 51 (factor -> operaciones .)
+    TOKEN_RPAREN    reduce using rule 51 (factor -> operaciones .)
+
+
+state 67
+
+    (52) definicion -> TOKEN_LPAREN . expresion TOKEN_RPAREN
+    (34) expresion -> . exp comparar
+    (40) exp -> . termino suma_resta
+    (45) termino -> . factor multi_div
+    (50) factor -> . definicion
+    (51) factor -> . operaciones
+    (52) definicion -> . TOKEN_LPAREN expresion TOKEN_RPAREN
+    (53) operaciones -> . opciones_mas_menos id_cte
+    (54) opciones_mas_menos -> . TOKEN_PLUS
+    (55) opciones_mas_menos -> . TOKEN_MINUS
+    (56) opciones_mas_menos -> . empty
+    (73) empty -> .
+
+    TOKEN_LPAREN    shift and go to state 67
+    TOKEN_PLUS      shift and go to state 69
+    TOKEN_MINUS     shift and go to state 70
+    TOKEN_ID        reduce using rule 73 (empty -> .)
+    TOKEN_CTE_INT   reduce using rule 73 (empty -> .)
+    TOKEN_CTE_FLOAT reduce using rule 73 (empty -> .)
+
+    expresion                      shift and go to state 101
+    exp                            shift and go to state 62
+    termino                        shift and go to state 63
+    factor                         shift and go to state 64
+    definicion                     shift and go to state 65
+    operaciones                    shift and go to state 66
+    opciones_mas_menos             shift and go to state 68
+    empty                          shift and go to state 71
+
+state 68
+
+    (53) operaciones -> opciones_mas_menos . id_cte
+    (57) id_cte -> . TOKEN_ID
+    (58) id_cte -> . cte
+    (32) cte -> . TOKEN_CTE_INT
+    (33) cte -> . TOKEN_CTE_FLOAT
+
+    TOKEN_ID        shift and go to state 103
+    TOKEN_CTE_INT   shift and go to state 105
+    TOKEN_CTE_FLOAT shift and go to state 106
+
+    id_cte                         shift and go to state 102
+    cte                            shift and go to state 104
+
+state 69
+
+    (54) opciones_mas_menos -> TOKEN_PLUS .
+
+    TOKEN_ID        reduce using rule 54 (opciones_mas_menos -> TOKEN_PLUS .)
+    TOKEN_CTE_INT   reduce using rule 54 (opciones_mas_menos -> TOKEN_PLUS .)
+    TOKEN_CTE_FLOAT reduce using rule 54 (opciones_mas_menos -> TOKEN_PLUS .)
+
+
+state 70
+
+    (55) opciones_mas_menos -> TOKEN_MINUS .
+
+    TOKEN_ID        reduce using rule 55 (opciones_mas_menos -> TOKEN_MINUS .)
+    TOKEN_CTE_INT   reduce using rule 55 (opciones_mas_menos -> TOKEN_MINUS .)
+    TOKEN_CTE_FLOAT reduce using rule 55 (opciones_mas_menos -> TOKEN_MINUS .)
+
+
+state 71
+
+    (56) opciones_mas_menos -> empty .
+
+    TOKEN_ID        reduce using rule 56 (opciones_mas_menos -> empty .)
+    TOKEN_CTE_INT   reduce using rule 56 (opciones_mas_menos -> empty .)
+    TOKEN_CTE_FLOAT reduce using rule 56 (opciones_mas_menos -> empty .)
+
+
+state 72
+
+    (67) f_call -> TOKEN_ID TOKEN_LPAREN def_exp . TOKEN_RPAREN TOKEN_SEMICOLON
+
+    TOKEN_RPAREN    shift and go to state 107
+
+
+state 73
+
+    (68) def_exp -> expresion . coma2
+    (70) coma2 -> . TOKEN_COMMA expresion coma2
+    (71) coma2 -> . empty
+    (73) empty -> .
+
+    TOKEN_COMMA     shift and go to state 109
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+
+    coma2                          shift and go to state 108
+    empty                          shift and go to state 110
+
+state 74
+
+    (69) def_exp -> empty .
+    (56) opciones_mas_menos -> empty .
+
+    TOKEN_RPAREN    reduce using rule 69 (def_exp -> empty .)
+    TOKEN_ID        reduce using rule 56 (opciones_mas_menos -> empty .)
+    TOKEN_CTE_INT   reduce using rule 56 (opciones_mas_menos -> empty .)
+    TOKEN_CTE_FLOAT reduce using rule 56 (opciones_mas_menos -> empty .)
+
+
+state 75
+
+    (29) condition -> TOKEN_IF TOKEN_LPAREN expresion . TOKEN_RPAREN body else TOKEN_SEMICOLON
+
+    TOKEN_RPAREN    shift and go to state 111
+
+
+state 76
+
+    (28) cycle -> TOKEN_WHILE TOKEN_LPAREN expresion . TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON
+
+    TOKEN_RPAREN    shift and go to state 112
+
+
+state 77
+
+    (22) print -> TOKEN_PRINT TOKEN_LPAREN expresiones . TOKEN_RPAREN TOKEN_SEMICOLON
+
+    TOKEN_RPAREN    shift and go to state 113
+
+
+state 78
+
+    (23) expresiones -> TOKEN_CTE_STRING . comas
+    (25) comas -> . TOKEN_COMMA expresion comas
+    (26) comas -> . TOKEN_COMMA TOKEN_CTE_STRING comas
+    (27) comas -> . empty
+    (73) empty -> .
+
+    TOKEN_COMMA     shift and go to state 115
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+
+    comas                          shift and go to state 114
+    empty                          shift and go to state 116
+
+state 79
+
+    (24) expresiones -> expresion . comas
+    (25) comas -> . TOKEN_COMMA expresion comas
+    (26) comas -> . TOKEN_COMMA TOKEN_CTE_STRING comas
+    (27) comas -> . empty
+    (73) empty -> .
+
+    TOKEN_COMMA     shift and go to state 115
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+
+    comas                          shift and go to state 117
+    empty                          shift and go to state 116
+
+state 80
+
+    (62) def_tipo -> TOKEN_ID TOKEN_COLON type . coma
+    (63) coma -> . TOKEN_COMMA def_tipo coma
+    (64) coma -> . empty
+    (73) empty -> .
+
+  ! shift/reduce conflict for TOKEN_COMMA resolved as shift
+    TOKEN_COMMA     shift and go to state 119
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+
+  ! TOKEN_COMMA     [ reduce using rule 73 (empty -> .) ]
+
+    coma                           shift and go to state 118
+    empty                          shift and go to state 120
+
+state 81
+
+    (59) funs -> TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN var . body TOKEN_SEMICOLON
+    (14) body -> . TOKEN_LBRACE dec_statements TOKEN_RBRACE
+
+    TOKEN_LBRACE    shift and go to state 25
+
+    body                           shift and go to state 121
+
+state 82
+
+    (65) var -> vars .
+
+    TOKEN_LBRACE    reduce using rule 65 (var -> vars .)
+
+
+state 83
+
+    (66) var -> empty .
+
+    TOKEN_LBRACE    reduce using rule 66 (var -> empty .)
+
+
+state 84
+
+    (72) assign -> TOKEN_ID TOKEN_ASSIGN expresion TOKEN_SEMICOLON .
+
+    TOKEN_ID        reduce using rule 72 (assign -> TOKEN_ID TOKEN_ASSIGN expresion TOKEN_SEMICOLON .)
+    TOKEN_IF        reduce using rule 72 (assign -> TOKEN_ID TOKEN_ASSIGN expresion TOKEN_SEMICOLON .)
+    TOKEN_WHILE     reduce using rule 72 (assign -> TOKEN_ID TOKEN_ASSIGN expresion TOKEN_SEMICOLON .)
+    TOKEN_PRINT     reduce using rule 72 (assign -> TOKEN_ID TOKEN_ASSIGN expresion TOKEN_SEMICOLON .)
+    TOKEN_RBRACE    reduce using rule 72 (assign -> TOKEN_ID TOKEN_ASSIGN expresion TOKEN_SEMICOLON .)
+
+
+state 85
+
+    (34) expresion -> exp comparar .
+
+    TOKEN_SEMICOLON reduce using rule 34 (expresion -> exp comparar .)
+    TOKEN_COMMA     reduce using rule 34 (expresion -> exp comparar .)
+    TOKEN_RPAREN    reduce using rule 34 (expresion -> exp comparar .)
+
+
+state 86
+
+    (35) comparar -> signo . exp
+    (40) exp -> . termino suma_resta
+    (45) termino -> . factor multi_div
+    (50) factor -> . definicion
+    (51) factor -> . operaciones
+    (52) definicion -> . TOKEN_LPAREN expresion TOKEN_RPAREN
+    (53) operaciones -> . opciones_mas_menos id_cte
+    (54) opciones_mas_menos -> . TOKEN_PLUS
+    (55) opciones_mas_menos -> . TOKEN_MINUS
+    (56) opciones_mas_menos -> . empty
+    (73) empty -> .
+
+    TOKEN_LPAREN    shift and go to state 67
+    TOKEN_PLUS      shift and go to state 69
+    TOKEN_MINUS     shift and go to state 70
+    TOKEN_ID        reduce using rule 73 (empty -> .)
+    TOKEN_CTE_INT   reduce using rule 73 (empty -> .)
+    TOKEN_CTE_FLOAT reduce using rule 73 (empty -> .)
+
+    exp                            shift and go to state 122
+    termino                        shift and go to state 63
+    factor                         shift and go to state 64
+    definicion                     shift and go to state 65
+    operaciones                    shift and go to state 66
+    opciones_mas_menos             shift and go to state 68
+    empty                          shift and go to state 71
+
+state 87
+
+    (36) comparar -> empty .
+
+    TOKEN_SEMICOLON reduce using rule 36 (comparar -> empty .)
+    TOKEN_COMMA     reduce using rule 36 (comparar -> empty .)
+    TOKEN_RPAREN    reduce using rule 36 (comparar -> empty .)
+
+
+state 88
+
+    (37) signo -> TOKEN_GT .
+
+    TOKEN_LPAREN    reduce using rule 37 (signo -> TOKEN_GT .)
+    TOKEN_PLUS      reduce using rule 37 (signo -> TOKEN_GT .)
+    TOKEN_MINUS     reduce using rule 37 (signo -> TOKEN_GT .)
+    TOKEN_ID        reduce using rule 37 (signo -> TOKEN_GT .)
+    TOKEN_CTE_INT   reduce using rule 37 (signo -> TOKEN_GT .)
+    TOKEN_CTE_FLOAT reduce using rule 37 (signo -> TOKEN_GT .)
+
+
+state 89
+
+    (38) signo -> TOKEN_LT .
+
+    TOKEN_LPAREN    reduce using rule 38 (signo -> TOKEN_LT .)
+    TOKEN_PLUS      reduce using rule 38 (signo -> TOKEN_LT .)
+    TOKEN_MINUS     reduce using rule 38 (signo -> TOKEN_LT .)
+    TOKEN_ID        reduce using rule 38 (signo -> TOKEN_LT .)
+    TOKEN_CTE_INT   reduce using rule 38 (signo -> TOKEN_LT .)
+    TOKEN_CTE_FLOAT reduce using rule 38 (signo -> TOKEN_LT .)
+
+
+state 90
+
+    (39) signo -> TOKEN_NE .
+
+    TOKEN_LPAREN    reduce using rule 39 (signo -> TOKEN_NE .)
+    TOKEN_PLUS      reduce using rule 39 (signo -> TOKEN_NE .)
+    TOKEN_MINUS     reduce using rule 39 (signo -> TOKEN_NE .)
+    TOKEN_ID        reduce using rule 39 (signo -> TOKEN_NE .)
+    TOKEN_CTE_INT   reduce using rule 39 (signo -> TOKEN_NE .)
+    TOKEN_CTE_FLOAT reduce using rule 39 (signo -> TOKEN_NE .)
+
+
+state 91
+
+    (40) exp -> termino suma_resta .
+
+    TOKEN_GT        reduce using rule 40 (exp -> termino suma_resta .)
+    TOKEN_LT        reduce using rule 40 (exp -> termino suma_resta .)
+    TOKEN_NE        reduce using rule 40 (exp -> termino suma_resta .)
+    TOKEN_SEMICOLON reduce using rule 40 (exp -> termino suma_resta .)
+    TOKEN_COMMA     reduce using rule 40 (exp -> termino suma_resta .)
+    TOKEN_RPAREN    reduce using rule 40 (exp -> termino suma_resta .)
+
+
+state 92
+
+    (41) suma_resta -> opcion_mas_menos . exp
+    (40) exp -> . termino suma_resta
+    (45) termino -> . factor multi_div
+    (50) factor -> . definicion
+    (51) factor -> . operaciones
+    (52) definicion -> . TOKEN_LPAREN expresion TOKEN_RPAREN
+    (53) operaciones -> . opciones_mas_menos id_cte
+    (54) opciones_mas_menos -> . TOKEN_PLUS
+    (55) opciones_mas_menos -> . TOKEN_MINUS
+    (56) opciones_mas_menos -> . empty
+    (73) empty -> .
+
+    TOKEN_LPAREN    shift and go to state 67
+    TOKEN_PLUS      shift and go to state 69
+    TOKEN_MINUS     shift and go to state 70
+    TOKEN_ID        reduce using rule 73 (empty -> .)
+    TOKEN_CTE_INT   reduce using rule 73 (empty -> .)
+    TOKEN_CTE_FLOAT reduce using rule 73 (empty -> .)
+
+    exp                            shift and go to state 123
+    termino                        shift and go to state 63
+    factor                         shift and go to state 64
+    definicion                     shift and go to state 65
+    operaciones                    shift and go to state 66
+    opciones_mas_menos             shift and go to state 68
+    empty                          shift and go to state 71
+
+state 93
+
+    (42) suma_resta -> empty .
+
+    TOKEN_GT        reduce using rule 42 (suma_resta -> empty .)
+    TOKEN_LT        reduce using rule 42 (suma_resta -> empty .)
+    TOKEN_NE        reduce using rule 42 (suma_resta -> empty .)
+    TOKEN_SEMICOLON reduce using rule 42 (suma_resta -> empty .)
+    TOKEN_COMMA     reduce using rule 42 (suma_resta -> empty .)
+    TOKEN_RPAREN    reduce using rule 42 (suma_resta -> empty .)
+
+
+state 94
+
+    (43) opcion_mas_menos -> TOKEN_PLUS .
+
+    TOKEN_LPAREN    reduce using rule 43 (opcion_mas_menos -> TOKEN_PLUS .)
+    TOKEN_PLUS      reduce using rule 43 (opcion_mas_menos -> TOKEN_PLUS .)
+    TOKEN_MINUS     reduce using rule 43 (opcion_mas_menos -> TOKEN_PLUS .)
+    TOKEN_ID        reduce using rule 43 (opcion_mas_menos -> TOKEN_PLUS .)
+    TOKEN_CTE_INT   reduce using rule 43 (opcion_mas_menos -> TOKEN_PLUS .)
+    TOKEN_CTE_FLOAT reduce using rule 43 (opcion_mas_menos -> TOKEN_PLUS .)
+
+
+state 95
+
+    (44) opcion_mas_menos -> TOKEN_MINUS .
+
+    TOKEN_LPAREN    reduce using rule 44 (opcion_mas_menos -> TOKEN_MINUS .)
+    TOKEN_PLUS      reduce using rule 44 (opcion_mas_menos -> TOKEN_MINUS .)
+    TOKEN_MINUS     reduce using rule 44 (opcion_mas_menos -> TOKEN_MINUS .)
+    TOKEN_ID        reduce using rule 44 (opcion_mas_menos -> TOKEN_MINUS .)
+    TOKEN_CTE_INT   reduce using rule 44 (opcion_mas_menos -> TOKEN_MINUS .)
+    TOKEN_CTE_FLOAT reduce using rule 44 (opcion_mas_menos -> TOKEN_MINUS .)
+
+
+state 96
+
+    (45) termino -> factor multi_div .
+
+    TOKEN_PLUS      reduce using rule 45 (termino -> factor multi_div .)
+    TOKEN_MINUS     reduce using rule 45 (termino -> factor multi_div .)
+    TOKEN_GT        reduce using rule 45 (termino -> factor multi_div .)
+    TOKEN_LT        reduce using rule 45 (termino -> factor multi_div .)
+    TOKEN_NE        reduce using rule 45 (termino -> factor multi_div .)
+    TOKEN_SEMICOLON reduce using rule 45 (termino -> factor multi_div .)
+    TOKEN_COMMA     reduce using rule 45 (termino -> factor multi_div .)
+    TOKEN_RPAREN    reduce using rule 45 (termino -> factor multi_div .)
+
+
+state 97
+
+    (46) multi_div -> operacion_mul_div . termino
+    (45) termino -> . factor multi_div
+    (50) factor -> . definicion
+    (51) factor -> . operaciones
+    (52) definicion -> . TOKEN_LPAREN expresion TOKEN_RPAREN
+    (53) operaciones -> . opciones_mas_menos id_cte
+    (54) opciones_mas_menos -> . TOKEN_PLUS
+    (55) opciones_mas_menos -> . TOKEN_MINUS
+    (56) opciones_mas_menos -> . empty
+    (73) empty -> .
+
+    TOKEN_LPAREN    shift and go to state 67
+    TOKEN_PLUS      shift and go to state 69
+    TOKEN_MINUS     shift and go to state 70
+    TOKEN_ID        reduce using rule 73 (empty -> .)
+    TOKEN_CTE_INT   reduce using rule 73 (empty -> .)
+    TOKEN_CTE_FLOAT reduce using rule 73 (empty -> .)
+
+    termino                        shift and go to state 124
+    factor                         shift and go to state 64
+    definicion                     shift and go to state 65
+    operaciones                    shift and go to state 66
+    opciones_mas_menos             shift and go to state 68
+    empty                          shift and go to state 71
+
+state 98
+
+    (47) multi_div -> empty .
+
+    TOKEN_PLUS      reduce using rule 47 (multi_div -> empty .)
+    TOKEN_MINUS     reduce using rule 47 (multi_div -> empty .)
+    TOKEN_GT        reduce using rule 47 (multi_div -> empty .)
+    TOKEN_LT        reduce using rule 47 (multi_div -> empty .)
+    TOKEN_NE        reduce using rule 47 (multi_div -> empty .)
+    TOKEN_SEMICOLON reduce using rule 47 (multi_div -> empty .)
+    TOKEN_COMMA     reduce using rule 47 (multi_div -> empty .)
+    TOKEN_RPAREN    reduce using rule 47 (multi_div -> empty .)
+
+
+state 99
+
+    (48) operacion_mul_div -> TOKEN_DIV .
+
+    TOKEN_LPAREN    reduce using rule 48 (operacion_mul_div -> TOKEN_DIV .)
+    TOKEN_PLUS      reduce using rule 48 (operacion_mul_div -> TOKEN_DIV .)
+    TOKEN_MINUS     reduce using rule 48 (operacion_mul_div -> TOKEN_DIV .)
+    TOKEN_ID        reduce using rule 48 (operacion_mul_div -> TOKEN_DIV .)
+    TOKEN_CTE_INT   reduce using rule 48 (operacion_mul_div -> TOKEN_DIV .)
+    TOKEN_CTE_FLOAT reduce using rule 48 (operacion_mul_div -> TOKEN_DIV .)
+
+
+state 100
+
+    (49) operacion_mul_div -> TOKEN_MULT .
+
+    TOKEN_LPAREN    reduce using rule 49 (operacion_mul_div -> TOKEN_MULT .)
+    TOKEN_PLUS      reduce using rule 49 (operacion_mul_div -> TOKEN_MULT .)
+    TOKEN_MINUS     reduce using rule 49 (operacion_mul_div -> TOKEN_MULT .)
+    TOKEN_ID        reduce using rule 49 (operacion_mul_div -> TOKEN_MULT .)
+    TOKEN_CTE_INT   reduce using rule 49 (operacion_mul_div -> TOKEN_MULT .)
+    TOKEN_CTE_FLOAT reduce using rule 49 (operacion_mul_div -> TOKEN_MULT .)
+
+
+state 101
+
+    (52) definicion -> TOKEN_LPAREN expresion . TOKEN_RPAREN
+
+    TOKEN_RPAREN    shift and go to state 125
+
+
+state 102
+
+    (53) operaciones -> opciones_mas_menos id_cte .
+
+    TOKEN_DIV       reduce using rule 53 (operaciones -> opciones_mas_menos id_cte .)
+    TOKEN_MULT      reduce using rule 53 (operaciones -> opciones_mas_menos id_cte .)
+    TOKEN_PLUS      reduce using rule 53 (operaciones -> opciones_mas_menos id_cte .)
+    TOKEN_MINUS     reduce using rule 53 (operaciones -> opciones_mas_menos id_cte .)
+    TOKEN_GT        reduce using rule 53 (operaciones -> opciones_mas_menos id_cte .)
+    TOKEN_LT        reduce using rule 53 (operaciones -> opciones_mas_menos id_cte .)
+    TOKEN_NE        reduce using rule 53 (operaciones -> opciones_mas_menos id_cte .)
+    TOKEN_SEMICOLON reduce using rule 53 (operaciones -> opciones_mas_menos id_cte .)
+    TOKEN_COMMA     reduce using rule 53 (operaciones -> opciones_mas_menos id_cte .)
+    TOKEN_RPAREN    reduce using rule 53 (operaciones -> opciones_mas_menos id_cte .)
+
+
+state 103
+
+    (57) id_cte -> TOKEN_ID .
+
+    TOKEN_DIV       reduce using rule 57 (id_cte -> TOKEN_ID .)
+    TOKEN_MULT      reduce using rule 57 (id_cte -> TOKEN_ID .)
+    TOKEN_PLUS      reduce using rule 57 (id_cte -> TOKEN_ID .)
+    TOKEN_MINUS     reduce using rule 57 (id_cte -> TOKEN_ID .)
+    TOKEN_GT        reduce using rule 57 (id_cte -> TOKEN_ID .)
+    TOKEN_LT        reduce using rule 57 (id_cte -> TOKEN_ID .)
+    TOKEN_NE        reduce using rule 57 (id_cte -> TOKEN_ID .)
+    TOKEN_SEMICOLON reduce using rule 57 (id_cte -> TOKEN_ID .)
+    TOKEN_COMMA     reduce using rule 57 (id_cte -> TOKEN_ID .)
+    TOKEN_RPAREN    reduce using rule 57 (id_cte -> TOKEN_ID .)
+
+
+state 104
+
+    (58) id_cte -> cte .
+
+    TOKEN_DIV       reduce using rule 58 (id_cte -> cte .)
+    TOKEN_MULT      reduce using rule 58 (id_cte -> cte .)
+    TOKEN_PLUS      reduce using rule 58 (id_cte -> cte .)
+    TOKEN_MINUS     reduce using rule 58 (id_cte -> cte .)
+    TOKEN_GT        reduce using rule 58 (id_cte -> cte .)
+    TOKEN_LT        reduce using rule 58 (id_cte -> cte .)
+    TOKEN_NE        reduce using rule 58 (id_cte -> cte .)
+    TOKEN_SEMICOLON reduce using rule 58 (id_cte -> cte .)
+    TOKEN_COMMA     reduce using rule 58 (id_cte -> cte .)
+    TOKEN_RPAREN    reduce using rule 58 (id_cte -> cte .)
+
+
+state 105
+
+    (32) cte -> TOKEN_CTE_INT .
+
+    TOKEN_DIV       reduce using rule 32 (cte -> TOKEN_CTE_INT .)
+    TOKEN_MULT      reduce using rule 32 (cte -> TOKEN_CTE_INT .)
+    TOKEN_PLUS      reduce using rule 32 (cte -> TOKEN_CTE_INT .)
+    TOKEN_MINUS     reduce using rule 32 (cte -> TOKEN_CTE_INT .)
+    TOKEN_GT        reduce using rule 32 (cte -> TOKEN_CTE_INT .)
+    TOKEN_LT        reduce using rule 32 (cte -> TOKEN_CTE_INT .)
+    TOKEN_NE        reduce using rule 32 (cte -> TOKEN_CTE_INT .)
+    TOKEN_SEMICOLON reduce using rule 32 (cte -> TOKEN_CTE_INT .)
+    TOKEN_COMMA     reduce using rule 32 (cte -> TOKEN_CTE_INT .)
+    TOKEN_RPAREN    reduce using rule 32 (cte -> TOKEN_CTE_INT .)
+
+
+state 106
+
+    (33) cte -> TOKEN_CTE_FLOAT .
+
+    TOKEN_DIV       reduce using rule 33 (cte -> TOKEN_CTE_FLOAT .)
+    TOKEN_MULT      reduce using rule 33 (cte -> TOKEN_CTE_FLOAT .)
+    TOKEN_PLUS      reduce using rule 33 (cte -> TOKEN_CTE_FLOAT .)
+    TOKEN_MINUS     reduce using rule 33 (cte -> TOKEN_CTE_FLOAT .)
+    TOKEN_GT        reduce using rule 33 (cte -> TOKEN_CTE_FLOAT .)
+    TOKEN_LT        reduce using rule 33 (cte -> TOKEN_CTE_FLOAT .)
+    TOKEN_NE        reduce using rule 33 (cte -> TOKEN_CTE_FLOAT .)
+    TOKEN_SEMICOLON reduce using rule 33 (cte -> TOKEN_CTE_FLOAT .)
+    TOKEN_COMMA     reduce using rule 33 (cte -> TOKEN_CTE_FLOAT .)
+    TOKEN_RPAREN    reduce using rule 33 (cte -> TOKEN_CTE_FLOAT .)
+
+
+state 107
+
+    (67) f_call -> TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN . TOKEN_SEMICOLON
+
+    TOKEN_SEMICOLON shift and go to state 126
+
+
+state 108
+
+    (68) def_exp -> expresion coma2 .
+
+    TOKEN_RPAREN    reduce using rule 68 (def_exp -> expresion coma2 .)
+
+
+state 109
+
+    (70) coma2 -> TOKEN_COMMA . expresion coma2
+    (34) expresion -> . exp comparar
+    (40) exp -> . termino suma_resta
+    (45) termino -> . factor multi_div
+    (50) factor -> . definicion
+    (51) factor -> . operaciones
+    (52) definicion -> . TOKEN_LPAREN expresion TOKEN_RPAREN
+    (53) operaciones -> . opciones_mas_menos id_cte
+    (54) opciones_mas_menos -> . TOKEN_PLUS
+    (55) opciones_mas_menos -> . TOKEN_MINUS
+    (56) opciones_mas_menos -> . empty
+    (73) empty -> .
+
+    TOKEN_LPAREN    shift and go to state 67
+    TOKEN_PLUS      shift and go to state 69
+    TOKEN_MINUS     shift and go to state 70
+    TOKEN_ID        reduce using rule 73 (empty -> .)
+    TOKEN_CTE_INT   reduce using rule 73 (empty -> .)
+    TOKEN_CTE_FLOAT reduce using rule 73 (empty -> .)
+
+    expresion                      shift and go to state 127
+    exp                            shift and go to state 62
+    termino                        shift and go to state 63
+    factor                         shift and go to state 64
+    definicion                     shift and go to state 65
+    operaciones                    shift and go to state 66
+    opciones_mas_menos             shift and go to state 68
+    empty                          shift and go to state 71
+
+state 110
+
+    (71) coma2 -> empty .
+
+    TOKEN_RPAREN    reduce using rule 71 (coma2 -> empty .)
+
+
+state 111
+
+    (29) condition -> TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN . body else TOKEN_SEMICOLON
+    (14) body -> . TOKEN_LBRACE dec_statements TOKEN_RBRACE
+
+    TOKEN_LBRACE    shift and go to state 25
+
+    body                           shift and go to state 128
+
+state 112
+
+    (28) cycle -> TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN . TOKEN_DO body TOKEN_SEMICOLON
+
+    TOKEN_DO        shift and go to state 129
+
+
+state 113
+
+    (22) print -> TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN . TOKEN_SEMICOLON
+
+    TOKEN_SEMICOLON shift and go to state 130
+
+
+state 114
+
+    (23) expresiones -> TOKEN_CTE_STRING comas .
+
+    TOKEN_RPAREN    reduce using rule 23 (expresiones -> TOKEN_CTE_STRING comas .)
+
+
+state 115
+
+    (25) comas -> TOKEN_COMMA . expresion comas
+    (26) comas -> TOKEN_COMMA . TOKEN_CTE_STRING comas
+    (34) expresion -> . exp comparar
+    (40) exp -> . termino suma_resta
+    (45) termino -> . factor multi_div
+    (50) factor -> . definicion
+    (51) factor -> . operaciones
+    (52) definicion -> . TOKEN_LPAREN expresion TOKEN_RPAREN
+    (53) operaciones -> . opciones_mas_menos id_cte
+    (54) opciones_mas_menos -> . TOKEN_PLUS
+    (55) opciones_mas_menos -> . TOKEN_MINUS
+    (56) opciones_mas_menos -> . empty
+    (73) empty -> .
+
+    TOKEN_CTE_STRING shift and go to state 132
+    TOKEN_LPAREN    shift and go to state 67
+    TOKEN_PLUS      shift and go to state 69
+    TOKEN_MINUS     shift and go to state 70
+    TOKEN_ID        reduce using rule 73 (empty -> .)
+    TOKEN_CTE_INT   reduce using rule 73 (empty -> .)
+    TOKEN_CTE_FLOAT reduce using rule 73 (empty -> .)
+
+    expresion                      shift and go to state 131
+    exp                            shift and go to state 62
+    termino                        shift and go to state 63
+    factor                         shift and go to state 64
+    definicion                     shift and go to state 65
+    operaciones                    shift and go to state 66
+    opciones_mas_menos             shift and go to state 68
+    empty                          shift and go to state 71
+
+state 116
+
+    (27) comas -> empty .
+
+    TOKEN_RPAREN    reduce using rule 27 (comas -> empty .)
+
+
+state 117
+
+    (24) expresiones -> expresion comas .
+
+    TOKEN_RPAREN    reduce using rule 24 (expresiones -> expresion comas .)
+
+
+state 118
+
+    (62) def_tipo -> TOKEN_ID TOKEN_COLON type coma .
+
+    TOKEN_RPAREN    reduce using rule 62 (def_tipo -> TOKEN_ID TOKEN_COLON type coma .)
+    TOKEN_COMMA     reduce using rule 62 (def_tipo -> TOKEN_ID TOKEN_COLON type coma .)
+
+
+state 119
+
+    (63) coma -> TOKEN_COMMA . def_tipo coma
+    (62) def_tipo -> . TOKEN_ID TOKEN_COLON type coma
+
+    TOKEN_ID        shift and go to state 43
+
+    def_tipo                       shift and go to state 133
+
+state 120
+
+    (64) coma -> empty .
+
+    TOKEN_COMMA     reduce using rule 64 (coma -> empty .)
+    TOKEN_RPAREN    reduce using rule 64 (coma -> empty .)
+
+
+state 121
+
+    (59) funs -> TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN var body . TOKEN_SEMICOLON
+
+    TOKEN_SEMICOLON shift and go to state 134
+
+
+state 122
+
+    (35) comparar -> signo exp .
+
+    TOKEN_SEMICOLON reduce using rule 35 (comparar -> signo exp .)
+    TOKEN_COMMA     reduce using rule 35 (comparar -> signo exp .)
+    TOKEN_RPAREN    reduce using rule 35 (comparar -> signo exp .)
+
+
+state 123
+
+    (41) suma_resta -> opcion_mas_menos exp .
+
+    TOKEN_GT        reduce using rule 41 (suma_resta -> opcion_mas_menos exp .)
+    TOKEN_LT        reduce using rule 41 (suma_resta -> opcion_mas_menos exp .)
+    TOKEN_NE        reduce using rule 41 (suma_resta -> opcion_mas_menos exp .)
+    TOKEN_SEMICOLON reduce using rule 41 (suma_resta -> opcion_mas_menos exp .)
+    TOKEN_COMMA     reduce using rule 41 (suma_resta -> opcion_mas_menos exp .)
+    TOKEN_RPAREN    reduce using rule 41 (suma_resta -> opcion_mas_menos exp .)
+
+
+state 124
+
+    (46) multi_div -> operacion_mul_div termino .
+
+    TOKEN_PLUS      reduce using rule 46 (multi_div -> operacion_mul_div termino .)
+    TOKEN_MINUS     reduce using rule 46 (multi_div -> operacion_mul_div termino .)
+    TOKEN_GT        reduce using rule 46 (multi_div -> operacion_mul_div termino .)
+    TOKEN_LT        reduce using rule 46 (multi_div -> operacion_mul_div termino .)
+    TOKEN_NE        reduce using rule 46 (multi_div -> operacion_mul_div termino .)
+    TOKEN_SEMICOLON reduce using rule 46 (multi_div -> operacion_mul_div termino .)
+    TOKEN_COMMA     reduce using rule 46 (multi_div -> operacion_mul_div termino .)
+    TOKEN_RPAREN    reduce using rule 46 (multi_div -> operacion_mul_div termino .)
+
+
+state 125
+
+    (52) definicion -> TOKEN_LPAREN expresion TOKEN_RPAREN .
+
+    TOKEN_DIV       reduce using rule 52 (definicion -> TOKEN_LPAREN expresion TOKEN_RPAREN .)
+    TOKEN_MULT      reduce using rule 52 (definicion -> TOKEN_LPAREN expresion TOKEN_RPAREN .)
+    TOKEN_PLUS      reduce using rule 52 (definicion -> TOKEN_LPAREN expresion TOKEN_RPAREN .)
+    TOKEN_MINUS     reduce using rule 52 (definicion -> TOKEN_LPAREN expresion TOKEN_RPAREN .)
+    TOKEN_GT        reduce using rule 52 (definicion -> TOKEN_LPAREN expresion TOKEN_RPAREN .)
+    TOKEN_LT        reduce using rule 52 (definicion -> TOKEN_LPAREN expresion TOKEN_RPAREN .)
+    TOKEN_NE        reduce using rule 52 (definicion -> TOKEN_LPAREN expresion TOKEN_RPAREN .)
+    TOKEN_SEMICOLON reduce using rule 52 (definicion -> TOKEN_LPAREN expresion TOKEN_RPAREN .)
+    TOKEN_COMMA     reduce using rule 52 (definicion -> TOKEN_LPAREN expresion TOKEN_RPAREN .)
+    TOKEN_RPAREN    reduce using rule 52 (definicion -> TOKEN_LPAREN expresion TOKEN_RPAREN .)
+
+
+state 126
+
+    (67) f_call -> TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON .
+
+    TOKEN_ID        reduce using rule 67 (f_call -> TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON .)
+    TOKEN_IF        reduce using rule 67 (f_call -> TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON .)
+    TOKEN_WHILE     reduce using rule 67 (f_call -> TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON .)
+    TOKEN_PRINT     reduce using rule 67 (f_call -> TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON .)
+    TOKEN_RBRACE    reduce using rule 67 (f_call -> TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON .)
+
+
+state 127
+
+    (70) coma2 -> TOKEN_COMMA expresion . coma2
+    (70) coma2 -> . TOKEN_COMMA expresion coma2
+    (71) coma2 -> . empty
+    (73) empty -> .
+
+    TOKEN_COMMA     shift and go to state 109
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+
+    coma2                          shift and go to state 135
+    empty                          shift and go to state 110
+
+state 128
+
+    (29) condition -> TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body . else TOKEN_SEMICOLON
+    (30) else -> . TOKEN_ELSE body
+    (31) else -> . empty
+    (73) empty -> .
+
+    TOKEN_ELSE      shift and go to state 137
+    TOKEN_SEMICOLON reduce using rule 73 (empty -> .)
+
+    else                           shift and go to state 136
+    empty                          shift and go to state 138
+
+state 129
+
+    (28) cycle -> TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO . body TOKEN_SEMICOLON
+    (14) body -> . TOKEN_LBRACE dec_statements TOKEN_RBRACE
+
+    TOKEN_LBRACE    shift and go to state 25
+
+    body                           shift and go to state 139
+
+state 130
+
+    (22) print -> TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON .
+
+    TOKEN_ID        reduce using rule 22 (print -> TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON .)
+    TOKEN_IF        reduce using rule 22 (print -> TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON .)
+    TOKEN_WHILE     reduce using rule 22 (print -> TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON .)
+    TOKEN_PRINT     reduce using rule 22 (print -> TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON .)
+    TOKEN_RBRACE    reduce using rule 22 (print -> TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON .)
+
+
+state 131
+
+    (25) comas -> TOKEN_COMMA expresion . comas
+    (25) comas -> . TOKEN_COMMA expresion comas
+    (26) comas -> . TOKEN_COMMA TOKEN_CTE_STRING comas
+    (27) comas -> . empty
+    (73) empty -> .
+
+    TOKEN_COMMA     shift and go to state 115
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+
+    comas                          shift and go to state 140
+    empty                          shift and go to state 116
+
+state 132
+
+    (26) comas -> TOKEN_COMMA TOKEN_CTE_STRING . comas
+    (25) comas -> . TOKEN_COMMA expresion comas
+    (26) comas -> . TOKEN_COMMA TOKEN_CTE_STRING comas
+    (27) comas -> . empty
+    (73) empty -> .
+
+    TOKEN_COMMA     shift and go to state 115
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+
+    comas                          shift and go to state 141
+    empty                          shift and go to state 116
+
+state 133
+
+    (63) coma -> TOKEN_COMMA def_tipo . coma
+    (63) coma -> . TOKEN_COMMA def_tipo coma
+    (64) coma -> . empty
+    (73) empty -> .
+
+  ! shift/reduce conflict for TOKEN_COMMA resolved as shift
+    TOKEN_COMMA     shift and go to state 119
+    TOKEN_RPAREN    reduce using rule 73 (empty -> .)
+
+  ! TOKEN_COMMA     [ reduce using rule 73 (empty -> .) ]
+
+    coma                           shift and go to state 142
+    empty                          shift and go to state 120
+
+state 134
+
+    (59) funs -> TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN var body TOKEN_SEMICOLON .
+
+    TOKEN_VOID      reduce using rule 59 (funs -> TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN var body TOKEN_SEMICOLON .)
+    TOKEN_MAIN      reduce using rule 59 (funs -> TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN var body TOKEN_SEMICOLON .)
+
+
+state 135
+
+    (70) coma2 -> TOKEN_COMMA expresion coma2 .
+
+    TOKEN_RPAREN    reduce using rule 70 (coma2 -> TOKEN_COMMA expresion coma2 .)
+
+
+state 136
+
+    (29) condition -> TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else . TOKEN_SEMICOLON
+
+    TOKEN_SEMICOLON shift and go to state 143
+
+
+state 137
+
+    (30) else -> TOKEN_ELSE . body
+    (14) body -> . TOKEN_LBRACE dec_statements TOKEN_RBRACE
+
+    TOKEN_LBRACE    shift and go to state 25
+
+    body                           shift and go to state 144
+
+state 138
+
+    (31) else -> empty .
+
+    TOKEN_SEMICOLON reduce using rule 31 (else -> empty .)
+
+
+state 139
+
+    (28) cycle -> TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body . TOKEN_SEMICOLON
+
+    TOKEN_SEMICOLON shift and go to state 145
+
+
+state 140
+
+    (25) comas -> TOKEN_COMMA expresion comas .
+
+    TOKEN_RPAREN    reduce using rule 25 (comas -> TOKEN_COMMA expresion comas .)
+
+
+state 141
+
+    (26) comas -> TOKEN_COMMA TOKEN_CTE_STRING comas .
+
+    TOKEN_RPAREN    reduce using rule 26 (comas -> TOKEN_COMMA TOKEN_CTE_STRING comas .)
+
+
+state 142
+
+    (63) coma -> TOKEN_COMMA def_tipo coma .
+
+    TOKEN_COMMA     reduce using rule 63 (coma -> TOKEN_COMMA def_tipo coma .)
+    TOKEN_RPAREN    reduce using rule 63 (coma -> TOKEN_COMMA def_tipo coma .)
+
+
+state 143
+
+    (29) condition -> TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON .
+
+    TOKEN_ID        reduce using rule 29 (condition -> TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON .)
+    TOKEN_IF        reduce using rule 29 (condition -> TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON .)
+    TOKEN_WHILE     reduce using rule 29 (condition -> TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON .)
+    TOKEN_PRINT     reduce using rule 29 (condition -> TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON .)
+    TOKEN_RBRACE    reduce using rule 29 (condition -> TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON .)
+
+
+state 144
+
+    (30) else -> TOKEN_ELSE body .
+
+    TOKEN_SEMICOLON reduce using rule 30 (else -> TOKEN_ELSE body .)
+
+
+state 145
+
+    (28) cycle -> TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON .
+
+    TOKEN_ID        reduce using rule 28 (cycle -> TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON .)
+    TOKEN_IF        reduce using rule 28 (cycle -> TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON .)
+    TOKEN_WHILE     reduce using rule 28 (cycle -> TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON .)
+    TOKEN_PRINT     reduce using rule 28 (cycle -> TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON .)
+    TOKEN_RBRACE    reduce using rule 28 (cycle -> TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for TOKEN_COMMA in state 80 resolved as shift
+WARNING: shift/reduce conflict for TOKEN_COMMA in state 133 resolved as shift
