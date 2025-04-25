@@ -40,17 +40,17 @@ def p_vars(p):
     print(f"DEBUG [vars]: Variables processed: {p[0]}")
 
 def p_rep_var(p):
-    '''rep_var : variable rep_var
+    '''rep_var : TOKEN_VAR variable rep_var
                | empty'''
     print(f"DEBUG [rep_var]: Processing repeated variables")
     if p[1] == None:
         p[0] = None
         print(f"DEBUG [rep_var]: No more variables")
     else:
-        if p[2] == None:
-            p[0] = [p[1]]
+        if p[3] == None:
+            p[0] = [p[2]]
         else:
-            p[0] = [p[1]] + p[2]
+            p[0] = [p[2]] + p[3]
         print(f"DEBUG [rep_var]: Additional variables found: {len(p[0]) if p[0] else 0}")
 
 def p_variable(p):
@@ -198,7 +198,10 @@ def p_comparar(p):
 def p_signo(p):
     '''signo : TOKEN_GT
              | TOKEN_LT
-             | TOKEN_NE'''
+             | TOKEN_NE
+             | TOKEN_GE
+             | TOKEN_LE
+             | TOKEN_EQ'''
     print(f"DEBUG [signo]: Comparison operator: {p[1]}")
     p[0] = p[1]
 
@@ -214,7 +217,8 @@ def p_exp(p):
         print(f"DEBUG [exp]: Expression with operator: {p[2][0]}")
 
 def p_suma_resta(p):
-    '''suma_resta : opcion_mas_menos termino suma_resta
+    '''suma_resta : TOKEN_PLUS termino suma_resta
+                  | TOKEN_MINUS termino suma_resta
                   | empty'''
     print(f"DEBUG [suma_resta]: Processing addition/subtraction")
     if p[1] == None:
@@ -222,9 +226,11 @@ def p_suma_resta(p):
         print(f"DEBUG [suma_resta]: No addition/subtraction")
     else:
         if p[3] == None:
+            # Si no hay más operaciones, crea una operación simple
             p[0] = (p[1], p[2])
         else:
-            p[0] = (p[1], ('operation', p[2], p[3][0], p[3][1]))
+            # Si hay más operaciones, combinalas
+            p[0] = (p[1], ('operation', p[2], p[3][0], p[3][1]) if isinstance(p[3], tuple) and len(p[3]) > 1 else p[2])
         print(f"DEBUG [suma_resta]: Operator: {p[1]}")
 
 def p_opcion_mas_menos(p):
@@ -424,7 +430,6 @@ if __name__ == "__main__":
     data = '''
     program test;
     var x, y: int;
-    var z: float;
 
     main {
         x = 5;

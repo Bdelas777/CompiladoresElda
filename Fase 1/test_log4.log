@@ -1,0 +1,3791 @@
+== INICIO DE PRUEBAS - 2025-04-24 23:57:06.014602 ==
+
+[L-ID-01] Identificador simple
+Código:
+variable
+Tokens: [('TOKEN_ID', 'variable')]
+--------------------------------------------------------------------------------
+[L-ID-02] Identificador con números y guiones
+Código:
+var1_name2
+Tokens: [('TOKEN_ID', 'var1_name2')]
+--------------------------------------------------------------------------------
+[L-ID-03] Identificador inválido (empieza con número)
+Código:
+1invalid
+Tokens: [('TOKEN_CTE_INT', 1), ('TOKEN_ID', 'invalid')]
+--------------------------------------------------------------------------------
+[L-ID-04] Identificador inválido (empieza con guión)
+Código:
+_invalid
+Illegal character '_' at line 1
+Tokens: [('TOKEN_ID', 'invalid')]
+--------------------------------------------------------------------------------
+[L-INT-01] Entero válido
+Código:
+123
+Tokens: [('TOKEN_CTE_INT', 123)]
+--------------------------------------------------------------------------------
+[L-INT-02] Entero con signo negativo (se tokenizará como TOKEN_MINUS y TOKEN_CTE_INT)
+Código:
+-123
+Tokens: [('TOKEN_MINUS', '-'), ('TOKEN_CTE_INT', 123)]
+--------------------------------------------------------------------------------
+[L-FLOAT-01] Flotante válido
+Código:
+123.45
+Tokens: [('TOKEN_CTE_FLOAT', 123.45)]
+--------------------------------------------------------------------------------
+[L-FLOAT-02] Flotante inválido (falta parte decimal)
+Código:
+123.
+Illegal character '.' at line 1
+Tokens: [('TOKEN_CTE_INT', 123)]
+--------------------------------------------------------------------------------
+[L-FLOAT-03] Flotante inválido (falta parte entera)
+Código:
+.45
+Illegal character '.' at line 1
+Tokens: [('TOKEN_CTE_INT', 45)]
+--------------------------------------------------------------------------------
+[L-STR-01] String válido
+Código:
+"Hello world"
+Tokens: [('TOKEN_CTE_STRING', 'Hello world')]
+--------------------------------------------------------------------------------
+[L-STR-02] String inválido (comillas dentro)
+Código:
+"Cadena con "comillas""
+Tokens: [('TOKEN_CTE_STRING', 'Cadena con '), ('TOKEN_ID', 'comillas'), ('TOKEN_CTE_STRING', '')]
+--------------------------------------------------------------------------------
+[L-RES-01] Palabras reservadas
+Código:
+program var int float if else while do print void main end
+Tokens: [('TOKEN_PROGRAM', 'program'), ('TOKEN_VAR', 'var'), ('TOKEN_INT', 'int'), ('TOKEN_FLOAT', 'float'), ('TOKEN_IF', 'if'), ('TOKEN_ELSE', 'else'), ('TOKEN_WHILE', 'while'), ('TOKEN_DO', 'do'), ('TOKEN_PRINT', 'print'), ('TOKEN_VOID', 'void'), ('TOKEN_MAIN', 'main'), ('TOKEN_END', 'end')]
+--------------------------------------------------------------------------------
+[L-OP-01] Operadores
+Código:
++ - * / > < != =
+Tokens: [('TOKEN_PLUS', '+'), ('TOKEN_MINUS', '-'), ('TOKEN_MULT', '*'), ('TOKEN_DIV', '/'), ('TOKEN_GT', '>'), ('TOKEN_LT', '<'), ('TOKEN_NE', '!='), ('TOKEN_ASSIGN', '=')]
+--------------------------------------------------------------------------------
+[L-SYM-01] Símbolos especiales
+Código:
+; , : ( ) { }
+Tokens: [('TOKEN_SEMICOLON', ';'), ('TOKEN_COMMA', ','), ('TOKEN_COLON', ':'), ('TOKEN_LPAREN', '('), ('TOKEN_RPAREN', ')'), ('TOKEN_LBRACE', '{'), ('TOKEN_RBRACE', '}')]
+--------------------------------------------------------------------------------
+[P-STRUCT-01] Programa mínimo válido
+Código:
+program MyProgram;
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'MyProgram'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'MyProgram', None, [], ('body', []))
+--------------------------------------------------------------------------------
+[P-STRUCT-02] Programa con declaración de variable
+Código:
+program MyProgram;
+    var x: int;
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+DEBUG [type]: Type is int
+DEBUG [variable]: Declaring 1 variables of type int: ['x']
+DEBUG [empty]: Processing empty production
+DEBUG [rep_var]: Processing repeated variables
+DEBUG [rep_var]: No more variables
+DEBUG [vars]: Processing variable block
+DEBUG [vars]: Variables processed: ('vars', [('variable', ['x'], 'int')])
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: ('vars', [('variable', ['x'], 'int')])
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'MyProgram'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'MyProgram', ('vars', [('variable', ['x'], 'int')]), [], ('body', []))
+--------------------------------------------------------------------------------
+[P-STRUCT-03] Programa sin identificador (inválido)
+Código:
+program;
+    main {
+    }
+    end
+ERROR: Syntax error at ';', line 13
+ERROR: Token type: TOKEN_SEMICOLON
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-STRUCT-04] Programa sin punto y coma después del identificador (inválido)
+Código:
+program MyProgram
+    main {
+    }
+    end
+ERROR: Syntax error at 'main', line 19
+ERROR: Token type: TOKEN_MAIN
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-STRUCT-05] Programa sin 'end' (inválido)
+Código:
+program MyProgram;
+    main {
+    }
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+ERROR: Syntax error at EOF
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-STRUCT-06] Programa sin palabra clave 'program' (inválido)
+Código:
+MyProgram;
+    main {
+    }
+    end
+ERROR: Syntax error at 'MyProgram', line 27
+ERROR: Token type: TOKEN_ID
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-VAR-01] Declaración de variable simple
+Código:
+program Test;
+    var x: int;
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+DEBUG [type]: Type is int
+DEBUG [variable]: Declaring 1 variables of type int: ['x']
+DEBUG [empty]: Processing empty production
+DEBUG [rep_var]: Processing repeated variables
+DEBUG [rep_var]: No more variables
+DEBUG [vars]: Processing variable block
+DEBUG [vars]: Variables processed: ('vars', [('variable', ['x'], 'int')])
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: ('vars', [('variable', ['x'], 'int')])
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', ('vars', [('variable', ['x'], 'int')]), [], ('body', []))
+--------------------------------------------------------------------------------
+[P-VAR-02] Declaración de múltiples variables del mismo tipo
+Código:
+program Test;
+    var x, y, z: int;
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+DEBUG [mas_ids]: Additional IDs: ['z']
+DEBUG [mas_ids]: Additional IDs: ['y', 'z']
+DEBUG [type]: Type is int
+DEBUG [variable]: Declaring 3 variables of type int: ['x', 'y', 'z']
+DEBUG [empty]: Processing empty production
+DEBUG [rep_var]: Processing repeated variables
+DEBUG [rep_var]: No more variables
+DEBUG [vars]: Processing variable block
+DEBUG [vars]: Variables processed: ('vars', [('variable', ['x', 'y', 'z'], 'int')])
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: ('vars', [('variable', ['x', 'y', 'z'], 'int')])
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', ('vars', [('variable', ['x', 'y', 'z'], 'int')]), [], ('body', []))
+--------------------------------------------------------------------------------
+[P-VAR-03] Declaración de variables de diferentes tipos
+Código:
+program Test;
+    var x: int;
+    var y: float;
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+DEBUG [type]: Type is int
+DEBUG [variable]: Declaring 1 variables of type int: ['x']
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+DEBUG [type]: Type is float
+DEBUG [variable]: Declaring 1 variables of type float: ['y']
+DEBUG [empty]: Processing empty production
+DEBUG [rep_var]: Processing repeated variables
+DEBUG [rep_var]: No more variables
+DEBUG [rep_var]: Processing repeated variables
+DEBUG [rep_var]: Additional variables found: 1
+DEBUG [vars]: Processing variable block
+DEBUG [vars]: Variables processed: ('vars', [('variable', ['x'], 'int'), ('variable', ['y'], 'float')])
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: ('vars', [('variable', ['x'], 'int'), ('variable', ['y'], 'float')])
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', ('vars', [('variable', ['x'], 'int'), ('variable', ['y'], 'float')]), [], ('body', []))
+--------------------------------------------------------------------------------
+[P-VAR-04] Declaración de variable sin punto y coma (inválido)
+Código:
+program Test;
+    var x: int
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+ERROR: Syntax error at 'main', line 53
+ERROR: Token type: TOKEN_MAIN
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-VAR-05] Declaración de variable sin dos puntos (inválido)
+Código:
+program Test;
+    var x int;
+    main {
+    }
+    end
+ERROR: Syntax error at 'int', line 58
+ERROR: Token type: TOKEN_INT
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-VAR-06] Declaración de variable con coma adicional (inválido)
+Código:
+program Test;
+    var x, y,: int;
+    main {
+    }
+    end
+ERROR: Syntax error at ':', line 64
+ERROR: Token type: TOKEN_COLON
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-VAR-07] Declaración de variable con tipo no soportado (inválido)
+Código:
+program Test;
+    var x: string;
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+ERROR: Syntax error at 'string', line 70
+ERROR: Token type: TOKEN_ID
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-FUNC-01] Función simple
+Código:
+program Test;
+    void func() {
+    };
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has no parameters
+DEBUG [empty]: Processing empty production
+DEBUG [var]: Processing local variables
+DEBUG [var]: No local variables
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [funs]: Processing function: func
+DEBUG [funs]: Function func processed
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 1
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [('function', 'func', [], None, ('body', []))], ('body', []))
+--------------------------------------------------------------------------------
+[P-FUNC-02] Función con un parámetro
+Código:
+program Test;
+    void func(x: int) {
+    };
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [type]: Type is int
+DEBUG [empty]: Processing empty production
+DEBUG [coma]: Processing comma in parameters
+DEBUG [coma]: No more parameters
+DEBUG [def_tipo]: Processing parameter: x of type int
+DEBUG [def_tipo]: Total parameters: 1
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has 1 parameters
+DEBUG [empty]: Processing empty production
+DEBUG [var]: Processing local variables
+DEBUG [var]: No local variables
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [funs]: Processing function: func
+DEBUG [funs]: Function func processed
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 1
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [('function', 'func', [('param', 'x', 'int')], None, ('body', []))], ('body', []))
+--------------------------------------------------------------------------------
+[P-FUNC-03] Función con múltiples parámetros
+Código:
+program Test;
+    void func(x: int, y: float) {
+    };
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [type]: Type is int
+DEBUG [type]: Type is float
+DEBUG [empty]: Processing empty production
+DEBUG [coma]: Processing comma in parameters
+DEBUG [coma]: No more parameters
+DEBUG [coma]: Processing comma in parameters
+DEBUG [coma]: Additional parameters found
+DEBUG [def_tipo]: Processing parameter: x of type int
+DEBUG [def_tipo]: Total parameters: 2
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has 2 parameters
+DEBUG [empty]: Processing empty production
+DEBUG [var]: Processing local variables
+DEBUG [var]: No local variables
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [funs]: Processing function: func
+DEBUG [funs]: Function func processed
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 1
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [('function', 'func', [('param', 'x', 'int'), ('param', 'y', 'float')], None, ('body', []))], ('body', []))
+--------------------------------------------------------------------------------
+[P-FUNC-04] Función con variable local
+Código:
+program Test;
+    void func() 
+    var local: int;
+    {
+        local = 10;
+    };
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has no parameters
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+DEBUG [type]: Type is int
+DEBUG [variable]: Declaring 1 variables of type int: ['local']
+DEBUG [empty]: Processing empty production
+DEBUG [rep_var]: Processing repeated variables
+DEBUG [rep_var]: No more variables
+DEBUG [vars]: Processing variable block
+DEBUG [vars]: Variables processed: ('vars', [('variable', ['local'], 'int')])
+DEBUG [var]: Processing local variables
+DEBUG [var]: Local variables found
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 10
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: local
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [funs]: Processing function: func
+DEBUG [funs]: Function func processed
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 1
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [('function', 'func', [], ('vars', [('variable', ['local'], 'int')]), ('body', [('assign', 'local', ('constant', 10))]))], ('body', []))
+--------------------------------------------------------------------------------
+[P-FUNC-05] Función con sentencia de asignación
+Código:
+program Test;
+    void func() {
+        x = 5;
+    };
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has no parameters
+DEBUG [empty]: Processing empty production
+DEBUG [var]: Processing local variables
+DEBUG [var]: No local variables
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 5
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [funs]: Processing function: func
+DEBUG [funs]: Function func processed
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 1
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [('function', 'func', [], None, ('body', [('assign', 'x', ('constant', 5))]))], ('body', []))
+--------------------------------------------------------------------------------
+[P-FUNC-06] Función sin punto y coma final (inválido)
+Código:
+program Test;
+    void func() {
+    }
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has no parameters
+DEBUG [empty]: Processing empty production
+DEBUG [var]: Processing local variables
+DEBUG [var]: No local variables
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+ERROR: Syntax error at 'main', line 117
+ERROR: Token type: TOKEN_MAIN
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-FUNC-07] Función sin paréntesis (inválido)
+Código:
+program Test;
+    void func {
+    };
+    main {
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+ERROR: Syntax error at '{', line 122
+ERROR: Token type: TOKEN_LBRACE
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-ASSIGN-01] Asignación simple
+Código:
+program Test;
+    main {
+        x = 5;
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 5
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('assign', 'x', ('constant', 5))]))
+--------------------------------------------------------------------------------
+[P-ASSIGN-02] Asignación con expresión
+Código:
+program Test;
+    main {
+        x = y + 10;
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: y
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 10
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('assign', 'x', ('operation', ('id', 'y'), '+', ('constant', 10)))]))
+--------------------------------------------------------------------------------
+[P-ASSIGN-03] Asignación con expresión compleja
+Código:
+program Test;
+    main {
+        x = (y + 2) * 3;
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: y
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 2
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [definicion]: Processing parenthesized expression
+DEBUG [definicion]: Parenthesized expression processed
+DEBUG [factor]: Processing factor
+DEBUG [operacion_mul_div]: Operator: *
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 3
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: Operator: *
+DEBUG [termino]: Processing term
+DEBUG [termino]: Term with operator: *
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('assign', 'x', ('operation', ('operation', ('id', 'y'), '+', ('constant', 2)), '*', ('constant', 3)))]))
+--------------------------------------------------------------------------------
+[P-ASSIGN-04] Asignación sin punto y coma (inválido)
+Código:
+program Test;
+    main {
+        x = 5
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+ERROR: Syntax error at '}', line 149
+ERROR: Token type: TOKEN_RBRACE
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-ASSIGN-05] Asignación inválida (constante en lado izquierdo)
+Código:
+program Test;
+    main {
+        5 = x;
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+ERROR: Syntax error at '5', line 154
+ERROR: Token type: TOKEN_CTE_INT
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-IF-01] Condicional simple
+Código:
+program Test;
+    main {
+        if (x > 5) {
+            y = 1;
+        };
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 5
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: >
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: y
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [empty]: Processing empty production
+DEBUG [else]: No else clause
+DEBUG [condition]: Processing if condition
+DEBUG [condition]: If condition processed without else
+DEBUG [statement]: Processing statement type: if
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('if', ('comparison', ('id', 'x'), '>', ('constant', 5)), ('body', [('assign', 'y', ('constant', 1))]), None)]))
+--------------------------------------------------------------------------------
+[P-IF-02] Condicional con else
+Código:
+program Test;
+    main {
+        if (x > 5) {
+            y = 1;
+        } else {
+            y = 0;
+        };
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 5
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: >
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: y
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 0
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: y
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [else]: Else clause processed
+DEBUG [condition]: Processing if condition
+DEBUG [condition]: If condition processed with else
+DEBUG [statement]: Processing statement type: if
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('if', ('comparison', ('id', 'x'), '>', ('constant', 5)), ('body', [('assign', 'y', ('constant', 1))]), ('body', [('assign', 'y', ('constant', 0))]))]))
+--------------------------------------------------------------------------------
+[P-IF-03] Condicionales anidados
+Código:
+program Test;
+    main {
+        if (x > 5) {
+            if (y < 10) {
+                z = 1;
+            };
+        };
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 5
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: >
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: y
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: <
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 10
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: <
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: <
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: z
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [empty]: Processing empty production
+DEBUG [else]: No else clause
+DEBUG [condition]: Processing if condition
+DEBUG [condition]: If condition processed without else
+DEBUG [statement]: Processing statement type: if
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [empty]: Processing empty production
+DEBUG [else]: No else clause
+DEBUG [condition]: Processing if condition
+DEBUG [condition]: If condition processed without else
+DEBUG [statement]: Processing statement type: if
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('if', ('comparison', ('id', 'x'), '>', ('constant', 5)), ('body', [('if', ('comparison', ('id', 'y'), '<', ('constant', 10)), ('body', [('assign', 'z', ('constant', 1))]), None)]), None)]))
+--------------------------------------------------------------------------------
+[P-IF-04] Condicional sin paréntesis (inválido)
+Código:
+program Test;
+    main {
+        if x > 5 {
+            y = 1;
+        };
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+ERROR: Syntax error at 'x', line 188
+ERROR: Token type: TOKEN_ID
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-IF-05] Condicional sin punto y coma (inválido)
+Código:
+program Test;
+    main {
+        if (x > 5) {
+            y = 1;
+        }
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 5
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: >
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: y
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+ERROR: Syntax error at '}', line 199
+ERROR: Token type: TOKEN_RBRACE
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-WHILE-01] Ciclo while simple
+Código:
+program Test;
+    main {
+        while (x > 0) do {
+            x = x - 1;
+        };
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 0
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: >
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: -
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: -
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [cycle]: Processing while loop
+DEBUG [cycle]: While loop processed
+DEBUG [statement]: Processing statement type: while
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('while', ('comparison', ('id', 'x'), '>', ('constant', 0)), ('body', [('assign', 'x', ('operation', ('id', 'x'), '-', ('constant', 1)))]))]))
+--------------------------------------------------------------------------------
+[P-WHILE-02] Ciclos while anidados
+Código:
+program Test;
+    main {
+        while (x > 0) do {
+            while (y < 10) do {
+                y = y + 1;
+            };
+        };
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 0
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: >
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: y
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: <
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 10
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: <
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: <
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: y
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: y
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [cycle]: Processing while loop
+DEBUG [cycle]: While loop processed
+DEBUG [statement]: Processing statement type: while
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [cycle]: Processing while loop
+DEBUG [cycle]: While loop processed
+DEBUG [statement]: Processing statement type: while
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('while', ('comparison', ('id', 'x'), '>', ('constant', 0)), ('body', [('while', ('comparison', ('id', 'y'), '<', ('constant', 10)), ('body', [('assign', 'y', ('operation', ('id', 'y'), '+', ('constant', 1)))]))]))]))
+--------------------------------------------------------------------------------
+[P-WHILE-03] Ciclo while con múltiples sentencias
+Código:
+program Test;
+    main {
+        while (x > 0) do {
+            y = y + 1;
+            x = x - 1;
+        };
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 0
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: >
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: y
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: y
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: -
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: -
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 2
+DEBUG [body]: Processing code block with 2 statements
+DEBUG [body]: Code block processed
+DEBUG [cycle]: Processing while loop
+DEBUG [cycle]: While loop processed
+DEBUG [statement]: Processing statement type: while
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('while', ('comparison', ('id', 'x'), '>', ('constant', 0)), ('body', [('assign', 'y', ('operation', ('id', 'y'), '+', ('constant', 1))), ('assign', 'x', ('operation', ('id', 'x'), '-', ('constant', 1)))]))]))
+--------------------------------------------------------------------------------
+[P-WHILE-04] Ciclo while sin palabra 'do' (inválido)
+Código:
+program Test;
+    main {
+        while (x > 0) {
+            x = x - 1;
+        };
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 0
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: >
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: >
+ERROR: Syntax error at '{', line 231
+ERROR: Token type: TOKEN_LBRACE
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-WHILE-05] Ciclo while sin punto y coma (inválido)
+Código:
+program Test;
+    main {
+        while (x > 0) do {
+            x = x - 1;
+        }
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 0
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: >
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: -
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: -
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+ERROR: Syntax error at '}', line 242
+ERROR: Token type: TOKEN_RBRACE
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-PRINT-01] Sentencia print con string
+Código:
+program Test;
+    main {
+        print("Hello");
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [comas]: Processing comma-separated expressions
+DEBUG [comas]: No more expressions
+DEBUG [expresiones]: Processing expressions
+DEBUG [expresiones]: String literal found: Hello
+DEBUG [expresiones]: Total expressions: 1
+DEBUG [print]: Processing print statement with 1 expressions
+DEBUG [statement]: Processing statement type: print
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('print', [('string', 'Hello')])]))
+--------------------------------------------------------------------------------
+[P-PRINT-02] Sentencia print con expresión
+Código:
+program Test;
+    main {
+        print(x + y);
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: y
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [empty]: Processing empty production
+DEBUG [comas]: Processing comma-separated expressions
+DEBUG [comas]: No more expressions
+DEBUG [expresiones]: Processing expressions
+DEBUG [expresiones]: Total expressions: 1
+DEBUG [print]: Processing print statement with 1 expressions
+DEBUG [statement]: Processing statement type: print
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('print', [('operation', ('id', 'x'), '+', ('id', 'y'))])]))
+--------------------------------------------------------------------------------
+[P-PRINT-03] Sentencia print con múltiples valores
+Código:
+program Test;
+    main {
+        print("Value:", x, y + z);
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: y
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: z
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [empty]: Processing empty production
+DEBUG [comas]: Processing comma-separated expressions
+DEBUG [comas]: No more expressions
+DEBUG [comas]: Processing comma-separated expressions
+DEBUG [comas]: Additional expressions found
+DEBUG [comas]: Processing comma-separated expressions
+DEBUG [comas]: Additional expressions found
+DEBUG [expresiones]: Processing expressions
+DEBUG [expresiones]: String literal found: Value:
+DEBUG [expresiones]: Total expressions: 3
+DEBUG [print]: Processing print statement with 3 expressions
+DEBUG [statement]: Processing statement type: print
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('print', [('string', 'Value:'), ('id', 'x'), ('operation', ('id', 'y'), '+', ('id', 'z'))])]))
+--------------------------------------------------------------------------------
+[P-PRINT-04] Sentencia print sin paréntesis (inválido)
+Código:
+program Test;
+    main {
+        print "Hello";
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+ERROR: Syntax error at 'Hello', line 265
+ERROR: Token type: TOKEN_CTE_STRING
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-PRINT-05] Sentencia print sin punto y coma (inválido)
+Código:
+program Test;
+    main {
+        print("Hello")
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [comas]: Processing comma-separated expressions
+DEBUG [comas]: No more expressions
+DEBUG [expresiones]: Processing expressions
+DEBUG [expresiones]: String literal found: Hello
+DEBUG [expresiones]: Total expressions: 1
+ERROR: Syntax error at '}', line 272
+ERROR: Token type: TOKEN_RBRACE
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-CALL-01] Llamada a función simple
+Código:
+program Test;
+    void func() {
+    };
+    main {
+        func();
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has no parameters
+DEBUG [empty]: Processing empty production
+DEBUG [var]: Processing local variables
+DEBUG [var]: No local variables
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [funs]: Processing function: func
+DEBUG [funs]: Function func processed
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 1
+DEBUG [empty]: Processing empty production
+DEBUG [def_exp]: Processing function arguments
+DEBUG [def_exp]: No arguments
+DEBUG [f_call]: Processing function call to: func
+DEBUG [f_call]: Function call processed
+DEBUG [statement]: Processing statement type: function_call
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [('function', 'func', [], None, ('body', []))], ('body', [('function_call', 'func', [])]))
+--------------------------------------------------------------------------------
+[P-CALL-02] Llamada a función con argumento
+Código:
+program Test;
+    void func(x: int) {
+    };
+    main {
+        func(10);
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [type]: Type is int
+DEBUG [empty]: Processing empty production
+DEBUG [coma]: Processing comma in parameters
+DEBUG [coma]: No more parameters
+DEBUG [def_tipo]: Processing parameter: x of type int
+DEBUG [def_tipo]: Total parameters: 1
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has 1 parameters
+DEBUG [empty]: Processing empty production
+DEBUG [var]: Processing local variables
+DEBUG [var]: No local variables
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [funs]: Processing function: func
+DEBUG [funs]: Function func processed
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 1
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 10
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [empty]: Processing empty production
+DEBUG [coma2]: Processing comma in arguments
+DEBUG [coma2]: No more arguments
+DEBUG [def_exp]: Processing function arguments
+DEBUG [def_exp]: Total arguments: 1
+DEBUG [f_call]: Processing function call to: func
+DEBUG [f_call]: Function call processed
+DEBUG [statement]: Processing statement type: function_call
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [('function', 'func', [('param', 'x', 'int')], None, ('body', []))], ('body', [('function_call', 'func', [('constant', 10)])]))
+--------------------------------------------------------------------------------
+[P-CALL-03] Llamada a función con múltiples argumentos
+Código:
+program Test;
+    void func(x: int, y: int) {
+    };
+    main {
+        func(x, y + 1);
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [type]: Type is int
+DEBUG [type]: Type is int
+DEBUG [empty]: Processing empty production
+DEBUG [coma]: Processing comma in parameters
+DEBUG [coma]: No more parameters
+DEBUG [coma]: Processing comma in parameters
+DEBUG [coma]: Additional parameters found
+DEBUG [def_tipo]: Processing parameter: x of type int
+DEBUG [def_tipo]: Total parameters: 2
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has 2 parameters
+DEBUG [empty]: Processing empty production
+DEBUG [var]: Processing local variables
+DEBUG [var]: No local variables
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [funs]: Processing function: func
+DEBUG [funs]: Function func processed
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 1
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: y
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [empty]: Processing empty production
+DEBUG [coma2]: Processing comma in arguments
+DEBUG [coma2]: No more arguments
+DEBUG [coma2]: Processing comma in arguments
+DEBUG [coma2]: Additional arguments found
+DEBUG [def_exp]: Processing function arguments
+DEBUG [def_exp]: Total arguments: 2
+DEBUG [f_call]: Processing function call to: func
+DEBUG [f_call]: Function call processed
+DEBUG [statement]: Processing statement type: function_call
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [('function', 'func', [('param', 'x', 'int'), ('param', 'y', 'int')], None, ('body', []))], ('body', [('function_call', 'func', [('id', 'x'), ('operation', ('id', 'y'), '+', ('constant', 1))])]))
+--------------------------------------------------------------------------------
+[P-CALL-04] Llamada a función sin paréntesis (inválido)
+Código:
+program Test;
+    void func() {
+    };
+    main {
+        func;
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has no parameters
+DEBUG [empty]: Processing empty production
+DEBUG [var]: Processing local variables
+DEBUG [var]: No local variables
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [funs]: Processing function: func
+DEBUG [funs]: Function func processed
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 1
+ERROR: Syntax error at ';', line 303
+ERROR: Token type: TOKEN_SEMICOLON
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-CALL-05] Llamada a función sin punto y coma (inválido)
+Código:
+program Test;
+    void func() {
+    };
+    main {
+        func()
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has no parameters
+DEBUG [empty]: Processing empty production
+DEBUG [var]: Processing local variables
+DEBUG [var]: No local variables
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [body]: Processing code block with 0 statements
+DEBUG [body]: Code block processed
+DEBUG [funs]: Processing function: func
+DEBUG [funs]: Function func processed
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 1
+DEBUG [empty]: Processing empty production
+DEBUG [def_exp]: Processing function arguments
+DEBUG [def_exp]: No arguments
+ERROR: Syntax error at '}', line 312
+ERROR: Token type: TOKEN_RBRACE
+Resultado del parser: None
+--------------------------------------------------------------------------------
+[P-EXPR-01] Expresión con suma
+Código:
+program Test;
+    main {
+        x = a + b;
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: a
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: b
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('assign', 'x', ('operation', ('id', 'a'), '+', ('id', 'b')))]))
+--------------------------------------------------------------------------------
+[P-EXPR-02] Expresión con multiplicación
+Código:
+program Test;
+    main {
+        x = a * b;
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: a
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [operacion_mul_div]: Operator: *
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: b
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: Operator: *
+DEBUG [termino]: Processing term
+DEBUG [termino]: Term with operator: *
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('assign', 'x', ('operation', ('id', 'a'), '*', ('id', 'b')))]))
+--------------------------------------------------------------------------------
+[P-EXPR-03] Expresión con comparación
+Código:
+program Test;
+    main {
+        if (a > b) {
+            x = 1;
+        };
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: a
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: b
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: >
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [empty]: Processing empty production
+DEBUG [else]: No else clause
+DEBUG [condition]: Processing if condition
+DEBUG [condition]: If condition processed without else
+DEBUG [statement]: Processing statement type: if
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('if', ('comparison', ('id', 'a'), '>', ('id', 'b')), ('body', [('assign', 'x', ('constant', 1))]), None)]))
+--------------------------------------------------------------------------------
+[P-EXPR-04] Expresión compleja con paréntesis
+Código:
+program Test;
+    main {
+        x = (a + b) * (c - 1);
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: a
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: b
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [definicion]: Processing parenthesized expression
+DEBUG [definicion]: Parenthesized expression processed
+DEBUG [factor]: Processing factor
+DEBUG [operacion_mul_div]: Operator: *
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: c
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: -
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: -
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [definicion]: Processing parenthesized expression
+DEBUG [definicion]: Parenthesized expression processed
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: Operator: *
+DEBUG [termino]: Processing term
+DEBUG [termino]: Term with operator: *
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('assign', 'x', ('operation', ('operation', ('id', 'a'), '+', ('id', 'b')), '*', ('operation', ('id', 'c'), '-', ('constant', 1))))]))
+--------------------------------------------------------------------------------
+[P-EXPR-05] Expresión con precedencia de operadores
+Código:
+program Test;
+    main {
+        x = a + b * c;
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: a
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: b
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [operacion_mul_div]: Operator: *
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: c
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: Operator: *
+DEBUG [termino]: Processing term
+DEBUG [termino]: Term with operator: *
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('assign', 'x', ('operation', ('id', 'a'), '+', ('operation', ('id', 'b'), '*', ('id', 'c'))))]))
+--------------------------------------------------------------------------------
+[P-EXPR-06] Expresión con operador unario
+Código:
+program Test;
+    main {
+        x = -a;
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [opciones_mas_menos]: Unary operator: -
+DEBUG [id_cte]: Processing identifier: a
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Value with unary operator: -
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('assign', 'x', ('unary', '-', ('id', 'a')))]))
+--------------------------------------------------------------------------------
+[P-EXPR-07] Expresión con paréntesis anidados
+Código:
+program Test;
+    main {
+        x = ((a + b) * c);
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: None
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: a
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: b
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [definicion]: Processing parenthesized expression
+DEBUG [definicion]: Parenthesized expression processed
+DEBUG [factor]: Processing factor
+DEBUG [operacion_mul_div]: Operator: *
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: c
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: Operator: *
+DEBUG [termino]: Processing term
+DEBUG [termino]: Term with operator: *
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [definicion]: Processing parenthesized expression
+DEBUG [definicion]: Parenthesized expression processed
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'Test'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'Test', None, [], ('body', [('assign', 'x', ('operation', ('operation', ('id', 'a'), '+', ('id', 'b')), '*', ('id', 'c')))]))
+--------------------------------------------------------------------------------
+[P-FULL-01] Programa simple con una variable, asignación y print
+Código:
+program simple;
+    var x: int;
+    main {
+        x = 5;
+        print(x);
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+DEBUG [type]: Type is int
+DEBUG [variable]: Declaring 1 variables of type int: ['x']
+DEBUG [empty]: Processing empty production
+DEBUG [rep_var]: Processing repeated variables
+DEBUG [rep_var]: No more variables
+DEBUG [vars]: Processing variable block
+DEBUG [vars]: Variables processed: ('vars', [('variable', ['x'], 'int')])
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: ('vars', [('variable', ['x'], 'int')])
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 5
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [empty]: Processing empty production
+DEBUG [comas]: Processing comma-separated expressions
+DEBUG [comas]: No more expressions
+DEBUG [expresiones]: Processing expressions
+DEBUG [expresiones]: Total expressions: 1
+DEBUG [print]: Processing print statement with 1 expressions
+DEBUG [statement]: Processing statement type: print
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 2
+DEBUG [body]: Processing code block with 2 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'simple'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'simple', ('vars', [('variable', ['x'], 'int')]), [], ('body', [('assign', 'x', ('constant', 5)), ('print', [('id', 'x')])]))
+--------------------------------------------------------------------------------
+[P-FULL-02] Programa con función y llamada a función
+Código:
+program withFunctions;
+    var x, y: int;
+
+    void increment(val: int) {
+        x = val + 1;
+    };
+
+    main {
+        y = 10;
+        increment(y);
+        print(x);
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+DEBUG [mas_ids]: Additional IDs: ['y']
+DEBUG [type]: Type is int
+DEBUG [variable]: Declaring 2 variables of type int: ['x', 'y']
+DEBUG [empty]: Processing empty production
+DEBUG [rep_var]: Processing repeated variables
+DEBUG [rep_var]: No more variables
+DEBUG [vars]: Processing variable block
+DEBUG [vars]: Variables processed: ('vars', [('variable', ['x', 'y'], 'int')])
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: ('vars', [('variable', ['x', 'y'], 'int')])
+DEBUG [type]: Type is int
+DEBUG [empty]: Processing empty production
+DEBUG [coma]: Processing comma in parameters
+DEBUG [coma]: No more parameters
+DEBUG [def_tipo]: Processing parameter: val of type int
+DEBUG [def_tipo]: Total parameters: 1
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has 1 parameters
+DEBUG [empty]: Processing empty production
+DEBUG [var]: Processing local variables
+DEBUG [var]: No local variables
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: val
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: x
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [funs]: Processing function: increment
+DEBUG [funs]: Function increment processed
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 1
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 10
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: y
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: y
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [empty]: Processing empty production
+DEBUG [coma2]: Processing comma in arguments
+DEBUG [coma2]: No more arguments
+DEBUG [def_exp]: Processing function arguments
+DEBUG [def_exp]: Total arguments: 1
+DEBUG [f_call]: Processing function call to: increment
+DEBUG [f_call]: Function call processed
+DEBUG [statement]: Processing statement type: function_call
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: x
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [empty]: Processing empty production
+DEBUG [comas]: Processing comma-separated expressions
+DEBUG [comas]: No more expressions
+DEBUG [expresiones]: Processing expressions
+DEBUG [expresiones]: Total expressions: 1
+DEBUG [print]: Processing print statement with 1 expressions
+DEBUG [statement]: Processing statement type: print
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 2
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 3
+DEBUG [body]: Processing code block with 3 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'withFunctions'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'withFunctions', ('vars', [('variable', ['x', 'y'], 'int')]), [('function', 'increment', [('param', 'val', 'int')], None, ('body', [('assign', 'x', ('operation', ('id', 'val'), '+', ('constant', 1)))]))], ('body', [('assign', 'y', ('constant', 10)), ('function_call', 'increment', [('id', 'y')]), ('print', [('id', 'x')])]))
+--------------------------------------------------------------------------------
+[P-FULL-03] Programa complejo con variables, funciones, ciclos y condicionales
+Código:
+program complex;
+    var i, max: int;
+    var result: float;
+
+    void calculateSum(limit: int) 
+    var sum: int;
+    {
+        i = 1;
+        sum = 0;
+        while (i <= limit) do {
+            sum = sum + i;
+            i = i + 1;
+        };
+        result = sum;
+    };
+
+    main {
+        max = 100;
+        calculateSum(max);
+        
+        if (result > 5000) {
+            print("Large sum:", result);
+        } else {
+            print("Small sum:", result);
+        };
+    }
+    end
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+DEBUG [mas_ids]: Additional IDs: ['max']
+DEBUG [type]: Type is int
+DEBUG [variable]: Declaring 2 variables of type int: ['i', 'max']
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+DEBUG [type]: Type is float
+DEBUG [variable]: Declaring 1 variables of type float: ['result']
+DEBUG [empty]: Processing empty production
+DEBUG [rep_var]: Processing repeated variables
+DEBUG [rep_var]: No more variables
+DEBUG [rep_var]: Processing repeated variables
+DEBUG [rep_var]: Additional variables found: 1
+DEBUG [vars]: Processing variable block
+DEBUG [vars]: Variables processed: ('vars', [('variable', ['i', 'max'], 'int'), ('variable', ['result'], 'float')])
+DEBUG [dec_var]: Processing variable declarations
+DEBUG [dec_var]: Variable declarations processed: ('vars', [('variable', ['i', 'max'], 'int'), ('variable', ['result'], 'float')])
+DEBUG [type]: Type is int
+DEBUG [empty]: Processing empty production
+DEBUG [coma]: Processing comma in parameters
+DEBUG [coma]: No more parameters
+DEBUG [def_tipo]: Processing parameter: limit of type int
+DEBUG [def_tipo]: Total parameters: 1
+DEBUG [tipo]: Processing function parameters
+DEBUG [tipo]: Function has 1 parameters
+DEBUG [empty]: Processing empty production
+DEBUG [mas_ids]: No more IDs
+DEBUG [type]: Type is int
+DEBUG [variable]: Declaring 1 variables of type int: ['sum']
+DEBUG [empty]: Processing empty production
+DEBUG [rep_var]: Processing repeated variables
+DEBUG [rep_var]: No more variables
+DEBUG [vars]: Processing variable block
+DEBUG [vars]: Variables processed: ('vars', [('variable', ['sum'], 'int')])
+DEBUG [var]: Processing local variables
+DEBUG [var]: Local variables found
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: i
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 0
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: sum
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: i
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: <=
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: limit
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: <=
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: <=
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: sum
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: i
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: sum
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: i
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 1
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: Operator: +
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Expression with operator: +
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: i
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 2
+DEBUG [body]: Processing code block with 2 statements
+DEBUG [body]: Code block processed
+DEBUG [cycle]: Processing while loop
+DEBUG [cycle]: While loop processed
+DEBUG [statement]: Processing statement type: while
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: sum
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: result
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 2
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 3
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 4
+DEBUG [body]: Processing code block with 4 statements
+DEBUG [body]: Code block processed
+DEBUG [funs]: Processing function: calculateSum
+DEBUG [funs]: Function calculateSum processed
+DEBUG [empty]: Processing empty production
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 0
+DEBUG [dec_funs]: Processing function declarations
+DEBUG [dec_funs]: Function count: 1
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 100
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [assign]: Processing assignment to: max
+DEBUG [assign]: Assignment processed
+DEBUG [statement]: Processing statement type: assign
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: max
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [empty]: Processing empty production
+DEBUG [coma2]: Processing comma in arguments
+DEBUG [coma2]: No more arguments
+DEBUG [def_exp]: Processing function arguments
+DEBUG [def_exp]: Total arguments: 1
+DEBUG [f_call]: Processing function call to: calculateSum
+DEBUG [f_call]: Function call processed
+DEBUG [statement]: Processing statement type: function_call
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: result
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [signo]: Comparison operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [cte]: Constant value: 5000
+DEBUG [id_cte]: Processing complex value
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: Comparison operator: >
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Comparison expression with operator: >
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: result
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [empty]: Processing empty production
+DEBUG [comas]: Processing comma-separated expressions
+DEBUG [comas]: No more expressions
+DEBUG [comas]: Processing comma-separated expressions
+DEBUG [comas]: Additional expressions found
+DEBUG [expresiones]: Processing expressions
+DEBUG [expresiones]: String literal found: Large sum:
+DEBUG [expresiones]: Total expressions: 2
+DEBUG [print]: Processing print statement with 2 expressions
+DEBUG [statement]: Processing statement type: print
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [empty]: Processing empty production
+DEBUG [opciones_mas_menos]: No unary operator
+DEBUG [id_cte]: Processing identifier: result
+DEBUG [operaciones]: Processing operations
+DEBUG [operaciones]: Simple value (no unary operator)
+DEBUG [factor]: Processing factor
+DEBUG [empty]: Processing empty production
+DEBUG [multi_div]: Processing multiplication/division
+DEBUG [multi_div]: No multiplication/division
+DEBUG [termino]: Processing term
+DEBUG [termino]: Simple factor (no multiplication/division)
+DEBUG [empty]: Processing empty production
+DEBUG [suma_resta]: Processing addition/subtraction
+DEBUG [suma_resta]: No addition/subtraction
+DEBUG [exp]: Processing arithmetic expression
+DEBUG [exp]: Simple term (no addition/subtraction)
+DEBUG [empty]: Processing empty production
+DEBUG [comparar]: Processing comparison
+DEBUG [comparar]: No comparison operator
+DEBUG [expresion]: Processing expression
+DEBUG [expresion]: Simple expression (no comparison)
+DEBUG [empty]: Processing empty production
+DEBUG [comas]: Processing comma-separated expressions
+DEBUG [comas]: No more expressions
+DEBUG [comas]: Processing comma-separated expressions
+DEBUG [comas]: Additional expressions found
+DEBUG [expresiones]: Processing expressions
+DEBUG [expresiones]: String literal found: Small sum:
+DEBUG [expresiones]: Total expressions: 2
+DEBUG [print]: Processing print statement with 2 expressions
+DEBUG [statement]: Processing statement type: print
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [body]: Processing code block with 1 statements
+DEBUG [body]: Code block processed
+DEBUG [else]: Else clause processed
+DEBUG [condition]: Processing if condition
+DEBUG [condition]: If condition processed with else
+DEBUG [statement]: Processing statement type: if
+DEBUG [empty]: Processing empty production
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: No statements
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 1
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 2
+DEBUG [dec_statements]: Processing statements
+DEBUG [dec_statements]: Total statements: 3
+DEBUG [body]: Processing code block with 3 statements
+DEBUG [body]: Code block processed
+DEBUG [programa]: Processing program 'complex'
+DEBUG [programa]: Completed program structure
+Resultado del parser: ('programa', 'complex', ('vars', [('variable', ['i', 'max'], 'int'), ('variable', ['result'], 'float')]), [('function', 'calculateSum', [('param', 'limit', 'int')], ('vars', [('variable', ['sum'], 'int')]), ('body', [('assign', 'i', ('constant', 1)), ('assign', 'sum', ('constant', 0)), ('while', ('comparison', ('id', 'i'), '<=', ('id', 'limit')), ('body', [('assign', 'sum', ('operation', ('id', 'sum'), '+', ('id', 'i'))), ('assign', 'i', ('operation', ('id', 'i'), '+', ('constant', 1)))])), ('assign', 'result', ('id', 'sum'))]))], ('body', [('assign', 'max', ('constant', 100)), ('function_call', 'calculateSum', [('id', 'max')]), ('if', ('comparison', ('id', 'result'), '>', ('constant', 5000)), ('body', [('print', [('string', 'Large sum:'), ('id', 'result')])]), ('body', [('print', [('string', 'Small sum:'), ('id', 'result')])]))]))
+--------------------------------------------------------------------------------
+
+== FIN DE PRUEBAS - 2025-04-24 23:57:06.031775 ==
+

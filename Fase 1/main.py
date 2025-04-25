@@ -742,7 +742,9 @@ def run_tests():
         parser_program_tests +
         parser_var_tests +
         parser_func_tests +
-        parser_statement_tests
+        parser_statement_tests + 
+        parser_expr_tests  + 
+        full_programs
     )
     
     log_output = StringIO()
@@ -780,7 +782,7 @@ def run_tests():
     sys.stdout = original_stdout
     sys.stderr = original_stderr
 
-    with open("test_results.log", "w", encoding="utf-8") as f:
+    with open("test_log4.log", "w", encoding="utf-8") as f:
         f.write(log_output.getvalue())
     print("Pruebas completadas. Resultados guardados en test_results.log")
 
