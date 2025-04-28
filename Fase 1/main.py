@@ -6,7 +6,7 @@ from io import StringIO
 import ply.yacc as yacc
 import ply.lex as lex
 
-# Importar el lexer y parser (asumiendo que están en los archivos lex.py y yacc.py)
+# Importar el lexer y parser
 from lex import lexer, tokens
 from yacc import parser
 

@@ -2,7 +2,7 @@
 import ply.yacc as yacc
 from lex import tokens
 
-# Program structure
+# Estructura principal del programa
 def p_programa(p):
     '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funs TOKEN_MAIN body TOKEN_END'''
     print(f"DEBUG [programa]: Processing program '{p[2]}'")
@@ -29,7 +29,7 @@ def p_dec_funs(p):
             p[0] = [p[1]]
     print(f"DEBUG [dec_funs]: Function count: {len(p[0]) if p[0] else 0}")
 
-# Variables declaration
+# Declaracion de variables
 def p_vars(p):
     '''vars : TOKEN_VAR variable rep_var'''
     print(f"DEBUG [vars]: Processing variable block")
@@ -68,14 +68,14 @@ def p_mas_ids(p):
     else:
         p[0] = [p[2]] + (p[3] if p[3] else [])
         print(f"DEBUG [mas_ids]: Additional IDs: {p[0]}")
-# Types
+# Tipos
 def p_type(p):
     '''type : TOKEN_INT 
             | TOKEN_FLOAT'''
     print(f"DEBUG [type]: Type is {p[1]}")
     p[0] = p[1]
 
-# Body
+# Cuerpo
 def p_body(p):
     '''body : TOKEN_LBRACE dec_statements TOKEN_RBRACE'''
     print(f"DEBUG [body]: Processing code block with {len(p[2]) if p[2] else 0} statements")
@@ -96,7 +96,7 @@ def p_dec_statements(p):
             p[0] = [p[1]]
         print(f"DEBUG [dec_statements]: Total statements: {len(p[0])}")
 
-# Statements
+#Estatutos
 def p_statement(p):
     '''statement : assign
                  | condition
@@ -107,7 +107,7 @@ def p_statement(p):
     print(f"DEBUG [statement]: Processing statement type: {stmt_type}")
     p[0] = p[1]
 
-# Print statement
+# Impresion
 def p_print(p):
     '''print : TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON'''
     print(f"DEBUG [print]: Processing print statement with {len(p[3]) if p[3] else 0} expressions")
@@ -140,14 +140,14 @@ def p_comas(p):
         p[0] = [p[2]] + (p[3] if p[3] else [])
         print(f"DEBUG [comas]: Additional expressions found")
 
-# Cycle (while)
+#  Ciclo while
 def p_cycle(p):
     '''cycle : TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON'''
     print(f"DEBUG [cycle]: Processing while loop")
     p[0] = ('while', p[3], p[6])
     print(f"DEBUG [cycle]: While loop processed")
 
-# Conditional (if)
+# Condicional if
 def p_condition(p):
     '''condition : TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON'''
     print(f"DEBUG [condition]: Processing if condition")
@@ -165,14 +165,14 @@ def p_else(p):
         p[0] = p[2]
         print(f"DEBUG [else]: Else clause processed")
 
-# Constants
+# Constantes
 def p_cte(p):
     '''cte : TOKEN_CTE_INT
            | TOKEN_CTE_FLOAT'''
     print(f"DEBUG [cte]: Constant value: {p[1]}")
     p[0] = ('constant', p[1])
 
-# Expressions
+# Expresiones
 def p_expresion(p):
     '''expresion : exp comparar'''
     print(f"DEBUG [expresion]: Processing expression")
@@ -235,7 +235,7 @@ def p_opcion_mas_menos(p):
     print(f"DEBUG [opcion_mas_menos]: Operator: {p[1]}")
     p[0] = p[1]
 
-# Term
+# Termino
 def p_termino(p):
     '''termino : factor multi_div'''
     print(f"DEBUG [termino]: Processing term")
@@ -303,10 +303,10 @@ def p_id_cte(p):
     '''id_cte : TOKEN_ID
               | cte
               | f_call_expr'''
-    if isinstance(p[1], tuple):  # cte or function call
+    if isinstance(p[1], tuple):  
         print(f"DEBUG [id_cte]: Processing complex value")
         p[0] = p[1]
-    else:  # TOKEN_ID
+    else:  
         print(f"DEBUG [id_cte]: Processing identifier: {p[1]}")
         p[0] = ('id', p[1])
 
@@ -316,7 +316,7 @@ def p_f_call_expr(p):
     p[0] = ('function_call_expr', p[1], p[3] if p[3] else [])
     print(f"DEBUG [f_call_expr]: Function call expression processed")
 
-# Functions
+# Funciones
 def p_funs(p):
     '''funs : TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN var body TOKEN_SEMICOLON'''
     print(f"DEBUG [funs]: Processing function: {p[2]}")
@@ -368,7 +368,7 @@ def p_var(p):
     else:
         print(f"DEBUG [var]: No local variables")
 
-# Function call
+# Funcion call
 def p_f_call(p):
     '''f_call : TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON'''
     print(f"DEBUG [f_call]: Processing function call to: {p[1]}")
@@ -397,20 +397,20 @@ def p_coma2(p):
         p[0] = [p[2]] + (p[3] if p[3] else [])
         print(f"DEBUG [coma2]: Additional arguments found")
 
-# Assignment
+# Asignacion
 def p_assign(p):
     '''assign : TOKEN_ID TOKEN_ASSIGN expresion TOKEN_SEMICOLON'''
     print(f"DEBUG [assign]: Processing assignment to: {p[1]}")
     p[0] = ('assign', p[1], p[3])
     print(f"DEBUG [assign]: Assignment processed")
 
-# Empty production
+# Checar vacios
 def p_empty(p):
     'empty :'
     print(f"DEBUG [empty]: Processing empty production")
     p[0] = None
 
-# Error rule
+# Error de regla
 def p_error(p):
     if p:
         print(f"ERROR: Syntax error at '{p.value}', line {p.lineno}")
@@ -418,10 +418,10 @@ def p_error(p):
     else:
         print("ERROR: Syntax error at EOF")
 
-# Build the parser
+# Construimos un parser
 parser = yacc.yacc()
 
-# For testing
+# Hacemos el testing
 if __name__ == "__main__":
     data = '''
     program test;
