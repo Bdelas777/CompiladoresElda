@@ -40,17 +40,17 @@ def p_vars(p):
     print(f"DEBUG [vars]: Variables processed: {p[0]}")
 
 def p_rep_var(p):
-    '''rep_var : TOKEN_VAR variable rep_var
+    '''rep_var : variable rep_var
                | empty'''
     print(f"DEBUG [rep_var]: Processing repeated variables")
     if p[1] == None:
         p[0] = None
         print(f"DEBUG [rep_var]: No more variables")
     else:
-        if p[3] == None:
-            p[0] = [p[2]]
+        if p[2] == None:
+            p[0] = [p[1]]
         else:
-            p[0] = [p[2]] + p[3]
+            p[0] = [p[1]] + p[2]
         print(f"DEBUG [rep_var]: Additional variables found: {len(p[0]) if p[0] else 0}")
 
 def p_variable(p):
@@ -58,7 +58,7 @@ def p_variable(p):
     ids = [p[1]] + (p[2] if p[2] else [])
     print(f"DEBUG [variable]: Declaring {len(ids)} variables of type {p[4]}: {ids}")
     p[0] = ('variable', ids, p[4])
-
+    
 def p_mas_ids(p):
     '''mas_ids : TOKEN_COMMA TOKEN_ID mas_ids
                | empty'''
@@ -68,7 +68,6 @@ def p_mas_ids(p):
     else:
         p[0] = [p[2]] + (p[3] if p[3] else [])
         print(f"DEBUG [mas_ids]: Additional IDs: {p[0]}")
-
 # Types
 def p_type(p):
     '''type : TOKEN_INT 
@@ -198,10 +197,7 @@ def p_comparar(p):
 def p_signo(p):
     '''signo : TOKEN_GT
              | TOKEN_LT
-             | TOKEN_NE
-             | TOKEN_GE
-             | TOKEN_LE
-             | TOKEN_EQ'''
+             | TOKEN_NE'''
     print(f"DEBUG [signo]: Comparison operator: {p[1]}")
     p[0] = p[1]
 

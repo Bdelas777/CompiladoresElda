@@ -59,9 +59,6 @@ t_TOKEN_LPAREN = r'\('
 t_TOKEN_RPAREN = r'\)'
 t_TOKEN_LBRACE = r'\{'
 t_TOKEN_RBRACE = r'\}'
-t_TOKEN_GE = r'>='
-t_TOKEN_LE = r'<='
-t_TOKEN_EQ = r'=='
 
 # Regular expression for identifiers
 def t_TOKEN_ID(t):
