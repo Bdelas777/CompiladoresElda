@@ -123,7 +123,6 @@ if __name__ == "__main__":
         
         while (z > 0.0) do {
             print(z);
-            z = z - 1.0;
         };
     }
     end
