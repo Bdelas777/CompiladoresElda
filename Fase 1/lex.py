@@ -38,9 +38,8 @@ tokens = [
     'TOKEN_RPAREN',
     'TOKEN_LBRACE',
     'TOKEN_RBRACE',
-    'TOKEN_GE',
-    'TOKEN_LE',
-    'TOKEN_EQ'
+    'TOKEN_LCOL',   # Added TOKEN_LCOL
+    'TOKEN_RCOL',   # Added TOKEN_RCOL
 ] + list(reserved.values())
 
 # Expresiones regulares simples
@@ -59,6 +58,8 @@ t_TOKEN_LPAREN = r'\('
 t_TOKEN_RPAREN = r'\)'
 t_TOKEN_LBRACE = r'\{'
 t_TOKEN_RBRACE = r'\}'
+t_TOKEN_LCOL = r'\['   # Added definition for [
+t_TOKEN_RCOL = r'\]'   # Added definition for ]
 
 # Expresiones regulares para ids
 def t_TOKEN_ID(t):
@@ -103,7 +104,7 @@ def t_error(t):
 # Construimos el lexer
 lexer = lex.lex()
 
-# ´probamos el lexer
+# Probamos el lexer
 if __name__ == "__main__":
     data = '''
     program test;
@@ -114,7 +115,7 @@ if __name__ == "__main__":
         x = 5;
         y = 10;
         z = 3.14;
-        
+       
         if (x > y) {
             print("x is greater than y");
         } else {

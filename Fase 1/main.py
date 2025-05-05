@@ -782,7 +782,7 @@ def run_tests():
     sys.stdout = original_stdout
     sys.stderr = original_stderr
 
-    with open("test_log5.log", "w", encoding="utf-8") as f:
+    with open("prueba.log", "w", encoding="utf-8") as f:
         f.write(log_output.getvalue())
     print("Pruebas completadas. Resultados guardados en test_results.log")
 
