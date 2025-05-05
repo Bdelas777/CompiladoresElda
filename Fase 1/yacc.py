@@ -3,6 +3,14 @@ import ply.yacc as yacc
 from lex import tokens
 from semantic_cube import Type, Operation, get_result_type
 from semantic_analyzer import SemanticAnalyzer
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger('BabyDuck')
 
 # Inicializar analizador semántico
 semantic = SemanticAnalyzer()
@@ -10,6 +18,7 @@ semantic = SemanticAnalyzer()
 def p_programa(p):
     '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funcs TOKEN_MAIN body TOKEN_END'''
     # Punto P1, P2: Inicializar programa
+    logger.info(f"Starting program: {p[2]}")
     semantic.program_start(p[2])
     # Add this line to declare main function
     semantic.declare_main()
@@ -37,6 +46,7 @@ def p_dec_funcs(p):
 def p_vars(p):
     '''vars : TOKEN_VAR variable rep_var'''
     # Punto V1: Iniciar declaración de variables
+    logger.info("Starting variable declaration")
     semantic.start_var_declaration()
     if p[3] == None:
         p[0] = ('vars', [p[2]])
@@ -57,6 +67,7 @@ def p_rep_var(p):
 def p_variable(p):
     '''variable : TOKEN_ID mas_ids TOKEN_COLON type TOKEN_SEMICOLON'''
     # Punto V2: Añadir identificador a lista temporal
+    logger.info(f"Processing variable declaration: {p[1]} of type {p[4]}")
     semantic.add_id_to_temp_list(p[1])
     ids = [p[1]] + (p[2] if p[2] else [])
     for id in ids[1:]:  # El primer ID ya se procesó arriba
@@ -77,8 +88,10 @@ def p_mas_ids(p):
         p[0] = []
     else:
         # Punto V6: Añadir más identificadores
-        semantic.add_id_to_temp_list(p[2])
-        p[0] = [p[2]] + (p[3] if p[3] else [])
+        if p[3] == None:
+            p[0] = [p[2]]
+        else:
+            p[0] = [p[2]] + p[3]
 
 def p_type(p):
     '''type : TOKEN_INT 
@@ -142,6 +155,7 @@ def p_cycle(p):
     '''cycle : TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON'''
     # Punto CY1, CY2, CY3, CY4: Manejo de ciclos while
     expr_type = get_expr_type(p[3])
+    logger.info(f"While condition of type: {expr_type}")
     semantic.check_condition(expr_type)
     p[0] = ('while', p[3], p[6])
 
@@ -149,6 +163,7 @@ def p_condition(p):
     '''condition : TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON'''
     # Punto CO1, CO2, CO3, CO4, CO5: Manejo de condiciones if-else
     expr_type = get_expr_type(p[3])
+    logger.info(f"If condition of type: {expr_type}")
     semantic.check_condition(expr_type)
     p[0] = ('if', p[3], p[5], p[6])
 
@@ -242,7 +257,7 @@ def p_termino(p):
         p[0] = set_expr_type(p[0], result_type)
 
 def p_multi_div(p):
-    '''multi_div : operacion_mul_div factor termino 
+    '''multi_div : operacion_mul_div factor multi_div 
         | empty'''
     # Punto MD1, MD2: Manejo de multiplicaciones y divisiones
     if p[1] == None:
@@ -251,7 +266,7 @@ def p_multi_div(p):
         if p[3] == None:
             p[0] = (p[1], p[2])
         else:
-            p[0] = (p[1], ('operation', p[2], p[3][0], p[3][1]))
+            p[0] = (p[1], ('operation', p[2], p[3][0], p[3][1]) if isinstance(p[3], tuple) and len(p[3]) > 1 else p[2])
 
 def p_operacion_mul_div(p):
     '''operacion_mul_div : TOKEN_DIV 
@@ -309,21 +324,28 @@ def p_id_cte(p):
             else:
                 p[0] = ('id', p[1])
 
+
 def p_funcs(p):
     '''funcs : TOKEN_VOID TOKEN_ID TOKEN_LPAREN tipo TOKEN_RPAREN TOKEN_LCOL var body TOKEN_RCOL TOKEN_SEMICOLON'''
     # Punto F1, F2: Declaración de función
+    logger.info(f"Declaring function: {p[2]}")
     semantic.declare_function(p[2])
-    # Añadir parámetros
-    params = p[4] if p[4] else []
-    for param in params:
-        if isinstance(param, tuple) and param[0] == 'param':
-            param_name, param_type = param[1], param[2]
-            semantic.add_parameter(param_name, param_type)
     
-    p[0] = ('function', p[2], p[4] if p[4] else [], p[6], p[7])
+    # Añadir parámetros
+    # Fix: Properly handle parameter list
+    params = p[4] if p[4] else []
+    if isinstance(params, list):
+        for param in params:
+            if isinstance(param, tuple) and param[0] == 'param':
+                param_name, param_type = param[1], param[2]
+                logger.info(f"Adding parameter: {param_name} of type {param_type} to function {p[2]}")
+                semantic.add_parameter(param_name, param_type)
+    
+    p[0] = ('function', p[2], p[4] if p[4] else [], p[7], p[8])
     
     # Punto F5: Finalizar declaración de función
     semantic.end_function_declaration()
+    logger.info(f"Function {p[2]} declaration completed")
 
 def p_tipo(p):
     '''tipo : def_tipo 
@@ -333,18 +355,21 @@ def p_tipo(p):
 def p_def_tipo(p):
     '''def_tipo : TOKEN_ID TOKEN_COLON type coma'''
     # Punto DT1, DT2: Definición de parámetros
+    logger.info(f"Parameter definition: {p[1]} of type {p[3]}")
     if p[4] == None:
         p[0] = [('param', p[1], p[3])]
     else:
         p[0] = [('param', p[1], p[3])] + p[4]
 
 def p_coma(p):
-    '''coma : TOKEN_COMMA def_tipo coma 
+    '''coma : TOKEN_COMMA TOKEN_ID TOKEN_COLON type coma 
         | empty'''
     # Punto CM1: Manejo de comas en parámetros
     if p[1] == None:
         p[0] = None
     else:
+        # Fix: Properly create param tuple
+        logger.info(f"Additional parameter: {p[2]} of type {p[4]}")
         new_param = ('param', p[2], p[4])
         if p[5] == None:
             p[0] = [new_param]
@@ -359,14 +384,25 @@ def p_var(p):
 def p_f_call(p):
     '''f_call : TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON'''
     # FC1, FC2, FC3: Llamada a función
+    logger.info(f"Function call: {p[1]}")
     func = semantic.check_function(p[1])
     if func:
         # Verificar número y tipo de parámetros
         args = p[3] if p[3] else []
         if len(args) != len(func.parameters):
+            logger.error(f"Parameter count mismatch: function {p[1]} expects {len(func.parameters)} arguments, got {len(args)}")
             semantic.add_error(f"Function '{p[1]}' expects {len(func.parameters)} arguments, got {len(args)}")
-        
-        # TODO: Verificar tipos de parámetros
+        else:
+            # Verify parameter types
+            for i, (arg, param) in enumerate(zip(args, func.parameters)):
+                arg_type = get_expr_type(arg)
+                param_type = param.type
+                logger.info(f"Checking argument {i+1}: expected {param_type}, got {arg_type}")
+                
+                # Check assignment compatibility (parameter passing is like assignment)
+                result_type = get_result_type(param_type, arg_type, Operation.ASSIGN)
+                if result_type == Type.ERROR:
+                    semantic.add_error(f"Parameter type mismatch in call to '{p[1]}': Parameter {i+1} expects {param_type}, got {arg_type}")
     
     p[0] = ('function_call', p[1], p[3] if p[3] else [])
 
@@ -391,8 +427,10 @@ def p_coma2(p):
 def p_assign(p):
     '''assign : TOKEN_ID TOKEN_ASSIGN expresion TOKEN_SEMICOLON'''
     # Punto A1, A2, A3: Asignación de variables
+    logger.info(f"Assignment to variable: {p[1]}")
     var_type = semantic.check_variable(p[1])
     expr_type = get_expr_type(p[3])
+    logger.info(f"Assignment: var_type={var_type}, expr_type={expr_type}")
     semantic.check_assignment_compatibility(p[1], expr_type)
     
     p[0] = ('assign', p[1], p[3])
@@ -403,9 +441,11 @@ def p_empty(p):
 
 def p_error(p):
     if p:
+        logger.error(f"Syntax error at '{p.value}', line {p.lineno}")
         print(f"ERROR: Syntax error at '{p.value}', line {p.lineno}")
         print(f"ERROR: Token type: {p.type}")
     else:
+        logger.error("Syntax error at EOF")
         print("ERROR: Syntax error at EOF")
 
 # Funciones auxiliares para manejar tipos en expresiones
@@ -491,40 +531,15 @@ def parse_program(code):
     semantic = SemanticAnalyzer()
     
     # Parsear el código
+    logger.info("Starting to parse program")
     result = parser.parse(code)
     
     # Imprimir tabla de variables y errores
     semantic.print_function_directory()
     
-    return result, semantic.error_list
-
-# Hacemos el testing
-if __name__ == "__main__":
-    data = '''
-    program test;
-    var x, y: int;
-
-    main {
-        x = 5;
-        y = x + 3;
-        if (x > 0) {
-            print("x is positive");
-        } else {
-            print("x is not positive");
-        };
-        while (y < 10) do {
-            y = y + 1;
-            print("Looping", y);
-        };
-    }
-    end
-    '''
-
-    print("\nDEBUG [main]: Starting parser on test program\n")
-    print("-" * 60)
-    print(data)
-    print("-" * 60 + "\n")
+    if semantic.error_list:
+        logger.error(f"Found {len(semantic.error_list)} semantic errors")
+    else:
+        logger.info("Program parsed successfully with no semantic errors")
     
-    result = parser.parse(data)
-    print("\nDEBUG [main]: Parsing completed")
-    print(f"\nRESULT: {result}")
+    return result, semantic.error_list
