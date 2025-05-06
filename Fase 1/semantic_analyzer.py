@@ -152,9 +152,10 @@ class SemanticAnalyzer:
         
         new_function = Function(func_id, return_type)
         self.function_directory[func_id] = new_function
-        self.current_scope = func_id
+        self.current_scope = func_id  # Establecer el scope actual al nombre de la función
         print(f"Declared function '{func_id}' with return type {return_type}")
         return True
+
 
     def add_parameter(self, param_id, param_type):
         """Punto DT1 y DT2: Añadir parámetro a función actual"""
@@ -185,12 +186,10 @@ class SemanticAnalyzer:
 
     def end_function_declaration(self):
         """Punto F5: Finalizar declaración de función"""
-        if self.current_scope == "global" or self.current_scope == "main":
-            return self.add_error(f"Not inside a function declaration")
+        if self.current_scope == "global":
+            return self.add_error("Not inside a function declaration")
         
-        func_name = self.current_scope
-        self.current_scope = "global"
-        print(f"Ended function '{func_name}' declaration")
+        print(f"Ended function '{self.current_scope}' declaration")
         return True
 
     def check_variable(self, var_id):

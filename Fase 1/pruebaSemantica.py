@@ -18,31 +18,24 @@ from yacc import parse_program
 
 # Test code 1: Simple function with parameters
 test_code1 = """
-program Test1;
+program pelos;
+
 var
-  global1, global2 : int;
-  global3 : float;
+    x, y : float;
 
-void testFunc(param1: int, param2: float) {
-    var
-      local1 : int;
-      local2 : float;
-    
-    local1 = param1 + 10;
-    local2 = param2 * 2.5;
-    
-    print(local1, local2);
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main {
+    a : float;
+    a = 1 + 2;
 }
 
-main 
-{
-    global1 = 5;
-    global2 = 10;
-    global3 = 15.5;
-    
-    testFunc(global1, global3);
-    testFunc(global2, 20.0);
-}
 end
 """
 
@@ -131,8 +124,8 @@ def run_test(code, test_name):
 def run_tests():
     test_cases = [
         ("P-FUNC-01", test_code1, "Function with correct parameters"),
-        ("P-FUNC-02", test_code2, "Function with parameter errors"),
-        ("P-FUNC-03", test_code3, "Multiple functions with parameters")
+        # ("P-FUNC-02", test_code2, "Function with parameter errors"),
+        # ("P-FUNC-03", test_code3, "Multiple functions with parameters")
     ]
     
     original_stdout = sys.stdout

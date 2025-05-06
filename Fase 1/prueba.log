@@ -1,4 +1,4 @@
-== INICIO DE PRUEBAS - 2025-05-04 23:39:42.362943 ==
+== INICIO DE PRUEBAS - 2025-05-06 01:01:40.438733 ==
 
 
 ==================================================
@@ -6,138 +6,46 @@ Running test: P-FUNC-01 - Function with correct parameters
 ==================================================
 
 Código:
-program Test1;
+program pelos;
+
 var
-  global1, global2 : int;
-  global3 : float;
+    x, y : float;
 
-void testFunc(param1: int, param2: float) {
-    var
-      local1 : int;
-      local2 : float;
-    
-    local1 = param1 + 10;
-    local2 = param2 * 2.5;
-    
-    print(local1, local2);
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main {
+    a : float;
+    a = 1 + 2;
 }
 
-main 
-{
-    global1 = 5;
-    global2 = 10;
-    global3 = 15.5;
-    
-    testFunc(global1, global3);
-    testFunc(global2, 20.0);
-}
 end
 
 
 Starting to parse program
-Processing variable declaration: global1 of type int
-Processing variable declaration: global3 of type float
+Processing variable declaration: x of type float
 Starting variable declaration
-Additional parameter: param2 of type float
-Parameter definition: param1 of type int
-Syntax error at '{', line 7
-Program parsed successfully with no semantic errors
-Parse result: Failed
-
-No semantic errors found.
---------------------------------------------------------------------------------
-
-
-==================================================
-Running test: P-FUNC-02 - Function with parameter errors
-==================================================
-
-Código:
-program Test2;
-var
-  x, y : int;
-  z : float;
-
-void calculate(a: int, b: int, c: float) {
-    var
-      result : float;
-    
-    result = a + b * c;
-    print(result);
-}
-
-main 
-{
-    x = 5;
-    y = 10;
-    z = 2.5;
-    
-    calculate(x, y, z);   // Correct
-    calculate(x, z);      // Error: Wrong number of parameters
-    calculate(z, y, x);   // Error: Type mismatch
-}
-end
-
-
-Starting to parse program
+Parameter definition: i of type int
 Processing variable declaration: x of type int
-Processing variable declaration: z of type float
 Starting variable declaration
-Additional parameter: c of type float
-Additional parameter: b of type int
-Parameter definition: a of type int
-Syntax error at '{', line 34
-Program parsed successfully with no semantic errors
+Assignment to variable: x
+Assignment: var_type=Type.FLOAT, expr_type=Type.INT
+Declaring function: uno
+Adding parameter: i of type int to function uno
+Function uno declaration completed
+Syntax error at ':', line 16
+Found 1 semantic errors
 Parse result: Failed
 
-No semantic errors found.
+Found 1 semantic errors:
+  1. Semantic error: Variable 'x' already declared in global scope
 --------------------------------------------------------------------------------
 
 
-==================================================
-Running test: P-FUNC-03 - Multiple functions with parameters
-==================================================
-
-Código:
-program Test3;
-var
-  value : int;
-  result : float;
-
-void increment(x: int) {
-    value = x + 1;
-}
-
-void multiply(a: float, b: float) {
-    result = a * b;
-}
-
-main 
-{
-    value = 10;
-    result = 0.0;
-    
-    increment(value);
-    multiply(result, 2.5);
-    
-    print("Value:", value);
-    print("Result:", result);
-}
-end
-
-
-Starting to parse program
-Processing variable declaration: value of type int
-Processing variable declaration: result of type float
-Starting variable declaration
-Parameter definition: x of type int
-Syntax error at '{', line 59
-Program parsed successfully with no semantic errors
-Parse result: Failed
-
-No semantic errors found.
---------------------------------------------------------------------------------
-
-
-== FIN DE PRUEBAS - 2025-05-04 23:39:42.385712 ==
+== FIN DE PRUEBAS - 2025-05-06 01:01:40.451735 ==
 
