@@ -18,10 +18,11 @@ from yacc import parse_program
 
 # Test code 1: Simple function with parameters
 test_code1 = """
-program pelos;
+program test1;
 
 var
-    x, y : float;
+    e, z : int;
+    x, y, a : float;
 
 void uno(i : int)
 [
@@ -32,7 +33,6 @@ void uno(i : int)
 ];
 
 main {
-    a : float;
     a = 1 + 2;
 }
 

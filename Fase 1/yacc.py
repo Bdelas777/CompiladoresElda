@@ -4,15 +4,11 @@ from lex import tokens
 from semantic_cube import Type, Operation, get_result_type
 from semantic_analyzer import SemanticAnalyzer
 import logging
-
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger('BabyDuck')
-
-# Inicializar analizador semántico
 semantic = SemanticAnalyzer()
 
 def p_programa(p):
@@ -29,12 +25,12 @@ def p_programa(p):
 
 def p_dec_var(p):
     '''dec_var : vars 
-         | empty'''
+            | empty'''
     p[0] = p[1]
 
 def p_dec_funcs(p):
     '''dec_funcs : funcs dec_funcs
-                | empty'''
+                  | empty'''
     if p[1] == None:
         p[0] = []
     else:
@@ -55,7 +51,7 @@ def p_vars(p):
 
 def p_rep_var(p):
     '''rep_var : variable rep_var
-        | empty'''
+            | empty'''
     if p[1] == None:
         p[0] = None
     else:
@@ -72,18 +68,15 @@ def p_variable(p):
     ids = [p[1]] + (p[2] if p[2] else [])
     for id in ids[1:]:  # El primer ID ya se procesó arriba
         semantic.add_id_to_temp_list(id)
-    
     # Punto V4: Establecer tipo para variables
     semantic.set_current_type(p[4])
-    
     # Punto V5: Añadir variables a tabla
     semantic.add_vars_to_table()
-    
     p[0] = ('variable', ids, p[4])
 
 def p_mas_ids(p):
     '''mas_ids : TOKEN_COMMA TOKEN_ID mas_ids 
-        | empty'''
+            | empty'''
     if p[1] == None:
         p[0] = []
     else:
@@ -95,7 +88,7 @@ def p_mas_ids(p):
 
 def p_type(p):
     '''type : TOKEN_INT 
-        | TOKEN_FLOAT'''
+            | TOKEN_FLOAT'''
     # Punto T1: Determinar tipo
     p[0] = p[1]
 
@@ -106,7 +99,7 @@ def p_body(p):
 
 def p_dec_statements(p):
     '''dec_statements : statement dec_statements 
-        | empty'''
+                    | empty'''
     if p[1] == None:
         p[0] = []
     else:
@@ -117,10 +110,10 @@ def p_dec_statements(p):
 
 def p_statement(p):
     '''statement : assign 
-        | condition 
-        | cycle 
-        | f_call 
-        | print'''
+                | condition 
+                | cycle 
+                | f_call 
+                | print'''
     p[0] = p[1]
 
 def p_print(p):
@@ -130,7 +123,7 @@ def p_print(p):
 
 def p_expresiones(p):
     '''expresiones : TOKEN_CTE_STRING comas 
-        | expresion comas'''
+                | expresion comas'''
     if isinstance(p[1], str):  # TOKEN_CTE_STRING
         # Punto EX1: Registrar cadena constante
         p[0] = [('string', p[1])] + (p[2] if p[2] else [])
@@ -140,8 +133,8 @@ def p_expresiones(p):
 
 def p_comas(p):
     '''comas : TOKEN_COMMA expresion comas 
-        | TOKEN_COMMA TOKEN_CTE_STRING comas 
-        | empty'''
+            | TOKEN_COMMA TOKEN_CTE_STRING comas 
+            | empty'''
     # Punto CM2: Preparar siguiente elemento
     if p[1] == None:
         p[0] = []
@@ -169,7 +162,7 @@ def p_condition(p):
 
 def p_else(p):
     '''else : TOKEN_ELSE body 
-        | empty'''
+            | empty'''
     if p[1] == None:
         p[0] = None
     else:
@@ -177,7 +170,7 @@ def p_else(p):
 
 def p_cte(p):
     '''cte : TOKEN_CTE_INT 
-        | TOKEN_CTE_FLOAT'''
+            | TOKEN_CTE_FLOAT'''
     # Punto CT1: Determinar tipo de constante
     p[0] = ('constant', p[1])
 
@@ -192,13 +185,12 @@ def p_expresion(p):
         right_type = get_expr_type(p[2][1])
         op = token_to_operation(p[2][0])
         result_type = semantic.check_expression_compatibility(left_type, right_type, op)
-        
         p[0] = ('comparison', p[1], p[2][0], p[2][1])
         p[0] = set_expr_type(p[0], result_type)
 
 def p_comparar(p):
     '''comparar : signo exp 
-        | empty'''
+            | empty'''
     # Punto CP1, CP2: Manejo de comparaciones
     if p[1] == None:
         p[0] = None
@@ -207,8 +199,8 @@ def p_comparar(p):
 
 def p_signo(p):
     '''signo : TOKEN_GT 
-        | TOKEN_LT 
-        | TOKEN_NE'''
+            | TOKEN_LT 
+            | TOKEN_NE'''
     # Punto SG1: Guardar operador de comparación
     p[0] = p[1]
 
@@ -223,14 +215,13 @@ def p_exp(p):
         right_type = get_expr_type(p[2][1])
         op = token_to_operation(p[2][0])
         result_type = semantic.check_expression_compatibility(left_type, right_type, op)
-        
         p[0] = ('operation', p[1], p[2][0], p[2][1])
         p[0] = set_expr_type(p[0], result_type)
 
 def p_suma_resta(p):
     '''suma_resta : TOKEN_PLUS termino suma_resta
-        | TOKEN_MINUS termino suma_resta 
-        | empty'''
+                | TOKEN_MINUS termino suma_resta 
+                | empty'''
     # Punto SR1, SR2: Manejo de sumas y restas
     if p[1] == None:
         p[0] = None
@@ -252,13 +243,12 @@ def p_termino(p):
         right_type = get_expr_type(p[2][1])
         op = token_to_operation(p[2][0])
         result_type = semantic.check_expression_compatibility(left_type, right_type, op)
-        
         p[0] = ('operation', p[1], p[2][0], p[2][1])
         p[0] = set_expr_type(p[0], result_type)
 
 def p_multi_div(p):
     '''multi_div : operacion_mul_div factor multi_div 
-        | empty'''
+                | empty'''
     # Punto MD1, MD2: Manejo de multiplicaciones y divisiones
     if p[1] == None:
         p[0] = None
@@ -270,13 +260,13 @@ def p_multi_div(p):
 
 def p_operacion_mul_div(p):
     '''operacion_mul_div : TOKEN_DIV 
-        | TOKEN_MULT'''
+                        | TOKEN_MULT'''
     # Punto OP1: Determinar operador
     p[0] = p[1]
 
 def p_factor(p):
     '''factor : definicion 
-        | operaciones'''
+            | operaciones'''
     p[0] = p[1]
 
 def p_definicion(p):
@@ -294,20 +284,19 @@ def p_operaciones(p):
         expr_type = get_expr_type(p[2])
         if expr_type not in [Type.INT, Type.FLOAT]:
             semantic.add_error(f"Unary operation not supported for type {expr_type}")
-        
         p[0] = ('unary', p[1], p[2])
         p[0] = set_expr_type(p[0], expr_type)  # Mismo tipo que el operando
 
 def p_opciones_mas_menos(p):
     '''opciones_mas_menos : TOKEN_PLUS
-        | TOKEN_MINUS 
-        | empty'''
+                        | TOKEN_MINUS 
+                        | empty'''
     # Punto OPC1: Determinar signo unario
     p[0] = p[1]
 
 def p_id_cte(p):
     '''id_cte : TOKEN_ID
-              | cte'''
+            | cte'''
     # Punto IC1, IC2: Verificar variables e identificadores
     if isinstance(p[1], tuple):
         p[0] = p[1]
@@ -330,9 +319,6 @@ def p_funcs(p):
     # Punto F1, F2: Declaración de función
     logger.info(f"Declaring function: {p[2]}")
     semantic.declare_function(p[2])
-    
-    # Añadir parámetros
-    # Fix: Properly handle parameter list
     params = p[4] if p[4] else []
     if isinstance(params, list):
         for param in params:
@@ -340,16 +326,17 @@ def p_funcs(p):
                 param_name, param_type = param[1], param[2]
                 logger.info(f"Adding parameter: {param_name} of type {param_type} to function {p[2]}")
                 semantic.add_parameter(param_name, param_type)
-    
+    # Add this line to handle local variable declarations within the function.
+    semantic.start_scope(p[2])
     p[0] = ('function', p[2], p[4] if p[4] else [], p[7], p[8])
-    
     # Punto F5: Finalizar declaración de función
     semantic.end_function_declaration()
+    semantic.end_scope() # Exit the scope after processing the function's body.
     logger.info(f"Function {p[2]} declaration completed")
 
 def p_tipo(p):
     '''tipo : def_tipo 
-        | empty'''
+            | empty'''
     p[0] = p[1]
 
 def p_def_tipo(p):
@@ -363,7 +350,7 @@ def p_def_tipo(p):
 
 def p_coma(p):
     '''coma : TOKEN_COMMA TOKEN_ID TOKEN_COLON type coma 
-        | empty'''
+            | empty'''
     # Punto CM1: Manejo de comas en parámetros
     if p[1] == None:
         p[0] = None
@@ -378,7 +365,7 @@ def p_coma(p):
 
 def p_var(p):
     '''var : vars  
-        | empty'''
+            | empty'''
     p[0] = p[1]
 
 def p_f_call(p):
@@ -398,7 +385,6 @@ def p_f_call(p):
                 arg_type = get_expr_type(arg)
                 param_type = param.type
                 logger.info(f"Checking argument {i+1}: expected {param_type}, got {arg_type}")
-                
                 # Check assignment compatibility (parameter passing is like assignment)
                 result_type = get_result_type(param_type, arg_type, Operation.ASSIGN)
                 if result_type == Type.ERROR:
@@ -408,7 +394,7 @@ def p_f_call(p):
 
 def p_def_exp(p):
     '''def_exp : expresion coma2 
-        | empty'''
+            | empty'''
     # Punto DE1: Definición de expresiones como argumentos
     if p[1] == None:
         p[0] = []
@@ -417,7 +403,7 @@ def p_def_exp(p):
 
 def p_coma2(p):
     '''coma2 : TOKEN_COMMA expresion coma2 
-        | empty'''
+            | empty'''
     # Punto CM3: Manejo de comas en argumentos
     if p[1] == None:
         p[0] = []
@@ -432,7 +418,6 @@ def p_assign(p):
     expr_type = get_expr_type(p[3])
     logger.info(f"Assignment: var_type={var_type}, expr_type={expr_type}")
     semantic.check_assignment_compatibility(p[1], expr_type)
-    
     p[0] = ('assign', p[1], p[3])
 
 def p_empty(p):
@@ -482,8 +467,7 @@ def get_expr_type(expr_node):
         # Buscar si ya tiene tipo asignado
         for i in range(len(expr_node) - 1):
             if expr_node[i] == 'type' and i+1 < len(expr_node):
-                return expr_node[i+1]
-        
+                return expr_node[i+1] 
         # Si no tiene tipo asignado, hay que inferirlo
         if expr_node[0] == 'id':
             # Es una variable
@@ -522,9 +506,8 @@ def get_expr_type(expr_node):
     # Por defecto, si no podemos determinar el tipo
     return Type.ERROR
 
-parser = yacc.yacc()
+parser = yacc.yacc(debug=True)
 
-# Función principal para analizar el código
 def parse_program(code):
     # Reiniciar el analizador semántico
     global semantic
@@ -543,3 +526,37 @@ def parse_program(code):
         logger.info("Program parsed successfully with no semantic errors")
     
     return result, semantic.error_list
+
+
+# For testing
+if __name__ == "__main__":
+    data = '''
+program test1;
+
+var
+e, z : int;
+    x, y, a : float;
+
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main{
+    a = 1 + 2;
+}
+
+end
+    '''
+
+    print("\nDEBUG [main]: Starting parser on test program\n")
+    print("-" * 60)
+    print(data)
+    print("-" * 60 + "\n")
+    
+    result = parser.parse(data)
+    print("\nDEBUG [main]: Parsing completed")
+    print(f"\nRESULT: {result}")
