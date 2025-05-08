@@ -1,4 +1,4 @@
-== INICIO DE PRUEBAS - 2025-05-07 18:58:38.914885 ==
+== INICIO DE PRUEBAS - 2025-05-07 22:20:37.789968 ==
 
 
 ==================================================
@@ -160,4 +160,107 @@ void saluda() [
 end
 
 
-Syntax error at 'end', line 100
+Parse result: Success
+
+Found 2 semantic errors:
+  1. Semantic error: Missing 'main' section in program
+  2. Semantic error: Program must have a 'main' function
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-07 - Uso de variable no declarada
+==================================================
+
+Código:
+program undeclared_var;
+
+main {
+    a = 5;  
+}
+
+end
+
+
+Parse result: Success
+
+Found 2 semantic errors:
+  1. Semantic error: Variable 'a' not declared
+  2. Semantic error: Variable 'a' not declared
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-08 - Asignación con error de tipo
+==================================================
+
+Código:
+program wrongtype;
+
+var a : int;
+
+main {
+    a = 3.5; 
+}
+
+end
+
+
+Parse result: Success
+
+Found 1 semantic errors:
+  1. Semantic error: Incompatible types in assignment to 'a': Cannot assign Type.FLOAT to Type.INT
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-09 - Polimorfismo en un nombre
+==================================================
+
+Código:
+program nameconflict;
+
+var prueba : int;
+
+void prueba() [  
+    {
+        prueba = 3;
+    }
+];
+
+main {
+    prueba = 1;
+}
+
+end
+
+
+Parse result: Success
+
+No semantic errors found.
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-10 - Llamada a función no declarada
+==================================================
+
+Código:
+program callfunc;
+
+main {
+    uno(); 
+}
+
+end
+
+
+Parse result: Success
+
+Found 1 semantic errors:
+  1. Semantic error: Function 'uno' not declared
+--------------------------------------------------------------------------------
+
+
+== FIN DE PRUEBAS - 2025-05-07 22:20:37.860539 ==
+

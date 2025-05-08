@@ -151,19 +151,34 @@ class SemanticAnalyzer:
         print(f"Declared function '{func_id}' with return type {return_type}, scope changed to: {self.current_scope}")
         return True
     
-    def add_parameter(self,param_id,param_type):
-        if self.current_scope=="global":return self.add_error("Cannot declare parameters in global scope")
-        if param_type=="int":type_enum=Type.INT
-        elif param_type=="float":type_enum=Type.FLOAT
-        elif param_type=="bool":type_enum=Type.BOOL
-        elif param_type=="string":type_enum=Type.STRING
-        else:return self.add_error(f"Unsupported parameter type: {param_type}")
+    def add_parameter(self, param_id, param_type):
+        if self.current_scope == "global":
+            return self.add_error("Cannot declare parameters in global scope")
+        
+        # Validar el tipo de parámetro de manera más robusta
+        if param_type == "int":
+            type_enum = Type.INT
+        elif param_type == "float":
+            type_enum = Type.FLOAT
+        elif param_type == "bool":
+            type_enum = Type.BOOL
+        elif param_type == "string":
+            type_enum = Type.STRING
+        else:
+            print(f"Error: Tipo de parámetro inválido '{param_type}' en función '{self.current_scope}'")
+            # Asignar un tipo por defecto para evitar que se cicle
+            type_enum = Type.ERROR
+            # Seguir procesando pero marcar el error
+            self.add_error(f"Unsupported parameter type: '{param_type}' in function '{self.current_scope}'")
+        
         if param_id in self.function_directory[self.current_scope].local_vars:
             return self.add_error(f"Parameter '{param_id}' already declared in function '{self.current_scope}'")
-        param_var=Variable(param_id,type_enum,self.current_scope)
+        
+        param_var = Variable(param_id, type_enum, self.current_scope)
         self.function_directory[self.current_scope].add_parameter(param_var)
         print(f"Added parameter '{param_id}' of type {type_enum} to function '{self.current_scope}'")
         return True
+
     
     def end_function_declaration(self):
         if self.current_scope=="global":return self.add_error("Not inside a function declaration")
@@ -175,7 +190,8 @@ class SemanticAnalyzer:
     def check_variable(self,var_id):
         if self.current_scope!="global" and var_id in self.function_directory[self.current_scope].local_vars:
             return self.function_directory[self.current_scope].local_vars[var_id].type
-        if var_id in self.global_vars:return self.global_vars[var_id].type
+        if var_id in self.global_vars:
+            return self.global_vars[var_id].type
         self.add_error(f"Variable '{var_id}' not declared")
         return Type.ERROR
     

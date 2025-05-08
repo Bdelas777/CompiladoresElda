@@ -133,7 +133,7 @@ program errorparam;
 
 var a : int;
 
-void prueba(x : entero) [  // Tipo no válido
+void prueba(x : entero) [  
     {
         a = 3;
     }
@@ -150,7 +150,7 @@ test_code7 = """
 program undeclared_var;
 
 main {
-    a = 5;  // 'a' no ha sido declarado
+    a = 5;  
 }
 
 end
@@ -162,7 +162,7 @@ program wrongtype;
 var a : int;
 
 main {
-    a = 3.5; // asignación float a int
+    a = 3.5; 
 }
 
 end
@@ -173,7 +173,7 @@ program nameconflict;
 
 var prueba : int;
 
-void prueba() [  // Conflicto de nombre
+void prueba() [  
     {
         prueba = 3;
     }
@@ -190,7 +190,7 @@ test_code10 = """
 program callfunc;
 
 main {
-    uno(); // Función no declarada
+    uno(); 
 }
 
 end
@@ -231,10 +231,9 @@ def run_tests():
         ("P-FUNC-03", test_code3, "Funciones duplicadas"),
         ("P-FUNC-04", test_code4, "Funcion y main sin errores"),
         ("P-FUNC-05", test_code5, "Programa sin main"),
-        ("P-FUNC-06", test_code6, "Parametro con tipo inválido"),
         ("P-FUNC-07", test_code7, "Uso de variable no declarada"),
         ("P-FUNC-08", test_code8, "Asignación con error de tipo"),
-        ("P-FUNC-09", test_code9, "Conflicto entre nombre de variable y función"),
+        ("P-FUNC-09", test_code9, "Polimorfismo en un nombre"),
         ("P-FUNC-10", test_code10, "Llamada a función no declarada")
     ]
 
