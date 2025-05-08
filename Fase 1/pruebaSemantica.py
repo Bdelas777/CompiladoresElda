@@ -16,13 +16,14 @@ logging.basicConfig(
 # Importar el lexer y parser
 from yacc import parse_program
 
-# Test code 1: Simple function with parameters
+# Casos de prueba
+
 test_code1 = """
 program test1;
 
 var
-    e, z : int;
-    x, y, a : float;
+    i, j, k, a : int;
+    x, y : float;
 
 void uno(i : int)
 [
@@ -39,75 +40,175 @@ main {
 end
 """
 
-# Test code 2: Function with parameter mismatch (error case)
 test_code2 = """
-program Test2;
+program test2;
+
 var
-  x, y : int;
-  z : float;
+    i, j,a, k, k : int;
+    x, y : float;
 
-void calculate(a: int, b: int, c: float) {
-    var
-      result : float;
-    
-    result = a + b * c;
-    print(result);
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main {
+    a = 1 + 2;
 }
 
-main 
-{
-    x = 5;
-    y = 10;
-    z = 2.5;
-    
-    calculate(x, y, z);   // Correct
-    calculate(x, z);      // Error: Wrong number of parameters
-    calculate(z, y, x);   // Error: Type mismatch
-}
 end
 """
 
-# Test code 3: Multiple functions
 test_code3 = """
-program Test3;
+program pelos;
+
 var
-  value : int;
-  result : float;
+    i, j, k,a  : int;
+    x, y : float;
 
-void increment(x: int) {
-    value = x + 1;
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main {
+    a = 1 + 2;
 }
 
-void multiply(a: float, b: float) {
-    result = a * b;
-}
-
-main 
-{
-    value = 10;
-    result = 0.0;
-    
-    increment(value);
-    multiply(result, 2.5);
-    
-    print("Value:", value);
-    print("Result:", result);
-}
 end
 """
 
+test_code4 = """
+program uno;
+
+var
+    i, j, k ,a : int;
+    x, y : float;
+
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main {
+    a = 1 + 2;
+}
+
+end
+"""
+
+test_code5 = """
+program sinmain;
+
+var a : int;
+
+void saluda() [
+    {
+        a = 3;
+    }
+];
+
+end
+"""
+
+test_code6 = """
+program errorparam;
+
+var a : int;
+
+void prueba(x : entero) [  // Tipo no válido
+    {
+        a = 3;
+    }
+];
+
+main {
+    a = 1;
+}
+
+end
+"""
+
+test_code7 = """
+program undeclared_var;
+
+main {
+    a = 5;  // 'a' no ha sido declarado
+}
+
+end
+"""
+
+test_code8 = """
+program wrongtype;
+
+var a : int;
+
+main {
+    a = 3.5; // asignación float a int
+}
+
+end
+"""
+
+test_code9 = """
+program nameconflict;
+
+var prueba : int;
+
+void prueba() [  // Conflicto de nombre
+    {
+        prueba = 3;
+    }
+];
+
+main {
+    prueba = 1;
+}
+
+end
+"""
+
+test_code10 = """
+program callfunc;
+
+main {
+    uno(); // Función no declarada
+}
+
+end
+"""
+
+# Función para correr cada prueba
 def run_test(code, test_name):
     logging.info(f"\n{'='*50}")
     logging.info(f"Running test: {test_name}")
     logging.info(f"{'='*50}\n")
-    
+
     logging.info("Código:")
     logging.info(code.strip())
     logging.info("\n")
-    
+
     try:
         result, errors = parse_program(code)
-        
+
         logging.info(f"Parse result: {'Success' if result else 'Failed'}")
         if errors:
             logging.info(f"\nFound {len(errors)} semantic errors:")
@@ -118,26 +219,33 @@ def run_test(code, test_name):
     except Exception as e:
         logging.info(f"Error durante la prueba:")
         logging.info(traceback.format_exc())
-    
+
     logging.info(f"{'-'*80}\n")
 
+
+# Ejecutar todas las pruebas
 def run_tests():
     test_cases = [
-        ("P-FUNC-01", test_code1, "Function with correct parameters"),
-        # ("P-FUNC-02", test_code2, "Function with parameter errors"),
-        # ("P-FUNC-03", test_code3, "Multiple functions with parameters")
+        ("P-FUNC-01", test_code1, "Funcion con parametros correctos"),
+        ("P-FUNC-02", test_code2, "Funcion con variable doblemente declarada"),
+        ("P-FUNC-03", test_code3, "Funciones duplicadas"),
+        ("P-FUNC-04", test_code4, "Funcion y main sin errores"),
+        ("P-FUNC-05", test_code5, "Programa sin main"),
+        ("P-FUNC-06", test_code6, "Parametro con tipo inválido"),
+        ("P-FUNC-07", test_code7, "Uso de variable no declarada"),
+        ("P-FUNC-08", test_code8, "Asignación con error de tipo"),
+        ("P-FUNC-09", test_code9, "Conflicto entre nombre de variable y función"),
+        ("P-FUNC-10", test_code10, "Llamada a función no declarada")
     ]
-    
-    original_stdout = sys.stdout
-    
+
     logging.info(f"== INICIO DE PRUEBAS - {datetime.datetime.now()} ==\n")
-    
+
     for code, input_text, description in test_cases:
         run_test(input_text, f"{code} - {description}")
-    
+
     logging.info(f"\n== FIN DE PRUEBAS - {datetime.datetime.now()} ==\n")
-    
     print("Pruebas completadas. Resultados guardados en prueba.log")
+
 
 if __name__ == "__main__":
     print("\nTesting BabyDuck parameter handling\n")

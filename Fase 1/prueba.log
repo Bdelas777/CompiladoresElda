@@ -1,15 +1,16 @@
-== INICIO DE PRUEBAS - 2025-05-06 10:39:14.468749 ==
+== INICIO DE PRUEBAS - 2025-05-07 18:58:38.914885 ==
 
 
 ==================================================
-Running test: P-FUNC-01 - Function with correct parameters
+Running test: P-FUNC-01 - Funcion con parametros correctos
 ==================================================
 
 Código:
 program test1;
 
 var
-    x, y, a : float;
+    i, j, k, a : int;
+    x, y : float;
 
 void uno(i : int)
 [
@@ -26,27 +27,137 @@ main {
 end
 
 
-Starting to parse program
-Processing variable declaration: x of type float
-Starting variable declaration
-Parameter definition: i of type int
-Processing variable declaration: x of type int
-Starting variable declaration
-Assignment to variable: x
-Assignment: var_type=Type.FLOAT, expr_type=Type.INT
-Declaring function: uno
-Adding parameter: i of type int to function uno
-Function uno declaration completed
-Assignment to variable: a
-Assignment: var_type=Type.FLOAT, expr_type=Type.INT
-Starting program: test1
-Found 1 semantic errors
 Parse result: Success
 
-Found 1 semantic errors:
-  1. Semantic error: Variable 'x' already declared in global scope
+No semantic errors found.
 --------------------------------------------------------------------------------
 
 
-== FIN DE PRUEBAS - 2025-05-06 10:39:14.492460 ==
+==================================================
+Running test: P-FUNC-02 - Funcion con variable doblemente declarada
+==================================================
 
+Código:
+program test2;
+
+var
+    i, j,a, k, k : int;
+    x, y : float;
+
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main {
+    a = 1 + 2;
+}
+
+end
+
+
+Parse result: Success
+
+Found 1 semantic errors:
+  1. Semantic error: Variable 'k' declared multiple times in the same declaration
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-03 - Funciones duplicadas
+==================================================
+
+Código:
+program pelos;
+
+var
+    i, j, k,a  : int;
+    x, y : float;
+
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main {
+    a = 1 + 2;
+}
+
+end
+
+
+Parse result: Success
+
+Found 4 semantic errors:
+  1. Semantic error: Function 'uno' already declared
+  2. Semantic error: Variable 'x' already declared in global scope
+  3. Semantic error: Cannot declare parameters in global scope
+  4. Semantic error: Not inside a function declaration
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-04 - Funcion y main sin errores
+==================================================
+
+Código:
+program uno;
+
+var
+    i, j, k ,a : int;
+    x, y : float;
+
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main {
+    a = 1 + 2;
+}
+
+end
+
+
+Parse result: Success
+
+No semantic errors found.
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-05 - Programa sin main
+==================================================
+
+Código:
+program sinmain;
+
+var a : int;
+
+void saluda() [
+    {
+        a = 3;
+    }
+];
+
+end
+
+
+Syntax error at 'end', line 100
