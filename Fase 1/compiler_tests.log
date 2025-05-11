@@ -1,0 +1,452 @@
+2025-05-11 03:22:35,514 - INFO - Starting test suite
+2025-05-11 03:22:35,515 - INFO - Date and time: 2025-05-11 03:22:35
+2025-05-11 03:22:35,519 - INFO - Saved test program 'arithmetic' to test_programs\arithmetic.txt
+2025-05-11 03:22:35,524 - INFO - Saved test program 'if_else' to test_programs\if_else.txt
+2025-05-11 03:22:35,527 - INFO - Saved test program 'while_loop' to test_programs\while_loop.txt
+2025-05-11 03:22:35,533 - INFO - Saved test program 'functions' to test_programs\functions.txt
+2025-05-11 03:22:35,555 - INFO - Saved test program 'float_operations' to test_programs\float_operations.txt
+2025-05-11 03:22:35,589 - INFO - Saved test program 'negative_values' to test_programs\negative_values.txt
+2025-05-11 03:22:35,590 - INFO - 
+Running test: arithmetic
+2025-05-11 03:22:35,593 - INFO - ======== TESTING: arithmetic ========
+2025-05-11 03:22:35,595 - INFO - Program code:
+
+program operaciones_basicas;
+var
+    a, b, c, resultado, resultado2 : int;
+    resultado3 : float;
+
+main {
+    a = 5;
+    b = 10;
+    c = 2;
+    
+    resultado = a + b * c;
+    print("Resultado 1: ", resultado);
+    
+    resultado2 = (a + b) * c;
+    print("Resultado 2: ", resultado2);
+    
+    resultado3 = a - b / c;
+    print("Resultado 3: ", resultado3);
+}
+end
+
+2025-05-11 03:22:35,598 - INFO - Compilation successful!
+2025-05-11 03:22:35,602 - INFO - QUADRUPLES:
+2025-05-11 03:22:35,603 - INFO - 
+Adding ID 'a' to temp list in scope: global
+Added 'a' to temporary variable list in scope: global
+Adding ID 'b' to temp list in scope: global
+Added 'b' to temporary variable list in scope: global
+Adding ID 'c' to temp list in scope: global
+Added 'c' to temporary variable list in scope: global
+Adding ID 'resultado' to temp list in scope: global
+Added 'resultado' to temporary variable list in scope: global
+Adding ID 'resultado2' to temp list in scope: global
+Added 'resultado2' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'a' of type Type.INT
+Added global variable 'b' of type Type.INT
+Added global variable 'c' of type Type.INT
+Added global variable 'resultado' of type Type.INT
+Added global variable 'resultado2' of type Type.INT
+Adding ID 'resultado3' to temp list in scope: global
+Added 'resultado3' to temporary variable list in scope: global
+Set current type to Type.FLOAT
+Adding variables to table in scope: global
+Added global variable 'resultado3' of type Type.FLOAT
+Starting variable declaration in scope 'global'
+Program operaciones_basicas started, scope reset to global
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Popped scope: main, current scope is now: global
+Main function body ended, returned to global scope
+Program operaciones_basicas completed
+
+===== QUADRUPLES =====
+0: (=, 5, None, a)
+1: (=, 10, None, b)
+2: (=, 2, None, c)
+3: (*, b, c, t0)
+4: (+, a, a, t1)
+5: (=, t1, None, resultado)
+6: (print, Resultado 1: , None, None)
+7: (print, resultado, None, None)
+8: (+, a, b, t2)
+9: (*, t2, c, t3)
+10: (=, t3, None, resultado2)
+11: (print, Resultado 2: , None, None)
+12: (print, resultado2, None, None)
+13: (/, b, c, t4)
+14: (-, a, a, t5)
+15: (=, t5, None, resultado3)
+16: (print, Resultado 3: , None, None)
+17: (print, resultado3, None, None)
+
+2025-05-11 03:22:35,604 - INFO - ======== END TEST: arithmetic ========
+
+2025-05-11 03:22:35,605 - INFO - 
+Running test: if_else
+2025-05-11 03:22:35,627 - INFO - ======== TESTING: if_else ========
+2025-05-11 03:22:35,630 - INFO - Program code:
+
+program control_if;
+var
+    x, y, max : int;
+main {
+    x = 15;
+    y = 7;
+    
+    if (x > y) {
+        max = x;
+        print("El mayor es x: ", max);
+    } else {
+        max = y;
+        print("El mayor es y: ", max);
+    };
+    
+    if (x < 10) {
+        print("x es menor que 10");
+    } else {
+        print("x es mayor o igual que 10");
+    };
+}
+end
+
+2025-05-11 03:22:35,635 - INFO - Compilation successful!
+2025-05-11 03:22:35,637 - INFO - QUADRUPLES:
+2025-05-11 03:22:35,638 - INFO - 
+Adding ID 'x' to temp list in scope: global
+Added 'x' to temporary variable list in scope: global
+Adding ID 'y' to temp list in scope: global
+Added 'y' to temporary variable list in scope: global
+Adding ID 'max' to temp list in scope: global
+Added 'max' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'x' of type Type.INT
+Added global variable 'y' of type Type.INT
+Added global variable 'max' of type Type.INT
+Starting variable declaration in scope 'global'
+Program control_if started, scope reset to global
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Popped scope: main, current scope is now: global
+Main function body ended, returned to global scope
+Program control_if completed
+
+===== QUADRUPLES =====
+0: (=, 15, None, x)
+1: (=, 7, None, y)
+2: (>, x, y, t0)
+3: (=, x, None, max)
+4: (print, El mayor es x: , None, None)
+5: (print, max, None, None)
+6: (=, y, None, max)
+7: (print, El mayor es y: , None, None)
+8: (print, max, None, None)
+9: (gotof, t0, None, 11)
+10: (goto, None, None, 11)
+11: (<, x, 10, t1)
+12: (print, x es menor que 10, None, None)
+13: (print, x es mayor o igual que 10, None, None)
+14: (gotof, t1, None, 16)
+15: (goto, None, None, 16)
+
+2025-05-11 03:22:35,716 - INFO - ======== END TEST: if_else ========
+
+2025-05-11 03:22:35,834 - INFO - 
+Running test: while_loop
+2025-05-11 03:22:35,904 - INFO - ======== TESTING: while_loop ========
+2025-05-11 03:22:35,906 - INFO - Program code:
+
+program ciclo_while;
+var
+    contador, suma : int;
+main {
+    contador = 1;
+    suma = 0;
+    
+    while (contador < 5) do {
+        suma = suma + contador;
+        print("Iteración: ", contador, " Suma actual: ", suma);
+        contador = contador + 1;
+    };
+    
+    print("Suma final: ", suma);
+}
+end
+
+2025-05-11 03:22:35,921 - INFO - Compilation successful!
+2025-05-11 03:22:35,923 - INFO - QUADRUPLES:
+2025-05-11 03:22:35,926 - INFO - 
+Adding ID 'contador' to temp list in scope: global
+Added 'contador' to temporary variable list in scope: global
+Adding ID 'suma' to temp list in scope: global
+Added 'suma' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'contador' of type Type.INT
+Added global variable 'suma' of type Type.INT
+Starting variable declaration in scope 'global'
+Program ciclo_while started, scope reset to global
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Popped scope: main, current scope is now: global
+Main function body ended, returned to global scope
+Program ciclo_while completed
+
+===== QUADRUPLES =====
+0: (=, 1, None, contador)
+1: (=, 0, None, suma)
+2: (<, contador, 5, t0)
+3: (+, suma, contador, t1)
+4: (=, t1, None, suma)
+5: (print, Iteración: , None, None)
+6: (print, contador, None, None)
+7: (print,  Suma actual: , None, None)
+8: (print, suma, None, None)
+9: (+, contador, 1, t2)
+10: (=, t2, None, contador)
+11: (gotof, t2, None, 13)
+12: (goto, None, None, 11)
+13: (print, Suma final: , None, None)
+14: (print, suma, None, None)
+
+2025-05-11 03:22:35,933 - INFO - ======== END TEST: while_loop ========
+
+2025-05-11 03:22:35,966 - INFO - 
+Running test: functions
+2025-05-11 03:22:36,003 - INFO - ======== TESTING: functions ========
+2025-05-11 03:22:36,005 - INFO - Program code:
+
+program funciones;
+var
+    resultado, num1, num2 : int;
+
+void sumar(a : int, b : int)
+[
+    var res : int;
+    {
+        res = a + b;
+        print("La suma es: ", res);
+    }
+];
+
+void multiplicar(c : int, d : int)
+[
+    var res : int;
+    {
+        res = c * d;
+        print("El producto es: ", res);
+    }
+];
+
+main {
+    num1 = 8;
+    num2 = 3;
+    
+    sumar(num1, num2);
+    multiplicar(num1, num2);
+    
+    sumar(5, 7);
+    multiplicar(num1 + 2, num2 * 2);
+}
+end
+
+2025-05-11 03:22:36,009 - INFO - Compilation successful!
+2025-05-11 03:22:36,011 - INFO - QUADRUPLES:
+2025-05-11 03:22:36,013 - INFO - 
+Adding ID 'resultado' to temp list in scope: global
+Added 'resultado' to temporary variable list in scope: global
+Adding ID 'num1' to temp list in scope: global
+Added 'num1' to temporary variable list in scope: global
+Adding ID 'num2' to temp list in scope: global
+Added 'num2' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'resultado' of type Type.INT
+Added global variable 'num1' of type Type.INT
+Added global variable 'num2' of type Type.INT
+Starting variable declaration in scope 'global'
+Pushed scope: sumar, current scope stack: ['global', 'sumar']
+Declared function 'sumar' with return type Type.VOID, scope changed to: sumar
+Added parameter 'a' of type Type.INT to function 'sumar'
+Added parameter 'b' of type Type.INT to function 'sumar'
+Adding ID 'res' to temp list in scope: sumar
+Added 'res' to temporary variable list in scope: sumar
+Set current type to Type.INT
+Adding variables to table in scope: sumar
+Added local variable 'res' of type Type.INT to function 'sumar'
+Starting variable declaration in scope 'sumar'
+Popped scope: sumar, current scope is now: global
+Ended function 'sumar' declaration, returned to scope: global
+Pushed scope: multiplicar, current scope stack: ['global', 'multiplicar']
+Declared function 'multiplicar' with return type Type.VOID, scope changed to: multiplicar
+Added parameter 'c' of type Type.INT to function 'multiplicar'
+Added parameter 'd' of type Type.INT to function 'multiplicar'
+Adding ID 'res' to temp list in scope: multiplicar
+Added 'res' to temporary variable list in scope: multiplicar
+Set current type to Type.INT
+Adding variables to table in scope: multiplicar
+Added local variable 'res' of type Type.INT to function 'multiplicar'
+Starting variable declaration in scope 'multiplicar'
+Popped scope: multiplicar, current scope is now: global
+Ended function 'multiplicar' declaration, returned to scope: global
+Program funciones started, scope reset to global
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Popped scope: main, current scope is now: global
+Main function body ended, returned to global scope
+Program funciones completed
+
+===== QUADRUPLES =====
+0: (+, a, b, t0)
+1: (=, t0, None, res)
+2: (print, La suma es: , None, None)
+3: (print, res, None, None)
+4: (*, c, d, t1)
+5: (=, t1, None, res)
+6: (print, El producto es: , None, None)
+7: (print, res, None, None)
+8: (=, 8, None, num1)
+9: (=, 3, None, num2)
+10: (param, num1, None, None)
+11: (param, num2, None, None)
+12: (call, sumar, None, None)
+13: (param, num1, None, None)
+14: (param, num2, None, None)
+15: (call, multiplicar, None, None)
+16: (param, 5, None, None)
+17: (param, 7, None, None)
+18: (call, sumar, None, None)
+19: (+, num1, 2, t2)
+20: (*, num2, 2, t3)
+21: (param, t3, None, None)
+22: (param, t3, None, None)
+23: (call, multiplicar, None, None)
+
+2025-05-11 03:22:36,014 - INFO - ======== END TEST: functions ========
+
+2025-05-11 03:22:36,015 - INFO - 
+Running test: float_operations
+2025-05-11 03:22:36,016 - INFO - ======== TESTING: float_operations ========
+2025-05-11 03:22:36,034 - INFO - Program code:
+
+program operaciones_flotantes;
+var
+    x : float;
+    y : int;
+    z : float;
+
+main {
+    x = 3.5;
+    y = 2;
+    
+    z = x * y + 1.5;
+    print("Resultado flotante: ", z);
+}
+end
+
+2025-05-11 03:22:36,059 - INFO - Compilation successful!
+2025-05-11 03:22:36,062 - INFO - QUADRUPLES:
+2025-05-11 03:22:36,062 - INFO - 
+Adding ID 'x' to temp list in scope: global
+Added 'x' to temporary variable list in scope: global
+Set current type to Type.FLOAT
+Adding variables to table in scope: global
+Added global variable 'x' of type Type.FLOAT
+Adding ID 'y' to temp list in scope: global
+Added 'y' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'y' of type Type.INT
+Adding ID 'z' to temp list in scope: global
+Added 'z' to temporary variable list in scope: global
+Set current type to Type.FLOAT
+Adding variables to table in scope: global
+Added global variable 'z' of type Type.FLOAT
+Starting variable declaration in scope 'global'
+Program operaciones_flotantes started, scope reset to global
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Popped scope: main, current scope is now: global
+Main function body ended, returned to global scope
+Program operaciones_flotantes completed
+
+===== QUADRUPLES =====
+0: (=, 3.5, None, x)
+1: (=, 2, None, y)
+2: (*, x, y, t0)
+3: (+, t0, 1.5, t1)
+4: (=, t1, None, z)
+5: (print, Resultado flotante: , None, None)
+6: (print, z, None, None)
+
+2025-05-11 03:22:36,063 - INFO - ======== END TEST: float_operations ========
+
+2025-05-11 03:22:36,063 - INFO - 
+Running test: negative_values
+2025-05-11 03:22:36,064 - INFO - ======== TESTING: negative_values ========
+2025-05-11 03:22:36,064 - INFO - Program code:
+
+program negativos;
+var
+    a, b : int;
+    resultado : int;
+
+main {
+    a = -5;
+    b = 3;
+    resultado = a + b;
+    print("Resultado con negativos: ", resultado);
+}
+end
+
+2025-05-11 03:22:36,066 - INFO - Compilation successful!
+2025-05-11 03:22:36,068 - INFO - QUADRUPLES:
+2025-05-11 03:22:36,074 - INFO - 
+Adding ID 'a' to temp list in scope: global
+Added 'a' to temporary variable list in scope: global
+Adding ID 'b' to temp list in scope: global
+Added 'b' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'a' of type Type.INT
+Added global variable 'b' of type Type.INT
+Adding ID 'resultado' to temp list in scope: global
+Added 'resultado' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'resultado' of type Type.INT
+Starting variable declaration in scope 'global'
+Program negativos started, scope reset to global
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Popped scope: main, current scope is now: global
+Main function body ended, returned to global scope
+Program negativos completed
+
+===== QUADRUPLES =====
+0: (*, -1, 5, t0)
+1: (=, t0, None, a)
+2: (=, 3, None, b)
+3: (+, a, b, t1)
+4: (=, t1, None, resultado)
+5: (print, Resultado con negativos: , None, None)
+6: (print, resultado, None, None)
+
+2025-05-11 03:22:36,105 - INFO - ======== END TEST: negative_values ========
+
+2025-05-11 03:22:36,116 - INFO - 
+======== TEST SUMMARY ========
+2025-05-11 03:22:36,128 - INFO - arithmetic: PASS
+2025-05-11 03:22:36,129 - INFO - if_else: PASS
+2025-05-11 03:22:36,159 - INFO - while_loop: PASS
+2025-05-11 03:22:36,160 - INFO - functions: PASS
+2025-05-11 03:22:36,161 - INFO - float_operations: PASS
+2025-05-11 03:22:36,167 - INFO - negative_values: PASS
+2025-05-11 03:22:36,169 - INFO - 
+Test suite completed

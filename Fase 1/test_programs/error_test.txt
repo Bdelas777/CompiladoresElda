@@ -1,0 +1,12 @@
+
+program error_test;
+var
+    a : int;
+main {
+    a = "string";  // Error de tipo
+    b = 10;        // Error: variable no declarada
+    if (a) {       // Error: condición no es booleana
+        print(a);
+    };
+}
+end

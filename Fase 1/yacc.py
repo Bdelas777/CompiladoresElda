@@ -1,12 +1,8 @@
-
-
-
-
 import ply.yacc as yacc
 from lex import tokens
 from semantic_cube import Type, Operation, get_result_type
 from semantic_analyzer import SemanticAnalyzer
-from quadruple_generator import QuadrupleGenerator
+from quadruple_generator import QuadrupleGenerator, Quadruple
 
 semantic = SemanticAnalyzer()
 quad_gen = QuadrupleGenerator(semantic)
@@ -34,8 +30,6 @@ def p_programa(p):
     p[0] = ('programa', p[2], p[4], p[5], p[7])
     semantic.end_main()
     semantic.program_end()
-    
-    # Print the generated quadruples
     quad_gen.print_quads()
 
 def p_programa_error_no_main(p):
@@ -428,32 +422,37 @@ def p_id_cte(p):
             else:
                 p[0] = ('id', p[1])
                 
+# FIX: Changed the order of function declaration to register parameters first
 def p_funcs(p):
     '''funcs :  TOKEN_VOID TOKEN_ID scopefun TOKEN_LPAREN tipo TOKEN_RPAREN TOKEN_LCOL var body TOKEN_RCOL TOKEN_SEMICOLON'''
     func = semantic.check_function(p[2])    
+    # Process parameters and add them first so they're available in function body
     params = p[5] if p[5] else []
-    if isinstance(params, list):
-        for param in params:
-            if isinstance(param, tuple) and len(param) >= 3 and param[0] == 'param':
-                param_id = param[1]
-                param_type = param[2]                
-                if param_type not in ['int', 'float']:
-                    semantic.add_error(f"Invalid parameter type '{param_type}' for parameter '{param_id}' in function '{p[2]}'")
-                    continue  
-                semantic.add_parameter(param_id, param_type)
-    p[0] = ('function', p[2], p[5] if p[5] else [], p[8], p[9])
+    
+    # Create function with parameters already defined
+    p[0] = ('function', p[2], params, p[8], p[9])
     semantic.end_function_declaration()
 
 def p_scopefun(p):
     '''scopefun : empty'''
-    function_name = p[-1]
+    function_name = p[-1]  # Get the function name from the production rule
     semantic.declare_function(function_name)
-    print(f"Function scope established: {function_name}")
     return True
     
 def p_tipo(p):
     '''tipo : def_tipo
     | empty'''
+    # If there are parameters, register them immediately after finding their types
+    if p[1]:
+        for param in p[1]:
+            if isinstance(param, tuple) and len(param) >= 3 and param[0] == 'param':
+                param_id = param[1]
+                param_type = param[2]
+                if param_type not in ['int', 'float']:
+                    semantic.add_error(f"Invalid parameter type '{param_type}' for parameter '{param_id}' in function")
+                    continue
+                # Register parameter right away so it's available in the function body
+                semantic.add_parameter(param_id, param_type)
     p[0] = p[1]
     
 def p_def_tipo(p):
@@ -495,8 +494,8 @@ def p_f_call(p):
                 if result_type == Type.ERROR:
                     semantic.add_error(f"Parameter type mismatch in call to '{p[1]}': Parameter {i+1} expects {param_type}, got {arg_type}")
         
-        # Generate function call quadruple
-        quad_gen.Quads.append(quad_gen.Quadruple('call', p[1], None, None))
+        # Generate function call quadruple - FIX: Use Quadruple class directly
+        quad_gen.Quads.append(Quadruple('call', p[1], None, None))
         quad_gen.quad_counter += 1
         
     p[0] = ('function_call', p[1], p[3] if p[3] else [])
@@ -507,16 +506,16 @@ def p_def_exp(p):
     if p[1] is None:
         p[0] = []
     else:
-        # Generate param quadruple for each argument
+        # Generate param quadruple for each argument - FIX: Use Quadruple class directly
         operand = get_operand_name(p[1])
-        quad_gen.Quads.append(quad_gen.Quadruple('param', operand, None, None))
+        quad_gen.Quads.append(Quadruple('param', operand, None, None))
         quad_gen.quad_counter += 1
         
         args = [p[1]]
         if p[2]:
             for arg in p[2]:
                 operand = get_operand_name(arg)
-                quad_gen.Quads.append(quad_gen.Quadruple('param', operand, None, None))
+                quad_gen.Quads.append(Quadruple('param', operand, None, None))
                 quad_gen.quad_counter += 1
             args.extend(p[2])
         

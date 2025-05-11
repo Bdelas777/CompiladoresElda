@@ -1,0 +1,72 @@
+
+program calculadora;
+var
+    opcion, num1, num2, resultado : int;
+    continuar : int;
+
+void mostrar_menu()
+[
+    {
+        print("===== CALCULADORA =====");
+        print("1. Sumar");
+        print("2. Restar");
+        print("3. Multiplicar");
+        print("4. Dividir");
+        print("5. Salir");
+        print("Seleccione una opción: ");
+    }
+];
+
+void realizar_operacion(op : int, a : int, b : int)
+[
+    var res : int;
+    {
+        if (op == 1) {
+            res = a + b;
+            print("Resultado de suma: ", res);
+        } else {
+            if (op == 2) {
+                res = a - b;
+                print("Resultado de resta: ", res);
+            } else {
+                if (op == 3) {
+                    res = a * b;
+                    print("Resultado de multiplicación: ", res);
+                } else {
+                    if (op == 4) {
+                        if (b != 0) {
+                            res = a / b;
+                            print("Resultado de división: ", res);
+                        } else {
+                            print("Error: División por cero");
+                        };
+                    } else {
+                        print("Opción inválida");
+                    };
+                };
+            };
+        };
+    }
+];
+
+main {
+    continuar = 1;
+    
+    while (continuar != 0) do {
+        mostrar_menu();
+        opcion = 1;  // Simulando entrada del usuario
+        
+        if (opcion != 5) {
+            num1 = 10;  // Simulando entrada del usuario
+            num2 = 2;   // Simulando entrada del usuario
+            
+            realizar_operacion(opcion, num1, num2);
+            continuar = 0;  // Salir después de una operación para este ejemplo
+        } else {
+            continuar = 0;
+        };
+    };
+    
+    print("¡Gracias por usar la calculadora!");
+}
+end
