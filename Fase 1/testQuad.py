@@ -50,6 +50,7 @@ main {
     print("Resultado 2: ", resultado2);
     
     resultado3 = a - b / c;
+
     print("Resultado 3: ", resultado3);
 }
 end

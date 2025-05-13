@@ -1,15 +1,15 @@
-2025-05-11 03:22:35,514 - INFO - Starting test suite
-2025-05-11 03:22:35,515 - INFO - Date and time: 2025-05-11 03:22:35
-2025-05-11 03:22:35,519 - INFO - Saved test program 'arithmetic' to test_programs\arithmetic.txt
-2025-05-11 03:22:35,524 - INFO - Saved test program 'if_else' to test_programs\if_else.txt
-2025-05-11 03:22:35,527 - INFO - Saved test program 'while_loop' to test_programs\while_loop.txt
-2025-05-11 03:22:35,533 - INFO - Saved test program 'functions' to test_programs\functions.txt
-2025-05-11 03:22:35,555 - INFO - Saved test program 'float_operations' to test_programs\float_operations.txt
-2025-05-11 03:22:35,589 - INFO - Saved test program 'negative_values' to test_programs\negative_values.txt
-2025-05-11 03:22:35,590 - INFO - 
+2025-05-11 19:47:46,538 - INFO - Starting test suite
+2025-05-11 19:47:46,539 - INFO - Date and time: 2025-05-11 19:47:46
+2025-05-11 19:47:46,541 - INFO - Saved test program 'arithmetic' to test_programs\arithmetic.txt
+2025-05-11 19:47:46,553 - INFO - Saved test program 'if_else' to test_programs\if_else.txt
+2025-05-11 19:47:46,571 - INFO - Saved test program 'while_loop' to test_programs\while_loop.txt
+2025-05-11 19:47:46,580 - INFO - Saved test program 'functions' to test_programs\functions.txt
+2025-05-11 19:47:46,609 - INFO - Saved test program 'float_operations' to test_programs\float_operations.txt
+2025-05-11 19:47:46,614 - INFO - Saved test program 'negative_values' to test_programs\negative_values.txt
+2025-05-11 19:47:46,634 - INFO - 
 Running test: arithmetic
-2025-05-11 03:22:35,593 - INFO - ======== TESTING: arithmetic ========
-2025-05-11 03:22:35,595 - INFO - Program code:
+2025-05-11 19:47:46,635 - INFO - ======== TESTING: arithmetic ========
+2025-05-11 19:47:46,636 - INFO - Program code:
 
 program operaciones_basicas;
 var
@@ -28,13 +28,14 @@ main {
     print("Resultado 2: ", resultado2);
     
     resultado3 = a - b / c;
+
     print("Resultado 3: ", resultado3);
 }
 end
 
-2025-05-11 03:22:35,598 - INFO - Compilation successful!
-2025-05-11 03:22:35,602 - INFO - QUADRUPLES:
-2025-05-11 03:22:35,603 - INFO - 
+2025-05-11 19:47:46,639 - INFO - Compilation successful!
+2025-05-11 19:47:46,640 - INFO - QUADRUPLES:
+2025-05-11 19:47:46,640 - INFO - 
 Adding ID 'a' to temp list in scope: global
 Added 'a' to temporary variable list in scope: global
 Adding ID 'b' to temp list in scope: global
@@ -85,12 +86,12 @@ Program operaciones_basicas completed
 16: (print, Resultado 3: , None, None)
 17: (print, resultado3, None, None)
 
-2025-05-11 03:22:35,604 - INFO - ======== END TEST: arithmetic ========
+2025-05-11 19:47:46,642 - INFO - ======== END TEST: arithmetic ========
 
-2025-05-11 03:22:35,605 - INFO - 
+2025-05-11 19:47:46,643 - INFO - 
 Running test: if_else
-2025-05-11 03:22:35,627 - INFO - ======== TESTING: if_else ========
-2025-05-11 03:22:35,630 - INFO - Program code:
+2025-05-11 19:47:46,647 - INFO - ======== TESTING: if_else ========
+2025-05-11 19:47:46,648 - INFO - Program code:
 
 program control_if;
 var
@@ -115,9 +116,9 @@ main {
 }
 end
 
-2025-05-11 03:22:35,635 - INFO - Compilation successful!
-2025-05-11 03:22:35,637 - INFO - QUADRUPLES:
-2025-05-11 03:22:35,638 - INFO - 
+2025-05-11 19:47:46,654 - INFO - Compilation successful!
+2025-05-11 19:47:46,657 - INFO - QUADRUPLES:
+2025-05-11 19:47:46,665 - INFO - 
 Adding ID 'x' to temp list in scope: global
 Added 'x' to temporary variable list in scope: global
 Adding ID 'y' to temp list in scope: global
@@ -155,12 +156,12 @@ Program control_if completed
 14: (gotof, t1, None, 16)
 15: (goto, None, None, 16)
 
-2025-05-11 03:22:35,716 - INFO - ======== END TEST: if_else ========
+2025-05-11 19:47:46,667 - INFO - ======== END TEST: if_else ========
 
-2025-05-11 03:22:35,834 - INFO - 
+2025-05-11 19:47:46,667 - INFO - 
 Running test: while_loop
-2025-05-11 03:22:35,904 - INFO - ======== TESTING: while_loop ========
-2025-05-11 03:22:35,906 - INFO - Program code:
+2025-05-11 19:47:46,667 - INFO - ======== TESTING: while_loop ========
+2025-05-11 19:47:46,668 - INFO - Program code:
 
 program ciclo_while;
 var
@@ -179,9 +180,9 @@ main {
 }
 end
 
-2025-05-11 03:22:35,921 - INFO - Compilation successful!
-2025-05-11 03:22:35,923 - INFO - QUADRUPLES:
-2025-05-11 03:22:35,926 - INFO - 
+2025-05-11 19:47:46,669 - INFO - Compilation successful!
+2025-05-11 19:47:46,669 - INFO - QUADRUPLES:
+2025-05-11 19:47:46,669 - INFO - 
 Adding ID 'contador' to temp list in scope: global
 Added 'contador' to temporary variable list in scope: global
 Adding ID 'suma' to temp list in scope: global
@@ -215,12 +216,12 @@ Program ciclo_while completed
 13: (print, Suma final: , None, None)
 14: (print, suma, None, None)
 
-2025-05-11 03:22:35,933 - INFO - ======== END TEST: while_loop ========
+2025-05-11 19:47:46,671 - INFO - ======== END TEST: while_loop ========
 
-2025-05-11 03:22:35,966 - INFO - 
+2025-05-11 19:47:46,672 - INFO - 
 Running test: functions
-2025-05-11 03:22:36,003 - INFO - ======== TESTING: functions ========
-2025-05-11 03:22:36,005 - INFO - Program code:
+2025-05-11 19:47:46,672 - INFO - ======== TESTING: functions ========
+2025-05-11 19:47:46,681 - INFO - Program code:
 
 program funciones;
 var
@@ -256,9 +257,9 @@ main {
 }
 end
 
-2025-05-11 03:22:36,009 - INFO - Compilation successful!
-2025-05-11 03:22:36,011 - INFO - QUADRUPLES:
-2025-05-11 03:22:36,013 - INFO - 
+2025-05-11 19:47:46,683 - INFO - Compilation successful!
+2025-05-11 19:47:46,684 - INFO - QUADRUPLES:
+2025-05-11 19:47:46,684 - INFO - 
 Adding ID 'resultado' to temp list in scope: global
 Added 'resultado' to temporary variable list in scope: global
 Adding ID 'num1' to temp list in scope: global
@@ -328,12 +329,12 @@ Program funciones completed
 22: (param, t3, None, None)
 23: (call, multiplicar, None, None)
 
-2025-05-11 03:22:36,014 - INFO - ======== END TEST: functions ========
+2025-05-11 19:47:46,685 - INFO - ======== END TEST: functions ========
 
-2025-05-11 03:22:36,015 - INFO - 
+2025-05-11 19:47:46,685 - INFO - 
 Running test: float_operations
-2025-05-11 03:22:36,016 - INFO - ======== TESTING: float_operations ========
-2025-05-11 03:22:36,034 - INFO - Program code:
+2025-05-11 19:47:46,688 - INFO - ======== TESTING: float_operations ========
+2025-05-11 19:47:46,696 - INFO - Program code:
 
 program operaciones_flotantes;
 var
@@ -350,9 +351,9 @@ main {
 }
 end
 
-2025-05-11 03:22:36,059 - INFO - Compilation successful!
-2025-05-11 03:22:36,062 - INFO - QUADRUPLES:
-2025-05-11 03:22:36,062 - INFO - 
+2025-05-11 19:47:46,698 - INFO - Compilation successful!
+2025-05-11 19:47:46,698 - INFO - QUADRUPLES:
+2025-05-11 19:47:46,698 - INFO - 
 Adding ID 'x' to temp list in scope: global
 Added 'x' to temporary variable list in scope: global
 Set current type to Type.FLOAT
@@ -385,12 +386,12 @@ Program operaciones_flotantes completed
 5: (print, Resultado flotante: , None, None)
 6: (print, z, None, None)
 
-2025-05-11 03:22:36,063 - INFO - ======== END TEST: float_operations ========
+2025-05-11 19:47:46,698 - INFO - ======== END TEST: float_operations ========
 
-2025-05-11 03:22:36,063 - INFO - 
+2025-05-11 19:47:46,699 - INFO - 
 Running test: negative_values
-2025-05-11 03:22:36,064 - INFO - ======== TESTING: negative_values ========
-2025-05-11 03:22:36,064 - INFO - Program code:
+2025-05-11 19:47:46,699 - INFO - ======== TESTING: negative_values ========
+2025-05-11 19:47:46,699 - INFO - Program code:
 
 program negativos;
 var
@@ -405,9 +406,9 @@ main {
 }
 end
 
-2025-05-11 03:22:36,066 - INFO - Compilation successful!
-2025-05-11 03:22:36,068 - INFO - QUADRUPLES:
-2025-05-11 03:22:36,074 - INFO - 
+2025-05-11 19:47:46,701 - INFO - Compilation successful!
+2025-05-11 19:47:46,701 - INFO - QUADRUPLES:
+2025-05-11 19:47:46,702 - INFO - 
 Adding ID 'a' to temp list in scope: global
 Added 'a' to temporary variable list in scope: global
 Adding ID 'b' to temp list in scope: global
@@ -438,15 +439,15 @@ Program negativos completed
 5: (print, Resultado con negativos: , None, None)
 6: (print, resultado, None, None)
 
-2025-05-11 03:22:36,105 - INFO - ======== END TEST: negative_values ========
+2025-05-11 19:47:46,703 - INFO - ======== END TEST: negative_values ========
 
-2025-05-11 03:22:36,116 - INFO - 
+2025-05-11 19:47:46,703 - INFO - 
 ======== TEST SUMMARY ========
-2025-05-11 03:22:36,128 - INFO - arithmetic: PASS
-2025-05-11 03:22:36,129 - INFO - if_else: PASS
-2025-05-11 03:22:36,159 - INFO - while_loop: PASS
-2025-05-11 03:22:36,160 - INFO - functions: PASS
-2025-05-11 03:22:36,161 - INFO - float_operations: PASS
-2025-05-11 03:22:36,167 - INFO - negative_values: PASS
-2025-05-11 03:22:36,169 - INFO - 
+2025-05-11 19:47:46,705 - INFO - arithmetic: PASS
+2025-05-11 19:47:46,712 - INFO - if_else: PASS
+2025-05-11 19:47:46,712 - INFO - while_loop: PASS
+2025-05-11 19:47:46,713 - INFO - functions: PASS
+2025-05-11 19:47:46,713 - INFO - float_operations: PASS
+2025-05-11 19:47:46,713 - INFO - negative_values: PASS
+2025-05-11 19:47:46,713 - INFO - 
 Test suite completed
