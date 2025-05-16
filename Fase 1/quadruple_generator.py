@@ -171,7 +171,97 @@ class QuadrupleGenerator:
             return self.fill_quad(quad_index, jump_target)
         return False
         
+    def get_address_content(self, address):
+        """Try to find the variable or constant name associated with an address."""
+        # Check global variables
+        for var_name, var in self.semantic.global_vars.items():
+            if var.address == address:
+                return f"{var_name} (global)"
+        
+        # Check local variables in current scope
+        if self.semantic.current_scope != "global":
+            for var_name, var in self.semantic.function_directory[self.semantic.current_scope].local_vars.items():
+                if var.address == address:
+                    return f"{var_name} (local in {self.semantic.current_scope})"
+        
+        # Check constants (reverse lookup)
+        for value, addr in self.constants_table.items():
+            if addr == address:
+                return f"constant({value})"
+        
+        # For temporaries, we can't easily find the original name
+        if isinstance(address, str) and address.startswith('t'):
+            return f"temp {address}"
+        
+        return f"addr:{address}"
+    
+    def _get_quad_explanation(self, quad):
+        """Generate a human-readable explanation of the quadruple."""
+        op = quad.operator
+        left = quad.left_operand
+        right = quad.right_operand
+        result = quad.result
+        
+        # Get human-readable names for addresses
+        left_name = self.get_address_content(left) if left is not None else None
+        right_name = self.get_address_content(right) if right is not None else None
+        result_name = self.get_address_content(result) if result is not None else None
+        
+        # Basic arithmetic operations
+        if op in ['+', '-', '*', '/']:
+            op_map = {'+': 'add', '-': 'subtract', '*': 'multiply', '/': 'divide'}
+            return f"{op_map[op]} {left_name} and {right_name}, store result in {result_name}"
+        
+        # Assignment
+        elif op == '=':
+            return f"assign value of {left_name} to {result_name}"
+        
+        # Comparison operations
+        elif op in ['>', '<', '!=']:
+            op_map = {'>': 'greater than', '<': 'less than', '!=': 'not equal to'}
+            return f"compare if {left_name} is {op_map[op]} {right_name}, store result in {result_name}"
+        
+        # Jumps
+        elif op == 'goto':
+            return f"jump to quadruple {result}"
+        elif op == 'gotof':
+            return f"if {left_name} is false, jump to quadruple {result}"
+        
+        # Function operations
+        elif op == 'call':
+            return f"call function {left}"
+        elif op == 'param':
+            return f"pass parameter {left_name}"
+        elif op == 'return':
+            return f"return value {left_name}"
+        
+        # Print
+        elif op == 'print':
+            if isinstance(left, str) and (left.startswith('"') and left.endswith('"')):
+                # It's a string literal
+                return f"print string \"{left}\""
+            else:
+                return f"print value {left_name}"
+        
+        # Default case
+        else:
+            if right is None and result is None:
+                return f"perform operation {op} with operand {left_name}"
+            elif right is None:
+                return f"perform operation {op} with operand {left_name}, result in {result_name}"
+            else:
+                return f"perform operation {op} with operands {left_name}, {right_name}, result in {result_name}"
+                
     def print_quads(self):
-        print("\n===== QUADRUPLES =====")
+        print("\n===== QUADRUPLES WITH MEMORY ADDRESSES =====")
+        print("INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)")
+        print("      EXPLANATION")
+        print("-" * 70)
+        
         for i, quad in enumerate(self.Quads):
             print(f"{i}: {quad}")
+            
+            # Generate explanation based on operator
+            explanation = self._get_quad_explanation(quad)
+            print(f"      {explanation}")
+            print("-" * 70)
