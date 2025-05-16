@@ -1,16 +1,16 @@
 from semantic_cube import Type,Operation,get_result_type
-
+from MemoryManager import MemoryManager
 class Variable:
     def __init__(self,name,var_type,scope="global"):
         self.name=name
         self.type=var_type
         self.scope=scope
         self.address=None
+        
     def __str__(self):
         return f"Variable(name={self.name}, type={self.type}, scope={self.scope})"
     
 class Function:
-    
     def __init__(self,name,return_type=Type.VOID):
         self.name=name
         self.return_type=return_type
@@ -22,7 +22,7 @@ class Function:
         self.temp_count=0
         self.start_address=None
         self.processing_locals=False
-        
+
     def add_parameter(self,param_var):
         self.parameters.append(param_var)
         self.local_vars[param_var.name]=param_var
@@ -41,15 +41,16 @@ class Function:
 
 class SemanticAnalyzer:
     def __init__(self):
-        self.function_directory={}
-        self.global_vars={}
-        self.current_scope="global"
-        self.temp_vars=[]
-        self.current_type=None
-        self.error_list=[]
-        self.program_name=None
-        self.allow_function_redefinition=False
-        self.scope_stack=["global"]
+        self.function_directory = {}
+        self.global_vars = {}
+        self.current_scope = "global"
+        self.temp_vars = []
+        self.current_type = None
+        self.error_list = []
+        self.program_name = None
+        self.allow_function_redefinition = False
+        self.scope_stack = ["global"]
+        self.memory_manager = MemoryManager() 
         
     def add_error(self,message):
         self.error_list.append(f"Semantic error: {message}")
@@ -123,23 +124,29 @@ class SemanticAnalyzer:
         return True
     
     def add_vars_to_table(self):
-        if not self.temp_vars:return True
+        if not self.temp_vars:
+            return True
         print(f"Adding variables to table in scope: {self.current_scope}")
         for var_id in self.temp_vars:
-            if self.current_scope=="global":
-                if var_id in self.global_vars:return self.add_error(f"Variable '{var_id}' already declared in global scope")
-                self.global_vars[var_id]=Variable(var_id,self.current_type,"global")
-                print(f"Added global variable '{var_id}' of type {self.current_type}")
+            if self.current_scope == "global":
+                if var_id in self.global_vars:
+                    return self.add_error(f"Variable '{var_id}' already declared in global scope")
+                new_var = Variable(var_id, self.current_type, "global")
+                new_var.address = self.memory_manager.get_address(self.current_type, "global")
+                self.global_vars[var_id] = new_var
+                print(f"Added global variable '{var_id}' of type {self.current_type} at address {new_var.address}")
             else:
                 if self.current_scope not in self.function_directory:
                     return self.add_error(f"Internal error: Function '{self.current_scope}' not found in directory")
                 if var_id in self.function_directory[self.current_scope].local_vars:
                     return self.add_error(f"Variable '{var_id}' already declared in scope '{self.current_scope}'")
-                success=self.function_directory[self.current_scope].add_local_var(var_id,self.current_type)
-                if not success:
-                    return self.add_error(f"Variable '{var_id}' already declared in scope '{self.current_scope}'")
-                print(f"Added local variable '{var_id}' of type {self.current_type} to function '{self.current_scope}'")
-        self.temp_vars=[]
+                new_var = Variable(var_id, self.current_type, self.current_scope)
+                new_var.address = self.memory_manager.get_address(self.current_type, self.current_scope)
+                self.function_directory[self.current_scope].local_vars[var_id] = new_var
+                self.function_directory[self.current_scope].variables.append(new_var)
+                self.function_directory[self.current_scope].var_count += 1
+                print(f"Added local variable '{var_id}' of type {self.current_type} at address {new_var.address} to function '{self.current_scope}'")
+        self.temp_vars = []
         return True
     
     def declare_function(self,func_id,return_type=Type.VOID):
@@ -166,17 +173,16 @@ class SemanticAnalyzer:
             type_enum = Type.STRING
         else:
             print(f"Error: Tipo de parámetro inválido '{param_type}' en función '{self.current_scope}'")
-            # Asignar un tipo por defecto para evitar que se cicle
             type_enum = Type.ERROR
-            # Seguir procesando pero marcar el error
             self.add_error(f"Unsupported parameter type: '{param_type}' in function '{self.current_scope}'")
         
         if param_id in self.function_directory[self.current_scope].local_vars:
             return self.add_error(f"Parameter '{param_id}' already declared in function '{self.current_scope}'")
         
         param_var = Variable(param_id, type_enum, self.current_scope)
+        param_var.address = self.memory_manager.get_address(type_enum, self.current_scope)
         self.function_directory[self.current_scope].add_parameter(param_var)
-        print(f"Added parameter '{param_id}' of type {type_enum} to function '{self.current_scope}'")
+        print(f"Added parameter '{param_id}' of type {type_enum} at address {param_var.address} to function '{self.current_scope}'")
         return True
 
     

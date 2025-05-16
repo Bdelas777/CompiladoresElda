@@ -168,10 +168,10 @@ def p_cycle(p):
     expr_type = get_expr_type(p[3])
     semantic.check_condition(expr_type)
     
-    # Get the last expression result
+    # Get the last expression result address
     condition = get_operand_name(p[3])
     
-    # Generate gotof
+    # Generate gotof with condition address
     gotof_index = quad_gen.generate_gotof_quad(condition)
     
     # Process the body
@@ -191,10 +191,10 @@ def p_condition(p):
     expr_type = get_expr_type(p[3])
     semantic.check_condition(expr_type)
     
-    # Get the last expression result
+    # Get the last expression result address
     condition = get_operand_name(p[3])
     
-    # Generate gotof
+    # Generate gotof with condition address
     gotof_index = quad_gen.generate_gotof_quad(condition)
     
     # Process the body
@@ -538,7 +538,7 @@ def p_assign(p):
     # Get the result of the expression
     expression_result = get_operand_name(p[3])
     
-    # Generate assignment quadruple
+    # Generate assignment quadruple with addresses
     quad_gen.generate_assignment_quad(p[1], expression_result)
     
     p[0] = ('assign', p[1], p[3])
