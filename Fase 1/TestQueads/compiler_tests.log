@@ -163,20 +163,19 @@ Running test: while_loop
 2025-05-11 19:47:46,667 - INFO - ======== TESTING: while_loop ========
 2025-05-11 19:47:46,668 - INFO - Program code:
 
-program ciclo_while;
-var
-    contador, suma : int;
-main {
-    contador = 1;
-    suma = 0;
-    
-    while (contador < 5) do {
-        suma = suma + contador;
-        print("Iteración: ", contador, " Suma actual: ", suma);
-        contador = contador + 1;
-    };
-    
-    print("Suma final: ", suma);
+1 program ciclo_while;
+2 var
+3    contador, suma : int;
+4 main {
+5    contador = 1;
+6    suma = 0;    
+7    while (contador < 5) do {
+8        suma = suma + contador;
+9        print("Iteraciï¿½n: ", contador, " Suma actual: ", suma);
+10        contador = contador + 1;
+11   };
+12    
+13    print("Suma final: ", suma);
 }
 end
 
@@ -205,7 +204,7 @@ Program ciclo_while completed
 2: (<, contador, 5, t0)
 3: (+, suma, contador, t1)
 4: (=, t1, None, suma)
-5: (print, Iteración: , None, None)
+5: (print, Iteraciï¿½n: , None, None)
 6: (print, contador, None, None)
 7: (print,  Suma actual: , None, None)
 8: (print, suma, None, None)

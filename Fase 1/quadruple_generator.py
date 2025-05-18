@@ -13,15 +13,15 @@ class Quadruple:
 class QuadrupleGenerator:
     def __init__(self, semantic_analyzer):
         self.semantic = semantic_analyzer
-        self.PilaO = []  # Operands stack
-        self.POper = []  # Operators stack
-        self.PTypes = []  # Types stack
-        self.PJumps = []  # Jumps stack
-        self.Quads = []  # Quadruples queue
+        self.PilaO = []  
+        self.POper = []  
+        self.PTypes = []  
+        self.PJumps = []  
+        self.Quads = []  
         self.temp_counter = 0
         self.quad_counter = 0
-        self.false_bottom = '('  # False bottom marker
-        self.constants_table = {}  # To track constants
+        self.false_bottom = '('  
+        self.constants_table = {}  
         
     def new_temp(self, temp_type):
         temp = f"t{self.temp_counter}"

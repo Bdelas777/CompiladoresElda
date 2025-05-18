@@ -4,14 +4,14 @@ class MemoryManager:
     def __init__(self):
         # Memory segments
         self.GLOBAL_INT_START = 1000
-        self.GLOBAL_FLOAT_START = 2000
-        self.LOCAL_INT_START = 3000
-        self.LOCAL_FLOAT_START = 4000
-        self.TEMP_INT_START = 5000
-        self.TEMP_FLOAT_START = 6000
-        self.CONST_INT_START = 7000
-        self.CONST_FLOAT_START = 8000
-        self.CONST_STRING_START = 9000
+        self.GLOBAL_FLOAT_START = 3000
+        self.LOCAL_INT_START = 5000
+        self.LOCAL_FLOAT_START = 7000
+        self.TEMP_INT_START = 9000
+        self.TEMP_FLOAT_START = 11000
+        self.CONST_INT_START = 13000
+        self.CONST_FLOAT_START = 15000
+        self.CONST_STRING_START = 17000
         
         # Current counters
         self.global_int_counter = 0

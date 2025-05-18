@@ -7,7 +7,6 @@ from quadruple_generator import QuadrupleGenerator, Quadruple
 semantic = SemanticAnalyzer()
 quad_gen = QuadrupleGenerator(semantic)
 
-# Add missing function to get operand name from expression nodes
 def get_operand_name(expr_node):
     if isinstance(expr_node, tuple):
         if expr_node[0] == 'id':
@@ -16,8 +15,6 @@ def get_operand_name(expr_node):
             return str(expr_node[1])
         elif expr_node[0] == 'string':
             return expr_node[1]
-        # If it's an operation or comparison, the result is a temporary variable
-        # which should be the last item pushed onto the PilaO stack
         elif expr_node[0] in ['operation', 'comparison', 'unary']:
             if quad_gen.PilaO:
                 return quad_gen.PilaO[-1]
@@ -134,7 +131,6 @@ def p_print(p):
         if isinstance(expr, tuple) and expr[0] == 'string':
             quad_gen.generate_print_quad(expr[1])
         else:
-            # Get the operand name for non-string expressions
             operand = get_operand_name(expr)
             quad_gen.generate_print_quad(operand)
     p[0] = ('print', p[3])
@@ -142,7 +138,6 @@ def p_print(p):
 def p_expresiones(p):
     '''expresiones : TOKEN_CTE_STRING comas
     | expresion comas'''
-    # Correct handling of string literals
     if p.slice[1].type == 'TOKEN_CTE_STRING':
         p[0] = [('string', p[1])] + (p[2] if p[2] else [])
     else:
@@ -159,64 +154,68 @@ def p_comas(p):
         p[0] = [('string', value)] + (p[3] if p[3] else [])
     else:
         p[0] = [p[2]] + (p[3] if p[3] else [])
-        
-def p_cycle(p):
-    '''cycle : TOKEN_WHILE TOKEN_LPAREN expresion TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON'''
-    # Store the position to return after condition evaluation
-    return_position = len(quad_gen.Quads)
-    
-    expr_type = get_expr_type(p[3])
-    semantic.check_condition(expr_type)
-    
-    # Get the last expression result address
-    condition = get_operand_name(p[3])
-    
-    # Generate gotof with condition address
+
+def p_saveQuad(p):
+    '''saveQuad : empty'''
+    # Save the quad position to return to when the loop completes
+    p[0] = len(quad_gen.Quads)
+
+def p_GotoF(p):
+    '''GotoF : empty'''
+    # Generate GOTOF quadruple and save its position
+    condition = get_operand_name(p[-1])  # Get the condition from the expression
     gotof_index = quad_gen.generate_gotof_quad(condition)
+    p[0] = gotof_index
+           
+def p_cycle(p):
+    '''cycle : TOKEN_WHILE TOKEN_LPAREN saveQuad expresion GotoF TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON'''
+    # Save position to return to (beginning of condition)
+    return_position = p[3]  # This is the position saved by saveQuad
     
-    # Process the body
-    # Body statements are already processed by their respective rules
-    
-    # Generate goto back to condition
+    # Generate GOTO back to condition evaluation
     quad_gen.generate_goto_quad()
     quad_gen.fill_quad(len(quad_gen.Quads) - 1, return_position)
     
-    # Fill the gotof with the exit position
+    # Fill the GOTOF with the position after the loop
+    gotof_index = p[5]  # This is the GOTOF index saved by GotoF
     quad_gen.fill_quad(gotof_index, len(quad_gen.Quads))
     
-    p[0] = ('while', p[3], p[6])
+    p[0] = ('while', p[4], p[8])
+
+def p_saveQuadIF(p):
+    '''saveQuadIF : empty'''
+    # Get the condition from the expression
+    condition = get_operand_name(p[-1])
     
+    # Generate GOTOF quadruple and save its position
+    gotof_index = quad_gen.generate_gotof_quad(condition)
+    p[0] = gotof_index
+    
+def p_GotoFIF(p):
+    '''GotoFIF : empty'''
+    # Generate GOTO quadruple to skip else part
+    # This will be filled after processing the else block
+    goto_index = quad_gen.generate_goto_quad()
+    
+    # Fill the previous GOTOF with the current position (after the 'then' part)
+    gotof_index = p[-3]  # This is the GOTOF index saved by saveQuadIF
+    quad_gen.fill_quad(gotof_index, len(quad_gen.Quads))
+    
+    p[0] = goto_index  # Return the GOTO index to be filled after the else block
+
 def p_condition(p):
-    '''condition : TOKEN_IF TOKEN_LPAREN expresion TOKEN_RPAREN body else TOKEN_SEMICOLON'''
+    '''condition : TOKEN_IF TOKEN_LPAREN expresion saveQuadIF TOKEN_RPAREN body GotoFIF else TOKEN_SEMICOLON'''
     expr_type = get_expr_type(p[3])
     semantic.check_condition(expr_type)
     
-    # Get the last expression result address
-    condition = get_operand_name(p[3])
-    
-    # Generate gotof with condition address
-    gotof_index = quad_gen.generate_gotof_quad(condition)
-    
-    # Process the body
-    # Body statements are already processed by their respective rules
-    
-    if p[6]:  # If there's an else
-        # Generate goto to skip else
-        goto_index = quad_gen.generate_goto_quad()
-        
-        # Fill the gotof with the position after the if body
-        quad_gen.fill_quad(gotof_index, len(quad_gen.Quads))
-        
-        # Process the else body
-        # Else body statements are already processed by their respective rules
-        
-        # Fill the goto with the position after the else body
+    # Fill the GOTO that jumps over the else part
+    # We need to fill it with the current position (end of the if-else structure)
+    if p[7] is not None:  # If we have a GotoFIF (a goto index)
+        goto_index = p[7]
         quad_gen.fill_quad(goto_index, len(quad_gen.Quads))
-    else:
-        # Fill the gotof with the position after the if body
-        quad_gen.fill_quad(gotof_index, len(quad_gen.Quads))
         
-    p[0] = ('if', p[3], p[5], p[6])
+    p[0] = ('if', p[3], p[6], p[8])
+
     
 def p_else(p):
     '''else : TOKEN_ELSE body
@@ -229,10 +228,9 @@ def p_else(p):
 def p_cte(p):
     '''cte : TOKEN_CTE_INT
     | TOKEN_CTE_FLOAT'''
-    # Determine the type based on the token type
     if p.slice[1].type == 'TOKEN_CTE_INT':
         p[0] = ('constant', p[1], Type.INT)
-    else:  # TOKEN_CTE_FLOAT
+    else:  
         p[0] = ('constant', p[1], Type.FLOAT)
     
 def p_expresion(p):
@@ -243,23 +241,13 @@ def p_expresion(p):
         left_type = get_expr_type(p[1])
         right_type = get_expr_type(p[2][1])
         op = token_to_operation(p[2][0])
-        result_type = semantic.check_expression_compatibility(left_type, right_type, op)
-        
-        # Add the left operand to stacks
+        result_type = semantic.check_expression_compatibility(left_type, right_type, op)  
         left_operand = get_operand_name(p[1])
-        quad_gen.process_operand(left_operand, left_type)
-        
-        # Add the comparison operator
-        quad_gen.process_operator(p[2][0])
-        
-        # Add the right operand to stacks
+        quad_gen.process_operand(left_operand, left_type)     
+        quad_gen.process_operator(p[2][0])       
         right_operand = get_operand_name(p[2][1])
-        quad_gen.process_operand(right_operand, right_type)
-        
-        # Generate the quadruple
+        quad_gen.process_operand(right_operand, right_type)       
         quad_gen.generate_arithmetic_quad()
-        
-        # Create and return the comparison node
         p[0] = ('comparison', p[1], p[2][0], p[2][1])
         p[0] = set_expr_type(p[0], result_type)
         
@@ -285,23 +273,13 @@ def p_exp(p):
         left_type = get_expr_type(p[1])
         right_type = get_expr_type(p[2][1])
         op = token_to_operation(p[2][0])
-        result_type = semantic.check_expression_compatibility(left_type, right_type, op)
-        
-        # Add the left operand to stacks
+        result_type = semantic.check_expression_compatibility(left_type, right_type, op)      
         left_operand = get_operand_name(p[1])
-        quad_gen.process_operand(left_operand, left_type)
-        
-        # Add the operator
-        quad_gen.process_operator(p[2][0])
-        
-        # Add the right operand to stacks
+        quad_gen.process_operand(left_operand, left_type)       
+        quad_gen.process_operator(p[2][0])       
         right_operand = get_operand_name(p[2][1])
         quad_gen.process_operand(right_operand, right_type)
-        
-        # Generate the quadruple
         quad_gen.generate_arithmetic_quad()
-        
-        # Create and return the operation node
         p[0] = ('operation', p[1], p[2][0], p[2][1])
         p[0] = set_expr_type(p[0], result_type)
         
@@ -326,22 +304,12 @@ def p_termino(p):
         right_type = get_expr_type(p[2][1])
         op = token_to_operation(p[2][0])
         result_type = semantic.check_expression_compatibility(left_type, right_type, op)
-        
-        # Add the left operand to stacks
         left_operand = get_operand_name(p[1])
         quad_gen.process_operand(left_operand, left_type)
-        
-        # Add the operator
         quad_gen.process_operator(p[2][0])
-        
-        # Add the right operand to stacks
         right_operand = get_operand_name(p[2][1])
         quad_gen.process_operand(right_operand, right_type)
-        
-        # Generate the quadruple
         quad_gen.generate_arithmetic_quad()
-        
-        # Create and return the operation node
         p[0] = ('operation', p[1], p[2][0], p[2][1])
         p[0] = set_expr_type(p[0], result_type)
         
@@ -368,12 +336,7 @@ def p_factor(p):
     
 def p_definicion(p):
     '''definicion : TOKEN_LPAREN expresion TOKEN_RPAREN'''
-    # Add false bottom before processing the expression
     quad_gen.push_false_bottom()
-    
-    # Expression processing handled by expresion rule
-    
-    # Remove false bottom after processing
     quad_gen.pop_false_bottom()
     
     p[0] = p[2]
@@ -386,17 +349,12 @@ def p_operaciones(p):
         expr_type = get_expr_type(p[2])
         if expr_type not in [Type.INT, Type.FLOAT]:
             semantic.add_error(f"Unary operation not supported for type {expr_type}")
-        
-        # For unary operations, we'll use a special approach
         operand = get_operand_name(p[2])
-        
         if p[1] == '-':
-            # For negative, generate a quadruple that multiplies by -1
-            quad_gen.process_operand("-1", Type.INT)  # push -1
-            quad_gen.process_operand(operand, expr_type)  # push the operand
-            quad_gen.process_operator('*')  # push multiply operator
-            quad_gen.generate_arithmetic_quad()  # generate the quadruple
-            
+            quad_gen.process_operand("-1", Type.INT)  
+            quad_gen.process_operand(operand, expr_type) 
+            quad_gen.process_operator('*')  
+            quad_gen.generate_arithmetic_quad() 
         p[0] = ('unary', p[1], p[2])
         p[0] = set_expr_type(p[0], expr_type)
         
@@ -422,27 +380,23 @@ def p_id_cte(p):
             else:
                 p[0] = ('id', p[1])
                 
-# FIX: Changed the order of function declaration to register parameters first
+
 def p_funcs(p):
     '''funcs :  TOKEN_VOID TOKEN_ID scopefun TOKEN_LPAREN tipo TOKEN_RPAREN TOKEN_LCOL var body TOKEN_RCOL TOKEN_SEMICOLON'''
     func = semantic.check_function(p[2])    
-    # Process parameters and add them first so they're available in function body
-    params = p[5] if p[5] else []
-    
-    # Create function with parameters already defined
+    params = p[5] if p[5] else []   
     p[0] = ('function', p[2], params, p[8], p[9])
     semantic.end_function_declaration()
 
 def p_scopefun(p):
     '''scopefun : empty'''
-    function_name = p[-1]  # Get the function name from the production rule
+    function_name = p[-1]  
     semantic.declare_function(function_name)
     return True
     
 def p_tipo(p):
     '''tipo : def_tipo
     | empty'''
-    # If there are parameters, register them immediately after finding their types
     if p[1]:
         for param in p[1]:
             if isinstance(param, tuple) and len(param) >= 3 and param[0] == 'param':
@@ -451,7 +405,6 @@ def p_tipo(p):
                 if param_type not in ['int', 'float']:
                     semantic.add_error(f"Invalid parameter type '{param_type}' for parameter '{param_id}' in function")
                     continue
-                # Register parameter right away so it's available in the function body
                 semantic.add_parameter(param_id, param_type)
     p[0] = p[1]
     
@@ -493,8 +446,6 @@ def p_f_call(p):
                 result_type = get_result_type(param_type, arg_type, Operation.ASSIGN)
                 if result_type == Type.ERROR:
                     semantic.add_error(f"Parameter type mismatch in call to '{p[1]}': Parameter {i+1} expects {param_type}, got {arg_type}")
-        
-        # Generate function call quadruple - FIX: Use Quadruple class directly
         quad_gen.Quads.append(Quadruple('call', p[1], None, None))
         quad_gen.quad_counter += 1
         
@@ -506,7 +457,6 @@ def p_def_exp(p):
     if p[1] is None:
         p[0] = []
     else:
-        # Generate param quadruple for each argument - FIX: Use Quadruple class directly
         operand = get_operand_name(p[1])
         quad_gen.Quads.append(Quadruple('param', operand, None, None))
         quad_gen.quad_counter += 1
@@ -534,11 +484,7 @@ def p_assign(p):
     var_type = semantic.check_variable(p[1])
     expr_type = get_expr_type(p[3])
     semantic.check_assignment_compatibility(p[1], expr_type)
-    
-    # Get the result of the expression
     expression_result = get_operand_name(p[3])
-    
-    # Generate assignment quadruple with addresses
     quad_gen.generate_assignment_quad(p[1], expression_result)
     
     p[0] = ('assign', p[1], p[3])
@@ -575,31 +521,22 @@ def token_to_operation(token):
         
 def set_expr_type(expr_node, expr_type):
     if isinstance(expr_node, tuple):
-        # Add the type information in a more structured way
-        # Check if 'type' is already in the tuple
         for i in range(len(expr_node)):
             if expr_node[i] == 'type':
-                # Create a new tuple with updated type
                 return expr_node[:i] + ('type', expr_type) + expr_node[i+2:]
-        # If 'type' is not already in the tuple, add it
         expr_node = expr_node + ('type', expr_type)
     return expr_node
     
 def get_expr_type(expr_node):
     if isinstance(expr_node, tuple):
-        # First try to find an explicit 'type' field
         for i in range(len(expr_node) - 1):
             if expr_node[i] == 'type' and i + 1 < len(expr_node):
                 return expr_node[i + 1]
-                
-        # If not found, infer based on node type
         if expr_node[0] == 'id':
             return semantic.check_variable(expr_node[1])
         elif expr_node[0] == 'constant':
-            # If type is stored in the constant tuple
             if len(expr_node) > 2:
                 return expr_node[2]
-            # Otherwise infer from value
             elif isinstance(expr_node[1], int):
                 return Type.INT
             elif isinstance(expr_node[1], float):
@@ -658,7 +595,6 @@ end
     '''
     result = parser.parse(data)
     
-    # Test additional case without main
     data_without_main = '''
 program sinmain;
 var a : int;
