@@ -1,15 +1,15 @@
-2025-05-17 18:43:04,509 - INFO - Starting test suite
-2025-05-17 18:43:04,509 - INFO - Date and time: 2025-05-17 18:43:04
-2025-05-17 18:43:04,525 - INFO - Saved test program 'arithmetic' to test_programs\arithmetic.txt
-2025-05-17 18:43:04,530 - INFO - Saved test program 'if_else' to test_programs\if_else.txt
-2025-05-17 18:43:04,540 - INFO - Saved test program 'while_loop' to test_programs\while_loop.txt
-2025-05-17 18:43:04,559 - INFO - Saved test program 'functions' to test_programs\functions.txt
-2025-05-17 18:43:04,569 - INFO - Saved test program 'float_operations' to test_programs\float_operations.txt
-2025-05-17 18:43:04,591 - INFO - Saved test program 'negative_values' to test_programs\negative_values.txt
-2025-05-17 18:43:04,594 - INFO - 
+2025-05-21 22:35:01,965 - INFO - Starting test suite
+2025-05-21 22:35:02,005 - INFO - Date and time: 2025-05-21 22:35:02
+2025-05-21 22:35:02,017 - INFO - Saved test program 'arithmetic' to test_programs\arithmetic.txt
+2025-05-21 22:35:02,055 - INFO - Saved test program 'if_else' to test_programs\if_else.txt
+2025-05-21 22:35:02,070 - INFO - Saved test program 'while_loop' to test_programs\while_loop.txt
+2025-05-21 22:35:02,089 - INFO - Saved test program 'functions' to test_programs\functions.txt
+2025-05-21 22:35:02,094 - INFO - Saved test program 'float_operations' to test_programs\float_operations.txt
+2025-05-21 22:35:02,122 - INFO - Saved test program 'negative_values' to test_programs\negative_values.txt
+2025-05-21 22:35:02,123 - INFO - 
 Running test: arithmetic
-2025-05-17 18:43:04,595 - INFO - ======== TESTING: arithmetic ========
-2025-05-17 18:43:04,595 - INFO - Program code:
+2025-05-21 22:35:02,123 - INFO - ======== TESTING: arithmetic ========
+2025-05-21 22:35:02,124 - INFO - Program code:
 
 program operaciones_basicas;
 var
@@ -33,9 +33,10 @@ main {
 }
 end
 
-2025-05-17 18:43:04,602 - INFO - Compilation successful!
-2025-05-17 18:43:04,602 - INFO - QUADRUPLES:
-2025-05-17 18:43:04,605 - INFO - 
+2025-05-21 22:35:02,127 - WARNING - Compilation errors:
+2025-05-21 22:35:02,128 - WARNING -   - Semantic error: Cannot pop global scope
+2025-05-21 22:35:02,129 - INFO - QUADRUPLES:
+2025-05-21 22:35:02,130 - INFO - 
 Adding ID 'a' to temp list in scope: global
 Added 'a' to temporary variable list in scope: global
 Adding ID 'b' to temp list in scope: global
@@ -59,16 +60,24 @@ Set current type to Type.FLOAT
 Adding variables to table in scope: global
 Added global variable 'resultado3' of type Type.FLOAT at address 3000
 Starting variable declaration in scope 'global'
-Program operaciones_basicas started, scope reset to global
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
-Popped scope: main, current scope is now: global
+Program operaciones_basicas started, scope reset to global
+SEMANTIC ERROR: Cannot pop global scope
 Main function body ended, returned to global scope
 Program operaciones_basicas completed
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
       EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: 0
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 0
 ----------------------------------------------------------------------
 0: (=, 13000, None, 1000)
       assign value of constant(5) to a (global)
@@ -79,14 +88,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 2: (=, 13002, None, 1002)
       assign value of constant(2) to c (global)
 ----------------------------------------------------------------------
-3: (*, 1001, 1002, 1005)
-      multiply b (global) and c (global), store result in addr:1005
+3: (*, 1001, 1002, 5000)
+      multiply b (global) and c (global), store result in addr:5000
 ----------------------------------------------------------------------
-4: (+, 1000, 1000, 1006)
-      add a (global) and a (global), store result in addr:1006
+4: (+, 1000, 1000, 5001)
+      add a (global) and a (global), store result in addr:5001
 ----------------------------------------------------------------------
-5: (=, 1006, None, 1003)
-      assign value of addr:1006 to resultado (global)
+5: (=, 5001, None, 1003)
+      assign value of addr:5001 to resultado (global)
 ----------------------------------------------------------------------
 6: (print, Resultado 1: , None, None)
       print value addr:Resultado 1: 
@@ -94,14 +103,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 7: (print, resultado, None, None)
       print value addr:resultado
 ----------------------------------------------------------------------
-8: (+, 1000, 1001, 1007)
-      add a (global) and b (global), store result in addr:1007
+8: (+, 1000, 1001, 5002)
+      add a (global) and b (global), store result in addr:5002
 ----------------------------------------------------------------------
-9: (*, 1007, 1002, 1008)
-      multiply addr:1007 and c (global), store result in addr:1008
+9: (*, 5002, 1002, 5003)
+      multiply addr:5002 and c (global), store result in addr:5003
 ----------------------------------------------------------------------
-10: (=, 1008, None, 1004)
-      assign value of addr:1008 to resultado2 (global)
+10: (=, 5003, None, 1004)
+      assign value of addr:5003 to resultado2 (global)
 ----------------------------------------------------------------------
 11: (print, Resultado 2: , None, None)
       print value addr:Resultado 2: 
@@ -109,14 +118,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 12: (print, resultado2, None, None)
       print value addr:resultado2
 ----------------------------------------------------------------------
-13: (/, 1001, 1002, 3001)
-      divide b (global) and c (global), store result in addr:3001
+13: (/, 1001, 1002, 7000)
+      divide b (global) and c (global), store result in addr:7000
 ----------------------------------------------------------------------
-14: (-, 1000, 1000, 3002)
-      subtract a (global) and a (global), store result in addr:3002
+14: (-, 1000, 1000, 7001)
+      subtract a (global) and a (global), store result in addr:7001
 ----------------------------------------------------------------------
-15: (=, 3002, None, 3000)
-      assign value of addr:3002 to resultado3 (global)
+15: (=, 7001, None, 3000)
+      assign value of addr:7001 to resultado3 (global)
 ----------------------------------------------------------------------
 16: (print, Resultado 3: , None, None)
       print value addr:Resultado 3: 
@@ -124,13 +133,16 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 17: (print, resultado3, None, None)
       print value addr:resultado3
 ----------------------------------------------------------------------
+18: (goto, None, None, 0)
+      jump to quadruple 0
+----------------------------------------------------------------------
 
-2025-05-17 18:43:04,609 - INFO - ======== END TEST: arithmetic ========
+2025-05-21 22:35:02,132 - INFO - ======== END TEST: arithmetic ========
 
-2025-05-17 18:43:04,611 - INFO - 
+2025-05-21 22:35:02,133 - INFO - 
 Running test: if_else
-2025-05-17 18:43:04,639 - INFO - ======== TESTING: if_else ========
-2025-05-17 18:43:04,658 - INFO - Program code:
+2025-05-21 22:35:02,134 - INFO - ======== TESTING: if_else ========
+2025-05-21 22:35:02,154 - INFO - Program code:
 
 program control_if;
 var
@@ -155,9 +167,10 @@ main {
 }
 end
 
-2025-05-17 18:43:04,662 - INFO - Compilation successful!
-2025-05-17 18:43:04,662 - INFO - QUADRUPLES:
-2025-05-17 18:43:04,664 - INFO - 
+2025-05-21 22:35:02,159 - WARNING - Compilation errors:
+2025-05-21 22:35:02,170 - WARNING -   - Semantic error: Cannot pop global scope
+2025-05-21 22:35:02,171 - INFO - QUADRUPLES:
+2025-05-21 22:35:02,171 - INFO - 
 Adding ID 'x' to temp list in scope: global
 Added 'x' to temporary variable list in scope: global
 Adding ID 'y' to temp list in scope: global
@@ -170,16 +183,24 @@ Added global variable 'x' of type Type.INT at address 1000
 Added global variable 'y' of type Type.INT at address 1001
 Added global variable 'max' of type Type.INT at address 1002
 Starting variable declaration in scope 'global'
-Program control_if started, scope reset to global
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
-Popped scope: main, current scope is now: global
+Program control_if started, scope reset to global
+SEMANTIC ERROR: Cannot pop global scope
 Main function body ended, returned to global scope
 Program control_if completed
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
       EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: 0
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 0
 ----------------------------------------------------------------------
 0: (=, 13000, None, 1000)
       assign value of constant(15) to x (global)
@@ -229,13 +250,16 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 15: (print, x es mayor o igual que 10, None, None)
       print value addr:x es mayor o igual que 10
 ----------------------------------------------------------------------
+16: (goto, None, None, 0)
+      jump to quadruple 0
+----------------------------------------------------------------------
 
-2025-05-17 18:43:04,673 - INFO - ======== END TEST: if_else ========
+2025-05-21 22:35:02,173 - INFO - ======== END TEST: if_else ========
 
-2025-05-17 18:43:04,675 - INFO - 
+2025-05-21 22:35:02,184 - INFO - 
 Running test: while_loop
-2025-05-17 18:43:04,675 - INFO - ======== TESTING: while_loop ========
-2025-05-17 18:43:04,675 - INFO - Program code:
+2025-05-21 22:35:02,185 - INFO - ======== TESTING: while_loop ========
+2025-05-21 22:35:02,186 - INFO - Program code:
 
 program ciclo_while;
 var
@@ -254,9 +278,10 @@ main {
 }
 end
 
-2025-05-17 18:43:04,678 - INFO - Compilation successful!
-2025-05-17 18:43:04,679 - INFO - QUADRUPLES:
-2025-05-17 18:43:04,700 - INFO - 
+2025-05-21 22:35:02,200 - WARNING - Compilation errors:
+2025-05-21 22:35:02,201 - WARNING -   - Semantic error: Cannot pop global scope
+2025-05-21 22:35:02,201 - INFO - QUADRUPLES:
+2025-05-21 22:35:02,201 - INFO - 
 Adding ID 'contador' to temp list in scope: global
 Added 'contador' to temporary variable list in scope: global
 Adding ID 'suma' to temp list in scope: global
@@ -266,16 +291,24 @@ Adding variables to table in scope: global
 Added global variable 'contador' of type Type.INT at address 1000
 Added global variable 'suma' of type Type.INT at address 1001
 Starting variable declaration in scope 'global'
-Program ciclo_while started, scope reset to global
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
-Popped scope: main, current scope is now: global
+Program ciclo_while started, scope reset to global
+SEMANTIC ERROR: Cannot pop global scope
 Main function body ended, returned to global scope
 Program ciclo_while completed
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
       EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: 0
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 0
 ----------------------------------------------------------------------
 0: (=, 13000, None, 1000)
       assign value of constant(1) to contador (global)
@@ -289,11 +322,11 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 3: (gotof, -1, None, 13)
       if addr:-1 is false, jump to quadruple 13
 ----------------------------------------------------------------------
-4: (+, 1001, 1000, 1002)
-      add suma (global) and contador (global), store result in addr:1002
+4: (+, 1001, 1000, 5000)
+      add suma (global) and contador (global), store result in addr:5000
 ----------------------------------------------------------------------
-5: (=, 1002, None, 1001)
-      assign value of addr:1002 to suma (global)
+5: (=, 5000, None, 1001)
+      assign value of addr:5000 to suma (global)
 ----------------------------------------------------------------------
 6: (print, Iteración: , None, None)
       print value addr:Iteración: 
@@ -307,11 +340,11 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 9: (print, suma, None, None)
       print value addr:suma
 ----------------------------------------------------------------------
-10: (+, 1000, 13000, 1003)
-      add contador (global) and constant(1), store result in addr:1003
+10: (+, 1000, 13000, 5001)
+      add contador (global) and constant(1), store result in addr:5001
 ----------------------------------------------------------------------
-11: (=, 1003, None, 1000)
-      assign value of addr:1003 to contador (global)
+11: (=, 5001, None, 1000)
+      assign value of addr:5001 to contador (global)
 ----------------------------------------------------------------------
 12: (goto, None, None, 2)
       jump to quadruple 2
@@ -322,13 +355,16 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 14: (print, suma, None, None)
       print value addr:suma
 ----------------------------------------------------------------------
+15: (goto, None, None, 0)
+      jump to quadruple 0
+----------------------------------------------------------------------
 
-2025-05-17 18:43:04,703 - INFO - ======== END TEST: while_loop ========
+2025-05-21 22:35:02,203 - INFO - ======== END TEST: while_loop ========
 
-2025-05-17 18:43:04,703 - INFO - 
+2025-05-21 22:35:02,203 - INFO - 
 Running test: functions
-2025-05-17 18:43:04,703 - INFO - ======== TESTING: functions ========
-2025-05-17 18:43:04,704 - INFO - Program code:
+2025-05-21 22:35:02,216 - INFO - ======== TESTING: functions ========
+2025-05-21 22:35:02,216 - INFO - Program code:
 
 program funciones;
 var
@@ -364,9 +400,10 @@ main {
 }
 end
 
-2025-05-17 18:43:04,708 - INFO - Compilation successful!
-2025-05-17 18:43:04,708 - INFO - QUADRUPLES:
-2025-05-17 18:43:04,708 - INFO - 
+2025-05-21 22:35:02,235 - WARNING - Compilation errors:
+2025-05-21 22:35:02,236 - WARNING -   - Semantic error: Cannot pop global scope
+2025-05-21 22:35:02,236 - INFO - QUADRUPLES:
+2025-05-21 22:35:02,245 - INFO - 
 Adding ID 'resultado' to temp list in scope: global
 Added 'resultado' to temporary variable list in scope: global
 Adding ID 'num1' to temp list in scope: global
@@ -403,16 +440,26 @@ Added local variable 'res' of type Type.INT at address 5006 to function 'multipl
 Starting variable declaration in scope 'multiplicar'
 Popped scope: multiplicar, current scope is now: global
 Ended function 'multiplicar' declaration, returned to scope: global
-Program funciones started, scope reset to global
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
-Popped scope: main, current scope is now: global
+Program funciones started, scope reset to global
+SEMANTIC ERROR: Cannot pop global scope
 Main function body ended, returned to global scope
 Program funciones completed
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
       EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: sumar - Start Address: 0
+Function: multiplicar - Start Address: 5
+Function: main - Start Address: 10
+----------------------------------------------------------------------
+
+==================== FUNCTION: SUMAR ====================
+Starting at quadruple 0
 ----------------------------------------------------------------------
 0: (+, 5000, 5001, 5003)
       add addr:5000 and addr:5001, store result in addr:5003
@@ -426,73 +473,104 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 3: (print, res, None, None)
       print value addr:res
 ----------------------------------------------------------------------
-4: (*, 5004, 5005, 5007)
+4: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF SUMAR ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: MULTIPLICAR ====================
+Starting at quadruple 5
+----------------------------------------------------------------------
+5: (*, 5004, 5005, 5007)
       multiply addr:5004 and addr:5005, store result in addr:5007
 ----------------------------------------------------------------------
-5: (=, 5007, None, 5006)
+6: (=, 5007, None, 5006)
       assign value of addr:5007 to addr:5006
 ----------------------------------------------------------------------
-6: (print, El producto es: , None, None)
+7: (print, El producto es: , None, None)
       print value addr:El producto es: 
 ----------------------------------------------------------------------
-7: (print, res, None, None)
+8: (print, res, None, None)
       print value addr:res
 ----------------------------------------------------------------------
-8: (=, 13000, None, 1001)
+9: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF MULTIPLICAR ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 10
+----------------------------------------------------------------------
+10: (=, 13000, None, 1001)
       assign value of constant(8) to num1 (global)
 ----------------------------------------------------------------------
-9: (=, 13001, None, 1002)
+11: (=, 13001, None, 1002)
       assign value of constant(3) to num2 (global)
 ----------------------------------------------------------------------
-10: (param, num1, None, None)
-      pass parameter addr:num1
+12: (ERA, sumar, None, None)
+      perform operation ERA with operand addr:sumar
 ----------------------------------------------------------------------
-11: (param, num2, None, None)
-      pass parameter addr:num2
+13: (parámetro, 1001, par1, None)
+      perform operation parámetro with operands num1 (global), addr:par1, result in None
 ----------------------------------------------------------------------
-12: (call, sumar, None, None)
-      call function sumar
+14: (parámetro, 1002, par2, None)
+      perform operation parámetro with operands num2 (global), addr:par2, result in None
 ----------------------------------------------------------------------
-13: (param, num1, None, None)
-      pass parameter addr:num1
+15: (GOSUB, sumar, None, None)
+      perform operation GOSUB with operand addr:sumar
 ----------------------------------------------------------------------
-14: (param, num2, None, None)
-      pass parameter addr:num2
+16: (ERA, multiplicar, None, None)
+      perform operation ERA with operand addr:multiplicar
 ----------------------------------------------------------------------
-15: (call, multiplicar, None, None)
-      call function multiplicar
+17: (parámetro, 1001, par1, None)
+      perform operation parámetro with operands num1 (global), addr:par1, result in None
 ----------------------------------------------------------------------
-16: (param, 5, None, None)
-      pass parameter addr:5
+18: (parámetro, 1002, par2, None)
+      perform operation parámetro with operands num2 (global), addr:par2, result in None
 ----------------------------------------------------------------------
-17: (param, 7, None, None)
-      pass parameter addr:7
+19: (GOSUB, multiplicar, None, None)
+      perform operation GOSUB with operand addr:multiplicar
 ----------------------------------------------------------------------
-18: (call, sumar, None, None)
-      call function sumar
+20: (ERA, sumar, None, None)
+      perform operation ERA with operand addr:sumar
 ----------------------------------------------------------------------
-19: (+, 1001, 13002, 1003)
-      add num1 (global) and constant(2), store result in addr:1003
+21: (parámetro, 13002, par1, None)
+      perform operation parámetro with operands constant(5), addr:par1, result in None
 ----------------------------------------------------------------------
-20: (*, 1002, 13002, 1004)
-      multiply num2 (global) and constant(2), store result in addr:1004
+22: (parámetro, 13003, par2, None)
+      perform operation parámetro with operands constant(7), addr:par2, result in None
 ----------------------------------------------------------------------
-21: (param, 1004, None, None)
-      pass parameter addr:1004
+23: (GOSUB, sumar, None, None)
+      perform operation GOSUB with operand addr:sumar
 ----------------------------------------------------------------------
-22: (param, 1004, None, None)
-      pass parameter addr:1004
+24: (ERA, multiplicar, None, None)
+      perform operation ERA with operand addr:multiplicar
 ----------------------------------------------------------------------
-23: (call, multiplicar, None, None)
-      call function multiplicar
+25: (+, 1001, 13004, 5008)
+      add num1 (global) and constant(2), store result in addr:5008
+----------------------------------------------------------------------
+26: (parámetro, 5008, par1, None)
+      perform operation parámetro with operands addr:5008, addr:par1, result in None
+----------------------------------------------------------------------
+27: (*, 1002, 13004, 5009)
+      multiply num2 (global) and constant(2), store result in addr:5009
+----------------------------------------------------------------------
+28: (parámetro, 5009, par2, None)
+      perform operation parámetro with operands addr:5009, addr:par2, result in None
+----------------------------------------------------------------------
+29: (GOSUB, multiplicar, None, None)
+      perform operation GOSUB with operand addr:multiplicar
+----------------------------------------------------------------------
+30: (goto, None, None, 10)
+      jump to quadruple 10
 ----------------------------------------------------------------------
 
-2025-05-17 18:43:04,711 - INFO - ======== END TEST: functions ========
+2025-05-21 22:35:02,249 - INFO - ======== END TEST: functions ========
 
-2025-05-17 18:43:04,712 - INFO - 
+2025-05-21 22:35:02,266 - INFO - 
 Running test: float_operations
-2025-05-17 18:43:04,712 - INFO - ======== TESTING: float_operations ========
-2025-05-17 18:43:04,712 - INFO - Program code:
+2025-05-21 22:35:02,267 - INFO - ======== TESTING: float_operations ========
+2025-05-21 22:35:02,272 - INFO - Program code:
 
 program operaciones_flotantes;
 var
@@ -509,9 +587,10 @@ main {
 }
 end
 
-2025-05-17 18:43:04,718 - INFO - Compilation successful!
-2025-05-17 18:43:04,719 - INFO - QUADRUPLES:
-2025-05-17 18:43:04,719 - INFO - 
+2025-05-21 22:35:02,278 - WARNING - Compilation errors:
+2025-05-21 22:35:02,280 - WARNING -   - Semantic error: Cannot pop global scope
+2025-05-21 22:35:02,280 - INFO - QUADRUPLES:
+2025-05-21 22:35:02,281 - INFO - 
 Adding ID 'x' to temp list in scope: global
 Added 'x' to temporary variable list in scope: global
 Set current type to Type.FLOAT
@@ -528,10 +607,10 @@ Set current type to Type.FLOAT
 Adding variables to table in scope: global
 Added global variable 'z' of type Type.FLOAT at address 3001
 Starting variable declaration in scope 'global'
-Program operaciones_flotantes started, scope reset to global
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
-Popped scope: main, current scope is now: global
+Program operaciones_flotantes started, scope reset to global
+SEMANTIC ERROR: Cannot pop global scope
 Main function body ended, returned to global scope
 Program operaciones_flotantes completed
 
@@ -539,20 +618,28 @@ Program operaciones_flotantes completed
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
       EXPLANATION
 ----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: 0
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 0
+----------------------------------------------------------------------
 0: (=, 15000, None, 3000)
       assign value of constant(3.5) to x (global)
 ----------------------------------------------------------------------
 1: (=, 13000, None, 1000)
       assign value of constant(2) to y (global)
 ----------------------------------------------------------------------
-2: (*, 3000, 1000, 3002)
-      multiply x (global) and y (global), store result in addr:3002
+2: (*, 3000, 1000, 7000)
+      multiply x (global) and y (global), store result in addr:7000
 ----------------------------------------------------------------------
-3: (+, 3002, 15001, 3003)
-      add addr:3002 and constant(1.5), store result in addr:3003
+3: (+, 7000, 15001, 7001)
+      add addr:7000 and constant(1.5), store result in addr:7001
 ----------------------------------------------------------------------
-4: (=, 3003, None, 3001)
-      assign value of addr:3003 to z (global)
+4: (=, 7001, None, 3001)
+      assign value of addr:7001 to z (global)
 ----------------------------------------------------------------------
 5: (print, Resultado flotante: , None, None)
       print value addr:Resultado flotante: 
@@ -560,13 +647,16 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 6: (print, z, None, None)
       print value addr:z
 ----------------------------------------------------------------------
+7: (goto, None, None, 0)
+      jump to quadruple 0
+----------------------------------------------------------------------
 
-2025-05-17 18:43:04,720 - INFO - ======== END TEST: float_operations ========
+2025-05-21 22:35:02,309 - INFO - ======== END TEST: float_operations ========
 
-2025-05-17 18:43:04,721 - INFO - 
+2025-05-21 22:35:02,339 - INFO - 
 Running test: negative_values
-2025-05-17 18:43:04,721 - INFO - ======== TESTING: negative_values ========
-2025-05-17 18:43:04,721 - INFO - Program code:
+2025-05-21 22:35:02,367 - INFO - ======== TESTING: negative_values ========
+2025-05-21 22:35:02,381 - INFO - Program code:
 
 program negativos;
 var
@@ -581,9 +671,10 @@ main {
 }
 end
 
-2025-05-17 18:43:04,723 - INFO - Compilation successful!
-2025-05-17 18:43:04,723 - INFO - QUADRUPLES:
-2025-05-17 18:43:04,723 - INFO - 
+2025-05-21 22:35:02,387 - WARNING - Compilation errors:
+2025-05-21 22:35:02,389 - WARNING -   - Semantic error: Cannot pop global scope
+2025-05-21 22:35:02,390 - INFO - QUADRUPLES:
+2025-05-21 22:35:02,391 - INFO - 
 Adding ID 'a' to temp list in scope: global
 Added 'a' to temporary variable list in scope: global
 Adding ID 'b' to temp list in scope: global
@@ -598,10 +689,10 @@ Set current type to Type.INT
 Adding variables to table in scope: global
 Added global variable 'resultado' of type Type.INT at address 1002
 Starting variable declaration in scope 'global'
-Program negativos started, scope reset to global
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
-Popped scope: main, current scope is now: global
+Program negativos started, scope reset to global
+SEMANTIC ERROR: Cannot pop global scope
 Main function body ended, returned to global scope
 Program negativos completed
 
@@ -609,20 +700,28 @@ Program negativos completed
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
       EXPLANATION
 ----------------------------------------------------------------------
-0: (*, 13000, 13001, 1003)
-      multiply constant(-1) and constant(5), store result in addr:1003
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: 0
 ----------------------------------------------------------------------
-1: (=, 1003, None, 1000)
-      assign value of addr:1003 to a (global)
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 0
+----------------------------------------------------------------------
+0: (*, 13000, 13001, 5000)
+      multiply constant(-1) and constant(5), store result in addr:5000
+----------------------------------------------------------------------
+1: (=, 5000, None, 1000)
+      assign value of addr:5000 to a (global)
 ----------------------------------------------------------------------
 2: (=, 13002, None, 1001)
       assign value of constant(3) to b (global)
 ----------------------------------------------------------------------
-3: (+, 1000, 1001, 1004)
-      add a (global) and b (global), store result in addr:1004
+3: (+, 1000, 1001, 5001)
+      add a (global) and b (global), store result in addr:5001
 ----------------------------------------------------------------------
-4: (=, 1004, None, 1002)
-      assign value of addr:1004 to resultado (global)
+4: (=, 5001, None, 1002)
+      assign value of addr:5001 to resultado (global)
 ----------------------------------------------------------------------
 5: (print, Resultado con negativos: , None, None)
       print value addr:Resultado con negativos: 
@@ -630,16 +729,19 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 6: (print, resultado, None, None)
       print value addr:resultado
 ----------------------------------------------------------------------
+7: (goto, None, None, 0)
+      jump to quadruple 0
+----------------------------------------------------------------------
 
-2025-05-17 18:43:04,724 - INFO - ======== END TEST: negative_values ========
+2025-05-21 22:35:02,402 - INFO - ======== END TEST: negative_values ========
 
-2025-05-17 18:43:04,725 - INFO - 
+2025-05-21 22:35:02,404 - INFO - 
 ======== TEST SUMMARY ========
-2025-05-17 18:43:04,725 - INFO - arithmetic: PASS
-2025-05-17 18:43:04,725 - INFO - if_else: PASS
-2025-05-17 18:43:04,726 - INFO - while_loop: PASS
-2025-05-17 18:43:04,726 - INFO - functions: PASS
-2025-05-17 18:43:04,784 - INFO - float_operations: PASS
-2025-05-17 18:43:04,786 - INFO - negative_values: PASS
-2025-05-17 18:43:04,787 - INFO - 
+2025-05-21 22:35:02,407 - INFO - arithmetic: PASS
+2025-05-21 22:35:02,410 - INFO - if_else: PASS
+2025-05-21 22:35:02,411 - INFO - while_loop: PASS
+2025-05-21 22:35:02,439 - INFO - functions: PASS
+2025-05-21 22:35:02,453 - INFO - float_operations: PASS
+2025-05-21 22:35:02,454 - INFO - negative_values: PASS
+2025-05-21 22:35:02,454 - INFO - 
 Test suite completed
