@@ -1,15 +1,15 @@
-2025-05-21 22:35:01,965 - INFO - Starting test suite
-2025-05-21 22:35:02,005 - INFO - Date and time: 2025-05-21 22:35:02
-2025-05-21 22:35:02,017 - INFO - Saved test program 'arithmetic' to test_programs\arithmetic.txt
-2025-05-21 22:35:02,055 - INFO - Saved test program 'if_else' to test_programs\if_else.txt
-2025-05-21 22:35:02,070 - INFO - Saved test program 'while_loop' to test_programs\while_loop.txt
-2025-05-21 22:35:02,089 - INFO - Saved test program 'functions' to test_programs\functions.txt
-2025-05-21 22:35:02,094 - INFO - Saved test program 'float_operations' to test_programs\float_operations.txt
-2025-05-21 22:35:02,122 - INFO - Saved test program 'negative_values' to test_programs\negative_values.txt
-2025-05-21 22:35:02,123 - INFO - 
+2025-05-21 23:55:52,898 - INFO - Starting test suite
+2025-05-21 23:55:52,901 - INFO - Date and time: 2025-05-21 23:55:52
+2025-05-21 23:55:52,905 - INFO - Saved test program 'arithmetic' to test_programs\arithmetic.txt
+2025-05-21 23:55:52,908 - INFO - Saved test program 'if_else' to test_programs\if_else.txt
+2025-05-21 23:55:52,915 - INFO - Saved test program 'while_loop' to test_programs\while_loop.txt
+2025-05-21 23:55:52,935 - INFO - Saved test program 'functions' to test_programs\functions.txt
+2025-05-21 23:55:52,941 - INFO - Saved test program 'float_operations' to test_programs\float_operations.txt
+2025-05-21 23:55:52,947 - INFO - Saved test program 'negative_values' to test_programs\negative_values.txt
+2025-05-21 23:55:52,969 - INFO - 
 Running test: arithmetic
-2025-05-21 22:35:02,123 - INFO - ======== TESTING: arithmetic ========
-2025-05-21 22:35:02,124 - INFO - Program code:
+2025-05-21 23:55:52,970 - INFO - ======== TESTING: arithmetic ========
+2025-05-21 23:55:52,977 - INFO - Program code:
 
 program operaciones_basicas;
 var
@@ -33,10 +33,10 @@ main {
 }
 end
 
-2025-05-21 22:35:02,127 - WARNING - Compilation errors:
-2025-05-21 22:35:02,128 - WARNING -   - Semantic error: Cannot pop global scope
-2025-05-21 22:35:02,129 - INFO - QUADRUPLES:
-2025-05-21 22:35:02,130 - INFO - 
+2025-05-21 23:55:52,999 - WARNING - Compilation errors:
+2025-05-21 23:55:52,999 - WARNING -   - Semantic error: Cannot pop global scope
+2025-05-21 23:55:53,000 - INFO - QUADRUPLES:
+2025-05-21 23:55:53,001 - INFO - 
 Adding ID 'a' to temp list in scope: global
 Added 'a' to temporary variable list in scope: global
 Adding ID 'b' to temp list in scope: global
@@ -133,16 +133,13 @@ Starting at quadruple 0
 17: (print, resultado3, None, None)
       print value addr:resultado3
 ----------------------------------------------------------------------
-18: (goto, None, None, 0)
-      jump to quadruple 0
-----------------------------------------------------------------------
 
-2025-05-21 22:35:02,132 - INFO - ======== END TEST: arithmetic ========
+2025-05-21 23:55:53,011 - INFO - ======== END TEST: arithmetic ========
 
-2025-05-21 22:35:02,133 - INFO - 
+2025-05-21 23:55:53,012 - INFO - 
 Running test: if_else
-2025-05-21 22:35:02,134 - INFO - ======== TESTING: if_else ========
-2025-05-21 22:35:02,154 - INFO - Program code:
+2025-05-21 23:55:53,012 - INFO - ======== TESTING: if_else ========
+2025-05-21 23:55:53,013 - INFO - Program code:
 
 program control_if;
 var
@@ -167,10 +164,10 @@ main {
 }
 end
 
-2025-05-21 22:35:02,159 - WARNING - Compilation errors:
-2025-05-21 22:35:02,170 - WARNING -   - Semantic error: Cannot pop global scope
-2025-05-21 22:35:02,171 - INFO - QUADRUPLES:
-2025-05-21 22:35:02,171 - INFO - 
+2025-05-21 23:55:53,015 - WARNING - Compilation errors:
+2025-05-21 23:55:53,015 - WARNING -   - Semantic error: Cannot pop global scope
+2025-05-21 23:55:53,017 - INFO - QUADRUPLES:
+2025-05-21 23:55:53,018 - INFO - 
 Adding ID 'x' to temp list in scope: global
 Added 'x' to temporary variable list in scope: global
 Adding ID 'y' to temp list in scope: global
@@ -250,16 +247,13 @@ Starting at quadruple 0
 15: (print, x es mayor o igual que 10, None, None)
       print value addr:x es mayor o igual que 10
 ----------------------------------------------------------------------
-16: (goto, None, None, 0)
-      jump to quadruple 0
-----------------------------------------------------------------------
 
-2025-05-21 22:35:02,173 - INFO - ======== END TEST: if_else ========
+2025-05-21 23:55:53,023 - INFO - ======== END TEST: if_else ========
 
-2025-05-21 22:35:02,184 - INFO - 
+2025-05-21 23:55:53,030 - INFO - 
 Running test: while_loop
-2025-05-21 22:35:02,185 - INFO - ======== TESTING: while_loop ========
-2025-05-21 22:35:02,186 - INFO - Program code:
+2025-05-21 23:55:53,030 - INFO - ======== TESTING: while_loop ========
+2025-05-21 23:55:53,032 - INFO - Program code:
 
 program ciclo_while;
 var
@@ -278,10 +272,10 @@ main {
 }
 end
 
-2025-05-21 22:35:02,200 - WARNING - Compilation errors:
-2025-05-21 22:35:02,201 - WARNING -   - Semantic error: Cannot pop global scope
-2025-05-21 22:35:02,201 - INFO - QUADRUPLES:
-2025-05-21 22:35:02,201 - INFO - 
+2025-05-21 23:55:53,034 - WARNING - Compilation errors:
+2025-05-21 23:55:53,046 - WARNING -   - Semantic error: Cannot pop global scope
+2025-05-21 23:55:53,046 - INFO - QUADRUPLES:
+2025-05-21 23:55:53,047 - INFO - 
 Adding ID 'contador' to temp list in scope: global
 Added 'contador' to temporary variable list in scope: global
 Adding ID 'suma' to temp list in scope: global
@@ -355,16 +349,13 @@ Starting at quadruple 0
 14: (print, suma, None, None)
       print value addr:suma
 ----------------------------------------------------------------------
-15: (goto, None, None, 0)
-      jump to quadruple 0
-----------------------------------------------------------------------
 
-2025-05-21 22:35:02,203 - INFO - ======== END TEST: while_loop ========
+2025-05-21 23:55:53,049 - INFO - ======== END TEST: while_loop ========
 
-2025-05-21 22:35:02,203 - INFO - 
+2025-05-21 23:55:53,050 - INFO - 
 Running test: functions
-2025-05-21 22:35:02,216 - INFO - ======== TESTING: functions ========
-2025-05-21 22:35:02,216 - INFO - Program code:
+2025-05-21 23:55:53,058 - INFO - ======== TESTING: functions ========
+2025-05-21 23:55:53,058 - INFO - Program code:
 
 program funciones;
 var
@@ -400,10 +391,10 @@ main {
 }
 end
 
-2025-05-21 22:35:02,235 - WARNING - Compilation errors:
-2025-05-21 22:35:02,236 - WARNING -   - Semantic error: Cannot pop global scope
-2025-05-21 22:35:02,236 - INFO - QUADRUPLES:
-2025-05-21 22:35:02,245 - INFO - 
+2025-05-21 23:55:53,061 - WARNING - Compilation errors:
+2025-05-21 23:55:53,063 - WARNING -   - Semantic error: Cannot pop global scope
+2025-05-21 23:55:53,063 - INFO - QUADRUPLES:
+2025-05-21 23:55:53,064 - INFO - 
 Adding ID 'resultado' to temp list in scope: global
 Added 'resultado' to temporary variable list in scope: global
 Adding ID 'num1' to temp list in scope: global
@@ -561,16 +552,13 @@ Starting at quadruple 10
 29: (GOSUB, multiplicar, None, None)
       perform operation GOSUB with operand addr:multiplicar
 ----------------------------------------------------------------------
-30: (goto, None, None, 10)
-      jump to quadruple 10
-----------------------------------------------------------------------
 
-2025-05-21 22:35:02,249 - INFO - ======== END TEST: functions ========
+2025-05-21 23:55:53,077 - INFO - ======== END TEST: functions ========
 
-2025-05-21 22:35:02,266 - INFO - 
+2025-05-21 23:55:53,078 - INFO - 
 Running test: float_operations
-2025-05-21 22:35:02,267 - INFO - ======== TESTING: float_operations ========
-2025-05-21 22:35:02,272 - INFO - Program code:
+2025-05-21 23:55:53,079 - INFO - ======== TESTING: float_operations ========
+2025-05-21 23:55:53,079 - INFO - Program code:
 
 program operaciones_flotantes;
 var
@@ -587,10 +575,10 @@ main {
 }
 end
 
-2025-05-21 22:35:02,278 - WARNING - Compilation errors:
-2025-05-21 22:35:02,280 - WARNING -   - Semantic error: Cannot pop global scope
-2025-05-21 22:35:02,280 - INFO - QUADRUPLES:
-2025-05-21 22:35:02,281 - INFO - 
+2025-05-21 23:55:53,092 - WARNING - Compilation errors:
+2025-05-21 23:55:53,093 - WARNING -   - Semantic error: Cannot pop global scope
+2025-05-21 23:55:53,093 - INFO - QUADRUPLES:
+2025-05-21 23:55:53,093 - INFO - 
 Adding ID 'x' to temp list in scope: global
 Added 'x' to temporary variable list in scope: global
 Set current type to Type.FLOAT
@@ -647,16 +635,13 @@ Starting at quadruple 0
 6: (print, z, None, None)
       print value addr:z
 ----------------------------------------------------------------------
-7: (goto, None, None, 0)
-      jump to quadruple 0
-----------------------------------------------------------------------
 
-2025-05-21 22:35:02,309 - INFO - ======== END TEST: float_operations ========
+2025-05-21 23:55:53,094 - INFO - ======== END TEST: float_operations ========
 
-2025-05-21 22:35:02,339 - INFO - 
+2025-05-21 23:55:53,094 - INFO - 
 Running test: negative_values
-2025-05-21 22:35:02,367 - INFO - ======== TESTING: negative_values ========
-2025-05-21 22:35:02,381 - INFO - Program code:
+2025-05-21 23:55:53,095 - INFO - ======== TESTING: negative_values ========
+2025-05-21 23:55:53,095 - INFO - Program code:
 
 program negativos;
 var
@@ -671,10 +656,10 @@ main {
 }
 end
 
-2025-05-21 22:35:02,387 - WARNING - Compilation errors:
-2025-05-21 22:35:02,389 - WARNING -   - Semantic error: Cannot pop global scope
-2025-05-21 22:35:02,390 - INFO - QUADRUPLES:
-2025-05-21 22:35:02,391 - INFO - 
+2025-05-21 23:55:53,097 - WARNING - Compilation errors:
+2025-05-21 23:55:53,097 - WARNING -   - Semantic error: Cannot pop global scope
+2025-05-21 23:55:53,097 - INFO - QUADRUPLES:
+2025-05-21 23:55:53,110 - INFO - 
 Adding ID 'a' to temp list in scope: global
 Added 'a' to temporary variable list in scope: global
 Adding ID 'b' to temp list in scope: global
@@ -729,19 +714,16 @@ Starting at quadruple 0
 6: (print, resultado, None, None)
       print value addr:resultado
 ----------------------------------------------------------------------
-7: (goto, None, None, 0)
-      jump to quadruple 0
-----------------------------------------------------------------------
 
-2025-05-21 22:35:02,402 - INFO - ======== END TEST: negative_values ========
+2025-05-21 23:55:53,120 - INFO - ======== END TEST: negative_values ========
 
-2025-05-21 22:35:02,404 - INFO - 
+2025-05-21 23:55:53,121 - INFO - 
 ======== TEST SUMMARY ========
-2025-05-21 22:35:02,407 - INFO - arithmetic: PASS
-2025-05-21 22:35:02,410 - INFO - if_else: PASS
-2025-05-21 22:35:02,411 - INFO - while_loop: PASS
-2025-05-21 22:35:02,439 - INFO - functions: PASS
-2025-05-21 22:35:02,453 - INFO - float_operations: PASS
-2025-05-21 22:35:02,454 - INFO - negative_values: PASS
-2025-05-21 22:35:02,454 - INFO - 
+2025-05-21 23:55:53,121 - INFO - arithmetic: PASS
+2025-05-21 23:55:53,122 - INFO - if_else: PASS
+2025-05-21 23:55:53,122 - INFO - while_loop: PASS
+2025-05-21 23:55:53,122 - INFO - functions: PASS
+2025-05-21 23:55:53,123 - INFO - float_operations: PASS
+2025-05-21 23:55:53,123 - INFO - negative_values: PASS
+2025-05-21 23:55:53,124 - INFO - 
 Test suite completed

@@ -355,7 +355,3 @@ class QuadrupleGenerator:
         """Incrementa y retorna el contador de parámetros"""
         self.param_counter += 1
         return self.param_counter
-    
-    def get_current_quad_index(self):
-        """Retorna el índice actual de cuádruplos (próximo a generar)"""
-        return len(self.Quads)

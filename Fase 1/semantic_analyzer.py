@@ -256,9 +256,8 @@ class SemanticAnalyzer:
             self.add_error("Cannot pop global scope")
             return False
         
-    
     def get_function_start_address(self, func_name):
         """Obtiene la dirección de inicio de una función"""
-        if func_name in self.function_directory and hasattr(self.function_directory[func_name], 'start_address'):
+        if func_name in self.function_directory:
             return self.function_directory[func_name].start_address
         return None

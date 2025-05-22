@@ -23,30 +23,17 @@ def get_operand_name(expr_node):
 def p_programa(p):
     '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funcs main_declaration TOKEN_MAIN body TOKEN_END'''
     semantic.program_start(p[2])
-    
-    # AGREGAR: Generar goto inicial al main como primer cuádruplo
-    goto_main_index = quad_gen.generate_goto_quad()
-    
     p[0] = ('programa', p[2], p[4], p[5], p[8])
     semantic.end_main()
     semantic.program_end()
-    
-    # AGREGAR: Llenar el goto inicial con la dirección de inicio del main
-    main_start_address = semantic.get_function_start_address("main")
-    if main_start_address is not None:
-        quad_gen.fill_quad(goto_main_index, main_start_address)
-    
     quad_gen.print_quads()
     
 def p_main_declaration(p):
     '''main_declaration : empty'''
     # Declarar main y guardar su posición de inicio
     semantic.declare_main()
-    # MODIFICAR: Guardar la dirección DESPUÉS de generar el goto inicial
-    # La dirección de inicio del main será la posición actual de cuádruplos
     quad_gen.save_function_start("main")
     p[0] = None
-
 
 
 def p_programa_error_no_main(p):
