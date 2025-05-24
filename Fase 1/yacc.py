@@ -21,20 +21,13 @@ def get_operand_name(expr_node):
     return str(expr_node)
 
 def p_programa(p):
-    '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funcs main_declaration TOKEN_MAIN body TOKEN_END'''
+    '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funcs  TOKEN_MAIN body TOKEN_END'''
     semantic.program_start(p[2])
     p[0] = ('programa', p[2], p[4], p[5], p[8])
     semantic.end_main()
     semantic.program_end()
     quad_gen.print_quads()
     
-def p_main_declaration(p):
-    '''main_declaration : empty'''
-    # Declarar main y guardar su posición de inicio
-    semantic.declare_main()
-    quad_gen.save_function_start("main")
-    p[0] = None
-
 
 def p_programa_error_no_main(p):
     '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funcs TOKEN_END'''
