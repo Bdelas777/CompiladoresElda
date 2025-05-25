@@ -3,8 +3,10 @@ from lex import tokens
 from semantic_cube import Type, Operation, get_result_type
 from semantic_analyzer import SemanticAnalyzer
 from quadruple_generator import QuadrupleGenerator, Quadruple
+
 semantic = SemanticAnalyzer()
 quad_gen = QuadrupleGenerator(semantic)
+
 def get_operand_name(expr_node):
     if isinstance(expr_node, tuple):
         if expr_node[0] == 'id':
@@ -28,7 +30,7 @@ def p_programa(p):
 def p_saveGo(p):
     '''saveGo : empty'''
     goto_index = quad_gen.generate_goto_quad()
-    quad_gen.main_goto_index = goto_index  # Guardar el índice para llenarlo después
+    quad_gen.main_goto_index = goto_index
     p[0] = goto_index
 
 def p_fillMain(p):
@@ -37,7 +39,6 @@ def p_fillMain(p):
     if hasattr(quad_gen, 'main_goto_index'):
         quad_gen.fill_quad(quad_gen.main_goto_index, len(quad_gen.Quads))
     p[0] = None
-    
     
 def p_dec_var(p):
     '''dec_var : vars
@@ -135,7 +136,6 @@ def p_print(p):
             quad_gen.generate_print_quad(expr[1])
         else:
             operand = get_operand_name(expr)
-            # CAMBIO: Obtener la dirección del operando en lugar del nombre
             operand_address = quad_gen.get_operand_address(operand)
             quad_gen.generate_print_quad(operand_address)
     p[0] = ('print', p[3])
@@ -189,15 +189,15 @@ def p_saveQuadIF(p):
 def p_GotoFIF(p):
     '''GotoFIF : empty'''
     goto_index = quad_gen.generate_goto_quad()
-    gotof_index = p[-3]  # This is the GOTOF index saved by saveQuadIF
+    gotof_index = p[-3]
     quad_gen.fill_quad(gotof_index, len(quad_gen.Quads))
-    p[0] = goto_index  # Return the GOTO index to be filled after the else block
+    p[0] = goto_index
 
 def p_condition(p):
     '''condition : TOKEN_IF TOKEN_LPAREN expresion saveQuadIF TOKEN_RPAREN body GotoFIF else TOKEN_SEMICOLON'''
     expr_type = get_expr_type(p[3])
     semantic.check_condition(expr_type)
-    if p[7] is not None:  # If we have a GotoFIF (a goto index)
+    if p[7] is not None:
         goto_index = p[7]
         quad_gen.fill_quad(goto_index, len(quad_gen.Quads))
         
@@ -227,6 +227,7 @@ def p_expresion(p):
         left_type = get_expr_type(p[1])
         right_type = get_expr_type(p[2][1])
         op = token_to_operation(p[2][0])
+        print(f"Left type: {left_type}, Right type: {right_type}, Operator: {op}")
         result_type = semantic.check_expression_compatibility(left_type, right_type, op)  
         left_operand = get_operand_name(p[1])
         quad_gen.process_operand(left_operand, left_type)     
@@ -251,64 +252,79 @@ def p_signo(p):
     | TOKEN_NE'''
     p[0] = p[1]
     
+# CORRECCIÓN PRINCIPAL: Simplificar manejo de suma/resta
 def p_exp(p):
-    '''exp  : termino suma_resta'''
-    if p[2] == None:
+    '''exp : termino exp_tail'''
+    if p[2] is None:
         p[0] = p[1]
     else:
-        left_type = get_expr_type(p[1])
-        right_type = get_expr_type(p[2][1])
-        op = token_to_operation(p[2][0])
-        result_type = semantic.check_expression_compatibility(left_type, right_type, op)      
-        left_operand = get_operand_name(p[1])
-        quad_gen.process_operand(left_operand, left_type)       
-        quad_gen.process_operator(p[2][0])       
-        right_operand = get_operand_name(p[2][1])
-        quad_gen.process_operand(right_operand, right_type)
-        quad_gen.generate_arithmetic_quad()
-        p[0] = ('operation', p[1], p[2][0], p[2][1])
-        p[0] = set_expr_type(p[0], result_type)
-        
-def p_suma_resta(p):
-    '''suma_resta : TOKEN_PLUS termino suma_resta
-    | TOKEN_MINUS termino suma_resta
-    | empty'''
-    if p[1] == None:
-        p[0] = None
-    else:
-        if p[3] == None:
-            p[0] = (p[1], p[2])
-        else:
-            p[0] = (p[1], ('operation', p[2], p[3][0], p[3][1]) if isinstance(p[3], tuple) and len(p[3]) > 1 else p[2])
+        # Procesar la cadena de operaciones desde la izquierda
+        result = p[1]
+        for op, operand in p[2]:
+            left_type = get_expr_type(result)
+            right_type = get_expr_type(operand)
+            operation = token_to_operation(op)
+            result_type = semantic.check_expression_compatibility(left_type, right_type, operation)
             
-def p_termino(p):
-    '''termino : factor multi_div'''
-    if p[2] == None:
-        p[0] = p[1]
-    else:
-        left_type = get_expr_type(p[1])
-        right_type = get_expr_type(p[2][1])
-        op = token_to_operation(p[2][0])
-        result_type = semantic.check_expression_compatibility(left_type, right_type, op)
-        left_operand = get_operand_name(p[1])
-        quad_gen.process_operand(left_operand, left_type)
-        quad_gen.process_operator(p[2][0])
-        right_operand = get_operand_name(p[2][1])
-        quad_gen.process_operand(right_operand, right_type)
-        quad_gen.generate_arithmetic_quad()
-        p[0] = ('operation', p[1], p[2][0], p[2][1])
-        p[0] = set_expr_type(p[0], result_type)
-        
-def p_multi_div(p):
-    '''multi_div  : operacion_mul_div factor multi_div  
-    | empty'''
-    if p[1] == None:
+            left_operand = get_operand_name(result)
+            quad_gen.process_operand(left_operand, left_type)
+            quad_gen.process_operator(op)
+            right_operand = get_operand_name(operand)
+            quad_gen.process_operand(right_operand, right_type)
+            quad_gen.generate_arithmetic_quad()
+            
+            # El resultado temporal se convierte en el nuevo operando izquierdo
+            result = ('operation', result, op, operand)
+            result = set_expr_type(result, result_type)
+        p[0] = result
+
+def p_exp_tail(p):
+    '''exp_tail : TOKEN_PLUS termino exp_tail
+                | TOKEN_MINUS termino exp_tail
+                | empty'''
+    if p[1] is None:
         p[0] = None
     else:
-        if p[3] == None:
-            p[0] = (p[1], p[2])
+        if p[3] is None:
+            p[0] = [(p[1], p[2])]
         else:
-            p[0] = (p[1], ('operation', p[2], p[3][0], p[3][1]) if isinstance(p[3], tuple) and len(p[3]) > 1 else p[2])
+            p[0] = [(p[1], p[2])] + p[3]
+
+# CORRECCIÓN: Simplificar manejo de multiplicación/división
+def p_termino(p):
+    '''termino : factor termino_tail'''
+    if p[2] is None:
+        p[0] = p[1]
+    else:
+        # Procesar la cadena de operaciones desde la izquierda
+        result = p[1]
+        for op, operand in p[2]:
+            left_type = get_expr_type(result)
+            right_type = get_expr_type(operand)
+            operation = token_to_operation(op)
+            result_type = semantic.check_expression_compatibility(left_type, right_type, operation)
+            
+            left_operand = get_operand_name(result)
+            quad_gen.process_operand(left_operand, left_type)
+            quad_gen.process_operator(op)
+            right_operand = get_operand_name(operand)
+            quad_gen.process_operand(right_operand, right_type)
+            quad_gen.generate_arithmetic_quad()
+            
+            result = ('operation', result, op, operand)
+            result = set_expr_type(result, result_type)
+        p[0] = result
+
+def p_termino_tail(p):
+    '''termino_tail : operacion_mul_div factor termino_tail
+                    | empty'''
+    if p[1] is None:
+        p[0] = None
+    else:
+        if p[3] is None:
+            p[0] = [(p[1], p[2])]
+        else:
+            p[0] = [(p[1], p[2])] + p[3]
             
 def p_operacion_mul_div(p):
     '''operacion_mul_div : TOKEN_DIV
@@ -324,7 +340,6 @@ def p_definicion(p):
     '''definicion : TOKEN_LPAREN expresion TOKEN_RPAREN'''
     quad_gen.push_false_bottom()
     quad_gen.pop_false_bottom()
-    
     p[0] = p[2]
     
 def p_operaciones(p):
@@ -365,14 +380,12 @@ def p_id_cte(p):
                 p[0] = p[1]
             else:
                 p[0] = ('id', p[1])
-                
 
 def p_funcs(p):
     '''funcs : TOKEN_VOID TOKEN_ID save_func_start TOKEN_LPAREN tipo TOKEN_RPAREN TOKEN_LCOL var body TOKEN_RCOL end_func TOKEN_SEMICOLON'''
     func = semantic.check_function(p[2])    
     params = p[5] if p[5] else []   
     p[0] = ('function', p[2], params, p[8], p[9])
-
 
 def p_save_func_start(p):
     '''save_func_start : empty'''
@@ -452,12 +465,12 @@ def p_era_quad(p):
     '''era_quad : empty'''
     function_name = p[-1]
     quad_gen.generate_era_quad(function_name)
-    quad_gen.reset_param_counter()  # Reiniciar contador
+    quad_gen.reset_param_counter()
     p[0] = None
 
 def p_gosub_quad(p):
     '''gosub_quad : empty'''
-    function_name = p[-5]  # Obtener nombre de función
+    function_name = p[-5]
     quad_gen.generate_gosub_quad(function_name)
     p[0] = None
     
@@ -494,7 +507,7 @@ def p_param_quad_coma(p):
     if len(p) > 1 and p[-1] is not None:
         operand = get_operand_name(p[-1])
         operand_address = quad_gen.get_operand_address(operand)
-        param_number = 2  # Esto debería ser un contador apropiado
+        param_number = 2
         quad_gen.generate_param_quad(operand_address, param_number)
     p[0] = None
         
@@ -567,7 +580,7 @@ def get_expr_type(expr_node):
                     else:
                         return Type.INT
                 except:
-                    return Type.ERROR  # Removido soporte para STRING
+                    return Type.ERROR
         elif expr_node[0] == 'operation':
             left_type = get_expr_type(expr_node[1])
             right_type = get_expr_type(expr_node[3])
@@ -623,12 +636,13 @@ def execute_program(code):
 if __name__ == "__main__":
     test_code = '''
     program test;
-    var a, b : int;
+    var a, b, c , suma: int;
         result : float;
     main {
         a = 5;
         b = 3;
-        result = a + b * 2;
+        c = 2;
+        result = a + b + c * 2;
         print(result);
     }
     end

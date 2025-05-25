@@ -38,12 +38,13 @@ class QuadrupleGenerator:
             
         operator = self.POper[-1]
         if operator in ['+', '-', '*', '/', '>', '<', '!=']:
+            print(self.PilaO, "PilaO")
             right_operand = self.PilaO.pop()
             right_type = self.PTypes.pop()
             left_operand = self.PilaO.pop()
             left_type = self.PTypes.pop()
             operator = self.POper.pop()
-            
+            print(f"Check {left_operand} {right_operand} {operator}")
             operation = None
             if operator == '+': operation = Operation.PLUS
             elif operator == '-': operation = Operation.MINUS
@@ -94,6 +95,8 @@ class QuadrupleGenerator:
         self.POper.append(operator)
         
     def process_operand(self, operand_id, operand_type):
+        print(f"Processing operand: {operand_id} of type {operand_type}")
+        print(self.PilaO, "PilaO")
         self.PilaO.append(operand_id)
         self.PTypes.append(operand_type)
         

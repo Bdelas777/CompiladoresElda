@@ -1,38 +1,42 @@
-2025-05-25 00:52:42,384 - INFO - Starting test suite
-2025-05-25 00:52:42,385 - INFO - Date and time: 2025-05-25 00:52:42
-2025-05-25 00:52:42,388 - INFO - Saved test program 'arithmetic' to test_programs\arithmetic.txt
-2025-05-25 00:52:42,390 - INFO - Saved test program 'if_else' to test_programs\if_else.txt
-2025-05-25 00:52:42,396 - INFO - Saved test program 'while_loop' to test_programs\while_loop.txt
-2025-05-25 00:52:42,398 - INFO - Saved test program 'functions' to test_programs\functions.txt
-2025-05-25 00:52:42,401 - INFO - Saved test program 'float_operations' to test_programs\float_operations.txt
-2025-05-25 00:52:42,411 - INFO - Saved test program 'negative_values' to test_programs\negative_values.txt
-2025-05-25 00:52:42,414 - INFO - 
+2025-05-25 09:27:02,780 - INFO - Starting test suite
+2025-05-25 09:27:02,782 - INFO - Date and time: 2025-05-25 09:27:02
+2025-05-25 09:27:02,784 - INFO - Saved test program 'arithmetic' to test_programs\arithmetic.txt
+2025-05-25 09:27:02,787 - INFO - Saved test program 'if_else' to test_programs\if_else.txt
+2025-05-25 09:27:02,790 - INFO - Saved test program 'while_loop' to test_programs\while_loop.txt
+2025-05-25 09:27:02,794 - INFO - Saved test program 'functions' to test_programs\functions.txt
+2025-05-25 09:27:02,801 - INFO - Saved test program 'float_operations' to test_programs\float_operations.txt
+2025-05-25 09:27:02,817 - INFO - Saved test program 'negative_values' to test_programs\negative_values.txt
+2025-05-25 09:27:02,818 - INFO - 
 Running test: arithmetic
-2025-05-25 00:52:42,414 - INFO - ======== TESTING: arithmetic ========
-2025-05-25 00:52:42,428 - INFO - Program code:
+2025-05-25 09:27:02,818 - INFO - ======== TESTING: arithmetic ========
+2025-05-25 09:27:02,818 - INFO - Program code:
 
- program test;
-    var a, b : int;
+program test;
+    var a, b, c : int;
         result : float;
     main {
         a = 5;
         b = 3;
-        result = a + b * 2;
+        c = 2;
+        result = a + b + c * 2;
         print(result);
     }
     end
     
-2025-05-25 00:52:42,430 - INFO - Compilation successful!
-2025-05-25 00:52:42,431 - INFO - QUADRUPLES:
-2025-05-25 00:52:42,434 - INFO - 
+2025-05-25 09:27:02,821 - INFO - Compilation successful!
+2025-05-25 09:27:02,821 - INFO - QUADRUPLES:
+2025-05-25 09:27:02,821 - INFO - 
 Adding ID 'a' to temp list in scope: global
 Added 'a' to temporary variable list in scope: global
 Adding ID 'b' to temp list in scope: global
 Added 'b' to temporary variable list in scope: global
+Adding ID 'c' to temp list in scope: global
+Added 'c' to temporary variable list in scope: global
 Set current type to Type.INT
 Adding variables to table in scope: global
 Added global variable 'a' of type Type.INT at address 5000
 Added global variable 'b' of type Type.INT at address 5001
+Added global variable 'c' of type Type.INT at address 5002
 Adding ID 'result' to temp list in scope: global
 Added 'result' to temporary variable list in scope: global
 Set current type to Type.FLOAT
@@ -41,6 +45,24 @@ Added global variable 'result' of type Type.FLOAT at address 8000
 Starting variable declaration in scope 'global'
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
+Processing operand: c of type Type.INT
+[] PilaO
+Processing operand: 2 of type Type.INT
+['c'] PilaO
+['c', '2'] PilaO
+Check c 2 *
+Processing operand: a of type Type.INT
+[15000] PilaO
+Processing operand: b of type Type.INT
+[15000, 'a'] PilaO
+[15000, 'a', 'b'] PilaO
+Check a b +
+Processing operand: 15001 of type Type.INT
+[15000, 15001] PilaO
+Processing operand: 15001 of type Type.INT
+[15000, 15001, 15001] PilaO
+[15000, 15001, 15001, 15001] PilaO
+Check 15001 15001 +
 Program test started, scope reset to global
 Program test completed
 
@@ -61,25 +83,31 @@ Function: main - Start Address: None
 2: (=, 20001, None, 5001)
       assign value of constant(3) to b (global)
 ----------------------------------------------------------------------
-3: (*, 5001, 20002, 15000)
-      multiply b (global) and constant(2), store result in addr:15000
+3: (=, 20002, None, 5002)
+      assign value of constant(2) to c (global)
 ----------------------------------------------------------------------
-4: (+, 5000, 5000, 15001)
-      add a (global) and a (global), store result in addr:15001
+4: (*, 5002, 20002, 15000)
+      multiply c (global) and constant(2), store result in addr:15000
 ----------------------------------------------------------------------
-5: (=, 15001, None, 8000)
-      assign value of addr:15001 to result (global)
+5: (+, 5000, 5001, 15001)
+      add a (global) and b (global), store result in addr:15001
 ----------------------------------------------------------------------
-6: (print, 8000, None, None)
+6: (+, 15001, 15001, 15002)
+      add addr:15001 and addr:15001, store result in addr:15002
+----------------------------------------------------------------------
+7: (=, 15002, None, 8000)
+      assign value of addr:15002 to result (global)
+----------------------------------------------------------------------
+8: (print, 8000, None, None)
       print value result (global)
 ----------------------------------------------------------------------
 
-2025-05-25 00:52:42,436 - INFO - ======== END TEST: arithmetic ========
+2025-05-25 09:27:02,823 - INFO - ======== END TEST: arithmetic ========
 
-2025-05-25 00:52:42,437 - INFO - 
+2025-05-25 09:27:02,824 - INFO - 
 Running test: if_else
-2025-05-25 00:52:42,438 - INFO - ======== TESTING: if_else ========
-2025-05-25 00:52:42,441 - INFO - Program code:
+2025-05-25 09:27:02,824 - INFO - ======== TESTING: if_else ========
+2025-05-25 09:27:02,824 - INFO - Program code:
 
 program control_if;
 var
@@ -104,9 +132,9 @@ main {
 }
 end
 
-2025-05-25 00:52:42,444 - INFO - Compilation successful!
-2025-05-25 00:52:42,444 - INFO - QUADRUPLES:
-2025-05-25 00:52:42,445 - INFO - 
+2025-05-25 09:27:02,827 - INFO - Compilation successful!
+2025-05-25 09:27:02,829 - INFO - QUADRUPLES:
+2025-05-25 09:27:02,835 - INFO - 
 Adding ID 'x' to temp list in scope: global
 Added 'x' to temporary variable list in scope: global
 Adding ID 'y' to temp list in scope: global
@@ -121,6 +149,20 @@ Added global variable 'max' of type Type.INT at address 5002
 Starting variable declaration in scope 'global'
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
+Left type: Type.INT, Right type: Type.INT, Operator: Operation.GREATER
+Processing operand: x of type Type.INT
+[] PilaO
+Processing operand: y of type Type.INT
+['x'] PilaO
+['x', 'y'] PilaO
+Check x y >
+Left type: Type.INT, Right type: Type.INT, Operator: Operation.LESS
+Processing operand: x of type Type.INT
+[19000] PilaO
+Processing operand: 10 of type Type.INT
+[19000, 'x'] PilaO
+[19000, 'x', '10'] PilaO
+Check x 10 <
 Program control_if started, scope reset to global
 Program control_if completed
 
@@ -184,12 +226,12 @@ Function: main - Start Address: None
       print value addr:x es mayor o igual que 10
 ----------------------------------------------------------------------
 
-2025-05-25 00:52:42,446 - INFO - ======== END TEST: if_else ========
+2025-05-25 09:27:02,837 - INFO - ======== END TEST: if_else ========
 
-2025-05-25 00:52:42,446 - INFO - 
+2025-05-25 09:27:02,838 - INFO - 
 Running test: while_loop
-2025-05-25 00:52:42,447 - INFO - ======== TESTING: while_loop ========
-2025-05-25 00:52:42,447 - INFO - Program code:
+2025-05-25 09:27:02,839 - INFO - ======== TESTING: while_loop ========
+2025-05-25 09:27:02,842 - INFO - Program code:
 
 program ciclo_while;
 var
@@ -208,9 +250,9 @@ main {
 }
 end
 
-2025-05-25 00:52:42,460 - INFO - Compilation successful!
-2025-05-25 00:52:42,461 - INFO - QUADRUPLES:
-2025-05-25 00:52:42,461 - INFO - 
+2025-05-25 09:27:02,844 - INFO - Compilation successful!
+2025-05-25 09:27:02,850 - INFO - QUADRUPLES:
+2025-05-25 09:27:02,851 - INFO - 
 Adding ID 'contador' to temp list in scope: global
 Added 'contador' to temporary variable list in scope: global
 Adding ID 'suma' to temp list in scope: global
@@ -222,6 +264,25 @@ Added global variable 'suma' of type Type.INT at address 5001
 Starting variable declaration in scope 'global'
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
+Left type: Type.INT, Right type: Type.INT, Operator: Operation.LESS
+Processing operand: contador of type Type.INT
+[] PilaO
+Processing operand: 5 of type Type.INT
+['contador'] PilaO
+['contador', '5'] PilaO
+Check contador 5 <
+Processing operand: suma of type Type.INT
+[19000] PilaO
+Processing operand: contador of type Type.INT
+[19000, 'suma'] PilaO
+[19000, 'suma', 'contador'] PilaO
+Check suma contador +
+Processing operand: contador of type Type.INT
+[19000, 15000] PilaO
+Processing operand: 1 of type Type.INT
+[19000, 15000, 'contador'] PilaO
+[19000, 15000, 'contador', '1'] PilaO
+Check contador 1 +
 Program ciclo_while started, scope reset to global
 Program ciclo_while completed
 
@@ -282,12 +343,12 @@ Function: main - Start Address: None
       print value suma (global)
 ----------------------------------------------------------------------
 
-2025-05-25 00:52:42,466 - INFO - ======== END TEST: while_loop ========
+2025-05-25 09:27:02,852 - INFO - ======== END TEST: while_loop ========
 
-2025-05-25 00:52:42,467 - INFO - 
+2025-05-25 09:27:02,853 - INFO - 
 Running test: functions
-2025-05-25 00:52:42,467 - INFO - ======== TESTING: functions ========
-2025-05-25 00:52:42,467 - INFO - Program code:
+2025-05-25 09:27:02,855 - INFO - ======== TESTING: functions ========
+2025-05-25 09:27:02,856 - INFO - Program code:
 
 program funciones;
 var
@@ -323,9 +384,9 @@ main {
 }
 end
 
-2025-05-25 00:52:42,470 - INFO - Compilation successful!
-2025-05-25 00:52:42,470 - INFO - QUADRUPLES:
-2025-05-25 00:52:42,470 - INFO - 
+2025-05-25 09:27:02,865 - INFO - Compilation successful!
+2025-05-25 09:27:02,867 - INFO - QUADRUPLES:
+2025-05-25 09:27:02,867 - INFO - 
 Adding ID 'resultado' to temp list in scope: global
 Added 'resultado' to temporary variable list in scope: global
 Adding ID 'num1' to temp list in scope: global
@@ -348,6 +409,12 @@ Set current type to Type.INT
 Adding variables to table in scope: sumar
 Added local variable 'res' of type Type.INT at address 11002 to function 'sumar'
 Starting variable declaration in scope 'sumar'
+Processing operand: a of type Type.INT
+[] PilaO
+Processing operand: b of type Type.INT
+['a'] PilaO
+['a', 'b'] PilaO
+Check a b +
 Popped scope: sumar, current scope is now: global
 Ended function 'sumar' declaration, returned to scope: global
 Pushed scope: multiplicar, current scope stack: ['global', 'multiplicar']
@@ -360,10 +427,28 @@ Set current type to Type.INT
 Adding variables to table in scope: multiplicar
 Added local variable 'res' of type Type.INT at address 11005 to function 'multiplicar'
 Starting variable declaration in scope 'multiplicar'
+Processing operand: c of type Type.INT
+[15000] PilaO
+Processing operand: d of type Type.INT
+[15000, 'c'] PilaO
+[15000, 'c', 'd'] PilaO
+Check c d *
 Popped scope: multiplicar, current scope is now: global
 Ended function 'multiplicar' declaration, returned to scope: global
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
+Processing operand: num1 of type Type.INT
+[15000, 15001] PilaO
+Processing operand: 2 of type Type.INT
+[15000, 15001, 'num1'] PilaO
+[15000, 15001, 'num1', '2'] PilaO
+Check num1 2 +
+Processing operand: num2 of type Type.INT
+[15000, 15001, 15002] PilaO
+Processing operand: 2 of type Type.INT
+[15000, 15001, 15002, 'num2'] PilaO
+[15000, 15001, 15002, 'num2', '2'] PilaO
+Check num2 2 *
 Program funciones started, scope reset to global
 Program funciones completed
 
@@ -481,12 +566,12 @@ Starting at quadruple 6
       perform operation GOSUB with operand addr:multiplicar
 ----------------------------------------------------------------------
 
-2025-05-25 00:52:42,470 - INFO - ======== END TEST: functions ========
+2025-05-25 09:27:02,877 - INFO - ======== END TEST: functions ========
 
-2025-05-25 00:52:42,487 - INFO - 
+2025-05-25 09:27:02,877 - INFO - 
 Running test: float_operations
-2025-05-25 00:52:42,488 - INFO - ======== TESTING: float_operations ========
-2025-05-25 00:52:42,488 - INFO - Program code:
+2025-05-25 09:27:02,878 - INFO - ======== TESTING: float_operations ========
+2025-05-25 09:27:02,878 - INFO - Program code:
 
 program operaciones_flotantes;
 var
@@ -503,9 +588,9 @@ main {
 }
 end
 
-2025-05-25 00:52:42,494 - INFO - Compilation successful!
-2025-05-25 00:52:42,494 - INFO - QUADRUPLES:
-2025-05-25 00:52:42,501 - INFO - 
+2025-05-25 09:27:02,880 - INFO - Compilation successful!
+2025-05-25 09:27:02,880 - INFO - QUADRUPLES:
+2025-05-25 09:27:02,880 - INFO - 
 Adding ID 'x' to temp list in scope: global
 Added 'x' to temporary variable list in scope: global
 Set current type to Type.FLOAT
@@ -524,6 +609,18 @@ Added global variable 'z' of type Type.FLOAT at address 8001
 Starting variable declaration in scope 'global'
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
+Processing operand: x of type Type.FLOAT
+[] PilaO
+Processing operand: y of type Type.INT
+['x'] PilaO
+['x', 'y'] PilaO
+Check x y *
+Processing operand: 17000 of type Type.FLOAT
+[17000] PilaO
+Processing operand: 1.5 of type Type.FLOAT
+[17000, 17000] PilaO
+[17000, 17000, '1.5'] PilaO
+Check 17000 1.5 +
 Program operaciones_flotantes started, scope reset to global
 Program operaciones_flotantes completed
 
@@ -560,12 +657,12 @@ Function: main - Start Address: None
       print value z (global)
 ----------------------------------------------------------------------
 
-2025-05-25 00:52:42,501 - INFO - ======== END TEST: float_operations ========
+2025-05-25 09:27:02,882 - INFO - ======== END TEST: float_operations ========
 
-2025-05-25 00:52:42,501 - INFO - 
+2025-05-25 09:27:02,882 - INFO - 
 Running test: negative_values
-2025-05-25 00:52:42,501 - INFO - ======== TESTING: negative_values ========
-2025-05-25 00:52:42,501 - INFO - Program code:
+2025-05-25 09:27:02,882 - INFO - ======== TESTING: negative_values ========
+2025-05-25 09:27:02,883 - INFO - Program code:
 
 program negativos;
 var
@@ -580,9 +677,9 @@ main {
 }
 end
 
-2025-05-25 00:52:42,507 - INFO - Compilation successful!
-2025-05-25 00:52:42,508 - INFO - QUADRUPLES:
-2025-05-25 00:52:42,508 - INFO - 
+2025-05-25 09:27:02,885 - INFO - Compilation successful!
+2025-05-25 09:27:02,885 - INFO - QUADRUPLES:
+2025-05-25 09:27:02,885 - INFO - 
 Adding ID 'a' to temp list in scope: global
 Added 'a' to temporary variable list in scope: global
 Adding ID 'b' to temp list in scope: global
@@ -599,6 +696,18 @@ Added global variable 'resultado' of type Type.INT at address 5002
 Starting variable declaration in scope 'global'
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
+Processing operand: -1 of type Type.INT
+[] PilaO
+Processing operand: 5 of type Type.INT
+['-1'] PilaO
+['-1', '5'] PilaO
+Check -1 5 *
+Processing operand: a of type Type.INT
+[15000] PilaO
+Processing operand: b of type Type.INT
+[15000, 'a'] PilaO
+[15000, 'a', 'b'] PilaO
+Check a b +
 Program negativos started, scope reset to global
 Program negativos completed
 
@@ -635,15 +744,15 @@ Function: main - Start Address: None
       print value resultado (global)
 ----------------------------------------------------------------------
 
-2025-05-25 00:52:42,509 - INFO - ======== END TEST: negative_values ========
+2025-05-25 09:27:02,897 - INFO - ======== END TEST: negative_values ========
 
-2025-05-25 00:52:42,511 - INFO - 
+2025-05-25 09:27:02,897 - INFO - 
 ======== TEST SUMMARY ========
-2025-05-25 00:52:42,511 - INFO - arithmetic: PASS
-2025-05-25 00:52:42,511 - INFO - if_else: PASS
-2025-05-25 00:52:42,512 - INFO - while_loop: PASS
-2025-05-25 00:52:42,517 - INFO - functions: PASS
-2025-05-25 00:52:42,518 - INFO - float_operations: PASS
-2025-05-25 00:52:42,518 - INFO - negative_values: PASS
-2025-05-25 00:52:42,518 - INFO - 
+2025-05-25 09:27:02,897 - INFO - arithmetic: PASS
+2025-05-25 09:27:02,897 - INFO - if_else: PASS
+2025-05-25 09:27:02,897 - INFO - while_loop: PASS
+2025-05-25 09:27:02,897 - INFO - functions: PASS
+2025-05-25 09:27:02,899 - INFO - float_operations: PASS
+2025-05-25 09:27:02,899 - INFO - negative_values: PASS
+2025-05-25 09:27:02,899 - INFO - 
 Test suite completed

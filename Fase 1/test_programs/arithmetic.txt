@@ -1,11 +1,12 @@
 
- program test;
-    var a, b : int;
+program test;
+    var a, b, c : int;
         result : float;
     main {
         a = 5;
         b = 3;
-        result = a + b * 2;
+        c = 2;
+        result = a + b + c * 2;
         print(result);
     }
     end
