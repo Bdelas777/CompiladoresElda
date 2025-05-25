@@ -676,26 +676,20 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = '''
-program control_if;
+program ciclo_while;
 var
-    x, y, max : int;
+    contador, suma : int;
 main {
-    x = 15;
-    y = 7;
+    contador = 1;
+    suma = 0;
     
-    if (x > y) {
-        max = x;
-        print("El mayor es x: ", max);
-    } else {
-        max = y;
-        print("El mayor es y: ", max);
+    while (contador < 5) do {
+        suma = suma + contador;
+        print("Iteración: ", contador, " Suma actual: ", suma);
+        contador = contador + 1;
     };
     
-    if (x < 10) {
-        print("x es menor que 10");
-    } else {
-        print("x es mayor o igual que 10");
-    };
+    print("Suma final: ", suma);
 }
 end
         '''

@@ -63,3 +63,24 @@ end
 '''
 
 # Respuestas: el primero es 15, el segundo es x es mayor o igual que 10 y el segundo es x es mayor o igual que 10
+
+'''
+program ciclo_while;
+var
+    contador, suma : int;
+main {
+    contador = 1;
+    suma = 0;
+    
+    while (contador < 5) do {
+        suma = suma + contador;
+        print("Iteración: ", contador, " Suma actual: ", suma);
+        contador = contador + 1;
+    };
+    
+    print("Suma final: ", suma);
+}
+end
+        '''
+# Respuestas: Iteración 1 suma 1, Iteración 2 suma 3, Iteración 3 suma 6, Iteración 4 suma 10, Suma final: 10
+
