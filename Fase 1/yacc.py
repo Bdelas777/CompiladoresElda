@@ -676,20 +676,37 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = '''
-program ciclo_while;
+program funciones;
 var
-    contador, suma : int;
+    resultado, num1, num2 : int;
+
+void sumar(a : int, b : int)
+[
+    var res : int;
+    {
+        res = a + b;
+        print("La suma es: ", res);
+    }
+];
+
+void multiplicar(c : int, d : int)
+[
+    var res : int;
+    {
+        res = c * d;
+        print("El producto es: ", res);
+    }
+];
+
 main {
-    contador = 1;
-    suma = 0;
+    num1 = 8;
+    num2 = 3;
     
-    while (contador < 5) do {
-        suma = suma + contador;
-        print("Iteración: ", contador, " Suma actual: ", suma);
-        contador = contador + 1;
-    };
+    sumar(num1, num2);
+    multiplicar(num1, num2);
     
-    print("Suma final: ", suma);
+    sumar(5, 7);
+    multiplicar(num1 + 2, num2 * 2);
 }
 end
         '''
