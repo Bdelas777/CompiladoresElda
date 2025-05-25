@@ -33,7 +33,7 @@ class QuadrupleGenerator:
         return temp_address
         
     def generate_arithmetic_quad(self):
-        if not self.POper or not self.PilaO or not self.PTypes:
+        if not self.POper or len(self.PilaO) < 2 or len(self.PTypes) < 2:
             return False
             
         operator = self.POper[-1]
@@ -44,24 +44,34 @@ class QuadrupleGenerator:
             left_type = self.PTypes.pop()
             operator = self.POper.pop()
             
-            operation = None
-            if operator == '+': operation = Operation.PLUS
-            elif operator == '-': operation = Operation.MINUS
-            elif operator == '*': operation = Operation.MULTIPLY
-            elif operator == '/': operation = Operation.DIVIDE
-            elif operator == '>': operation = Operation.GREATER
-            elif operator == '<': operation = Operation.LESS
-            elif operator == '!=': operation = Operation.NOT_EQUAL
+            # Mapeo de operadores
+            operation_map = {
+                '+': Operation.PLUS,
+                '-': Operation.MINUS,
+                '*': Operation.MULTIPLY,
+                '/': Operation.DIVIDE,
+                '>': Operation.GREATER,
+                '<': Operation.LESS,
+                '!=': Operation.NOT_EQUAL
+            }
             
+            operation = operation_map.get(operator)
+            if not operation:
+                self.semantic.add_error(f"Unknown operator: {operator}")
+                return False
+                
             result_type = get_result_type(left_type, right_type, operation)
             
             if result_type != Type.ERROR:
                 result = self.new_temp(result_type)
                 left_address = self.get_operand_address(left_operand)
-                right_address = self.get_operand_address(right_operand)          
+                right_address = self.get_operand_address(right_operand)
+                
                 quad = Quadruple(operator, left_address, right_address, result)
                 self.Quads.append(quad)
                 self.quad_counter += 1
+                
+                # Agregar el resultado a las pilas
                 self.PilaO.append(result)
                 self.PTypes.append(result_type)
                 return True
@@ -71,23 +81,42 @@ class QuadrupleGenerator:
         return False
     
     def get_operand_address(self, operand):
+        # Si ya es una dirección (entero), devolverla directamente
         if isinstance(operand, int):
             return operand
-        if self.semantic.current_scope != "global" and operand in self.semantic.function_directory[self.semantic.current_scope].local_vars:
+        
+        # Buscar en variables locales primero
+        if (self.semantic.current_scope != "global" and 
+            self.semantic.current_scope in self.semantic.function_directory and
+            operand in self.semantic.function_directory[self.semantic.current_scope].local_vars):
             return self.semantic.function_directory[self.semantic.current_scope].local_vars[operand].address
+        
+        # Buscar en variables globales
         if operand in self.semantic.global_vars:
             return self.semantic.global_vars[operand].address
+        
+        # Manejar constantes
         try:
-            if '.' in str(operand):
-                value = float(operand)
+            if isinstance(operand, str):
+                if '.' in operand:
+                    value = float(operand)
+                else:
+                    value = int(operand)
             else:
-                value = int(operand)
+                value = operand
+                
             if value not in self.constants_table:
                 address = self.semantic.memory_manager.get_constant_address(value)
                 self.constants_table[value] = address
             return self.constants_table[value]
-        except ValueError:
+        except (ValueError, TypeError):
             pass
+        
+        # Si es un string que no se puede convertir a número
+        if isinstance(operand, str):
+            return operand
+        
+        # Caso por defecto
         return -1
        
     def process_operator(self, operator):
@@ -113,14 +142,27 @@ class QuadrupleGenerator:
         
     def generate_assignment_quad(self, target_id, expression_result):
         target_address = self.get_operand_address(target_id)
-        expr_address = self.get_operand_address(expression_result)
+        
+        # Si expression_result es una dirección temporal, usarla directamente
+        if isinstance(expression_result, int):
+            expr_address = expression_result
+        else:
+            expr_address = self.get_operand_address(expression_result)
+        
         quad = Quadruple('=', expr_address, None, target_address)
         self.Quads.append(quad)
         self.quad_counter += 1
         return True
         
     def generate_print_quad(self, value):
-        quad = Quadruple('print', value, None, None)
+        if isinstance(value, str) and value.startswith('"') and value.endswith('"'):
+            # Es una cadena literal
+            quad = Quadruple('print', value, None, None)
+        else:
+            # Es una variable o expresión
+            address = self.get_operand_address(value)
+            quad = Quadruple('print', address, None, None)
+        
         self.Quads.append(quad)
         self.quad_counter += 1
         return True
@@ -294,3 +336,11 @@ class QuadrupleGenerator:
         """Incrementa y retorna el contador de parámetros"""
         self.param_counter += 1
         return self.param_counter
+    
+    def get_execution_data(self):
+        """Retorna los datos necesarios para la máquina virtual"""
+        return {
+            'quadruples': self.Quads,
+            'constants_table': self.constants_table,
+            'function_directory': self.semantic.function_directory
+        }

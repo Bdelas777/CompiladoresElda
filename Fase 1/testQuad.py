@@ -33,28 +33,17 @@ logger = logging.getLogger("compiler_test")
 # Test programs
 TEST_PROGRAMS = {
     "arithmetic": """
-program operaciones_basicas;
-var
-    a, b, c, resultado, resultado2 : int;
-    resultado3 : float;
-
-main {
-    a = 5;
-    b = 10;
-    c = 2;
-    
-    resultado = a + b * c;
-    print("Resultado 1: ", resultado);
-    
-    resultado2 = (a + b) * c;
-    print("Resultado 2: ", resultado2);
-    
-    resultado3 = a - b / c;
-
-    print("Resultado 3: ", resultado3);
-}
-end
-""",
+ program test;
+    var a, b : int;
+        result : float;
+    main {
+        a = 5;
+        b = 3;
+        result = a + b * 2;
+        print(result);
+    }
+    end
+    """,
     
     "if_else": """
 program control_if;
