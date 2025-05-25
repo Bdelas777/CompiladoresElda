@@ -272,7 +272,7 @@ def p_signo(p):
     p[0] = p[1]
 
 def p_exp(p):
-    '''exp : termino exp_tail'''
+    '''exp : termino suma_resta'''
     
     if p[2] is None:
         p[0] = p[1]
@@ -311,8 +311,8 @@ def p_operacion_sum_res(p):
     | TOKEN_MINUS'''
     p[0] = p[1]
 
-def p_exp_tail(p):
-    '''exp_tail  : operacion_sum_res termino exp_tail
+def p_suma_resta(p):
+    '''suma_resta  : operacion_sum_res termino suma_resta
                     | empty'''
     if p[1] is None:
         p[0] = None
@@ -323,7 +323,7 @@ def p_exp_tail(p):
             p[0] = [(p[1], p[2])] + p[3]
             
 def p_termino(p):
-    '''termino : factor termino_tail'''  
+    '''termino : factor multi_div'''  
     if p[2] is None:
         p[0] = p[1]
     else:
@@ -355,8 +355,8 @@ def p_termino(p):
             
         p[0] = result
 
-def p_termino_tail(p):
-    '''termino_tail : operacion_mul_div factor termino_tail
+def p_multi_div(p):
+    '''multi_div : operacion_mul_div factor multi_div
                     | empty'''
     if p[1] is None:
         p[0] = None
@@ -676,16 +676,21 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = '''
-    program test;
-    var a, b, c , suma: int;
-        result : float;
-    main {
-        a = 5;
-        b = 3;
-        c = 2;
-        result = a  - b * c *2 + 1 ;
-        print(result);
-    }
-    end
+    program operaciones_basicas;
+var
+    a, b, c, resultado, resultado2 : int;
+    resultado3 : float;
+
+main {
+    a = 5;
+    b = 3;
+    c = 2;
+    
+    resultado = a + b * c;
+    print("Resultado 1: ", resultado);
+    
+    
+}
+end
         '''
     execute_program(test_code)
