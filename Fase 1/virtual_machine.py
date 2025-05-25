@@ -57,6 +57,10 @@ class VirtualMachine:
         self.instruction_pointer = 0
         self.call_stack = []
         
+        # NUEVO: Stack para manejar parámetros de funciones
+        self.param_stack = []
+        self.current_function = None
+        
         # Inicializar tabla de constantes en memoria
         for value, address in constants_table.items():
             self.memory.set_value(address, value)
@@ -175,21 +179,43 @@ class VirtualMachine:
         print(f"  ERA: Reservando espacio para función '{func_name}'")
         # Limpiar memoria local para nueva función
         self.memory.clear_local_memory()
+        # NUEVO: Preparar para recibir parámetros
+        self.param_stack = []
+        self.current_function = func_name
         return True
     
     def _execute_param(self, quad):
         """Pasa parámetro a función"""
         param_value = self.memory.get_value(quad.left_operand)
-        param_address = quad.right_operand  # Dirección del parámetro
-        print(f"  Parámetro: {param_value} -> {param_address}")
-        # Aquí se asignaría el valor al parámetro en la función
+        # MODIFICADO: Guardar el parámetro en el stack
+        self.param_stack.append(param_value)
+        print(f"  Parámetro: {param_value} -> {quad.right_operand}")
         return True
     
     def _execute_gosub(self, quad):
         """Llama a función"""
         func_name = quad.left_operand
         if func_name in self.function_directory:
-            func_start = self.function_directory[func_name].start_address
+            func_info = self.function_directory[func_name]
+            func_start = func_info.start_address
+            
+            # NUEVO: Asignar parámetros a variables locales
+            if hasattr(func_info, 'local_vars') and self.param_stack:
+                param_vars = []
+                # Obtener las variables de parámetros (primeras variables locales)
+                for var_name, var_info in func_info.local_vars.items():
+                    param_vars.append((var_name, var_info.address))
+                
+                # Ordenar por dirección para asegurar el orden correcto
+                param_vars.sort(key=lambda x: x[1])
+                
+                # Asignar valores de parámetros
+                for i, param_value in enumerate(self.param_stack):
+                    if i < len(param_vars):
+                        param_address = param_vars[i][1]
+                        self.memory.set_value(param_address, param_value)
+                        print(f"    Asignando parámetro {param_vars[i][0]} (addr: {param_address}) = {param_value}")
+            
             # Guardar contexto actual
             self.call_stack.append(self.instruction_pointer + 1)
             self.instruction_pointer = func_start - 1
@@ -202,6 +228,9 @@ class VirtualMachine:
             self.instruction_pointer = self.call_stack.pop() - 1
             print(f"  ENDFUNC: Retornando a dirección {self.instruction_pointer + 1}")
             self.memory.clear_local_memory()
+            # NUEVO: Limpiar contexto de función
+            self.param_stack = []
+            self.current_function = None
         return True
     
     def _execute_return(self, quad):

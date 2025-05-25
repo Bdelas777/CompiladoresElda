@@ -541,7 +541,8 @@ def p_param_quad_coma(p):
     if len(p) > 1 and p[-1] is not None:
         operand = get_operand_name(p[-1])
         operand_address = quad_gen.get_operand_address(operand)
-        param_number = 2
+        # CORRECCIÓN: Usar el contador incremental en lugar de valor fijo
+        param_number = quad_gen.increment_param_counter()
         quad_gen.generate_param_quad(operand_address, param_number)
     p[0] = None
         
@@ -676,38 +677,19 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = '''
-program funciones;
+program operaciones_flotantes;
 var
-    resultado, num1, num2 : int;
-
-void sumar(a : int, b : int)
-[
-    var res : int;
-    {
-        res = a + b;
-        print("La suma es: ", res);
-    }
-];
-
-void multiplicar(c : int, d : int)
-[
-    var res : int;
-    {
-        res = c * d;
-        print("El producto es: ", res);
-    }
-];
+    x : float;
+    y : int;
+    z : float;
 
 main {
-    num1 = 8;
-    num2 = 3;
+    x = 3.5;
+    y = 2;
     
-    sumar(num1, num2);
-    multiplicar(num1, num2);
-    
-    sumar(5, 7);
-    multiplicar(num1 + 2, num2 * 2);
+    z = x * y + 1.5;
+    print("Resultado flotante: ", z);
 }
 end
-        '''
+'''
     execute_program(test_code)

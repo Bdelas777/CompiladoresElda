@@ -84,3 +84,39 @@ end
         '''
 # Respuestas: Iteración 1 suma 1, Iteración 2 suma 3, Iteración 3 suma 6, Iteración 4 suma 10, Suma final: 10
 
+'''
+program funciones;
+var
+    resultado, num1, num2 : int;
+
+void sumar(a : int, b : int)
+[
+    var res : int;
+    {
+        res = a + b;
+        print("La suma es: ", res);
+    }
+];
+
+void multiplicar(c : int, d : int)
+[
+    var res : int;
+    {
+        res = c * d;
+        print("El producto es: ", res);
+    }
+];
+
+main {
+    num1 = 8;
+    num2 = 3;
+    
+    sumar(num1, num2);
+    multiplicar(num1, num2);
+    
+    sumar(5, 7);
+    multiplicar(num1 + 2, num2 * 2);
+}
+end
+        '''
+# Respuestas: La suma es 11, El producto es 24, La suma es 12, El producto es 60
