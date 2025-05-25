@@ -1,3 +1,4 @@
+
 class VirtualMachine:
     def __init__(self, memory_manager, quadruples, function_directory):
         self.memory = memory_manager
@@ -36,6 +37,7 @@ class VirtualMachine:
         left = quad.left_operand
         right = quad.right_operand
         result = quad.result
+        print(operator)
         
         # Actualizar IP en memory manager
         self.memory.instruction_pointer = self.instruction_pointer

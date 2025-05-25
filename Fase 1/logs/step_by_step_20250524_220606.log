@@ -1,0 +1,18 @@
+22:06:06 - INFO - ============================================================
+22:06:06 - INFO - INICIO DE EJECUCIÓN - 2025-05-24 22:06:06
+22:06:06 - INFO - ============================================================
+22:06:06 - INFO - MODO PASO A PASO ACTIVADO
+22:06:06 - INFO - Presiona Enter para continuar con cada instrucción...
+22:06:06 - ERROR - ERROR STEP_EXECUTION_ERROR: cannot unpack non-iterable Quadruple object
+22:06:06 - INFO - ============================================================
+22:06:06 - INFO - FIN DE EJECUCIÓN - 2025-05-24 22:06:06 - CON ERRORES
+22:06:06 - INFO - ============================================================
+22:06:06 - INFO - 
+RESUMEN DE EJECUCIÓN:
+22:06:06 - INFO -   Cuádruplos ejecutados: 0
+22:06:06 - INFO -   Accesos a memoria: 0
+22:06:06 - INFO -   Llamadas a funciones: 0
+22:06:06 - INFO -   Errores encontrados: 1
+22:06:06 - INFO - 
+ERRORES REGISTRADOS:
+22:06:06 - INFO -   - STEP_EXECUTION_ERROR: cannot unpack non-iterable Quadruple object
