@@ -1,6 +1,6 @@
 
 ================================================================================
-SESIÓN DE PRUEBAS - 2025-05-25 14:38:26
+SESIÓN DE PRUEBAS - 2025-05-25 14:59:23
 ================================================================================
 
 
@@ -75,10 +75,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 ----------------------------------------------------------------------
 
 ===== FUNCTION DIRECTORY =====
-Function: main - Start Address: None
+Function: main - Start Address: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
       jump to quadruple 1
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 5000)
       assign value of constant(5) to a (global)
@@ -397,10 +401,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 ----------------------------------------------------------------------
 
 ===== FUNCTION DIRECTORY =====
-Function: main - Start Address: None
+Function: main - Start Address: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
       jump to quadruple 1
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 5000)
       assign value of constant(15) to x (global)
@@ -546,10 +554,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 ----------------------------------------------------------------------
 
 ===== FUNCTION DIRECTORY =====
-Function: main - Start Address: None
+Function: main - Start Address: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
       jump to quadruple 1
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 5000)
       assign value of constant(1) to contador (global)
@@ -831,7 +843,7 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 ===== FUNCTION DIRECTORY =====
 Function: sumar - Start Address: 1
 Function: multiplicar - Start Address: 6
-Function: main - Start Address: None
+Function: main - Start Address: 11
 ----------------------------------------------------------------------
 0: (goto, None, None, 11)
       jump to quadruple 11
@@ -875,6 +887,10 @@ Starting at quadruple 6
 10: (ENDFUNC, None, None, None)
       perform operation ENDFUNC with operand None
 ==================== END OF MULTIPLICAR ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 11
 ----------------------------------------------------------------------
 11: (=, 20000, None, 5001)
       assign value of constant(8) to num1 (global)
@@ -1111,10 +1127,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 ----------------------------------------------------------------------
 
 ===== FUNCTION DIRECTORY =====
-Function: main - Start Address: None
+Function: main - Start Address: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
       jump to quadruple 1
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 1
 ----------------------------------------------------------------------
 1: (=, 20500, None, 8000)
       assign value of constant(3.5) to x (global)
@@ -1224,10 +1244,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 ----------------------------------------------------------------------
 
 ===== FUNCTION DIRECTORY =====
-Function: main - Start Address: None
+Function: main - Start Address: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
       jump to quadruple 1
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 1
 ----------------------------------------------------------------------
 1: (*, 20000, 20001, 15000)
       multiply constant(-1) and constant(5), store result in addr:15000

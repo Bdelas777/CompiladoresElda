@@ -53,6 +53,9 @@ def p_saveGo(p):
 def p_fillMain(p):
     '''fillMain : empty'''
     semantic.declare_main()
+    if 'main' in semantic.function_directory:
+        semantic.function_directory['main'].start_address = len(quad_gen.Quads)
+    
     if hasattr(quad_gen, 'main_goto_index'):
         quad_gen.fill_quad(quad_gen.main_goto_index, len(quad_gen.Quads))
     p[0] = None
