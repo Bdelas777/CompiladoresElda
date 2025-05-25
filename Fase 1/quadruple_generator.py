@@ -39,9 +39,6 @@ class QuadrupleGenerator:
             
         operator = self.POper[-1]
         if operator in ['+', '-', '*', '/', '>', '<', '!=']:
-            print(f"PilaO antes: {self.PilaO}")
-            print(f"PTypes antes: {self.PTypes}")
-            print(f"POper: {self.POper}")
             
             # Extraer operandos
             right_operand = self.PilaO.pop()
@@ -49,9 +46,7 @@ class QuadrupleGenerator:
             left_operand = self.PilaO.pop()
             left_type = self.PTypes.pop()
             operator = self.POper.pop()
-            
-            print(f"Operación: {left_operand} {operator} {right_operand}")
-            print(f"Tipos: {left_type} {operator} {right_type}")
+        
             
             # Mapear operador a operación
             operation = None
@@ -77,8 +72,7 @@ class QuadrupleGenerator:
                 self.PilaO.append(result)
                 self.PTypes.append(result_type)
                 
-                print(f"PilaO después: {self.PilaO}")
-                print(f"Cuádruplo generado: {quad}")
+             
                 return True
             else:
                 self.semantic.add_error(f"Type mismatch: {left_type} {operator} {right_type}")
@@ -107,12 +101,10 @@ class QuadrupleGenerator:
         self.POper.append(operator)
         
     def process_operand(self, operand_id, operand_type):
-        print(f"Processing operand: {operand_id} of type {operand_type}")
-        print(self.PilaO, "PilaO")
+
         self.PilaO.append(operand_id)
         self.PTypes.append(operand_type)
-        print(f"Processing operand: {operand_id} of type {operand_type} despues")
-        print(self.PilaO, "PilaO despues")
+       
         
         
     def check_top_operation(self, operators_list):

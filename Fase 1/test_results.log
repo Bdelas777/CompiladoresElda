@@ -1,0 +1,1306 @@
+
+================================================================================
+SESIÓN DE PRUEBAS - 2025-05-25 14:38:26
+================================================================================
+
+
+[TEST 1] Operaciones Básicas
+------------------------------------------------------------
+CÓDIGO:
+ 1: program operaciones_basicas;
+ 2: var
+ 3:     a, b, c, resultado, resultado2 : int;
+ 4:     resultado3 : float;
+ 5: 
+ 6: main {
+ 7:     a = 5;
+ 8:     b = 3;
+ 9:     c = 2;
+10:     
+11:     resultado = a + b * c;
+12:     print("Resultado 1: ", resultado);
+13:     
+14:     resultado2 = (a + b) * c;
+15:     print("Resultado 2: ", resultado2);
+16:     
+17:     resultado3 = a - b / c;
+18:     print("Resultado 3: ", resultado3);
+19:     
+20:     resultado = a + b + c;
+21:     print("Resultado 4: ", resultado);
+22:     
+23:     resultado2 = a + b * c * 2;
+24:     print("Resultado 5: ", resultado2);
+25:     
+26:     resultado3 = a + b + c * 2;
+27:     print("Resultado 6: ", resultado3);
+28:     
+29:     resultado3 = a  - b * c *2 + 1 ;
+30:     print("Resultado 7: ", resultado3);
+31: }
+32: end
+
+SALIDA OBTENIDA:
+Adding ID 'a' to temp list in scope: global
+Added 'a' to temporary variable list in scope: global
+Adding ID 'b' to temp list in scope: global
+Added 'b' to temporary variable list in scope: global
+Adding ID 'c' to temp list in scope: global
+Added 'c' to temporary variable list in scope: global
+Adding ID 'resultado' to temp list in scope: global
+Added 'resultado' to temporary variable list in scope: global
+Adding ID 'resultado2' to temp list in scope: global
+Added 'resultado2' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'a' of type Type.INT at address 5000
+Added global variable 'b' of type Type.INT at address 5001
+Added global variable 'c' of type Type.INT at address 5002
+Added global variable 'resultado' of type Type.INT at address 5003
+Added global variable 'resultado2' of type Type.INT at address 5004
+Adding ID 'resultado3' to temp list in scope: global
+Added 'resultado3' to temporary variable list in scope: global
+Set current type to Type.FLOAT
+Adding variables to table in scope: global
+Added global variable 'resultado3' of type Type.FLOAT at address 8000
+Starting variable declaration in scope 'global'
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program operaciones_basicas started, scope reset to global
+Program operaciones_basicas completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: None
+----------------------------------------------------------------------
+0: (goto, None, None, 1)
+      jump to quadruple 1
+----------------------------------------------------------------------
+1: (=, 20000, None, 5000)
+      assign value of constant(5) to a (global)
+----------------------------------------------------------------------
+2: (=, 20001, None, 5001)
+      assign value of constant(3) to b (global)
+----------------------------------------------------------------------
+3: (=, 20002, None, 5002)
+      assign value of constant(2) to c (global)
+----------------------------------------------------------------------
+4: (*, 5001, 5002, 15000)
+      multiply b (global) and c (global), store result in addr:15000
+----------------------------------------------------------------------
+5: (+, 5000, 15000, 15001)
+      add a (global) and addr:15000, store result in addr:15001
+----------------------------------------------------------------------
+6: (=, 15001, None, 5003)
+      assign value of addr:15001 to resultado (global)
+----------------------------------------------------------------------
+7: (print, Resultado 1: , None, None)
+      print value addr:Resultado 1: 
+----------------------------------------------------------------------
+8: (print, 5003, None, None)
+      print value resultado (global)
+----------------------------------------------------------------------
+9: (+, 5000, 5001, 15002)
+      add a (global) and b (global), store result in addr:15002
+----------------------------------------------------------------------
+10: (*, 15002, 5002, 15003)
+      multiply addr:15002 and c (global), store result in addr:15003
+----------------------------------------------------------------------
+11: (=, 15003, None, 5004)
+      assign value of addr:15003 to resultado2 (global)
+----------------------------------------------------------------------
+12: (print, Resultado 2: , None, None)
+      print value addr:Resultado 2: 
+----------------------------------------------------------------------
+13: (print, 5004, None, None)
+      print value resultado2 (global)
+----------------------------------------------------------------------
+14: (/, 5001, 5002, 17000)
+      divide b (global) and c (global), store result in addr:17000
+----------------------------------------------------------------------
+15: (-, 5000, 17000, 17001)
+      subtract a (global) and addr:17000, store result in addr:17001
+----------------------------------------------------------------------
+16: (=, 17001, None, 8000)
+      assign value of addr:17001 to resultado3 (global)
+----------------------------------------------------------------------
+17: (print, Resultado 3: , None, None)
+      print value addr:Resultado 3: 
+----------------------------------------------------------------------
+18: (print, 8000, None, None)
+      print value resultado3 (global)
+----------------------------------------------------------------------
+19: (+, 5000, 5001, 15004)
+      add a (global) and b (global), store result in addr:15004
+----------------------------------------------------------------------
+20: (+, 15004, 5002, 15005)
+      add addr:15004 and c (global), store result in addr:15005
+----------------------------------------------------------------------
+21: (=, 15005, None, 5003)
+      assign value of addr:15005 to resultado (global)
+----------------------------------------------------------------------
+22: (print, Resultado 4: , None, None)
+      print value addr:Resultado 4: 
+----------------------------------------------------------------------
+23: (print, 5003, None, None)
+      print value resultado (global)
+----------------------------------------------------------------------
+24: (*, 5001, 5002, 15006)
+      multiply b (global) and c (global), store result in addr:15006
+----------------------------------------------------------------------
+25: (*, 15006, 20002, 15007)
+      multiply addr:15006 and constant(2), store result in addr:15007
+----------------------------------------------------------------------
+26: (+, 5000, 15007, 15008)
+      add a (global) and addr:15007, store result in addr:15008
+----------------------------------------------------------------------
+27: (=, 15008, None, 5004)
+      assign value of addr:15008 to resultado2 (global)
+----------------------------------------------------------------------
+28: (print, Resultado 5: , None, None)
+      print value addr:Resultado 5: 
+----------------------------------------------------------------------
+29: (print, 5004, None, None)
+      print value resultado2 (global)
+----------------------------------------------------------------------
+30: (*, 5002, 20002, 15009)
+      multiply c (global) and constant(2), store result in addr:15009
+----------------------------------------------------------------------
+31: (+, 5000, 5001, 15010)
+      add a (global) and b (global), store result in addr:15010
+----------------------------------------------------------------------
+32: (+, 15010, 15009, 15011)
+      add addr:15010 and addr:15009, store result in addr:15011
+----------------------------------------------------------------------
+33: (=, 15011, None, 8000)
+      assign value of addr:15011 to resultado3 (global)
+----------------------------------------------------------------------
+34: (print, Resultado 6: , None, None)
+      print value addr:Resultado 6: 
+----------------------------------------------------------------------
+35: (print, 8000, None, None)
+      print value resultado3 (global)
+----------------------------------------------------------------------
+36: (*, 5001, 5002, 15012)
+      multiply b (global) and c (global), store result in addr:15012
+----------------------------------------------------------------------
+37: (*, 15012, 20002, 15013)
+      multiply addr:15012 and constant(2), store result in addr:15013
+----------------------------------------------------------------------
+38: (-, 5000, 15013, 15014)
+      subtract a (global) and addr:15013, store result in addr:15014
+----------------------------------------------------------------------
+39: (+, 15014, 20003, 15015)
+      add addr:15014 and constant(1), store result in addr:15015
+----------------------------------------------------------------------
+40: (=, 15015, None, 8000)
+      assign value of addr:15015 to resultado3 (global)
+----------------------------------------------------------------------
+41: (print, Resultado 7: , None, None)
+      print value addr:Resultado 7: 
+----------------------------------------------------------------------
+42: (print, 8000, None, None)
+      print value resultado3 (global)
+----------------------------------------------------------------------
+=== INICIANDO EJECUCIÓN ===
+IP: 0 -> Ejecutando: (goto, None, None, 1)
+  Salto a: 1
+IP: 1 -> Ejecutando: (=, 20000, None, 5000)
+  Asignación: direccion[5000] = 5
+IP: 2 -> Ejecutando: (=, 20001, None, 5001)
+  Asignación: direccion[5001] = 3
+IP: 3 -> Ejecutando: (=, 20002, None, 5002)
+  Asignación: direccion[5002] = 2
+IP: 4 -> Ejecutando: (*, 5001, 5002, 15000)
+  Aritmética: 3 * 2 = 6
+IP: 5 -> Ejecutando: (+, 5000, 15000, 15001)
+  Aritmética: 5 + 6 = 11
+IP: 6 -> Ejecutando: (=, 15001, None, 5003)
+  Asignación: direccion[5003] = 11
+IP: 7 -> Ejecutando: (print, Resultado 1: , None, None)
+OUTPUT: Resultado 1: 
+IP: 8 -> Ejecutando: (print, 5003, None, None)
+OUTPUT: 11
+IP: 9 -> Ejecutando: (+, 5000, 5001, 15002)
+  Aritmética: 5 + 3 = 8
+IP: 10 -> Ejecutando: (*, 15002, 5002, 15003)
+  Aritmética: 8 * 2 = 16
+IP: 11 -> Ejecutando: (=, 15003, None, 5004)
+  Asignación: direccion[5004] = 16
+IP: 12 -> Ejecutando: (print, Resultado 2: , None, None)
+OUTPUT: Resultado 2: 
+IP: 13 -> Ejecutando: (print, 5004, None, None)
+OUTPUT: 16
+IP: 14 -> Ejecutando: (/, 5001, 5002, 17000)
+  Aritmética: 3 / 2 = 1.5
+IP: 15 -> Ejecutando: (-, 5000, 17000, 17001)
+  Aritmética: 5 - 1.5 = 3.5
+IP: 16 -> Ejecutando: (=, 17001, None, 8000)
+  Asignación: direccion[8000] = 3.5
+IP: 17 -> Ejecutando: (print, Resultado 3: , None, None)
+OUTPUT: Resultado 3: 
+IP: 18 -> Ejecutando: (print, 8000, None, None)
+OUTPUT: 3.5
+IP: 19 -> Ejecutando: (+, 5000, 5001, 15004)
+  Aritmética: 5 + 3 = 8
+IP: 20 -> Ejecutando: (+, 15004, 5002, 15005)
+  Aritmética: 8 + 2 = 10
+IP: 21 -> Ejecutando: (=, 15005, None, 5003)
+  Asignación: direccion[5003] = 10
+IP: 22 -> Ejecutando: (print, Resultado 4: , None, None)
+OUTPUT: Resultado 4: 
+IP: 23 -> Ejecutando: (print, 5003, None, None)
+OUTPUT: 10
+IP: 24 -> Ejecutando: (*, 5001, 5002, 15006)
+  Aritmética: 3 * 2 = 6
+IP: 25 -> Ejecutando: (*, 15006, 20002, 15007)
+  Aritmética: 6 * 2 = 12
+IP: 26 -> Ejecutando: (+, 5000, 15007, 15008)
+  Aritmética: 5 + 12 = 17
+IP: 27 -> Ejecutando: (=, 15008, None, 5004)
+  Asignación: direccion[5004] = 17
+IP: 28 -> Ejecutando: (print, Resultado 5: , None, None)
+OUTPUT: Resultado 5: 
+IP: 29 -> Ejecutando: (print, 5004, None, None)
+OUTPUT: 17
+IP: 30 -> Ejecutando: (*, 5002, 20002, 15009)
+  Aritmética: 2 * 2 = 4
+IP: 31 -> Ejecutando: (+, 5000, 5001, 15010)
+  Aritmética: 5 + 3 = 8
+IP: 32 -> Ejecutando: (+, 15010, 15009, 15011)
+  Aritmética: 8 + 4 = 12
+IP: 33 -> Ejecutando: (=, 15011, None, 8000)
+  Asignación: direccion[8000] = 12
+IP: 34 -> Ejecutando: (print, Resultado 6: , None, None)
+OUTPUT: Resultado 6: 
+IP: 35 -> Ejecutando: (print, 8000, None, None)
+OUTPUT: 12.0
+IP: 36 -> Ejecutando: (*, 5001, 5002, 15012)
+  Aritmética: 3 * 2 = 6
+IP: 37 -> Ejecutando: (*, 15012, 20002, 15013)
+  Aritmética: 6 * 2 = 12
+IP: 38 -> Ejecutando: (-, 5000, 15013, 15014)
+  Aritmética: 5 - 12 = -7
+IP: 39 -> Ejecutando: (+, 15014, 20003, 15015)
+  Aritmética: -7 + 1 = -6
+IP: 40 -> Ejecutando: (=, 15015, None, 8000)
+  Asignación: direccion[8000] = -6
+IP: 41 -> Ejecutando: (print, Resultado 7: , None, None)
+OUTPUT: Resultado 7: 
+IP: 42 -> Ejecutando: (print, 8000, None, None)
+OUTPUT: -6.0
+=== EJECUCIÓN TERMINADA ===
+
+=== ESTADO DE LA MEMORIA SEGMENTADA ===
+Memoria Global Enteros (5000-7999):
+  [5000]: 5
+  [5001]: 3
+  [5002]: 2
+  [5003]: 10
+  [5004]: 17
+Memoria Global Flotantes (8000-10999):
+  [8000]: -6.0
+Memoria Local Enteros (11000-12999):
+Memoria Local Flotantes (13000-14999):
+Memoria Temporal Enteros (15000-16999):
+  [15000]: 6
+  [15001]: 11
+  [15002]: 8
+  [15003]: 16
+  [15004]: 8
+  [15005]: 10
+  [15006]: 6
+  [15007]: 12
+  [15008]: 17
+  [15009]: 4
+  [15010]: 8
+  [15011]: 12
+  [15012]: 6
+  [15013]: 12
+  [15014]: -7
+  [15015]: -6
+Memoria Temporal Flotantes (17000-18999):
+  [17000]: 1.5
+  [17001]: 3.5
+Memoria Temporal Booleanos (19000-19999):
+Constantes Enteras (20000-20499):
+  [20000]: 5
+  [20001]: 3
+  [20002]: 2
+  [20003]: 1
+Constantes Flotantes (20500+):
+========================================
+
+RESULTADOS ESPERADOS:
+  - 11
+  - 16
+  - 3.5
+  - 10
+  - 17
+  - 12
+  - -6
+
+✅ PRUEBA EXITOSA
+------------------------------------------------------------
+
+[TEST 2] Control IF
+------------------------------------------------------------
+CÓDIGO:
+ 1: program control_if;
+ 2: var
+ 3:     x, y, max : int;
+ 4: main {
+ 5:     x = 15;
+ 6:     y = 7;
+ 7:     
+ 8:     if (x > y) {
+ 9:         max = x;
+10:         print("El mayor es x: ", max);
+11:     } else {
+12:         max = y;
+13:         print("El mayor es y: ", max);
+14:     };
+15:     
+16:     if (x < 10) {
+17:         print("x es menor que 10");
+18:     } else {
+19:         print("x es mayor o igual que 10");
+20:     };
+21: }
+22: end
+
+SALIDA OBTENIDA:
+Adding ID 'x' to temp list in scope: global
+Added 'x' to temporary variable list in scope: global
+Adding ID 'y' to temp list in scope: global
+Added 'y' to temporary variable list in scope: global
+Adding ID 'max' to temp list in scope: global
+Added 'max' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'x' of type Type.INT at address 5000
+Added global variable 'y' of type Type.INT at address 5001
+Added global variable 'max' of type Type.INT at address 5002
+Starting variable declaration in scope 'global'
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program control_if started, scope reset to global
+Program control_if completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: None
+----------------------------------------------------------------------
+0: (goto, None, None, 1)
+      jump to quadruple 1
+----------------------------------------------------------------------
+1: (=, 20000, None, 5000)
+      assign value of constant(15) to x (global)
+----------------------------------------------------------------------
+2: (=, 20001, None, 5001)
+      assign value of constant(7) to y (global)
+----------------------------------------------------------------------
+3: (>, 5000, 5001, 19000)
+      compare if x (global) is greater than y (global), store boolean result in addr:19000
+----------------------------------------------------------------------
+4: (gotof, 19000, None, 9)
+      if addr:19000 is false, jump to quadruple 9
+----------------------------------------------------------------------
+5: (=, 5000, None, 5002)
+      assign value of x (global) to max (global)
+----------------------------------------------------------------------
+6: (print, El mayor es x: , None, None)
+      print value addr:El mayor es x: 
+----------------------------------------------------------------------
+7: (print, 5002, None, None)
+      print value max (global)
+----------------------------------------------------------------------
+8: (goto, None, None, 12)
+      jump to quadruple 12
+----------------------------------------------------------------------
+9: (=, 5001, None, 5002)
+      assign value of y (global) to max (global)
+----------------------------------------------------------------------
+10: (print, El mayor es y: , None, None)
+      print value addr:El mayor es y: 
+----------------------------------------------------------------------
+11: (print, 5002, None, None)
+      print value max (global)
+----------------------------------------------------------------------
+12: (<, 5000, 20002, 19001)
+      compare if x (global) is less than constant(10), store boolean result in addr:19001
+----------------------------------------------------------------------
+13: (gotof, 19001, None, 16)
+      if addr:19001 is false, jump to quadruple 16
+----------------------------------------------------------------------
+14: (print, x es menor que 10, None, None)
+      print value addr:x es menor que 10
+----------------------------------------------------------------------
+15: (goto, None, None, 17)
+      jump to quadruple 17
+----------------------------------------------------------------------
+16: (print, x es mayor o igual que 10, None, None)
+      print value addr:x es mayor o igual que 10
+----------------------------------------------------------------------
+=== INICIANDO EJECUCIÓN ===
+IP: 0 -> Ejecutando: (goto, None, None, 1)
+  Salto a: 1
+IP: 1 -> Ejecutando: (=, 20000, None, 5000)
+  Asignación: direccion[5000] = 15
+IP: 2 -> Ejecutando: (=, 20001, None, 5001)
+  Asignación: direccion[5001] = 7
+IP: 3 -> Ejecutando: (>, 5000, 5001, 19000)
+  Comparación: 15 > 7 = True
+IP: 4 -> Ejecutando: (gotof, 19000, None, 9)
+  No hay salto (condición verdadera)
+IP: 5 -> Ejecutando: (=, 5000, None, 5002)
+  Asignación: direccion[5002] = 15
+IP: 6 -> Ejecutando: (print, El mayor es x: , None, None)
+OUTPUT: El mayor es x: 
+IP: 7 -> Ejecutando: (print, 5002, None, None)
+OUTPUT: 15
+IP: 8 -> Ejecutando: (goto, None, None, 12)
+  Salto a: 12
+IP: 12 -> Ejecutando: (<, 5000, 20002, 19001)
+  Comparación: 15 < 10 = False
+IP: 13 -> Ejecutando: (gotof, 19001, None, 16)
+  Salto condicional a: 16 (condición falsa)
+IP: 16 -> Ejecutando: (print, x es mayor o igual que 10, None, None)
+OUTPUT: x es mayor o igual que 10
+=== EJECUCIÓN TERMINADA ===
+
+=== ESTADO DE LA MEMORIA SEGMENTADA ===
+Memoria Global Enteros (5000-7999):
+  [5000]: 15
+  [5001]: 7
+  [5002]: 15
+Memoria Global Flotantes (8000-10999):
+Memoria Local Enteros (11000-12999):
+Memoria Local Flotantes (13000-14999):
+Memoria Temporal Enteros (15000-16999):
+Memoria Temporal Flotantes (17000-18999):
+Memoria Temporal Booleanos (19000-19999):
+  [19000]: True
+  [19001]: False
+Constantes Enteras (20000-20499):
+  [20000]: 15
+  [20001]: 7
+  [20002]: 10
+Constantes Flotantes (20500+):
+========================================
+
+RESULTADOS ESPERADOS:
+  - El mayor es x:
+  - 15
+  - x es mayor o igual que 10
+
+✅ PRUEBA EXITOSA
+------------------------------------------------------------
+
+[TEST 3] Ciclo WHILE
+------------------------------------------------------------
+CÓDIGO:
+ 1: program ciclo_while;
+ 2: var
+ 3:     contador, suma : int;
+ 4: main {
+ 5:     contador = 1;
+ 6:     suma = 0;
+ 7:     
+ 8:     while (contador < 5) do {
+ 9:         suma = suma + contador;
+10:         print("Iteración: ", contador, " Suma actual: ", suma);
+11:         contador = contador + 1;
+12:     };
+13:     
+14:     print("Suma final: ", suma);
+15: }
+16: end
+
+SALIDA OBTENIDA:
+Adding ID 'contador' to temp list in scope: global
+Added 'contador' to temporary variable list in scope: global
+Adding ID 'suma' to temp list in scope: global
+Added 'suma' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'contador' of type Type.INT at address 5000
+Added global variable 'suma' of type Type.INT at address 5001
+Starting variable declaration in scope 'global'
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program ciclo_while started, scope reset to global
+Program ciclo_while completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: None
+----------------------------------------------------------------------
+0: (goto, None, None, 1)
+      jump to quadruple 1
+----------------------------------------------------------------------
+1: (=, 20000, None, 5000)
+      assign value of constant(1) to contador (global)
+----------------------------------------------------------------------
+2: (=, 20001, None, 5001)
+      assign value of constant(0) to suma (global)
+----------------------------------------------------------------------
+3: (<, 5000, 20002, 19000)
+      compare if contador (global) is less than constant(5), store boolean result in addr:19000
+----------------------------------------------------------------------
+4: (gotof, 19000, None, 14)
+      if addr:19000 is false, jump to quadruple 14
+----------------------------------------------------------------------
+5: (+, 5001, 5000, 15000)
+      add suma (global) and contador (global), store result in addr:15000
+----------------------------------------------------------------------
+6: (=, 15000, None, 5001)
+      assign value of addr:15000 to suma (global)
+----------------------------------------------------------------------
+7: (print, Iteración: , None, None)
+      print value addr:Iteración: 
+----------------------------------------------------------------------
+8: (print, 5000, None, None)
+      print value contador (global)
+----------------------------------------------------------------------
+9: (print,  Suma actual: , None, None)
+      print value addr: Suma actual: 
+----------------------------------------------------------------------
+10: (print, 5001, None, None)
+      print value suma (global)
+----------------------------------------------------------------------
+11: (+, 5000, 20000, 15001)
+      add contador (global) and constant(1), store result in addr:15001
+----------------------------------------------------------------------
+12: (=, 15001, None, 5000)
+      assign value of addr:15001 to contador (global)
+----------------------------------------------------------------------
+13: (goto, None, None, 3)
+      jump to quadruple 3
+----------------------------------------------------------------------
+14: (print, Suma final: , None, None)
+      print value addr:Suma final: 
+----------------------------------------------------------------------
+15: (print, 5001, None, None)
+      print value suma (global)
+----------------------------------------------------------------------
+=== INICIANDO EJECUCIÓN ===
+IP: 0 -> Ejecutando: (goto, None, None, 1)
+  Salto a: 1
+IP: 1 -> Ejecutando: (=, 20000, None, 5000)
+  Asignación: direccion[5000] = 1
+IP: 2 -> Ejecutando: (=, 20001, None, 5001)
+  Asignación: direccion[5001] = 0
+IP: 3 -> Ejecutando: (<, 5000, 20002, 19000)
+  Comparación: 1 < 5 = True
+IP: 4 -> Ejecutando: (gotof, 19000, None, 14)
+  No hay salto (condición verdadera)
+IP: 5 -> Ejecutando: (+, 5001, 5000, 15000)
+  Aritmética: 0 + 1 = 1
+IP: 6 -> Ejecutando: (=, 15000, None, 5001)
+  Asignación: direccion[5001] = 1
+IP: 7 -> Ejecutando: (print, Iteración: , None, None)
+OUTPUT: Iteración: 
+IP: 8 -> Ejecutando: (print, 5000, None, None)
+OUTPUT: 1
+IP: 9 -> Ejecutando: (print,  Suma actual: , None, None)
+OUTPUT:  Suma actual: 
+IP: 10 -> Ejecutando: (print, 5001, None, None)
+OUTPUT: 1
+IP: 11 -> Ejecutando: (+, 5000, 20000, 15001)
+  Aritmética: 1 + 1 = 2
+IP: 12 -> Ejecutando: (=, 15001, None, 5000)
+  Asignación: direccion[5000] = 2
+IP: 13 -> Ejecutando: (goto, None, None, 3)
+  Salto a: 3
+IP: 3 -> Ejecutando: (<, 5000, 20002, 19000)
+  Comparación: 2 < 5 = True
+IP: 4 -> Ejecutando: (gotof, 19000, None, 14)
+  No hay salto (condición verdadera)
+IP: 5 -> Ejecutando: (+, 5001, 5000, 15000)
+  Aritmética: 1 + 2 = 3
+IP: 6 -> Ejecutando: (=, 15000, None, 5001)
+  Asignación: direccion[5001] = 3
+IP: 7 -> Ejecutando: (print, Iteración: , None, None)
+OUTPUT: Iteración: 
+IP: 8 -> Ejecutando: (print, 5000, None, None)
+OUTPUT: 2
+IP: 9 -> Ejecutando: (print,  Suma actual: , None, None)
+OUTPUT:  Suma actual: 
+IP: 10 -> Ejecutando: (print, 5001, None, None)
+OUTPUT: 3
+IP: 11 -> Ejecutando: (+, 5000, 20000, 15001)
+  Aritmética: 2 + 1 = 3
+IP: 12 -> Ejecutando: (=, 15001, None, 5000)
+  Asignación: direccion[5000] = 3
+IP: 13 -> Ejecutando: (goto, None, None, 3)
+  Salto a: 3
+IP: 3 -> Ejecutando: (<, 5000, 20002, 19000)
+  Comparación: 3 < 5 = True
+IP: 4 -> Ejecutando: (gotof, 19000, None, 14)
+  No hay salto (condición verdadera)
+IP: 5 -> Ejecutando: (+, 5001, 5000, 15000)
+  Aritmética: 3 + 3 = 6
+IP: 6 -> Ejecutando: (=, 15000, None, 5001)
+  Asignación: direccion[5001] = 6
+IP: 7 -> Ejecutando: (print, Iteración: , None, None)
+OUTPUT: Iteración: 
+IP: 8 -> Ejecutando: (print, 5000, None, None)
+OUTPUT: 3
+IP: 9 -> Ejecutando: (print,  Suma actual: , None, None)
+OUTPUT:  Suma actual: 
+IP: 10 -> Ejecutando: (print, 5001, None, None)
+OUTPUT: 6
+IP: 11 -> Ejecutando: (+, 5000, 20000, 15001)
+  Aritmética: 3 + 1 = 4
+IP: 12 -> Ejecutando: (=, 15001, None, 5000)
+  Asignación: direccion[5000] = 4
+IP: 13 -> Ejecutando: (goto, None, None, 3)
+  Salto a: 3
+IP: 3 -> Ejecutando: (<, 5000, 20002, 19000)
+  Comparación: 4 < 5 = True
+IP: 4 -> Ejecutando: (gotof, 19000, None, 14)
+  No hay salto (condición verdadera)
+IP: 5 -> Ejecutando: (+, 5001, 5000, 15000)
+  Aritmética: 6 + 4 = 10
+IP: 6 -> Ejecutando: (=, 15000, None, 5001)
+  Asignación: direccion[5001] = 10
+IP: 7 -> Ejecutando: (print, Iteración: , None, None)
+OUTPUT: Iteración: 
+IP: 8 -> Ejecutando: (print, 5000, None, None)
+OUTPUT: 4
+IP: 9 -> Ejecutando: (print,  Suma actual: , None, None)
+OUTPUT:  Suma actual: 
+IP: 10 -> Ejecutando: (print, 5001, None, None)
+OUTPUT: 10
+IP: 11 -> Ejecutando: (+, 5000, 20000, 15001)
+  Aritmética: 4 + 1 = 5
+IP: 12 -> Ejecutando: (=, 15001, None, 5000)
+  Asignación: direccion[5000] = 5
+IP: 13 -> Ejecutando: (goto, None, None, 3)
+  Salto a: 3
+IP: 3 -> Ejecutando: (<, 5000, 20002, 19000)
+  Comparación: 5 < 5 = False
+IP: 4 -> Ejecutando: (gotof, 19000, None, 14)
+  Salto condicional a: 14 (condición falsa)
+IP: 14 -> Ejecutando: (print, Suma final: , None, None)
+OUTPUT: Suma final: 
+IP: 15 -> Ejecutando: (print, 5001, None, None)
+OUTPUT: 10
+=== EJECUCIÓN TERMINADA ===
+
+=== ESTADO DE LA MEMORIA SEGMENTADA ===
+Memoria Global Enteros (5000-7999):
+  [5000]: 5
+  [5001]: 10
+Memoria Global Flotantes (8000-10999):
+Memoria Local Enteros (11000-12999):
+Memoria Local Flotantes (13000-14999):
+Memoria Temporal Enteros (15000-16999):
+  [15000]: 10
+  [15001]: 5
+Memoria Temporal Flotantes (17000-18999):
+Memoria Temporal Booleanos (19000-19999):
+  [19000]: False
+Constantes Enteras (20000-20499):
+  [20000]: 1
+  [20001]: 0
+  [20002]: 5
+Constantes Flotantes (20500+):
+========================================
+
+RESULTADOS ESPERADOS:
+  - Iteración:
+  - 1
+  - Suma actual:
+  - 1
+  - Iteración:
+  - 2
+  - Suma actual:
+  - 3
+  - Iteración:
+  - 3
+  - Suma actual:
+  - 6
+  - Iteración:
+  - 4
+  - Suma actual:
+  - 10
+  - Suma final:
+  - 10
+
+✅ PRUEBA EXITOSA
+------------------------------------------------------------
+
+[TEST 4] Funciones
+------------------------------------------------------------
+CÓDIGO:
+ 1: program funciones;
+ 2: var
+ 3:     resultado, num1, num2 : int;
+ 4: 
+ 5: void sumar(a : int, b : int)
+ 6: [
+ 7:     var res : int;
+ 8:     {
+ 9:         res = a + b;
+10:         print("La suma es: ", res);
+11:     }
+12: ];
+13: 
+14: void multiplicar(c : int, d : int)
+15: [
+16:     var res : int;
+17:     {
+18:         res = c * d;
+19:         print("El producto es: ", res);
+20:     }
+21: ];
+22: 
+23: main {
+24:     num1 = 8;
+25:     num2 = 3;
+26:     
+27:     sumar(num1, num2);
+28:     multiplicar(num1, num2);
+29:     
+30:     sumar(5, 7);
+31:     multiplicar(num1 + 2, num2 * 2);
+32: }
+33: end
+
+SALIDA OBTENIDA:
+Adding ID 'resultado' to temp list in scope: global
+Added 'resultado' to temporary variable list in scope: global
+Adding ID 'num1' to temp list in scope: global
+Added 'num1' to temporary variable list in scope: global
+Adding ID 'num2' to temp list in scope: global
+Added 'num2' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'resultado' of type Type.INT at address 5000
+Added global variable 'num1' of type Type.INT at address 5001
+Added global variable 'num2' of type Type.INT at address 5002
+Starting variable declaration in scope 'global'
+Pushed scope: sumar, current scope stack: ['global', 'sumar']
+Declared function 'sumar' with return type Type.VOID, scope changed to: sumar
+Added parameter 'a' of type Type.INT at address 11000 to function 'sumar'
+Added parameter 'b' of type Type.INT at address 11001 to function 'sumar'
+Adding ID 'res' to temp list in scope: sumar
+Added 'res' to temporary variable list in scope: sumar
+Set current type to Type.INT
+Adding variables to table in scope: sumar
+Added local variable 'res' of type Type.INT at address 11002 to function 'sumar'
+Starting variable declaration in scope 'sumar'
+Popped scope: sumar, current scope is now: global
+Ended function 'sumar' declaration, returned to scope: global
+Pushed scope: multiplicar, current scope stack: ['global', 'multiplicar']
+Declared function 'multiplicar' with return type Type.VOID, scope changed to: multiplicar
+Added parameter 'c' of type Type.INT at address 11003 to function 'multiplicar'
+Added parameter 'd' of type Type.INT at address 11004 to function 'multiplicar'
+Adding ID 'res' to temp list in scope: multiplicar
+Added 'res' to temporary variable list in scope: multiplicar
+Set current type to Type.INT
+Adding variables to table in scope: multiplicar
+Added local variable 'res' of type Type.INT at address 11005 to function 'multiplicar'
+Starting variable declaration in scope 'multiplicar'
+Popped scope: multiplicar, current scope is now: global
+Ended function 'multiplicar' declaration, returned to scope: global
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program funciones started, scope reset to global
+Program funciones completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: sumar - Start Address: 1
+Function: multiplicar - Start Address: 6
+Function: main - Start Address: None
+----------------------------------------------------------------------
+0: (goto, None, None, 11)
+      jump to quadruple 11
+----------------------------------------------------------------------
+
+==================== FUNCTION: SUMAR ====================
+Starting at quadruple 1
+----------------------------------------------------------------------
+1: (+, 11000, 11001, 15000)
+      add addr:11000 and addr:11001, store result in addr:15000
+----------------------------------------------------------------------
+2: (=, 15000, None, 11002)
+      assign value of addr:15000 to addr:11002
+----------------------------------------------------------------------
+3: (print, La suma es: , None, None)
+      print value addr:La suma es: 
+----------------------------------------------------------------------
+4: (print, 11002, None, None)
+      print value addr:11002
+----------------------------------------------------------------------
+5: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF SUMAR ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: MULTIPLICAR ====================
+Starting at quadruple 6
+----------------------------------------------------------------------
+6: (*, 11003, 11004, 15001)
+      multiply addr:11003 and addr:11004, store result in addr:15001
+----------------------------------------------------------------------
+7: (=, 15001, None, 11005)
+      assign value of addr:15001 to addr:11005
+----------------------------------------------------------------------
+8: (print, El producto es: , None, None)
+      print value addr:El producto es: 
+----------------------------------------------------------------------
+9: (print, 11005, None, None)
+      print value addr:11005
+----------------------------------------------------------------------
+10: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF MULTIPLICAR ====================
+----------------------------------------------------------------------
+11: (=, 20000, None, 5001)
+      assign value of constant(8) to num1 (global)
+----------------------------------------------------------------------
+12: (=, 20001, None, 5002)
+      assign value of constant(3) to num2 (global)
+----------------------------------------------------------------------
+13: (ERA, sumar, None, None)
+      perform operation ERA with operand addr:sumar
+----------------------------------------------------------------------
+14: (parámetro, 5001, par1, None)
+      perform operation parámetro with operands num1 (global), addr:par1, result in None
+----------------------------------------------------------------------
+15: (parámetro, 5002, par2, None)
+      perform operation parámetro with operands num2 (global), addr:par2, result in None
+----------------------------------------------------------------------
+16: (GOSUB, sumar, None, None)
+      perform operation GOSUB with operand addr:sumar
+----------------------------------------------------------------------
+17: (ERA, multiplicar, None, None)
+      perform operation ERA with operand addr:multiplicar
+----------------------------------------------------------------------
+18: (parámetro, 5001, par1, None)
+      perform operation parámetro with operands num1 (global), addr:par1, result in None
+----------------------------------------------------------------------
+19: (parámetro, 5002, par2, None)
+      perform operation parámetro with operands num2 (global), addr:par2, result in None
+----------------------------------------------------------------------
+20: (GOSUB, multiplicar, None, None)
+      perform operation GOSUB with operand addr:multiplicar
+----------------------------------------------------------------------
+21: (ERA, sumar, None, None)
+      perform operation ERA with operand addr:sumar
+----------------------------------------------------------------------
+22: (parámetro, 20002, par1, None)
+      perform operation parámetro with operands constant(5), addr:par1, result in None
+----------------------------------------------------------------------
+23: (parámetro, 20003, par2, None)
+      perform operation parámetro with operands constant(7), addr:par2, result in None
+----------------------------------------------------------------------
+24: (GOSUB, sumar, None, None)
+      perform operation GOSUB with operand addr:sumar
+----------------------------------------------------------------------
+25: (ERA, multiplicar, None, None)
+      perform operation ERA with operand addr:multiplicar
+----------------------------------------------------------------------
+26: (+, 5001, 20004, 15002)
+      add num1 (global) and constant(2), store result in addr:15002
+----------------------------------------------------------------------
+27: (parámetro, 15002, par1, None)
+      perform operation parámetro with operands addr:15002, addr:par1, result in None
+----------------------------------------------------------------------
+28: (*, 5002, 20004, 15003)
+      multiply num2 (global) and constant(2), store result in addr:15003
+----------------------------------------------------------------------
+29: (parámetro, 15003, par2, None)
+      perform operation parámetro with operands addr:15003, addr:par2, result in None
+----------------------------------------------------------------------
+30: (GOSUB, multiplicar, None, None)
+      perform operation GOSUB with operand addr:multiplicar
+----------------------------------------------------------------------
+=== INICIANDO EJECUCIÓN ===
+IP: 0 -> Ejecutando: (goto, None, None, 11)
+  Salto a: 11
+IP: 11 -> Ejecutando: (=, 20000, None, 5001)
+  Asignación: direccion[5001] = 8
+IP: 12 -> Ejecutando: (=, 20001, None, 5002)
+  Asignación: direccion[5002] = 3
+IP: 13 -> Ejecutando: (ERA, sumar, None, None)
+  ERA: Reservando espacio para función 'sumar'
+IP: 14 -> Ejecutando: (parámetro, 5001, par1, None)
+  Parámetro: 8 -> posición 1
+IP: 15 -> Ejecutando: (parámetro, 5002, par2, None)
+  Parámetro: 3 -> posición 2
+IP: 16 -> Ejecutando: (GOSUB, sumar, None, None)
+    Asignando parámetro a (addr: 11000) = 8
+    Asignando parámetro b (addr: 11001) = 3
+  GOSUB: Llamando función 'sumar' en dirección 1
+IP: 1 -> Ejecutando: (+, 11000, 11001, 15000)
+  Aritmética: 8 + 3 = 11
+IP: 2 -> Ejecutando: (=, 15000, None, 11002)
+  Asignación: direccion[11002] = 11
+IP: 3 -> Ejecutando: (print, La suma es: , None, None)
+OUTPUT: La suma es: 
+IP: 4 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 11
+IP: 5 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 17
+IP: 17 -> Ejecutando: (ERA, multiplicar, None, None)
+  ERA: Reservando espacio para función 'multiplicar'
+IP: 18 -> Ejecutando: (parámetro, 5001, par1, None)
+  Parámetro: 8 -> posición 1
+IP: 19 -> Ejecutando: (parámetro, 5002, par2, None)
+  Parámetro: 3 -> posición 2
+IP: 20 -> Ejecutando: (GOSUB, multiplicar, None, None)
+    Asignando parámetro c (addr: 11003) = 8
+    Asignando parámetro d (addr: 11004) = 3
+  GOSUB: Llamando función 'multiplicar' en dirección 6
+IP: 6 -> Ejecutando: (*, 11003, 11004, 15001)
+  Aritmética: 8 * 3 = 24
+IP: 7 -> Ejecutando: (=, 15001, None, 11005)
+  Asignación: direccion[11005] = 24
+IP: 8 -> Ejecutando: (print, El producto es: , None, None)
+OUTPUT: El producto es: 
+IP: 9 -> Ejecutando: (print, 11005, None, None)
+OUTPUT: 24
+IP: 10 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 21
+IP: 21 -> Ejecutando: (ERA, sumar, None, None)
+  ERA: Reservando espacio para función 'sumar'
+IP: 22 -> Ejecutando: (parámetro, 20002, par1, None)
+  Parámetro: 5 -> posición 1
+IP: 23 -> Ejecutando: (parámetro, 20003, par2, None)
+  Parámetro: 7 -> posición 2
+IP: 24 -> Ejecutando: (GOSUB, sumar, None, None)
+    Asignando parámetro a (addr: 11000) = 5
+    Asignando parámetro b (addr: 11001) = 7
+  GOSUB: Llamando función 'sumar' en dirección 1
+IP: 1 -> Ejecutando: (+, 11000, 11001, 15000)
+  Aritmética: 5 + 7 = 12
+IP: 2 -> Ejecutando: (=, 15000, None, 11002)
+  Asignación: direccion[11002] = 12
+IP: 3 -> Ejecutando: (print, La suma es: , None, None)
+OUTPUT: La suma es: 
+IP: 4 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 12
+IP: 5 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 25
+IP: 25 -> Ejecutando: (ERA, multiplicar, None, None)
+  ERA: Reservando espacio para función 'multiplicar'
+IP: 26 -> Ejecutando: (+, 5001, 20004, 15002)
+  Aritmética: 8 + 2 = 10
+IP: 27 -> Ejecutando: (parámetro, 15002, par1, None)
+  Parámetro: 10 -> posición 1
+IP: 28 -> Ejecutando: (*, 5002, 20004, 15003)
+  Aritmética: 3 * 2 = 6
+IP: 29 -> Ejecutando: (parámetro, 15003, par2, None)
+  Parámetro: 6 -> posición 2
+IP: 30 -> Ejecutando: (GOSUB, multiplicar, None, None)
+    Asignando parámetro c (addr: 11003) = 10
+    Asignando parámetro d (addr: 11004) = 6
+  GOSUB: Llamando función 'multiplicar' en dirección 6
+IP: 6 -> Ejecutando: (*, 11003, 11004, 15001)
+  Aritmética: 10 * 6 = 60
+IP: 7 -> Ejecutando: (=, 15001, None, 11005)
+  Asignación: direccion[11005] = 60
+IP: 8 -> Ejecutando: (print, El producto es: , None, None)
+OUTPUT: El producto es: 
+IP: 9 -> Ejecutando: (print, 11005, None, None)
+OUTPUT: 60
+IP: 10 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 31
+=== EJECUCIÓN TERMINADA ===
+
+=== ESTADO DE LA MEMORIA SEGMENTADA ===
+Memoria Global Enteros (5000-7999):
+  [5001]: 8
+  [5002]: 3
+Memoria Global Flotantes (8000-10999):
+Memoria Local Enteros (11000-12999):
+Memoria Local Flotantes (13000-14999):
+Memoria Temporal Enteros (15000-16999):
+  [15000]: 12
+  [15001]: 60
+  [15002]: 10
+  [15003]: 6
+Memoria Temporal Flotantes (17000-18999):
+Memoria Temporal Booleanos (19000-19999):
+Constantes Enteras (20000-20499):
+  [20000]: 8
+  [20001]: 3
+  [20002]: 5
+  [20003]: 7
+  [20004]: 2
+Constantes Flotantes (20500+):
+========================================
+
+RESULTADOS ESPERADOS:
+  - La suma es:
+  - 11
+  - El producto es:
+  - 24
+  - La suma es:
+  - 12
+  - El producto es:
+  - 60
+
+✅ PRUEBA EXITOSA
+------------------------------------------------------------
+
+[TEST 5] Operaciones Flotantes
+------------------------------------------------------------
+CÓDIGO:
+ 1: program operaciones_flotantes;
+ 2: var
+ 3:     x : float;
+ 4:     y : int;
+ 5:     z : float;
+ 6: 
+ 7: main {
+ 8:     x = 3.5;
+ 9:     y = 2;
+10:     
+11:     z = x * y + 1.5;
+12:     print("Resultado flotante: ", z);
+13: }
+14: end
+
+SALIDA OBTENIDA:
+Adding ID 'x' to temp list in scope: global
+Added 'x' to temporary variable list in scope: global
+Set current type to Type.FLOAT
+Adding variables to table in scope: global
+Added global variable 'x' of type Type.FLOAT at address 8000
+Adding ID 'y' to temp list in scope: global
+Added 'y' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'y' of type Type.INT at address 5000
+Adding ID 'z' to temp list in scope: global
+Added 'z' to temporary variable list in scope: global
+Set current type to Type.FLOAT
+Adding variables to table in scope: global
+Added global variable 'z' of type Type.FLOAT at address 8001
+Starting variable declaration in scope 'global'
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program operaciones_flotantes started, scope reset to global
+Program operaciones_flotantes completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: None
+----------------------------------------------------------------------
+0: (goto, None, None, 1)
+      jump to quadruple 1
+----------------------------------------------------------------------
+1: (=, 20500, None, 8000)
+      assign value of constant(3.5) to x (global)
+----------------------------------------------------------------------
+2: (=, 20000, None, 5000)
+      assign value of constant(2) to y (global)
+----------------------------------------------------------------------
+3: (*, 8000, 5000, 17000)
+      multiply x (global) and y (global), store result in addr:17000
+----------------------------------------------------------------------
+4: (+, 17000, 20501, 17001)
+      add addr:17000 and constant(1.5), store result in addr:17001
+----------------------------------------------------------------------
+5: (=, 17001, None, 8001)
+      assign value of addr:17001 to z (global)
+----------------------------------------------------------------------
+6: (print, Resultado flotante: , None, None)
+      print value addr:Resultado flotante: 
+----------------------------------------------------------------------
+7: (print, 8001, None, None)
+      print value z (global)
+----------------------------------------------------------------------
+=== INICIANDO EJECUCIÓN ===
+IP: 0 -> Ejecutando: (goto, None, None, 1)
+  Salto a: 1
+IP: 1 -> Ejecutando: (=, 20500, None, 8000)
+  Asignación: direccion[8000] = 3.5
+IP: 2 -> Ejecutando: (=, 20000, None, 5000)
+  Asignación: direccion[5000] = 2
+IP: 3 -> Ejecutando: (*, 8000, 5000, 17000)
+  Aritmética: 3.5 * 2 = 7.0
+IP: 4 -> Ejecutando: (+, 17000, 20501, 17001)
+  Aritmética: 7.0 + 1.5 = 8.5
+IP: 5 -> Ejecutando: (=, 17001, None, 8001)
+  Asignación: direccion[8001] = 8.5
+IP: 6 -> Ejecutando: (print, Resultado flotante: , None, None)
+OUTPUT: Resultado flotante: 
+IP: 7 -> Ejecutando: (print, 8001, None, None)
+OUTPUT: 8.5
+=== EJECUCIÓN TERMINADA ===
+
+=== ESTADO DE LA MEMORIA SEGMENTADA ===
+Memoria Global Enteros (5000-7999):
+  [5000]: 2
+Memoria Global Flotantes (8000-10999):
+  [8000]: 3.5
+  [8001]: 8.5
+Memoria Local Enteros (11000-12999):
+Memoria Local Flotantes (13000-14999):
+Memoria Temporal Enteros (15000-16999):
+Memoria Temporal Flotantes (17000-18999):
+  [17000]: 7.0
+  [17001]: 8.5
+Memoria Temporal Booleanos (19000-19999):
+Constantes Enteras (20000-20499):
+  [20000]: 2
+Constantes Flotantes (20500+):
+  [20500]: 3.5
+  [20501]: 1.5
+========================================
+
+RESULTADOS ESPERADOS:
+  - 8.5
+
+✅ PRUEBA EXITOSA
+------------------------------------------------------------
+
+[TEST 6] Números Negativos
+------------------------------------------------------------
+CÓDIGO:
+ 1: program negativos;
+ 2: var
+ 3:     a, b : int;
+ 4:     resultado : int;
+ 5: 
+ 6: main {
+ 7:     a = -5;
+ 8:     b = 3;
+ 9:     resultado = a + b;
+10:     print("Resultado con negativos: ", resultado);
+11: }
+12: end
+
+SALIDA OBTENIDA:
+Adding ID 'a' to temp list in scope: global
+Added 'a' to temporary variable list in scope: global
+Adding ID 'b' to temp list in scope: global
+Added 'b' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'a' of type Type.INT at address 5000
+Added global variable 'b' of type Type.INT at address 5001
+Adding ID 'resultado' to temp list in scope: global
+Added 'resultado' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'resultado' of type Type.INT at address 5002
+Starting variable declaration in scope 'global'
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program negativos started, scope reset to global
+Program negativos completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: None
+----------------------------------------------------------------------
+0: (goto, None, None, 1)
+      jump to quadruple 1
+----------------------------------------------------------------------
+1: (*, 20000, 20001, 15000)
+      multiply constant(-1) and constant(5), store result in addr:15000
+----------------------------------------------------------------------
+2: (=, 15000, None, 5000)
+      assign value of addr:15000 to a (global)
+----------------------------------------------------------------------
+3: (=, 20002, None, 5001)
+      assign value of constant(3) to b (global)
+----------------------------------------------------------------------
+4: (+, 5000, 5001, 15001)
+      add a (global) and b (global), store result in addr:15001
+----------------------------------------------------------------------
+5: (=, 15001, None, 5002)
+      assign value of addr:15001 to resultado (global)
+----------------------------------------------------------------------
+6: (print, Resultado con negativos: , None, None)
+      print value addr:Resultado con negativos: 
+----------------------------------------------------------------------
+7: (print, 5002, None, None)
+      print value resultado (global)
+----------------------------------------------------------------------
+=== INICIANDO EJECUCIÓN ===
+IP: 0 -> Ejecutando: (goto, None, None, 1)
+  Salto a: 1
+IP: 1 -> Ejecutando: (*, 20000, 20001, 15000)
+  Aritmética: -1 * 5 = -5
+IP: 2 -> Ejecutando: (=, 15000, None, 5000)
+  Asignación: direccion[5000] = -5
+IP: 3 -> Ejecutando: (=, 20002, None, 5001)
+  Asignación: direccion[5001] = 3
+IP: 4 -> Ejecutando: (+, 5000, 5001, 15001)
+  Aritmética: -5 + 3 = -2
+IP: 5 -> Ejecutando: (=, 15001, None, 5002)
+  Asignación: direccion[5002] = -2
+IP: 6 -> Ejecutando: (print, Resultado con negativos: , None, None)
+OUTPUT: Resultado con negativos: 
+IP: 7 -> Ejecutando: (print, 5002, None, None)
+OUTPUT: -2
+=== EJECUCIÓN TERMINADA ===
+
+=== ESTADO DE LA MEMORIA SEGMENTADA ===
+Memoria Global Enteros (5000-7999):
+  [5000]: -5
+  [5001]: 3
+  [5002]: -2
+Memoria Global Flotantes (8000-10999):
+Memoria Local Enteros (11000-12999):
+Memoria Local Flotantes (13000-14999):
+Memoria Temporal Enteros (15000-16999):
+  [15000]: -5
+  [15001]: -2
+Memoria Temporal Flotantes (17000-18999):
+Memoria Temporal Booleanos (19000-19999):
+Constantes Enteras (20000-20499):
+  [20000]: -1
+  [20001]: 5
+  [20002]: 3
+Constantes Flotantes (20500+):
+========================================
+
+RESULTADOS ESPERADOS:
+  - -2
+
+✅ PRUEBA EXITOSA
+------------------------------------------------------------
+
+================================================================================
+RESUMEN DE PRUEBAS
+================================================================================
+Total de pruebas: 6
+Pruebas exitosas: 6
+Pruebas fallidas: 0
+Porcentaje de éxito: 100.0%
+================================================================================
+
