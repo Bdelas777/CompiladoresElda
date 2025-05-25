@@ -73,9 +73,12 @@ class SemanticAnalyzer:
         return True
     
     def end_main(self):
-        if "main" not in self.function_directory:return self.add_error("Cannot end main function that hasn't been declared")
-        self.pop_scope()
-        print("Main function body ended, returned to global scope")
+        if "main" not in self.function_directory:
+            return self.add_error("Cannot end main function that hasn't been declared")
+        # Solo hacer pop si estamos en el scope main
+        if self.current_scope == "main":
+            self.pop_scope()
+            print("Main function body ended, returned to global scope")
         return True
     
     def program_end(self):
@@ -100,12 +103,13 @@ class SemanticAnalyzer:
         print(f"Added '{var_id}' to temporary variable list in scope: {self.current_scope}")
         return True
     
-    def set_current_type(self,var_type):
-        if var_type=="int":self.current_type=Type.INT
-        elif var_type=="float":self.current_type=Type.FLOAT
-        elif var_type=="bool":self.current_type=Type.BOOL
-        elif var_type=="string":self.current_type=Type.STRING
-        else:return self.add_error(f"Unsupported type: {var_type}")
+    def set_current_type(self, var_type):
+        if var_type == "int":
+            self.current_type = Type.INT
+        elif var_type == "float":
+            self.current_type = Type.FLOAT
+        else:
+            return self.add_error(f"Unsupported type: {var_type}. Only 'int' and 'float' are allowed for variable declarations.")
         print(f"Set current type to {self.current_type}")
         return True
     
@@ -162,19 +166,15 @@ class SemanticAnalyzer:
         if self.current_scope == "global":
             return self.add_error("Cannot declare parameters in global scope")
         
-        # Validar el tipo de parámetro de manera más robusta
+        # Solo permitir int y float para parámetros
         if param_type == "int":
             type_enum = Type.INT
         elif param_type == "float":
             type_enum = Type.FLOAT
-        elif param_type == "bool":
-            type_enum = Type.BOOL
-        elif param_type == "string":
-            type_enum = Type.STRING
         else:
             print(f"Error: Tipo de parámetro inválido '{param_type}' en función '{self.current_scope}'")
             type_enum = Type.ERROR
-            self.add_error(f"Unsupported parameter type: '{param_type}' in function '{self.current_scope}'")
+            self.add_error(f"Unsupported parameter type: '{param_type}' in function '{self.current_scope}'. Only 'int' and 'float' are allowed.")
         
         if param_id in self.function_directory[self.current_scope].local_vars:
             return self.add_error(f"Parameter '{param_id}' already declared in function '{self.current_scope}'")

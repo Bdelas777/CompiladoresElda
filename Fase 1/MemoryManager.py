@@ -9,9 +9,9 @@ class MemoryManager:
         self.LOCAL_FLOAT_START = 7000
         self.TEMP_INT_START = 9000
         self.TEMP_FLOAT_START = 11000
-        self.CONST_INT_START = 13000
-        self.CONST_FLOAT_START = 15000
-        self.CONST_STRING_START = 17000
+        self.TEMP_BOOL_START = 13000  # Agregado para temporales boolean
+        self.CONST_INT_START = 15000
+        self.CONST_FLOAT_START = 17000
         
         # Current counters
         self.global_int_counter = 0
@@ -20,9 +20,9 @@ class MemoryManager:
         self.local_float_counter = 0
         self.temp_int_counter = 0
         self.temp_float_counter = 0
+        self.temp_bool_counter = 0  # Agregado para temporales boolean
         self.const_int_counter = 0
         self.const_float_counter = 0
-        self.const_string_counter = 0
         
         # Constant table to avoid duplicates
         self.constants = {}
@@ -57,6 +57,10 @@ class MemoryManager:
                 addr = self.TEMP_FLOAT_START + self.temp_float_counter
                 self.temp_float_counter += 1
                 return addr
+            elif var_type == Type.BOOL:  # Agregado para temporales boolean
+                addr = self.TEMP_BOOL_START + self.temp_bool_counter
+                self.temp_bool_counter += 1
+                return addr
         
         return -1  # Error case
     
@@ -72,10 +76,6 @@ class MemoryManager:
         elif isinstance(value, float):
             addr = self.CONST_FLOAT_START + self.const_float_counter
             self.const_float_counter += 1
-        elif isinstance(value, str):
-            # For string constants
-            addr = self.CONST_STRING_START + self.const_string_counter
-            self.const_string_counter += 1
         else:
             return -1  # Unsupported constant type
         
@@ -89,3 +89,4 @@ class MemoryManager:
         self.local_float_counter = 0
         self.temp_int_counter = 0
         self.temp_float_counter = 0
+        self.temp_bool_counter = 0  # Agregado para temporales boolean

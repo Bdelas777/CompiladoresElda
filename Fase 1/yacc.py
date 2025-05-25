@@ -20,11 +20,11 @@ def get_operand_name(expr_node):
                 return quad_gen.PilaO[-1]
     return str(expr_node)
 
+
 def p_programa(p):
     '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON saveGo dec_var dec_funcs TOKEN_MAIN fillMain body TOKEN_END'''
     semantic.program_start(p[2])
     p[0] = ('programa', p[2], p[5], p[6], p[9])
-    semantic.end_main()
     semantic.program_end()
     quad_gen.print_quads()
 
@@ -600,20 +600,19 @@ def get_expr_type(expr_node):
                     else:
                         return Type.INT
                 except:
-                    return Type.STRING
+                    return Type.ERROR  # Removido soporte para STRING
         elif expr_node[0] == 'operation':
             left_type = get_expr_type(expr_node[1])
             right_type = get_expr_type(expr_node[3])
             op = token_to_operation(expr_node[2])
             return get_result_type(left_type, right_type, op)
         elif expr_node[0] == 'comparison':
+            # Las comparaciones siempre retornan BOOL
             return Type.BOOL
         elif expr_node[0] == 'function_call_expr':
             func = semantic.check_function(expr_node[1])
             if func:
                 return func.return_type
-        elif expr_node[0] == 'string':
-            return Type.STRING
     return Type.ERROR
     
 parser = yacc.yacc(debug=False)
