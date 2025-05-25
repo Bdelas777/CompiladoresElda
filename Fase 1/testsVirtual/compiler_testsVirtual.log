@@ -1,15 +1,15 @@
-2025-05-24 18:51:23,443 - INFO - Starting test suite
-2025-05-24 18:51:23,445 - INFO - Date and time: 2025-05-24 18:51:23
-2025-05-24 18:51:23,448 - INFO - Saved test program 'arithmetic' to test_programs\arithmetic.txt
-2025-05-24 18:51:23,451 - INFO - Saved test program 'if_else' to test_programs\if_else.txt
-2025-05-24 18:51:23,458 - INFO - Saved test program 'while_loop' to test_programs\while_loop.txt
-2025-05-24 18:51:23,463 - INFO - Saved test program 'functions' to test_programs\functions.txt
-2025-05-24 18:51:23,466 - INFO - Saved test program 'float_operations' to test_programs\float_operations.txt
-2025-05-24 18:51:23,474 - INFO - Saved test program 'negative_values' to test_programs\negative_values.txt
-2025-05-24 18:51:23,475 - INFO - 
+2025-05-24 18:59:18,262 - INFO - Starting test suite
+2025-05-24 18:59:18,263 - INFO - Date and time: 2025-05-24 18:59:18
+2025-05-24 18:59:18,267 - INFO - Saved test program 'arithmetic' to test_programs\arithmetic.txt
+2025-05-24 18:59:18,270 - INFO - Saved test program 'if_else' to test_programs\if_else.txt
+2025-05-24 18:59:18,275 - INFO - Saved test program 'while_loop' to test_programs\while_loop.txt
+2025-05-24 18:59:18,296 - INFO - Saved test program 'functions' to test_programs\functions.txt
+2025-05-24 18:59:18,302 - INFO - Saved test program 'float_operations' to test_programs\float_operations.txt
+2025-05-24 18:59:18,307 - INFO - Saved test program 'negative_values' to test_programs\negative_values.txt
+2025-05-24 18:59:18,308 - INFO - 
 Running test: arithmetic
-2025-05-24 18:51:23,492 - INFO - ======== TESTING: arithmetic ========
-2025-05-24 18:51:23,495 - INFO - Program code:
+2025-05-24 18:59:18,308 - INFO - ======== TESTING: arithmetic ========
+2025-05-24 18:59:18,309 - INFO - Program code:
 
 program operaciones_basicas;
 var
@@ -33,10 +33,9 @@ main {
 }
 end
 
-2025-05-24 18:51:23,499 - WARNING - Compilation errors:
-2025-05-24 18:51:23,506 - WARNING -   - Semantic error: Cannot pop global scope
-2025-05-24 18:51:23,506 - INFO - QUADRUPLES:
-2025-05-24 18:51:23,507 - INFO - 
+2025-05-24 18:59:18,313 - INFO - Compilation successful!
+2025-05-24 18:59:18,313 - INFO - QUADRUPLES:
+2025-05-24 18:59:18,315 - INFO - 
 Adding ID 'a' to temp list in scope: global
 Added 'a' to temporary variable list in scope: global
 Adding ID 'b' to temp list in scope: global
@@ -63,8 +62,6 @@ Starting variable declaration in scope 'global'
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
 Program operaciones_basicas started, scope reset to global
-SEMANTIC ERROR: Cannot pop global scope
-Main function body ended, returned to global scope
 Program operaciones_basicas completed
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
@@ -133,12 +130,12 @@ Function: main - Start Address: None
       print value addr:resultado3
 ----------------------------------------------------------------------
 
-2025-05-24 18:51:23,509 - INFO - ======== END TEST: arithmetic ========
+2025-05-24 18:59:18,316 - INFO - ======== END TEST: arithmetic ========
 
-2025-05-24 18:51:23,509 - INFO - 
+2025-05-24 18:59:18,332 - INFO - 
 Running test: if_else
-2025-05-24 18:51:23,510 - INFO - ======== TESTING: if_else ========
-2025-05-24 18:51:23,510 - INFO - Program code:
+2025-05-24 18:59:18,332 - INFO - ======== TESTING: if_else ========
+2025-05-24 18:59:18,336 - INFO - Program code:
 
 program control_if;
 var
@@ -163,10 +160,9 @@ main {
 }
 end
 
-2025-05-24 18:51:23,512 - WARNING - Compilation errors:
-2025-05-24 18:51:23,515 - WARNING -   - Semantic error: Cannot pop global scope
-2025-05-24 18:51:23,516 - INFO - QUADRUPLES:
-2025-05-24 18:51:23,517 - INFO - 
+2025-05-24 18:59:18,341 - INFO - Compilation successful!
+2025-05-24 18:59:18,343 - INFO - QUADRUPLES:
+2025-05-24 18:59:18,344 - INFO - 
 Adding ID 'x' to temp list in scope: global
 Added 'x' to temporary variable list in scope: global
 Adding ID 'y' to temp list in scope: global
@@ -182,8 +178,6 @@ Starting variable declaration in scope 'global'
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
 Program control_if started, scope reset to global
-SEMANTIC ERROR: Cannot pop global scope
-Main function body ended, returned to global scope
 Program control_if completed
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
@@ -246,12 +240,12 @@ Function: main - Start Address: None
       print value addr:x es mayor o igual que 10
 ----------------------------------------------------------------------
 
-2025-05-24 18:51:23,518 - INFO - ======== END TEST: if_else ========
+2025-05-24 18:59:18,394 - INFO - ======== END TEST: if_else ========
 
-2025-05-24 18:51:23,519 - INFO - 
+2025-05-24 18:59:18,395 - INFO - 
 Running test: while_loop
-2025-05-24 18:51:23,519 - INFO - ======== TESTING: while_loop ========
-2025-05-24 18:51:23,519 - INFO - Program code:
+2025-05-24 18:59:18,395 - INFO - ======== TESTING: while_loop ========
+2025-05-24 18:59:18,395 - INFO - Program code:
 
 program ciclo_while;
 var
@@ -270,10 +264,9 @@ main {
 }
 end
 
-2025-05-24 18:51:23,528 - WARNING - Compilation errors:
-2025-05-24 18:51:23,528 - WARNING -   - Semantic error: Cannot pop global scope
-2025-05-24 18:51:23,529 - INFO - QUADRUPLES:
-2025-05-24 18:51:23,529 - INFO - 
+2025-05-24 18:59:18,398 - INFO - Compilation successful!
+2025-05-24 18:59:18,398 - INFO - QUADRUPLES:
+2025-05-24 18:59:18,398 - INFO - 
 Adding ID 'contador' to temp list in scope: global
 Added 'contador' to temporary variable list in scope: global
 Adding ID 'suma' to temp list in scope: global
@@ -286,8 +279,6 @@ Starting variable declaration in scope 'global'
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
 Program ciclo_while started, scope reset to global
-SEMANTIC ERROR: Cannot pop global scope
-Main function body ended, returned to global scope
 Program ciclo_while completed
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
@@ -347,12 +338,12 @@ Function: main - Start Address: None
       print value addr:suma
 ----------------------------------------------------------------------
 
-2025-05-24 18:51:23,529 - INFO - ======== END TEST: while_loop ========
+2025-05-24 18:59:18,400 - INFO - ======== END TEST: while_loop ========
 
-2025-05-24 18:51:23,529 - INFO - 
+2025-05-24 18:59:18,401 - INFO - 
 Running test: functions
-2025-05-24 18:51:23,544 - INFO - ======== TESTING: functions ========
-2025-05-24 18:51:23,544 - INFO - Program code:
+2025-05-24 18:59:18,402 - INFO - ======== TESTING: functions ========
+2025-05-24 18:59:18,402 - INFO - Program code:
 
 program funciones;
 var
@@ -388,10 +379,9 @@ main {
 }
 end
 
-2025-05-24 18:51:23,551 - WARNING - Compilation errors:
-2025-05-24 18:51:23,552 - WARNING -   - Semantic error: Cannot pop global scope
-2025-05-24 18:51:23,552 - INFO - QUADRUPLES:
-2025-05-24 18:51:23,552 - INFO - 
+2025-05-24 18:59:18,408 - INFO - Compilation successful!
+2025-05-24 18:59:18,424 - INFO - QUADRUPLES:
+2025-05-24 18:59:18,425 - INFO - 
 Adding ID 'resultado' to temp list in scope: global
 Added 'resultado' to temporary variable list in scope: global
 Adding ID 'num1' to temp list in scope: global
@@ -431,8 +421,6 @@ Ended function 'multiplicar' declaration, returned to scope: global
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
 Program funciones started, scope reset to global
-SEMANTIC ERROR: Cannot pop global scope
-Main function body ended, returned to global scope
 Program funciones completed
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
@@ -549,12 +537,12 @@ Starting at quadruple 6
       perform operation GOSUB with operand addr:multiplicar
 ----------------------------------------------------------------------
 
-2025-05-24 18:51:23,555 - INFO - ======== END TEST: functions ========
+2025-05-24 18:59:18,429 - INFO - ======== END TEST: functions ========
 
-2025-05-24 18:51:23,556 - INFO - 
+2025-05-24 18:59:18,430 - INFO - 
 Running test: float_operations
-2025-05-24 18:51:23,558 - INFO - ======== TESTING: float_operations ========
-2025-05-24 18:51:23,559 - INFO - Program code:
+2025-05-24 18:59:18,430 - INFO - ======== TESTING: float_operations ========
+2025-05-24 18:59:18,431 - INFO - Program code:
 
 program operaciones_flotantes;
 var
@@ -571,10 +559,9 @@ main {
 }
 end
 
-2025-05-24 18:51:23,569 - WARNING - Compilation errors:
-2025-05-24 18:51:23,575 - WARNING -   - Semantic error: Cannot pop global scope
-2025-05-24 18:51:23,577 - INFO - QUADRUPLES:
-2025-05-24 18:51:23,577 - INFO - 
+2025-05-24 18:59:18,433 - INFO - Compilation successful!
+2025-05-24 18:59:18,433 - INFO - QUADRUPLES:
+2025-05-24 18:59:18,434 - INFO - 
 Adding ID 'x' to temp list in scope: global
 Added 'x' to temporary variable list in scope: global
 Set current type to Type.FLOAT
@@ -594,8 +581,6 @@ Starting variable declaration in scope 'global'
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
 Program operaciones_flotantes started, scope reset to global
-SEMANTIC ERROR: Cannot pop global scope
-Main function body ended, returned to global scope
 Program operaciones_flotantes completed
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
@@ -631,12 +616,12 @@ Function: main - Start Address: None
       print value addr:z
 ----------------------------------------------------------------------
 
-2025-05-24 18:51:23,578 - INFO - ======== END TEST: float_operations ========
+2025-05-24 18:59:18,435 - INFO - ======== END TEST: float_operations ========
 
-2025-05-24 18:51:23,578 - INFO - 
+2025-05-24 18:59:18,436 - INFO - 
 Running test: negative_values
-2025-05-24 18:51:23,582 - INFO - ======== TESTING: negative_values ========
-2025-05-24 18:51:23,582 - INFO - Program code:
+2025-05-24 18:59:18,437 - INFO - ======== TESTING: negative_values ========
+2025-05-24 18:59:18,452 - INFO - Program code:
 
 program negativos;
 var
@@ -651,10 +636,9 @@ main {
 }
 end
 
-2025-05-24 18:51:23,584 - WARNING - Compilation errors:
-2025-05-24 18:51:23,585 - WARNING -   - Semantic error: Cannot pop global scope
-2025-05-24 18:51:23,585 - INFO - QUADRUPLES:
-2025-05-24 18:51:23,585 - INFO - 
+2025-05-24 18:59:18,457 - INFO - Compilation successful!
+2025-05-24 18:59:18,457 - INFO - QUADRUPLES:
+2025-05-24 18:59:18,457 - INFO - 
 Adding ID 'a' to temp list in scope: global
 Added 'a' to temporary variable list in scope: global
 Adding ID 'b' to temp list in scope: global
@@ -672,8 +656,6 @@ Starting variable declaration in scope 'global'
 Pushed scope: main, current scope stack: ['global', 'main']
 Main function declared, scope changed to main
 Program negativos started, scope reset to global
-SEMANTIC ERROR: Cannot pop global scope
-Main function body ended, returned to global scope
 Program negativos completed
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
@@ -709,15 +691,15 @@ Function: main - Start Address: None
       print value addr:resultado
 ----------------------------------------------------------------------
 
-2025-05-24 18:51:23,587 - INFO - ======== END TEST: negative_values ========
+2025-05-24 18:59:18,458 - INFO - ======== END TEST: negative_values ========
 
-2025-05-24 18:51:23,587 - INFO - 
+2025-05-24 18:59:18,458 - INFO - 
 ======== TEST SUMMARY ========
-2025-05-24 18:51:23,587 - INFO - arithmetic: PASS
-2025-05-24 18:51:23,588 - INFO - if_else: PASS
-2025-05-24 18:51:23,588 - INFO - while_loop: PASS
-2025-05-24 18:51:23,589 - INFO - functions: PASS
-2025-05-24 18:51:23,589 - INFO - float_operations: PASS
-2025-05-24 18:51:23,589 - INFO - negative_values: PASS
-2025-05-24 18:51:23,590 - INFO - 
+2025-05-24 18:59:18,458 - INFO - arithmetic: PASS
+2025-05-24 18:59:18,460 - INFO - if_else: PASS
+2025-05-24 18:59:18,460 - INFO - while_loop: PASS
+2025-05-24 18:59:18,460 - INFO - functions: PASS
+2025-05-24 18:59:18,461 - INFO - float_operations: PASS
+2025-05-24 18:59:18,462 - INFO - negative_values: PASS
+2025-05-24 18:59:18,462 - INFO - 
 Test suite completed
