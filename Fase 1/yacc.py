@@ -676,20 +676,18 @@ def execute_program(code):
     return vm
     
 if __name__ == "__main__":
-    test_code = '''
-program operaciones_flotantes;
+    test_code = """
+program negativos;
 var
-    x : float;
-    y : int;
-    z : float;
+    a, b : int;
+    resultado : int;
 
 main {
-    x = 3.5;
-    y = 2;
-    
-    z = x * y + 1.5;
-    print("Resultado flotante: ", z);
+    a = -5;
+    b = 3;
+    resultado = a + b;
+    print("Resultado con negativos: ", resultado);
 }
 end
-'''
+"""
     execute_program(test_code)

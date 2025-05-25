@@ -120,3 +120,23 @@ main {
 end
         '''
 # Respuestas: La suma es 11, El producto es 24, La suma es 12, El producto es 60
+
+
+'''
+program operaciones_flotantes;
+var
+    x : float;
+    y : int;
+    z : float;
+
+main {
+    x = 3.5;
+    y = 2;
+    
+    z = x * y + 1.5;
+    print("Resultado flotante: ", z);
+}
+end
+'''
+
+#Respuesta flotante: 8.5
