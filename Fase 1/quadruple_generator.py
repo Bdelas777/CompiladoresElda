@@ -73,17 +73,31 @@ class QuadrupleGenerator:
         return False
     
     def get_operand_address(self, operand):
+        """Obtiene la dirección de memoria de un operando"""
         if isinstance(operand, int):
-            return operand
+            # Si es entero, verificar si ya está registrado como constante
+            if operand in self.constants_table:
+                return self.constants_table[operand]
+            # Si no, registrarlo
+            address = self.semantic.memory_manager.get_constant_address(operand)
+            self.constants_table[operand] = address
+            return address
+        
+        # Verificar si es variable local
         if self.semantic.current_scope != "global" and operand in self.semantic.function_directory[self.semantic.current_scope].local_vars:
             return self.semantic.function_directory[self.semantic.current_scope].local_vars[operand].address
+        
+        # Verificar si es variable global
         if operand in self.semantic.global_vars:
             return self.semantic.global_vars[operand].address
+        
+        # Intentar parsear como número literal
         try:
             if '.' in str(operand):
                 value = float(operand)
             else:
                 value = int(operand)
+            
             if value not in self.constants_table:
                 address = self.semantic.memory_manager.get_constant_address(value)
                 self.constants_table[value] = address

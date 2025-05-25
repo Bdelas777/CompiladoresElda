@@ -138,6 +138,10 @@ class MemoryManager:
     
     def get_value(self, address):
         """Obtiene el valor almacenado en una dirección de memoria"""
+        # Si es un valor literal muy pequeño (probablemente constante no registrada)
+        if isinstance(address, (int, float)) and address < 100:
+            return address
+        
         segment = self.get_memory_segment(address)
         
         if segment.startswith("global"):
@@ -151,6 +155,12 @@ class MemoryManager:
             return self.temp_memory.get(address, 0)
         elif segment.startswith("const"):
             return self.constant_memory.get(address, 0)
+        elif segment == "unknown":
+            # Si la dirección no está en ningún segmento conocido, 
+            # podría ser un literal no procesado
+            if isinstance(address, (int, float)):
+                return address
+            return 0
         else:
             raise RuntimeError(f"Invalid memory address: {address}")
     

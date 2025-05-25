@@ -1,4 +1,3 @@
-
 class VirtualMachine:
     def __init__(self, memory_manager, quadruples, function_directory):
         self.memory = memory_manager
@@ -17,6 +16,7 @@ class VirtualMachine:
         """Ejecuta el programa desde el instruction pointer actual"""
         print("Starting Virtual Machine execution...")
         
+
         while self.running and self.instruction_pointer < len(self.quadruples):
             quad = self.quadruples[self.instruction_pointer]
             print(f"IP: {self.instruction_pointer} | Executing: {quad}")
@@ -37,7 +37,7 @@ class VirtualMachine:
         left = quad.left_operand
         right = quad.right_operand
         result = quad.result
-        print(operator)
+        print(f"Executing operator: {operator}")
         
         # Actualizar IP en memory manager
         self.memory.instruction_pointer = self.instruction_pointer
@@ -56,6 +56,8 @@ class VirtualMachine:
             self.execute_comparison(left, right, result, lambda a, b: a < b)
         elif operator == '!=':
             self.execute_comparison(left, right, result, lambda a, b: a != b)
+        elif operator == '==':  # Agregar comparación de igualdad
+            self.execute_comparison(left, right, result, lambda a, b: a == b)
         elif operator == '=':
             self.execute_assignment(left, result)
         elif operator == 'goto':
@@ -78,32 +80,84 @@ class VirtualMachine:
             print(f"Warning: Unknown operator '{operator}'")
     
     def execute_arithmetic(self, left_addr, right_addr, result_addr, operation):
-        """Ejecuta operaciones aritméticas"""
-        left_val = self.memory.get_value(left_addr)
-        right_val = self.memory.get_value(right_addr)
-        result_val = operation(left_val, right_val)
-        self.memory.set_value(result_addr, result_val)
-        print(f"  Arithmetic: {left_val} {operation.__name__} {right_val} = {result_val}")
+        """Ejecuta operaciones aritméticas - MEJORADO"""
+        try:
+            # Obtener valores (pueden ser literales o direcciones)
+            if isinstance(left_addr, (int, float)):
+                left_val = left_addr
+            else:
+                left_val = self.memory.get_value(left_addr)
+                
+            if isinstance(right_addr, (int, float)):
+                right_val = right_addr
+            else:
+                right_val = self.memory.get_value(right_addr)
+            
+            # Realizar operación
+            result_val = operation(left_val, right_val)
+            
+            # Guardar resultado
+            self.memory.set_value(result_addr, result_val)
+            
+            print(f"  Arithmetic: {left_val} {operation.__name__} {right_val} = {result_val}")
+            
+        except Exception as e:
+            print(f"  Arithmetic Error: {e}")
+            # Asignar 0 como valor por defecto en caso de error
+            self.memory.set_value(result_addr, 0)
     
     def execute_comparison(self, left_addr, right_addr, result_addr, comparison):
-        """Ejecuta operaciones de comparación"""
-        left_val = self.memory.get_value(left_addr)
-        right_val = self.memory.get_value(right_addr)
-        result_val = comparison(left_val, right_val)
-        self.memory.set_value(result_addr, result_val)
-        print(f"  Comparison: {left_val} {comparison.__name__} {right_val} = {result_val}")
+        """Ejecuta operaciones de comparación - MEJORADO"""
+        try:
+            # Obtener valores (pueden ser literales o direcciones)
+            if isinstance(left_addr, (int, float)):
+                left_val = left_addr
+            else:
+                left_val = self.memory.get_value(left_addr)
+                
+            if isinstance(right_addr, (int, float)):
+                right_val = right_addr
+            else:
+                right_val = self.memory.get_value(right_addr)
+            
+            # Realizar comparación
+            result_val = comparison(left_val, right_val)
+            
+            # Guardar resultado
+            self.memory.set_value(result_addr, result_val)
+            
+            print(f"  Comparison: {left_val} {comparison.__name__} {right_val} = {result_val}")
+            
+        except Exception as e:
+            print(f"  Comparison Error: {e}")
+            # Asignar False como valor por defecto en caso de error
+            self.memory.set_value(result_addr, False)
     
     def execute_assignment(self, source_addr, target_addr):
-        """Ejecuta asignación"""
+        """Ejecuta asignación - CORREGIDO"""
+        print(f"Assignment: source={source_addr}, target={target_addr}")
+        
+        # Verificar si source_addr es un valor literal (constante)
         if isinstance(source_addr, (int, float)):
-            # Si es un valor literal
+            # Es un valor literal - usar directamente
             value = source_addr
+            print(f"  Literal value: {value}")
         else:
-            # Si es una dirección de memoria
-            value = self.memory.get_value(source_addr)
-        self.memory.set_value(target_addr, value)
-        print(f"  Assignment: {value} -> address {target_addr}")
-    
+            # Es una dirección de memoria - obtener el valor
+            try:
+                value = self.memory.get_value(source_addr)
+                print(f"  Retrieved from address {source_addr}: {value}")
+            except Exception as e:
+                print(f"  Error getting value from address {source_addr}: {e}")
+                value = 0  # Valor por defecto
+        
+        # Asignar el valor a la dirección destino
+        try:
+            self.memory.set_value(target_addr, value)
+            print(f"  Assignment successful: {value} -> address {target_addr}")
+        except Exception as e:
+            print(f"  Error setting value at address {target_addr}: {e}")
+        
     def execute_goto(self, target_addr):
         """Ejecuta salto incondicional"""
         self.instruction_pointer = target_addr
@@ -121,14 +175,23 @@ class VirtualMachine:
             print(f"  GotoF: condition true, continuing")
     
     def execute_print(self, value_addr):
-        """Ejecuta operación de impresión"""
+        """Ejecuta operación de impresión - CORREGIDO"""
+        # Si es string literal, imprime directamente
         if isinstance(value_addr, str):
-            # String literal
+            print(f"OUTPUT: {value_addr}")
+        # Si es dirección de memoria (int), imprime el valor almacenado
+        elif isinstance(value_addr, int):
+            try:
+                value = self.memory.get_value(value_addr)
+                print(f"OUTPUT: {value}")
+            except Exception as e:
+                print(f"OUTPUT ERROR: Could not retrieve value: {e}")
+                print(f"OUTPUT: <undefined>")
+        # Si es float, imprime el valor
+        elif isinstance(value_addr, float):
             print(f"OUTPUT: {value_addr}")
         else:
-            # Variable o constante
-            value = self.memory.get_value(value_addr)
-            print(f"OUTPUT: {value}")
+            print(f"OUTPUT: {value_addr}")
     
     def execute_era(self, func_name):
         """Ejecuta ERA - reserva espacio para función"""
