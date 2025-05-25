@@ -75,7 +75,6 @@ class SemanticAnalyzer:
     def end_main(self):
         if "main" not in self.function_directory:
             return self.add_error("Cannot end main function that hasn't been declared")
-        # Solo hacer pop si estamos en el scope main
         if self.current_scope == "main":
             self.pop_scope()
             print("Main function body ended, returned to global scope")
@@ -165,8 +164,6 @@ class SemanticAnalyzer:
     def add_parameter(self, param_id, param_type):
         if self.current_scope == "global":
             return self.add_error("Cannot declare parameters in global scope")
-        
-        # Solo permitir int y float para parámetros
         if param_type == "int":
             type_enum = Type.INT
         elif param_type == "float":
@@ -175,17 +172,14 @@ class SemanticAnalyzer:
             print(f"Error: Tipo de parámetro inválido '{param_type}' en función '{self.current_scope}'")
             type_enum = Type.ERROR
             self.add_error(f"Unsupported parameter type: '{param_type}' in function '{self.current_scope}'. Only 'int' and 'float' are allowed.")
-        
         if param_id in self.function_directory[self.current_scope].local_vars:
             return self.add_error(f"Parameter '{param_id}' already declared in function '{self.current_scope}'")
-        
         param_var = Variable(param_id, type_enum, self.current_scope)
         param_var.address = self.memory_manager.get_address(type_enum, self.current_scope)
         self.function_directory[self.current_scope].add_parameter(param_var)
         print(f"Added parameter '{param_id}' of type {type_enum} at address {param_var.address} to function '{self.current_scope}'")
         return True
 
-    
     def end_function_declaration(self):
         if self.current_scope=="global":return self.add_error("Not inside a function declaration")
         func_name=self.current_scope

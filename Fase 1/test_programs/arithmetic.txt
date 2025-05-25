@@ -1,22 +1,13 @@
 
-program operaciones_basicas;
-var
-    a, b, c, resultado, resultado2 : int;
-    resultado3 : float;
-
-main {
-    a = 5;
-    b = 10;
-    c = 2;
+program test;
+    var a, b, c : int;
+        result : float;
+    main {
+        a = 5;
+        b = 3;
+        c = 2;
+        result = a + b + c * 2;
+        print(result);
+    }
+    end
     
-    resultado = a + b * c;
-    print("Resultado 1: ", resultado);
-    
-    resultado2 = (a + b) * c;
-    print("Resultado 2: ", resultado2);
-    
-    resultado3 = a - b / c;
-
-    print("Resultado 3: ", resultado3);
-}
-end
