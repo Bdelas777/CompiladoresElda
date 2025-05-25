@@ -1,0 +1,705 @@
+2025-05-24 21:29:06,688 - INFO - Starting test suite
+2025-05-24 21:29:06,690 - INFO - Date and time: 2025-05-24 21:29:06
+2025-05-24 21:29:06,694 - INFO - Saved test program 'arithmetic' to test_programs\arithmetic.txt
+2025-05-24 21:29:06,697 - INFO - Saved test program 'if_else' to test_programs\if_else.txt
+2025-05-24 21:29:06,701 - INFO - Saved test program 'while_loop' to test_programs\while_loop.txt
+2025-05-24 21:29:06,705 - INFO - Saved test program 'functions' to test_programs\functions.txt
+2025-05-24 21:29:06,718 - INFO - Saved test program 'float_operations' to test_programs\float_operations.txt
+2025-05-24 21:29:06,729 - INFO - Saved test program 'negative_values' to test_programs\negative_values.txt
+2025-05-24 21:29:06,737 - INFO - 
+Running test: arithmetic
+2025-05-24 21:29:06,737 - INFO - ======== TESTING: arithmetic ========
+2025-05-24 21:29:06,738 - INFO - Program code:
+
+program operaciones_basicas;
+var
+    a, b, c, resultado, resultado2 : int;
+    resultado3 : float;
+
+main {
+    a = 5;
+    b = 10;
+    c = 2;
+    
+    resultado = a + b * c;
+    print("Resultado 1: ", resultado);
+    
+    resultado2 = (a + b) * c;
+    print("Resultado 2: ", resultado2);
+    
+    resultado3 = a - b / c;
+
+    print("Resultado 3: ", resultado3);
+}
+end
+
+2025-05-24 21:29:06,740 - INFO - Compilation successful!
+2025-05-24 21:29:06,741 - INFO - QUADRUPLES:
+2025-05-24 21:29:06,741 - INFO - 
+Adding ID 'a' to temp list in scope: global
+Added 'a' to temporary variable list in scope: global
+Adding ID 'b' to temp list in scope: global
+Added 'b' to temporary variable list in scope: global
+Adding ID 'c' to temp list in scope: global
+Added 'c' to temporary variable list in scope: global
+Adding ID 'resultado' to temp list in scope: global
+Added 'resultado' to temporary variable list in scope: global
+Adding ID 'resultado2' to temp list in scope: global
+Added 'resultado2' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'a' of type Type.INT at address 1000
+Added global variable 'b' of type Type.INT at address 1001
+Added global variable 'c' of type Type.INT at address 1002
+Added global variable 'resultado' of type Type.INT at address 1003
+Added global variable 'resultado2' of type Type.INT at address 1004
+Adding ID 'resultado3' to temp list in scope: global
+Added 'resultado3' to temporary variable list in scope: global
+Set current type to Type.FLOAT
+Adding variables to table in scope: global
+Added global variable 'resultado3' of type Type.FLOAT at address 3000
+Starting variable declaration in scope 'global'
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program operaciones_basicas started, scope reset to global
+Program operaciones_basicas completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: None
+----------------------------------------------------------------------
+0: (goto, None, None, 1)
+      jump to quadruple 1
+----------------------------------------------------------------------
+1: (=, 15000, None, 1000)
+      assign value of constant(5) to a (global)
+----------------------------------------------------------------------
+2: (=, 15001, None, 1001)
+      assign value of constant(10) to b (global)
+----------------------------------------------------------------------
+3: (=, 15002, None, 1002)
+      assign value of constant(2) to c (global)
+----------------------------------------------------------------------
+4: (*, 1001, 1002, 5000)
+      multiply b (global) and c (global), store result in addr:5000
+----------------------------------------------------------------------
+5: (+, 1000, 1000, 5001)
+      add a (global) and a (global), store result in addr:5001
+----------------------------------------------------------------------
+6: (=, 5001, None, 1003)
+      assign value of addr:5001 to resultado (global)
+----------------------------------------------------------------------
+7: (print, Resultado 1: , None, None)
+      print value addr:Resultado 1: 
+----------------------------------------------------------------------
+8: (print, resultado, None, None)
+      print value addr:resultado
+----------------------------------------------------------------------
+9: (+, 1000, 1001, 5002)
+      add a (global) and b (global), store result in addr:5002
+----------------------------------------------------------------------
+10: (*, 5002, 1002, 5003)
+      multiply addr:5002 and c (global), store result in addr:5003
+----------------------------------------------------------------------
+11: (=, 5003, None, 1004)
+      assign value of addr:5003 to resultado2 (global)
+----------------------------------------------------------------------
+12: (print, Resultado 2: , None, None)
+      print value addr:Resultado 2: 
+----------------------------------------------------------------------
+13: (print, resultado2, None, None)
+      print value addr:resultado2
+----------------------------------------------------------------------
+14: (/, 1001, 1002, 7000)
+      divide b (global) and c (global), store result in addr:7000
+----------------------------------------------------------------------
+15: (-, 1000, 1000, 7001)
+      subtract a (global) and a (global), store result in addr:7001
+----------------------------------------------------------------------
+16: (=, 7001, None, 3000)
+      assign value of addr:7001 to resultado3 (global)
+----------------------------------------------------------------------
+17: (print, Resultado 3: , None, None)
+      print value addr:Resultado 3: 
+----------------------------------------------------------------------
+18: (print, resultado3, None, None)
+      print value addr:resultado3
+----------------------------------------------------------------------
+
+2025-05-24 21:29:06,743 - INFO - ======== END TEST: arithmetic ========
+
+2025-05-24 21:29:06,743 - INFO - 
+Running test: if_else
+2025-05-24 21:29:06,743 - INFO - ======== TESTING: if_else ========
+2025-05-24 21:29:06,744 - INFO - Program code:
+
+program control_if;
+var
+    x, y, max : int;
+main {
+    x = 15;
+    y = 7;
+    
+    if (x > y) {
+        max = x;
+        print("El mayor es x: ", max);
+    } else {
+        max = y;
+        print("El mayor es y: ", max);
+    };
+    
+    if (x < 10) {
+        print("x es menor que 10");
+    } else {
+        print("x es mayor o igual que 10");
+    };
+}
+end
+
+2025-05-24 21:29:06,747 - INFO - Compilation successful!
+2025-05-24 21:29:06,747 - INFO - QUADRUPLES:
+2025-05-24 21:29:06,747 - INFO - 
+Adding ID 'x' to temp list in scope: global
+Added 'x' to temporary variable list in scope: global
+Adding ID 'y' to temp list in scope: global
+Added 'y' to temporary variable list in scope: global
+Adding ID 'max' to temp list in scope: global
+Added 'max' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'x' of type Type.INT at address 1000
+Added global variable 'y' of type Type.INT at address 1001
+Added global variable 'max' of type Type.INT at address 1002
+Starting variable declaration in scope 'global'
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program control_if started, scope reset to global
+Program control_if completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: None
+----------------------------------------------------------------------
+0: (goto, None, None, 1)
+      jump to quadruple 1
+----------------------------------------------------------------------
+1: (=, 15000, None, 1000)
+      assign value of constant(15) to x (global)
+----------------------------------------------------------------------
+2: (=, 15001, None, 1001)
+      assign value of constant(7) to y (global)
+----------------------------------------------------------------------
+3: (>, 1000, 1001, 13000)
+      compare if x (global) is greater than y (global), store boolean result in addr:13000
+----------------------------------------------------------------------
+4: (gotof, 13000, None, 9)
+      if addr:13000 is false, jump to quadruple 9
+----------------------------------------------------------------------
+5: (=, 1000, None, 1002)
+      assign value of x (global) to max (global)
+----------------------------------------------------------------------
+6: (print, El mayor es x: , None, None)
+      print value addr:El mayor es x: 
+----------------------------------------------------------------------
+7: (print, max, None, None)
+      print value addr:max
+----------------------------------------------------------------------
+8: (goto, None, None, 12)
+      jump to quadruple 12
+----------------------------------------------------------------------
+9: (=, 1001, None, 1002)
+      assign value of y (global) to max (global)
+----------------------------------------------------------------------
+10: (print, El mayor es y: , None, None)
+      print value addr:El mayor es y: 
+----------------------------------------------------------------------
+11: (print, max, None, None)
+      print value addr:max
+----------------------------------------------------------------------
+12: (<, 1000, 15002, 13001)
+      compare if x (global) is less than constant(10), store boolean result in addr:13001
+----------------------------------------------------------------------
+13: (gotof, 13001, None, 16)
+      if addr:13001 is false, jump to quadruple 16
+----------------------------------------------------------------------
+14: (print, x es menor que 10, None, None)
+      print value addr:x es menor que 10
+----------------------------------------------------------------------
+15: (goto, None, None, 17)
+      jump to quadruple 17
+----------------------------------------------------------------------
+16: (print, x es mayor o igual que 10, None, None)
+      print value addr:x es mayor o igual que 10
+----------------------------------------------------------------------
+
+2025-05-24 21:29:06,748 - INFO - ======== END TEST: if_else ========
+
+2025-05-24 21:29:06,749 - INFO - 
+Running test: while_loop
+2025-05-24 21:29:06,749 - INFO - ======== TESTING: while_loop ========
+2025-05-24 21:29:06,749 - INFO - Program code:
+
+program ciclo_while;
+var
+    contador, suma : int;
+main {
+    contador = 1;
+    suma = 0;
+    
+    while (contador < 5) do {
+        suma = suma + contador;
+        print("Iteración: ", contador, " Suma actual: ", suma);
+        contador = contador + 1;
+    };
+    
+    print("Suma final: ", suma);
+}
+end
+
+2025-05-24 21:29:06,753 - INFO - Compilation successful!
+2025-05-24 21:29:06,753 - INFO - QUADRUPLES:
+2025-05-24 21:29:06,753 - INFO - 
+Adding ID 'contador' to temp list in scope: global
+Added 'contador' to temporary variable list in scope: global
+Adding ID 'suma' to temp list in scope: global
+Added 'suma' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'contador' of type Type.INT at address 1000
+Added global variable 'suma' of type Type.INT at address 1001
+Starting variable declaration in scope 'global'
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program ciclo_while started, scope reset to global
+Program ciclo_while completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: None
+----------------------------------------------------------------------
+0: (goto, None, None, 1)
+      jump to quadruple 1
+----------------------------------------------------------------------
+1: (=, 15000, None, 1000)
+      assign value of constant(1) to contador (global)
+----------------------------------------------------------------------
+2: (=, 15001, None, 1001)
+      assign value of constant(0) to suma (global)
+----------------------------------------------------------------------
+3: (<, 1000, 15002, 13000)
+      compare if contador (global) is less than constant(5), store boolean result in addr:13000
+----------------------------------------------------------------------
+4: (gotof, 13000, None, 14)
+      if addr:13000 is false, jump to quadruple 14
+----------------------------------------------------------------------
+5: (+, 1001, 1000, 5000)
+      add suma (global) and contador (global), store result in addr:5000
+----------------------------------------------------------------------
+6: (=, 5000, None, 1001)
+      assign value of addr:5000 to suma (global)
+----------------------------------------------------------------------
+7: (print, Iteración: , None, None)
+      print value addr:Iteración: 
+----------------------------------------------------------------------
+8: (print, contador, None, None)
+      print value addr:contador
+----------------------------------------------------------------------
+9: (print,  Suma actual: , None, None)
+      print value addr: Suma actual: 
+----------------------------------------------------------------------
+10: (print, suma, None, None)
+      print value addr:suma
+----------------------------------------------------------------------
+11: (+, 1000, 15000, 5001)
+      add contador (global) and constant(1), store result in addr:5001
+----------------------------------------------------------------------
+12: (=, 5001, None, 1000)
+      assign value of addr:5001 to contador (global)
+----------------------------------------------------------------------
+13: (goto, None, None, 3)
+      jump to quadruple 3
+----------------------------------------------------------------------
+14: (print, Suma final: , None, None)
+      print value addr:Suma final: 
+----------------------------------------------------------------------
+15: (print, suma, None, None)
+      print value addr:suma
+----------------------------------------------------------------------
+
+2025-05-24 21:29:06,754 - INFO - ======== END TEST: while_loop ========
+
+2025-05-24 21:29:06,754 - INFO - 
+Running test: functions
+2025-05-24 21:29:06,755 - INFO - ======== TESTING: functions ========
+2025-05-24 21:29:06,755 - INFO - Program code:
+
+program funciones;
+var
+    resultado, num1, num2 : int;
+
+void sumar(a : int, b : int)
+[
+    var res : int;
+    {
+        res = a + b;
+        print("La suma es: ", res);
+    }
+];
+
+void multiplicar(c : int, d : int)
+[
+    var res : int;
+    {
+        res = c * d;
+        print("El producto es: ", res);
+    }
+];
+
+main {
+    num1 = 8;
+    num2 = 3;
+    
+    sumar(num1, num2);
+    multiplicar(num1, num2);
+    
+    sumar(5, 7);
+    multiplicar(num1 + 2, num2 * 2);
+}
+end
+
+2025-05-24 21:29:06,759 - INFO - Compilation successful!
+2025-05-24 21:29:06,759 - INFO - QUADRUPLES:
+2025-05-24 21:29:06,759 - INFO - 
+Adding ID 'resultado' to temp list in scope: global
+Added 'resultado' to temporary variable list in scope: global
+Adding ID 'num1' to temp list in scope: global
+Added 'num1' to temporary variable list in scope: global
+Adding ID 'num2' to temp list in scope: global
+Added 'num2' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'resultado' of type Type.INT at address 1000
+Added global variable 'num1' of type Type.INT at address 1001
+Added global variable 'num2' of type Type.INT at address 1002
+Starting variable declaration in scope 'global'
+Pushed scope: sumar, current scope stack: ['global', 'sumar']
+Declared function 'sumar' with return type Type.VOID, scope changed to: sumar
+Added parameter 'a' of type Type.INT at address 5000 to function 'sumar'
+Added parameter 'b' of type Type.INT at address 5001 to function 'sumar'
+Adding ID 'res' to temp list in scope: sumar
+Added 'res' to temporary variable list in scope: sumar
+Set current type to Type.INT
+Adding variables to table in scope: sumar
+Added local variable 'res' of type Type.INT at address 5002 to function 'sumar'
+Starting variable declaration in scope 'sumar'
+Popped scope: sumar, current scope is now: global
+Ended function 'sumar' declaration, returned to scope: global
+Pushed scope: multiplicar, current scope stack: ['global', 'multiplicar']
+Declared function 'multiplicar' with return type Type.VOID, scope changed to: multiplicar
+Added parameter 'c' of type Type.INT at address 5004 to function 'multiplicar'
+Added parameter 'd' of type Type.INT at address 5005 to function 'multiplicar'
+Adding ID 'res' to temp list in scope: multiplicar
+Added 'res' to temporary variable list in scope: multiplicar
+Set current type to Type.INT
+Adding variables to table in scope: multiplicar
+Added local variable 'res' of type Type.INT at address 5006 to function 'multiplicar'
+Starting variable declaration in scope 'multiplicar'
+Popped scope: multiplicar, current scope is now: global
+Ended function 'multiplicar' declaration, returned to scope: global
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program funciones started, scope reset to global
+Program funciones completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: sumar - Start Address: 1
+Function: multiplicar - Start Address: 6
+Function: main - Start Address: None
+----------------------------------------------------------------------
+0: (goto, None, None, 11)
+      jump to quadruple 11
+----------------------------------------------------------------------
+
+==================== FUNCTION: SUMAR ====================
+Starting at quadruple 1
+----------------------------------------------------------------------
+1: (+, 5000, 5001, 5003)
+      add addr:5000 and addr:5001, store result in addr:5003
+----------------------------------------------------------------------
+2: (=, 5003, None, 5002)
+      assign value of addr:5003 to addr:5002
+----------------------------------------------------------------------
+3: (print, La suma es: , None, None)
+      print value addr:La suma es: 
+----------------------------------------------------------------------
+4: (print, res, None, None)
+      print value addr:res
+----------------------------------------------------------------------
+5: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF SUMAR ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: MULTIPLICAR ====================
+Starting at quadruple 6
+----------------------------------------------------------------------
+6: (*, 5004, 5005, 5007)
+      multiply addr:5004 and addr:5005, store result in addr:5007
+----------------------------------------------------------------------
+7: (=, 5007, None, 5006)
+      assign value of addr:5007 to addr:5006
+----------------------------------------------------------------------
+8: (print, El producto es: , None, None)
+      print value addr:El producto es: 
+----------------------------------------------------------------------
+9: (print, res, None, None)
+      print value addr:res
+----------------------------------------------------------------------
+10: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF MULTIPLICAR ====================
+----------------------------------------------------------------------
+11: (=, 15000, None, 1001)
+      assign value of constant(8) to num1 (global)
+----------------------------------------------------------------------
+12: (=, 15001, None, 1002)
+      assign value of constant(3) to num2 (global)
+----------------------------------------------------------------------
+13: (ERA, sumar, None, None)
+      perform operation ERA with operand addr:sumar
+----------------------------------------------------------------------
+14: (parámetro, 1001, par1, None)
+      perform operation parámetro with operands num1 (global), addr:par1, result in None
+----------------------------------------------------------------------
+15: (parámetro, 1002, par2, None)
+      perform operation parámetro with operands num2 (global), addr:par2, result in None
+----------------------------------------------------------------------
+16: (GOSUB, sumar, None, None)
+      perform operation GOSUB with operand addr:sumar
+----------------------------------------------------------------------
+17: (ERA, multiplicar, None, None)
+      perform operation ERA with operand addr:multiplicar
+----------------------------------------------------------------------
+18: (parámetro, 1001, par1, None)
+      perform operation parámetro with operands num1 (global), addr:par1, result in None
+----------------------------------------------------------------------
+19: (parámetro, 1002, par2, None)
+      perform operation parámetro with operands num2 (global), addr:par2, result in None
+----------------------------------------------------------------------
+20: (GOSUB, multiplicar, None, None)
+      perform operation GOSUB with operand addr:multiplicar
+----------------------------------------------------------------------
+21: (ERA, sumar, None, None)
+      perform operation ERA with operand addr:sumar
+----------------------------------------------------------------------
+22: (parámetro, 15002, par1, None)
+      perform operation parámetro with operands constant(5), addr:par1, result in None
+----------------------------------------------------------------------
+23: (parámetro, 15003, par2, None)
+      perform operation parámetro with operands constant(7), addr:par2, result in None
+----------------------------------------------------------------------
+24: (GOSUB, sumar, None, None)
+      perform operation GOSUB with operand addr:sumar
+----------------------------------------------------------------------
+25: (ERA, multiplicar, None, None)
+      perform operation ERA with operand addr:multiplicar
+----------------------------------------------------------------------
+26: (+, 1001, 15004, 5008)
+      add num1 (global) and constant(2), store result in addr:5008
+----------------------------------------------------------------------
+27: (parámetro, 5008, par1, None)
+      perform operation parámetro with operands addr:5008, addr:par1, result in None
+----------------------------------------------------------------------
+28: (*, 1002, 15004, 5009)
+      multiply num2 (global) and constant(2), store result in addr:5009
+----------------------------------------------------------------------
+29: (parámetro, 5009, par2, None)
+      perform operation parámetro with operands addr:5009, addr:par2, result in None
+----------------------------------------------------------------------
+30: (GOSUB, multiplicar, None, None)
+      perform operation GOSUB with operand addr:multiplicar
+----------------------------------------------------------------------
+
+2025-05-24 21:29:06,784 - INFO - ======== END TEST: functions ========
+
+2025-05-24 21:29:06,789 - INFO - 
+Running test: float_operations
+2025-05-24 21:29:06,789 - INFO - ======== TESTING: float_operations ========
+2025-05-24 21:29:06,790 - INFO - Program code:
+
+program operaciones_flotantes;
+var
+    x : float;
+    y : int;
+    z : float;
+
+main {
+    x = 3.5;
+    y = 2;
+    
+    z = x * y + 1.5;
+    print("Resultado flotante: ", z);
+}
+end
+
+2025-05-24 21:29:06,792 - INFO - Compilation successful!
+2025-05-24 21:29:06,792 - INFO - QUADRUPLES:
+2025-05-24 21:29:06,794 - INFO - 
+Adding ID 'x' to temp list in scope: global
+Added 'x' to temporary variable list in scope: global
+Set current type to Type.FLOAT
+Adding variables to table in scope: global
+Added global variable 'x' of type Type.FLOAT at address 3000
+Adding ID 'y' to temp list in scope: global
+Added 'y' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'y' of type Type.INT at address 1000
+Adding ID 'z' to temp list in scope: global
+Added 'z' to temporary variable list in scope: global
+Set current type to Type.FLOAT
+Adding variables to table in scope: global
+Added global variable 'z' of type Type.FLOAT at address 3001
+Starting variable declaration in scope 'global'
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program operaciones_flotantes started, scope reset to global
+Program operaciones_flotantes completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: None
+----------------------------------------------------------------------
+0: (goto, None, None, 1)
+      jump to quadruple 1
+----------------------------------------------------------------------
+1: (=, 17000, None, 3000)
+      assign value of constant(3.5) to x (global)
+----------------------------------------------------------------------
+2: (=, 15000, None, 1000)
+      assign value of constant(2) to y (global)
+----------------------------------------------------------------------
+3: (*, 3000, 1000, 7000)
+      multiply x (global) and y (global), store result in addr:7000
+----------------------------------------------------------------------
+4: (+, 7000, 17001, 7001)
+      add addr:7000 and constant(1.5), store result in addr:7001
+----------------------------------------------------------------------
+5: (=, 7001, None, 3001)
+      assign value of addr:7001 to z (global)
+----------------------------------------------------------------------
+6: (print, Resultado flotante: , None, None)
+      print value addr:Resultado flotante: 
+----------------------------------------------------------------------
+7: (print, z, None, None)
+      print value addr:z
+----------------------------------------------------------------------
+
+2025-05-24 21:29:06,796 - INFO - ======== END TEST: float_operations ========
+
+2025-05-24 21:29:06,796 - INFO - 
+Running test: negative_values
+2025-05-24 21:29:06,796 - INFO - ======== TESTING: negative_values ========
+2025-05-24 21:29:06,797 - INFO - Program code:
+
+program negativos;
+var
+    a, b : int;
+    resultado : int;
+
+main {
+    a = -5;
+    b = 3;
+    resultado = a + b;
+    print("Resultado con negativos: ", resultado);
+}
+end
+
+2025-05-24 21:29:06,798 - INFO - Compilation successful!
+2025-05-24 21:29:06,798 - INFO - QUADRUPLES:
+2025-05-24 21:29:06,800 - INFO - 
+Adding ID 'a' to temp list in scope: global
+Added 'a' to temporary variable list in scope: global
+Adding ID 'b' to temp list in scope: global
+Added 'b' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'a' of type Type.INT at address 1000
+Added global variable 'b' of type Type.INT at address 1001
+Adding ID 'resultado' to temp list in scope: global
+Added 'resultado' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'resultado' of type Type.INT at address 1002
+Starting variable declaration in scope 'global'
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program negativos started, scope reset to global
+Program negativos completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: main - Start Address: None
+----------------------------------------------------------------------
+0: (goto, None, None, 1)
+      jump to quadruple 1
+----------------------------------------------------------------------
+1: (*, 15000, 15001, 5000)
+      multiply constant(-1) and constant(5), store result in addr:5000
+----------------------------------------------------------------------
+2: (=, 5000, None, 1000)
+      assign value of addr:5000 to a (global)
+----------------------------------------------------------------------
+3: (=, 15002, None, 1001)
+      assign value of constant(3) to b (global)
+----------------------------------------------------------------------
+4: (+, 1000, 1001, 5001)
+      add a (global) and b (global), store result in addr:5001
+----------------------------------------------------------------------
+5: (=, 5001, None, 1002)
+      assign value of addr:5001 to resultado (global)
+----------------------------------------------------------------------
+6: (print, Resultado con negativos: , None, None)
+      print value addr:Resultado con negativos: 
+----------------------------------------------------------------------
+7: (print, resultado, None, None)
+      print value addr:resultado
+----------------------------------------------------------------------
+
+2025-05-24 21:29:06,803 - INFO - ======== END TEST: negative_values ========
+
+2025-05-24 21:29:06,803 - INFO - 
+======== TEST SUMMARY ========
+2025-05-24 21:29:06,803 - INFO - arithmetic: PASS
+2025-05-24 21:29:06,803 - INFO - if_else: PASS
+2025-05-24 21:29:06,804 - INFO - while_loop: PASS
+2025-05-24 21:29:06,804 - INFO - functions: PASS
+2025-05-24 21:29:06,804 - INFO - float_operations: PASS
+2025-05-24 21:29:06,805 - INFO - negative_values: PASS
+2025-05-24 21:29:06,805 - INFO - 
+Test suite completed

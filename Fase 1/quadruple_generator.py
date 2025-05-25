@@ -87,7 +87,7 @@ class QuadrupleGenerator:
         # If operand is a constant
         try:
             # Try to convert to int or float
-            if '.' in operand:
+            if '.' in str(operand):
                 value = float(operand)
             else:
                 value = int(operand)
@@ -97,13 +97,7 @@ class QuadrupleGenerator:
                 self.constants_table[value] = address
             return self.constants_table[value]
         except ValueError:
-            # For string constants
-            if operand.startswith('"') and operand.endswith('"'):
-                value = operand[1:-1]  # Remove quotes
-                if value not in self.constants_table:
-                    address = self.semantic.memory_manager.get_constant_address(value)
-                    self.constants_table[value] = address
-                return self.constants_table[value]
+            pass
         
         # Return -1 if not found
         return -1
@@ -221,7 +215,7 @@ class QuadrupleGenerator:
         # Comparison operations
         elif op in ['>', '<', '!=']:
             op_map = {'>': 'greater than', '<': 'less than', '!=': 'not equal to'}
-            return f"compare if {left_name} is {op_map[op]} {right_name}, store result in {result_name}"
+            return f"compare if {left_name} is {op_map[op]} {right_name}, store boolean result in {result_name}"
         
         # Jumps
         elif op == 'goto':
@@ -239,11 +233,7 @@ class QuadrupleGenerator:
         
         # Print
         elif op == 'print':
-            if isinstance(left, str) and (left.startswith('"') and left.endswith('"')):
-                # It's a string literal
-                return f"print string \"{left}\""
-            else:
-                return f"print value {left_name}"
+            return f"print value {left_name}"
         
         # Default case
         else:
