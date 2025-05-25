@@ -4,21 +4,38 @@ from semantic_cube import Type, Operation, get_result_type
 from semantic_analyzer import SemanticAnalyzer
 from quadruple_generator import QuadrupleGenerator, Quadruple
 
+# Flag para controlar debugging
+DEBUG = True
+
+def debug_print(message, level=1):
+    """Función centralizada para prints de debugging"""
+    if DEBUG:
+        indent = "  " * (level - 1)
+        print(f"[DEBUG] {indent}{message}")
+
 semantic = SemanticAnalyzer()
 quad_gen = QuadrupleGenerator(semantic)
 
 def get_operand_name(expr_node):
     if isinstance(expr_node, tuple):
         if expr_node[0] == 'id':
-            return expr_node[1]
+            result = expr_node[1]
+            return result
         elif expr_node[0] == 'constant':
-            return str(expr_node[1])
+            result = str(expr_node[1])
+            return result
         elif expr_node[0] == 'string':
-            return expr_node[1]
+            result = expr_node[1]
+            return result
+        elif expr_node[0] == 'temp_result':
+            result = expr_node[1]
+            return result
         elif expr_node[0] in ['operation', 'comparison', 'unary']:
             if quad_gen.PilaO:
-                return quad_gen.PilaO[-1]
-    return str(expr_node)
+                result = quad_gen.PilaO[-1]
+                return result
+    result = str(expr_node)
+    return result
 
 def p_programa(p):
     '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON saveGo dec_var dec_funcs TOKEN_MAIN fillMain body TOKEN_END'''
@@ -131,7 +148,7 @@ def p_statement(p):
     
 def p_print(p):
     '''print : TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON'''
-    for expr in p[3]:
+    for i, expr in enumerate(p[3]):
         if isinstance(expr, tuple) and expr[0] == 'string':
             quad_gen.generate_print_quad(expr[1])
         else:
@@ -218,16 +235,17 @@ def p_cte(p):
         p[0] = ('constant', p[1], Type.INT)
     else:  
         p[0] = ('constant', p[1], Type.FLOAT)
-    
+
 def p_expresion(p):
     '''expresion : exp comparar'''
+
     if p[2] == None:
         p[0] = p[1]
     else:
         left_type = get_expr_type(p[1])
         right_type = get_expr_type(p[2][1])
         op = token_to_operation(p[2][0])
-        print(f"Left type: {left_type}, Right type: {right_type}, Operator: {op}")
+        
         result_type = semantic.check_expression_compatibility(left_type, right_type, op)  
         left_operand = get_operand_name(p[1])
         quad_gen.process_operand(left_operand, left_type)     
@@ -237,6 +255,7 @@ def p_expresion(p):
         quad_gen.generate_arithmetic_quad()
         p[0] = ('comparison', p[1], p[2][0], p[2][1])
         p[0] = set_expr_type(p[0], result_type)
+
         
 def p_comparar(p):
     '''comparar  : signo exp
@@ -251,62 +270,46 @@ def p_signo(p):
     | TOKEN_LT
     | TOKEN_NE'''
     p[0] = p[1]
-    
 
 def p_exp(p):
     '''exp : termino exp_tail'''
-    print("\n--- Iniciando p_exp ---")
-    print(f"p[1] (termino): {p[1]}")
-    print(f"p[2] (exp_tail): {p[2]}")
     
     if p[2] is None:
-        print("exp_tail es None, asignando p[0] = p[1]")
         p[0] = p[1]
     else:
         result = p[1]
-        print("Procesando operaciones encadenadas...")
+        
+        # CORRECCIÓN: Procesar el primer operando antes del bucle
+        first_type = get_expr_type(result)
+        first_operand = get_operand_name(result)
+        quad_gen.process_operand(first_operand, first_type)
         
         for i, (op, operand) in enumerate(p[2]):
-            print(f"\nIteración {i}:")
-            print(f"Operador: {op}")
-            print(f"Operando derecho: {operand}")
             
-            left_type = get_expr_type(result)
-            right_type = get_expr_type(operand)
-            print(f"Tipo izquierdo: {left_type}, Tipo derecho: {right_type}")
-            
-            operation = token_to_operation(op)
-            print(f"Operación interna mapeada: {operation}")
-            
-            result_type = semantic.check_expression_compatibility(left_type, right_type, operation)
-            print(f"Tipo resultante después de semántica: {result_type}")
-            
-            left_operand = get_operand_name(result)
-            right_operand = get_operand_name(operand)
-            print(f"Nombre del operando izquierdo: {left_operand}")
-            print(f"Nombre del operando derecho: {right_operand}")
-            
-            print("Procesando operandos y operador para cuádruplos...")
-            quad_gen.process_operand(left_operand, left_type)
+            # Procesar operador y segundo operando
             quad_gen.process_operator(op)
+            right_type = get_expr_type(operand)
+            right_operand = get_operand_name(operand)
             quad_gen.process_operand(right_operand, right_type)
-            quad_gen.generate_arithmetic_quad()
-            print("Cuádruplo generado.")
             
-            result = ('operation', result, op, operand)
-            result = set_expr_type(result, result_type)
-            print(f"Resultado actualizado: {result}")
+            # Generar cuádruplo
+            quad_gen.generate_arithmetic_quad()
+
+        # El resultado final está en la cima de PilaO
+        if hasattr(quad_gen, 'PilaO') and quad_gen.PilaO:
+            temp_address = quad_gen.PilaO[-1]
+            final_type = quad_gen.PTypes[-1] if quad_gen.PTypes else Type.INT
+            result = ('temp_result', temp_address, 'type', final_type)
+        else:
+            result = ('operation', result, p[2][-1][0], p[2][-1][1])
 
         p[0] = result
-        print(f"\nResultado final de p_exp (p[0]): {p[0]}")
-    print("--- Fin de p_exp ---\n")
 
-        
+
 def p_operacion_sum_res(p):
     '''operacion_sum_res : TOKEN_PLUS
     | TOKEN_MINUS'''
     p[0] = p[1]
-
 
 def p_exp_tail(p):
     '''exp_tail  : operacion_sum_res termino exp_tail
@@ -320,27 +323,36 @@ def p_exp_tail(p):
             p[0] = [(p[1], p[2])] + p[3]
             
 def p_termino(p):
-    '''termino : factor termino_tail'''
+    '''termino : factor termino_tail'''  
     if p[2] is None:
         p[0] = p[1]
     else:
-        # Procesar la cadena de operaciones desde la izquierda
         result = p[1]
-        for op, operand in p[2]:
-            left_type = get_expr_type(result)
-            right_type = get_expr_type(operand)
-            operation = token_to_operation(op)
-            result_type = semantic.check_expression_compatibility(left_type, right_type, operation)
+        
+        # CORRECCIÓN: Procesar el primer operando antes del bucle
+        first_type = get_expr_type(result)
+        first_operand = get_operand_name(result)
+        quad_gen.process_operand(first_operand, first_type)
+        
+        for i, (op, operand) in enumerate(p[2]):
             
-            left_operand = get_operand_name(result)
-            quad_gen.process_operand(left_operand, left_type)
+            # Procesar operador y segundo operando
             quad_gen.process_operator(op)
+            right_type = get_expr_type(operand)
             right_operand = get_operand_name(operand)
             quad_gen.process_operand(right_operand, right_type)
+            
+            # Generar cuádruplo
             quad_gen.generate_arithmetic_quad()
             
-            result = ('operation', result, op, operand)
-            result = set_expr_type(result, result_type)
+        # El resultado final está en la cima de PilaO
+        if hasattr(quad_gen, 'PilaO') and quad_gen.PilaO:
+            temp_address = quad_gen.PilaO[-1]
+            final_type = quad_gen.PTypes[-1] if quad_gen.PTypes else Type.INT
+            result = ('temp_result', temp_address, 'type', final_type)
+        else:
+            result = ('operation', result, p[2][-1][0], p[2][-1][1])
+            
         p[0] = result
 
 def p_termino_tail(p):
@@ -551,7 +563,7 @@ def p_error(p):
         print(f"Syntax error at '{p.value}', line {p.lineno}")
     else:
         print("Syntax error at EOF")
-    
+        
 def token_to_operation(token):
     if token == '+' or token == 'TOKEN_PLUS':
         return Operation.PLUS
@@ -582,6 +594,13 @@ def set_expr_type(expr_node, expr_type):
     
 def get_expr_type(expr_node):
     if isinstance(expr_node, tuple):
+        # Manejar temp_result
+        if expr_node[0] == 'temp_result':
+            for i in range(len(expr_node) - 1):
+                if expr_node[i] == 'type' and i + 1 < len(expr_node):
+                    return expr_node[i + 1]
+        
+        # Resto del código original...
         for i in range(len(expr_node) - 1):
             if expr_node[i] == 'type' and i + 1 < len(expr_node):
                 return expr_node[i + 1]
@@ -664,7 +683,7 @@ if __name__ == "__main__":
         a = 5;
         b = 3;
         c = 2;
-        result = a  + b * c * 2;
+        result = a  - b * c *2 + 1 ;
         print(result);
     }
     end

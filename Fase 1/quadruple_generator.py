@@ -39,9 +39,9 @@ class QuadrupleGenerator:
             
         operator = self.POper[-1]
         if operator in ['+', '-', '*', '/', '>', '<', '!=']:
-            print(self.PilaO, "PilaO antes")  # Mostrar pila antes
-
-        
+            print(f"PilaO antes: {self.PilaO}")
+            print(f"PTypes antes: {self.PTypes}")
+            print(f"POper: {self.POper}")
             
             # Extraer operandos
             right_operand = self.PilaO.pop()
@@ -50,7 +50,8 @@ class QuadrupleGenerator:
             left_type = self.PTypes.pop()
             operator = self.POper.pop()
             
-            print(f"Check {left_operand} {right_operand} {operator}")
+            print(f"Operación: {left_operand} {operator} {right_operand}")
+            print(f"Tipos: {left_type} {operator} {right_type}")
             
             # Mapear operador a operación
             operation = None
@@ -76,13 +77,12 @@ class QuadrupleGenerator:
                 self.PilaO.append(result)
                 self.PTypes.append(result_type)
                 
-                print(self.PilaO, "PilaO después")
+                print(f"PilaO después: {self.PilaO}")
+                print(f"Cuádruplo generado: {quad}")
                 return True
             else:
                 self.semantic.add_error(f"Type mismatch: {left_type} {operator} {right_type}")
                 return False
-        return False
-    
     def get_operand_address(self, operand):
         if isinstance(operand, int):
             return operand
