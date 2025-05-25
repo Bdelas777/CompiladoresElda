@@ -20,11 +20,12 @@ def get_operand_name(expr_node):
                 return quad_gen.PilaO[-1]
     return str(expr_node)
 
+
 def p_programa(p):
     '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON saveGo dec_var dec_funcs TOKEN_MAIN fillMain body TOKEN_END'''
     semantic.program_start(p[2])
     p[0] = ('programa', p[2], p[5], p[6], p[9])
-    semantic.end_main()
+    # Remover la línea semantic.end_main() ya que fillMain maneja el scope de main
     semantic.program_end()
     quad_gen.print_quads()
 

@@ -73,9 +73,12 @@ class SemanticAnalyzer:
         return True
     
     def end_main(self):
-        if "main" not in self.function_directory:return self.add_error("Cannot end main function that hasn't been declared")
-        self.pop_scope()
-        print("Main function body ended, returned to global scope")
+        if "main" not in self.function_directory:
+            return self.add_error("Cannot end main function that hasn't been declared")
+        # Solo hacer pop si estamos en el scope main
+        if self.current_scope == "main":
+            self.pop_scope()
+            print("Main function body ended, returned to global scope")
         return True
     
     def program_end(self):
