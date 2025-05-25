@@ -1,6 +1,6 @@
 
 ================================================================================
-SESIÓN DE PRUEBAS - 2025-05-25 14:59:23
+SESIÓN DE PRUEBAS - 2025-05-25 15:37:24
 ================================================================================
 
 
@@ -210,6 +210,9 @@ Starting at quadruple 1
 42: (print, 8000, None, None)
       print value resultado3 (global)
 ----------------------------------------------------------------------
+43: (END, None, None, None)
+      perform operation END with operand None
+----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
   Salto a: 1
@@ -297,6 +300,8 @@ IP: 41 -> Ejecutando: (print, Resultado 7: , None, None)
 OUTPUT: Resultado 7: 
 IP: 42 -> Ejecutando: (print, 8000, None, None)
 OUTPUT: -6.0
+IP: 43 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
 === ESTADO DE LA MEMORIA SEGMENTADA ===
@@ -458,6 +463,9 @@ Starting at quadruple 1
 16: (print, x es mayor o igual que 10, None, None)
       print value addr:x es mayor o igual que 10
 ----------------------------------------------------------------------
+17: (END, None, None, None)
+      perform operation END with operand None
+----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
   Salto a: 1
@@ -483,6 +491,8 @@ IP: 13 -> Ejecutando: (gotof, 19001, None, 16)
   Salto condicional a: 16 (condición falsa)
 IP: 16 -> Ejecutando: (print, x es mayor o igual que 10, None, None)
 OUTPUT: x es mayor o igual que 10
+IP: 17 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
 === ESTADO DE LA MEMORIA SEGMENTADA ===
@@ -608,6 +618,9 @@ Starting at quadruple 1
 15: (print, 5001, None, None)
       print value suma (global)
 ----------------------------------------------------------------------
+16: (END, None, None, None)
+      perform operation END with operand None
+----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
   Salto a: 1
@@ -711,6 +724,8 @@ IP: 14 -> Ejecutando: (print, Suma final: , None, None)
 OUTPUT: Suma final: 
 IP: 15 -> Ejecutando: (print, 5001, None, None)
 OUTPUT: 10
+IP: 16 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
 === ESTADO DE LA MEMORIA SEGMENTADA ===
@@ -952,6 +967,9 @@ Starting at quadruple 11
 30: (GOSUB, multiplicar, None, None)
       perform operation GOSUB with operand addr:multiplicar
 ----------------------------------------------------------------------
+31: (END, None, None, None)
+      perform operation END with operand None
+----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 11)
   Salto a: 11
@@ -1043,6 +1061,8 @@ IP: 9 -> Ejecutando: (print, 11005, None, None)
 OUTPUT: 60
 IP: 10 -> Ejecutando: (ENDFUNC, None, None, None)
   ENDFUNC: Retornando a dirección 31
+IP: 31 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
 === ESTADO DE LA MEMORIA SEGMENTADA ===
@@ -1157,6 +1177,9 @@ Starting at quadruple 1
 7: (print, 8001, None, None)
       print value z (global)
 ----------------------------------------------------------------------
+8: (END, None, None, None)
+      perform operation END with operand None
+----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
   Salto a: 1
@@ -1174,6 +1197,8 @@ IP: 6 -> Ejecutando: (print, Resultado flotante: , None, None)
 OUTPUT: Resultado flotante: 
 IP: 7 -> Ejecutando: (print, 8001, None, None)
 OUTPUT: 8.5
+IP: 8 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
 === ESTADO DE LA MEMORIA SEGMENTADA ===
@@ -1274,6 +1299,9 @@ Starting at quadruple 1
 7: (print, 5002, None, None)
       print value resultado (global)
 ----------------------------------------------------------------------
+8: (END, None, None, None)
+      perform operation END with operand None
+----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
   Salto a: 1
@@ -1291,6 +1319,8 @@ IP: 6 -> Ejecutando: (print, Resultado con negativos: , None, None)
 OUTPUT: Resultado con negativos: 
 IP: 7 -> Ejecutando: (print, 5002, None, None)
 OUTPUT: -2
+IP: 8 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
 === ESTADO DE LA MEMORIA SEGMENTADA ===

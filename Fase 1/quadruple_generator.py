@@ -283,6 +283,13 @@ class QuadrupleGenerator:
         self.Quads.append(quad)
         self.quad_counter += 1
         return self.quad_counter - 1
+    
+    def generate_end_quad(self):
+        """Genera cuádruplo END para terminar el programa"""
+        quad = Quadruple('END', None, None, None)
+        self.Quads.append(quad)
+        self.quad_counter += 1
+        return self.quad_counter - 1
 
     def generate_return_quad(self, return_value=None):
         """Genera cuádruplo RETURN"""

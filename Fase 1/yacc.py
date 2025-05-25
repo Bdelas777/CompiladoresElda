@@ -42,6 +42,8 @@ def p_programa(p):
     semantic.program_start(p[2])
     p[0] = ('programa', p[2], p[5], p[6], p[9])
     semantic.program_end()
+    # AGREGAR ESTA LÍNEA:
+    quad_gen.generate_end_quad()
     quad_gen.print_quads()
 
 def p_saveGo(p):
