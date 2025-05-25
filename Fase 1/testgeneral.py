@@ -140,3 +140,21 @@ end
 '''
 
 #Respuesta flotante: 8.5
+
+
+"""
+program negativos;
+var
+    a, b : int;
+    resultado : int;
+
+main {
+    a = -5;
+    b = 3;
+    resultado = a + b;
+    print("Resultado con negativos: ", resultado);
+}
+end
+"""
+
+# Respuesta: Resultado con negativos: -2
