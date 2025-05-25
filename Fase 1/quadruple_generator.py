@@ -111,6 +111,9 @@ class QuadrupleGenerator:
         print(self.PilaO, "PilaO")
         self.PilaO.append(operand_id)
         self.PTypes.append(operand_type)
+        print(f"Processing operand: {operand_id} of type {operand_type} despues")
+        print(self.PilaO, "PilaO despues")
+        
         
     def check_top_operation(self, operators_list):
         if self.POper and self.POper[-1] in operators_list:

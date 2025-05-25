@@ -255,33 +255,62 @@ def p_signo(p):
 
 def p_exp(p):
     '''exp : termino exp_tail'''
+    print("\n--- Iniciando p_exp ---")
+    print(f"p[1] (termino): {p[1]}")
+    print(f"p[2] (exp_tail): {p[2]}")
+    
     if p[2] is None:
+        print("exp_tail es None, asignando p[0] = p[1]")
         p[0] = p[1]
     else:
-        # Procesar la cadena de operaciones desde la izquierda
         result = p[1]
-        for op, operand in p[2]:
+        print("Procesando operaciones encadenadas...")
+        
+        for i, (op, operand) in enumerate(p[2]):
+            print(f"\nIteración {i}:")
+            print(f"Operador: {op}")
+            print(f"Operando derecho: {operand}")
+            
             left_type = get_expr_type(result)
             right_type = get_expr_type(operand)
+            print(f"Tipo izquierdo: {left_type}, Tipo derecho: {right_type}")
+            
             operation = token_to_operation(op)
+            print(f"Operación interna mapeada: {operation}")
+            
             result_type = semantic.check_expression_compatibility(left_type, right_type, operation)
+            print(f"Tipo resultante después de semántica: {result_type}")
             
             left_operand = get_operand_name(result)
+            right_operand = get_operand_name(operand)
+            print(f"Nombre del operando izquierdo: {left_operand}")
+            print(f"Nombre del operando derecho: {right_operand}")
+            
+            print("Procesando operandos y operador para cuádruplos...")
             quad_gen.process_operand(left_operand, left_type)
             quad_gen.process_operator(op)
-            right_operand = get_operand_name(operand)
             quad_gen.process_operand(right_operand, right_type)
             quad_gen.generate_arithmetic_quad()
+            print("Cuádruplo generado.")
             
-            # El resultado temporal se convierte en el nuevo operando izquierdo
             result = ('operation', result, op, operand)
             result = set_expr_type(result, result_type)
+            print(f"Resultado actualizado: {result}")
+
         p[0] = result
+        print(f"\nResultado final de p_exp (p[0]): {p[0]}")
+    print("--- Fin de p_exp ---\n")
+
+        
+def p_operacion_sum_res(p):
+    '''operacion_sum_res : TOKEN_PLUS
+    | TOKEN_MINUS'''
+    p[0] = p[1]
+
 
 def p_exp_tail(p):
-    '''exp_tail : TOKEN_PLUS termino exp_tail
-                | TOKEN_MINUS termino exp_tail
-                | empty'''
+    '''exp_tail  : operacion_sum_res termino exp_tail
+                    | empty'''
     if p[1] is None:
         p[0] = None
     else:
@@ -289,8 +318,7 @@ def p_exp_tail(p):
             p[0] = [(p[1], p[2])]
         else:
             p[0] = [(p[1], p[2])] + p[3]
-
-# CORRECCIÓN: Simplificar manejo de multiplicación/división
+            
 def p_termino(p):
     '''termino : factor termino_tail'''
     if p[2] is None:
@@ -399,12 +427,6 @@ def p_end_func(p):
     quad_gen.generate_endfunc_quad()
     semantic.end_function_declaration()
     p[0] = None
-
-def p_scopefun(p):
-    '''scopefun : empty'''
-    function_name = p[-1]  
-    semantic.declare_function(function_name)
-    return True
     
 def p_tipo(p):
     '''tipo : def_tipo
@@ -642,7 +664,7 @@ if __name__ == "__main__":
         a = 5;
         b = 3;
         c = 2;
-        result = a +  c * 2;
+        result = a  + b * c * 2;
         print(result);
     }
     end
