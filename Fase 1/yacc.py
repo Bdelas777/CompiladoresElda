@@ -5,23 +5,17 @@ from semantic_analyzer import SemanticAnalyzer
 from quadruple_generator import QuadrupleGenerator, Quadruple
 semantic = SemanticAnalyzer()
 quad_gen = QuadrupleGenerator(semantic)
-
 def get_operand_name(expr_node):
     if isinstance(expr_node, tuple):
         if expr_node[0] == 'id':
             return expr_node[1]
         elif expr_node[0] == 'constant':
-            return expr_node[1]
+            return str(expr_node[1])
         elif expr_node[0] == 'string':
             return expr_node[1]
         elif expr_node[0] in ['operation', 'comparison', 'unary']:
-            # Para operaciones, devolver el resultado temporal más reciente
             if quad_gen.PilaO:
                 return quad_gen.PilaO[-1]
-            else:
-                return str(expr_node[1]) if len(expr_node) > 1 else "temp"
-    elif isinstance(expr_node, (int, float)):
-        return expr_node
     return str(expr_node)
 
 def p_programa(p):
@@ -228,7 +222,18 @@ def p_expresion(p):
     if p[2] == None:
         p[0] = p[1]
     else:
+        left_type = get_expr_type(p[1])
+        right_type = get_expr_type(p[2][1])
+        op = token_to_operation(p[2][0])
+        result_type = semantic.check_expression_compatibility(left_type, right_type, op)  
+        left_operand = get_operand_name(p[1])
+        quad_gen.process_operand(left_operand, left_type)     
+        quad_gen.process_operator(p[2][0])       
+        right_operand = get_operand_name(p[2][1])
+        quad_gen.process_operand(right_operand, right_type)       
+        quad_gen.generate_arithmetic_quad()
         p[0] = ('comparison', p[1], p[2][0], p[2][1])
+        p[0] = set_expr_type(p[0], result_type)
         
 def p_comparar(p):
     '''comparar  : signo exp
@@ -249,21 +254,16 @@ def p_exp(p):
     if p[2] == None:
         p[0] = p[1]
     else:
-        # Generar cuádruplo para suma/resta
         left_type = get_expr_type(p[1])
         right_type = get_expr_type(p[2][1])
         op = token_to_operation(p[2][0])
-        result_type = semantic.check_expression_compatibility(left_type, right_type, op)
-        
-        if result_type != Type.ERROR:
-            left_operand = get_operand_name(p[1])
-            right_operand = get_operand_name(p[2][1])
-            
-            quad_gen.process_operand(left_operand, left_type)
-            quad_gen.process_operator(p[2][0])
-            quad_gen.process_operand(right_operand, right_type)
-            quad_gen.generate_arithmetic_quad()
-        
+        result_type = semantic.check_expression_compatibility(left_type, right_type, op)      
+        left_operand = get_operand_name(p[1])
+        quad_gen.process_operand(left_operand, left_type)       
+        quad_gen.process_operator(p[2][0])       
+        right_operand = get_operand_name(p[2][1])
+        quad_gen.process_operand(right_operand, right_type)
+        quad_gen.generate_arithmetic_quad()
         p[0] = ('operation', p[1], p[2][0], p[2][1])
         p[0] = set_expr_type(p[0], result_type)
         
@@ -284,21 +284,16 @@ def p_termino(p):
     if p[2] == None:
         p[0] = p[1]
     else:
-        # Generar cuádruplo para multiplicación/división
         left_type = get_expr_type(p[1])
         right_type = get_expr_type(p[2][1])
         op = token_to_operation(p[2][0])
         result_type = semantic.check_expression_compatibility(left_type, right_type, op)
-        
-        if result_type != Type.ERROR:
-            left_operand = get_operand_name(p[1])
-            right_operand = get_operand_name(p[2][1])
-            
-            quad_gen.process_operand(left_operand, left_type)
-            quad_gen.process_operator(p[2][0])
-            quad_gen.process_operand(right_operand, right_type)
-            quad_gen.generate_arithmetic_quad()
-        
+        left_operand = get_operand_name(p[1])
+        quad_gen.process_operand(left_operand, left_type)
+        quad_gen.process_operator(p[2][0])
+        right_operand = get_operand_name(p[2][1])
+        quad_gen.process_operand(right_operand, right_type)
+        quad_gen.generate_arithmetic_quad()
         p[0] = ('operation', p[1], p[2][0], p[2][1])
         p[0] = set_expr_type(p[0], result_type)
         
@@ -325,9 +320,10 @@ def p_factor(p):
     
 def p_definicion(p):
     '''definicion : TOKEN_LPAREN expresion TOKEN_RPAREN'''
-    # Solo pasar la expresión, no manipular pilas aquí
+    quad_gen.push_false_bottom()
+    quad_gen.pop_false_bottom()
+    
     p[0] = p[2]
-
     
 def p_operaciones(p):
     '''operaciones : opciones_mas_menos id_cte'''
@@ -337,18 +333,14 @@ def p_operaciones(p):
         expr_type = get_expr_type(p[2])
         if expr_type not in [Type.INT, Type.FLOAT]:
             semantic.add_error(f"Unary operation not supported for type {expr_type}")
-        
+        operand = get_operand_name(p[2])
         if p[1] == '-':
-            # Generar cuádruplo para negación (multiplicar por -1)
-            operand = get_operand_name(p[2])
-            quad_gen.process_operand(-1, Type.INT)
-            quad_gen.process_operator('*')
-            quad_gen.process_operand(operand, expr_type)
-            quad_gen.generate_arithmetic_quad()
-        
+            quad_gen.process_operand("-1", Type.INT)  
+            quad_gen.process_operand(operand, expr_type) 
+            quad_gen.process_operator('*')  
+            quad_gen.generate_arithmetic_quad() 
         p[0] = ('unary', p[1], p[2])
         p[0] = set_expr_type(p[0], expr_type)
-
         
 def p_opciones_mas_menos(p):
     '''opciones_mas_menos : TOKEN_PLUS
@@ -627,17 +619,16 @@ def execute_program(code):
     return vm
     
 if __name__ == "__main__":
-    test_code = """
-    program test;
-    var a, b : int;
-        result : float;
-    main {
-        a = 5;
-        b = 3;
-        result = a + b * 2;
-        print(result);
-    }
+    test_code = '''
+    program test1;
+    var
+    e, z : int;
+        x, y, a : float;
+    void uno(i : int)
+    [
+        var x : int;
+        {
+            x = 1;
     end
-    """
-    
+        '''
     execute_program(test_code)
