@@ -21,20 +21,30 @@ def get_operand_name(expr_node):
     return str(expr_node)
 
 def p_programa(p):
-    '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funcs TOKEN_MAIN body TOKEN_END'''
+    '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON saveGo dec_var dec_funcs TOKEN_MAIN fillMain body TOKEN_END'''
     semantic.program_start(p[2])
-    semantic.declare_main()
-    p[0] = ('programa', p[2], p[4], p[5], p[7])
+    p[0] = ('programa', p[2], p[5], p[6], p[9])
     semantic.end_main()
     semantic.program_end()
     quad_gen.print_quads()
 
-def p_programa_error_no_main(p):
-    '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funcs TOKEN_END'''
-    semantic.program_start(p[2])
-    semantic.add_error("Missing 'main' section in program")
-    p[0] = ('programa_error', p[2], p[4], p[5])
-    semantic.program_end()
+# 2. Agregar la función saveGo
+def p_saveGo(p):
+    '''saveGo : empty'''
+    # Generar el cuádruplo GOTO inicial (será llenado después)
+    goto_index = quad_gen.generate_goto_quad()
+    quad_gen.main_goto_index = goto_index  # Guardar el índice para llenarlo después
+    p[0] = goto_index
+
+# 3. Agregar la función fillMain
+def p_fillMain(p):
+    '''fillMain : empty'''
+    semantic.declare_main()
+    # Llenar el cuádruplo GOTO inicial con la posición actual (inicio del main)
+    if hasattr(quad_gen, 'main_goto_index'):
+        quad_gen.fill_quad(quad_gen.main_goto_index, len(quad_gen.Quads))
+    p[0] = None
+    
     
 def p_dec_var(p):
     '''dec_var : vars
@@ -382,11 +392,28 @@ def p_id_cte(p):
                 
 
 def p_funcs(p):
-    '''funcs :  TOKEN_VOID TOKEN_ID scopefun TOKEN_LPAREN tipo TOKEN_RPAREN TOKEN_LCOL var body TOKEN_RCOL TOKEN_SEMICOLON'''
+    '''funcs : TOKEN_VOID TOKEN_ID save_func_start TOKEN_LPAREN tipo TOKEN_RPAREN TOKEN_LCOL var body TOKEN_RCOL end_func TOKEN_SEMICOLON'''
     func = semantic.check_function(p[2])    
     params = p[5] if p[5] else []   
     p[0] = ('function', p[2], params, p[8], p[9])
+
+
+def p_save_func_start(p):
+    '''save_func_start : empty'''
+    # Obtener el nombre de la función del token anterior
+    function_name = p[-1]  
+    semantic.declare_function(function_name)
+    # Guardar la dirección de inicio de la función
+    quad_gen.save_function_start(function_name)
+    p[0] = None
+
+def p_end_func(p):
+    '''end_func : empty'''
+    # Generar ENDFUNC al final de cada función
+    quad_gen.generate_endfunc_quad()
     semantic.end_function_declaration()
+    p[0] = None
+    
 
 def p_scopefun(p):
     '''scopefun : empty'''
@@ -433,51 +460,75 @@ def p_var(p):
     p[0] = p[1]
     
 def p_f_call(p):
-    '''f_call : TOKEN_ID TOKEN_LPAREN def_exp TOKEN_RPAREN TOKEN_SEMICOLON'''
+    '''f_call : TOKEN_ID era_quad TOKEN_LPAREN def_exp TOKEN_RPAREN gosub_quad TOKEN_SEMICOLON'''
     func = semantic.check_function(p[1])
     if func:
-        args = p[3] if p[3] else []
+        args = p[4] if p[4] else []
         if len(args) != len(func.parameters):
             semantic.add_error(f"Function '{p[1]}' expects {len(func.parameters)} arguments, got {len(args)}")
         else:
+            # Validar tipos de parámetros
             for i, (arg, param) in enumerate(zip(args, func.parameters)):
                 arg_type = get_expr_type(arg)
                 param_type = param.type
                 result_type = get_result_type(param_type, arg_type, Operation.ASSIGN)
                 if result_type == Type.ERROR:
                     semantic.add_error(f"Parameter type mismatch in call to '{p[1]}': Parameter {i+1} expects {param_type}, got {arg_type}")
-        quad_gen.Quads.append(Quadruple('call', p[1], None, None))
-        quad_gen.quad_counter += 1
         
-    p[0] = ('function_call', p[1], p[3] if p[3] else [])
+    p[0] = ('function_call', p[1], p[4] if p[4] else [])
+
+def p_era_quad(p):
+    '''era_quad : empty'''
+    function_name = p[-1]
+    quad_gen.generate_era_quad(function_name)
+    quad_gen.reset_param_counter()  # Reiniciar contador
+    p[0] = None
+
+def p_gosub_quad(p):
+    '''gosub_quad : empty'''
+    # Generar cuádruplo GOSUB después de los parámetros
+    function_name = p[-5]  # Obtener nombre de función
+    quad_gen.generate_gosub_quad(function_name)
+    p[0] = None
     
 def p_def_exp(p):
-    '''def_exp : expresion coma2
+    '''def_exp : expresion param_quad coma2
     | empty'''
     if p[1] is None:
         p[0] = []
     else:
-        operand = get_operand_name(p[1])
-        quad_gen.Quads.append(Quadruple('param', operand, None, None))
-        quad_gen.quad_counter += 1
-        
         args = [p[1]]
-        if p[2]:
-            for arg in p[2]:
-                operand = get_operand_name(arg)
-                quad_gen.Quads.append(Quadruple('param', operand, None, None))
-                quad_gen.quad_counter += 1
-            args.extend(p[2])
-        
+        if p[3]:
+            args.extend(p[3])
         p[0] = args
-        
+
+def p_param_quad(p):
+    '''param_quad : empty'''
+    if len(p) > 1 and p[-1] is not None:
+        operand = get_operand_name(p[-1])
+        operand_address = quad_gen.get_operand_address(operand)
+        param_number = quad_gen.increment_param_counter()
+        quad_gen.generate_param_quad(operand_address, param_number)
+    p[0] = None
+         
 def p_coma2(p):
-    '''coma2 : TOKEN_COMMA expresion coma2
+    '''coma2 : TOKEN_COMMA expresion param_quad_coma coma2
     | empty'''
     if p[1] == None:
         p[0] = []
     else:
-        p[0] = [p[2]] + (p[3] if p[3] else [])
+        p[0] = [p[2]] + (p[4] if p[4] else [])
+
+def p_param_quad_coma(p):
+    '''param_quad_coma : empty'''
+    # Generar cuádruplo de parámetro para parámetros adicionales
+    if len(p) > 1 and p[-1] is not None:
+        operand = get_operand_name(p[-1])
+        operand_address = quad_gen.get_operand_address(operand)
+        # Incrementar contador de parámetros
+        param_number = 2  # Esto debería ser un contador apropiado
+        quad_gen.generate_param_quad(operand_address, param_number)
+    p[0] = None
         
 def p_assign(p):
     '''assign : TOKEN_ID TOKEN_ASSIGN expresion TOKEN_SEMICOLON'''

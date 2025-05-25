@@ -22,6 +22,8 @@ class QuadrupleGenerator:
         self.quad_counter = 0
         self.false_bottom = '('  
         self.constants_table = {}  
+        self.param_counter = 0
+        self.main_goto_index = None 
         
     def new_temp(self, temp_type):
         temp = f"t{self.temp_counter}"
@@ -258,10 +260,99 @@ class QuadrupleGenerator:
         print("      EXPLANATION")
         print("-" * 70)
         
+        # Imprimir información de funciones primero
+        self._print_function_info()
+        
+        current_function = None
+        
         for i, quad in enumerate(self.Quads):
+            # Detectar inicio de función
+            function_name = self._get_function_at_quad(i)
+            if function_name and function_name != current_function:
+                current_function = function_name
+                print(f"\n{'='*20} FUNCTION: {function_name.upper()} {'='*20}")
+                print(f"Starting at quadruple {i}")
+                print("-" * 70)
+            
             print(f"{i}: {quad}")
             
             # Generate explanation based on operator
             explanation = self._get_quad_explanation(quad)
             print(f"      {explanation}")
+            
+            # Detectar fin de función
+            if quad.operator == 'ENDFUNC':
+                print(f"{'='*20} END OF {current_function.upper()} {'='*20}")
+                current_function = None
+            
             print("-" * 70)
+        
+    def _print_function_info(self):
+        """Imprime información sobre las funciones y sus direcciones de inicio"""
+        print("\n===== FUNCTION DIRECTORY =====")
+        for func_name, func_info in self.semantic.function_directory.items():
+            start_addr = getattr(func_info, 'start_address', 'Not set')
+            print(f"Function: {func_name} - Start Address: {start_addr}")
+        print("-" * 70)
+    
+    def _get_function_at_quad(self, quad_index):
+        """Determina qué función está ejecutándose en el cuádruplo dado"""
+        # Buscar en el directorio de funciones cuál tiene esta dirección de inicio
+        for func_name, func_info in self.semantic.function_directory.items():
+            if hasattr(func_info, 'start_address') and func_info.start_address == quad_index:
+                return func_name
+        return None
+       
+    def generate_era_quad(self, func_name):
+        """Genera cuádruplo ERA para reservar espacio de función"""
+        quad = Quadruple('ERA', func_name, None, None)
+        self.Quads.append(quad)
+        self.quad_counter += 1
+        return self.quad_counter - 1
+
+    def generate_param_quad(self, param_address, param_number):
+        """Genera cuádruplo para pasar parámetro"""
+        quad = Quadruple('parámetro', param_address, f'par{param_number}', None)
+        self.Quads.append(quad)
+        self.quad_counter += 1
+        return self.quad_counter - 1
+
+    def generate_gosub_quad(self, func_name):
+        """Genera cuádruplo GOSUB para llamar función"""
+        quad = Quadruple('GOSUB', func_name, None, None)
+        self.Quads.append(quad)
+        self.quad_counter += 1
+        return self.quad_counter - 1
+
+    def generate_endfunc_quad(self):
+        """Genera cuádruplo ENDFUNC para terminar función"""
+        quad = Quadruple('ENDFUNC', None, None, None)
+        self.Quads.append(quad)
+        self.quad_counter += 1
+        return self.quad_counter - 1
+
+    def generate_return_quad(self, return_value=None):
+        """Genera cuádruplo RETURN"""
+        if return_value:
+            return_address = self.get_operand_address(return_value)
+            quad = Quadruple('RETURN', return_address, None, None)
+        else:
+            quad = Quadruple('RETURN', None, None, None)
+        self.Quads.append(quad)
+        self.quad_counter += 1
+        return self.quad_counter - 1
+
+    def save_function_start(self, func_name):
+        """Guarda la dirección de inicio de una función"""
+        if func_name in self.semantic.function_directory:
+            self.semantic.function_directory[func_name].start_address = self.quad_counter
+        return self.quad_counter
+    
+    def reset_param_counter(self):
+        """Reinicia el contador de parámetros para una nueva llamada a función"""
+        self.param_counter = 0
+
+    def increment_param_counter(self):
+        """Incrementa y retorna el contador de parámetros"""
+        self.param_counter += 1
+        return self.param_counter
