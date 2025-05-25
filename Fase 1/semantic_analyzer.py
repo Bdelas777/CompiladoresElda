@@ -165,8 +165,6 @@ class SemanticAnalyzer:
     def add_parameter(self, param_id, param_type):
         if self.current_scope == "global":
             return self.add_error("Cannot declare parameters in global scope")
-        
-        # Solo permitir int y float para parámetros
         if param_type == "int":
             type_enum = Type.INT
         elif param_type == "float":

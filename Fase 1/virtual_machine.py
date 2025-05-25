@@ -1,231 +1,201 @@
 class VirtualMachine:
-    def __init__(self, quadruples, constants_table, memory_manager):
+    def __init__(self, memory_manager, quadruples, function_directory):
+        self.memory = memory_manager
         self.quadruples = quadruples
-        self.constants_table = constants_table
-        self.memory_manager = memory_manager
+        self.function_directory = function_directory
+        self.instruction_pointer = 0
+        self.running = True
         
-        # Memory segments for execution
-        self.memory = {}
+        # Establecer referencia del function directory en memory manager
+        self.memory.function_directory = function_directory
         
-        # Instruction pointer
-        self.ip = 0  # instruction pointer
-        
-        # Initialize memory segments
-        self._initialize_memory()
-        
-        # Load constants into memory
-        self._load_constants()
-        
-    def _initialize_memory(self):
-        """Initialize all memory segments"""
-        # Global integers: 1000-2999
-        for i in range(1000, 3000):
-            self.memory[i] = 0
-            
-        # Global floats: 3000-4999  
-        for i in range(3000, 5000):
-            self.memory[i] = 0.0
-            
-        # Local integers: 5000-6999
-        for i in range(5000, 7000):
-            self.memory[i] = 0
-            
-        # Local floats: 7000-8999
-        for i in range(7000, 9000):
-            self.memory[i] = 0.0
-            
-        # Temp integers: 9000-10999
-        for i in range(9000, 11000):
-            self.memory[i] = 0
-            
-        # Temp floats: 11000-12999
-        for i in range(11000, 13000):
-            self.memory[i] = 0.0
-            
-        # Constant integers: 13000-14999
-        for i in range(13000, 15000):
-            self.memory[i] = 0
-            
-        # Constant floats: 15000-16999
-        for i in range(15000, 17000):
-            self.memory[i] = 0.0
-            
-        # Constant strings: 17000-18999
-        for i in range(17000, 19000):
-            self.memory[i] = ""
-    
-    def _load_constants(self):
-        """Load constants from constants table into memory"""
-        for value, address in self.constants_table.items():
-            self.memory[address] = value
-    
-    def get_value(self, address):
-        """Get value from memory address"""
-        if isinstance(address, (int, float, str)) and not isinstance(address, bool):
-            # If it's already a literal value, return it
-            if isinstance(address, str) and address.isdigit():
-                return int(address)
-            elif isinstance(address, str):
-                try:
-                    return float(address)
-                except ValueError:
-                    return address
-            return address
-        
-        # If it's a memory address
-        if address in self.memory:
-            return self.memory[address]
-        
-        return 0  # Default value
-    
-    def set_value(self, address, value):
-        """Set value at memory address"""
-        if address in self.memory:
-            self.memory[address] = value
-        else:
-            print(f"Warning: Trying to set value at invalid address {address}")
+        # Inicializar memoria
+        self.memory.initialize_memory()
     
     def execute(self):
-        """Main execution loop"""
+        """Ejecuta el programa desde el instruction pointer actual"""
         print("Starting Virtual Machine execution...")
-        print("=" * 50)
         
-        while self.ip < len(self.quadruples):
-            quad = self.quadruples[self.ip]
-            print(f"IP: {self.ip} | Executing: {quad}")
+        while self.running and self.instruction_pointer < len(self.quadruples):
+            quad = self.quadruples[self.instruction_pointer]
+            print(f"IP: {self.instruction_pointer} | Executing: {quad}")
             
-            # Execute current quadruple
-            self._execute_quadruple(quad)
+            self.execute_instruction(quad)
             
-            # Move to next instruction (unless it's a jump)
-            self.ip += 1
+            # Solo incrementar IP si no fue modificado por un salto
+            if self.instruction_pointer == self.memory.instruction_pointer:
+                self.instruction_pointer += 1
+            else:
+                self.instruction_pointer = self.memory.instruction_pointer
         
-        print("=" * 50)
         print("Virtual Machine execution completed.")
     
-    def _execute_quadruple(self, quad):
-        """Execute a single quadruple"""
-        op = quad.operator
+    def execute_instruction(self, quad):
+        """Ejecuta una instrucción individual"""
+        operator = quad.operator
         left = quad.left_operand
         right = quad.right_operand
         result = quad.result
         
-        if op == '+':
-            left_val = self.get_value(left)
-            right_val = self.get_value(right)
-            self.set_value(result, left_val + right_val)
-            
-        elif op == '-':
-            left_val = self.get_value(left)
-            right_val = self.get_value(right)
-            self.set_value(result, left_val - right_val)
-            
-        elif op == '*':
-            left_val = self.get_value(left)
-            right_val = self.get_value(right)
-            self.set_value(result, left_val * right_val)
-            
-        elif op == '/':
-            left_val = self.get_value(left)
-            right_val = self.get_value(right)
-            if right_val == 0:
-                print("Runtime Error: Division by zero")
-                return
-            self.set_value(result, left_val / right_val)
-            
-        elif op == '>':
-            left_val = self.get_value(left)
-            right_val = self.get_value(right)
-            self.set_value(result, 1 if left_val > right_val else 0)
-            
-        elif op == '<':
-            left_val = self.get_value(left)
-            right_val = self.get_value(right)
-            self.set_value(result, 1 if left_val < right_val else 0)
-            
-        elif op == '!=':
-            left_val = self.get_value(left)
-            right_val = self.get_value(right)
-            self.set_value(result, 1 if left_val != right_val else 0)
-            
-        elif op == '=':
-            # Assignment
-            value = self.get_value(left)
-            self.set_value(result, value)
-            
-        elif op == 'goto':
-            # Unconditional jump
-            self.ip = result - 1  # -1 because ip will be incremented
-            
-        elif op == 'gotof':
-            # Conditional jump (jump if false)
-            condition = self.get_value(left)
-            if not condition or condition == 0:
-                self.ip = result - 1  # -1 because ip will be incremented
-                
-        elif op == 'print':
-            # Print operation
-            if isinstance(left, str) and left.startswith('"') and left.endswith('"'):
-                # String literal
-                print(left[1:-1])  # Remove quotes
-            else:
-                # Variable or expression result
-                value = self.get_value(left)
-                print(value)
-                
-        elif op == 'call':
-            # Function call - for now just print
-            print(f"Calling function: {left}")
-            
-        elif op == 'param':
-            # Parameter passing - for now just print
-            value = self.get_value(left)
-            print(f"Parameter: {value}")
-            
+        # Actualizar IP en memory manager
+        self.memory.instruction_pointer = self.instruction_pointer
+        
+        if operator == '+':
+            self.execute_arithmetic(left, right, result, lambda a, b: a + b)
+        elif operator == '-':
+            self.execute_arithmetic(left, right, result, lambda a, b: a - b)
+        elif operator == '*':
+            self.execute_arithmetic(left, right, result, lambda a, b: a * b)
+        elif operator == '/':
+            self.execute_arithmetic(left, right, result, lambda a, b: a / b if b != 0 else 0)
+        elif operator == '>':
+            self.execute_comparison(left, right, result, lambda a, b: a > b)
+        elif operator == '<':
+            self.execute_comparison(left, right, result, lambda a, b: a < b)
+        elif operator == '!=':
+            self.execute_comparison(left, right, result, lambda a, b: a != b)
+        elif operator == '=':
+            self.execute_assignment(left, result)
+        elif operator == 'goto':
+            self.execute_goto(result)
+        elif operator == 'gotof':
+            self.execute_gotof(left, result)
+        elif operator == 'print':
+            self.execute_print(left)
+        elif operator == 'ERA':
+            self.execute_era(left)
+        elif operator == 'parámetro':
+            self.execute_param(left, right)
+        elif operator == 'GOSUB':
+            self.execute_gosub(left)
+        elif operator == 'ENDFUNC':
+            self.execute_endfunc()
+        elif operator == 'RETURN':
+            self.execute_return(left)
         else:
-            print(f"Unknown operation: {op}")
+            print(f"Warning: Unknown operator '{operator}'")
     
-    def print_memory_state(self):
-        """Print current state of memory (non-zero values only)"""
-        print("\n=== MEMORY STATE ===")
+    def execute_arithmetic(self, left_addr, right_addr, result_addr, operation):
+        """Ejecuta operaciones aritméticas"""
+        left_val = self.memory.get_value(left_addr)
+        right_val = self.memory.get_value(right_addr)
+        result_val = operation(left_val, right_val)
+        self.memory.set_value(result_addr, result_val)
+        print(f"  Arithmetic: {left_val} {operation.__name__} {right_val} = {result_val}")
+    
+    def execute_comparison(self, left_addr, right_addr, result_addr, comparison):
+        """Ejecuta operaciones de comparación"""
+        left_val = self.memory.get_value(left_addr)
+        right_val = self.memory.get_value(right_addr)
+        result_val = comparison(left_val, right_val)
+        self.memory.set_value(result_addr, result_val)
+        print(f"  Comparison: {left_val} {comparison.__name__} {right_val} = {result_val}")
+    
+    def execute_assignment(self, source_addr, target_addr):
+        """Ejecuta asignación"""
+        if isinstance(source_addr, (int, float)):
+            # Si es un valor literal
+            value = source_addr
+        else:
+            # Si es una dirección de memoria
+            value = self.memory.get_value(source_addr)
+        self.memory.set_value(target_addr, value)
+        print(f"  Assignment: {value} -> address {target_addr}")
+    
+    def execute_goto(self, target_addr):
+        """Ejecuta salto incondicional"""
+        self.instruction_pointer = target_addr
+        self.memory.instruction_pointer = target_addr
+        print(f"  Goto: jumping to {target_addr}")
+    
+    def execute_gotof(self, condition_addr, target_addr):
+        """Ejecuta salto condicional (goto if false)"""
+        condition_val = self.memory.get_value(condition_addr)
+        if not condition_val:  # Si es falso
+            self.instruction_pointer = target_addr
+            self.memory.instruction_pointer = target_addr
+            print(f"  GotoF: condition false, jumping to {target_addr}")
+        else:
+            print(f"  GotoF: condition true, continuing")
+    
+    def execute_print(self, value_addr):
+        """Ejecuta operación de impresión"""
+        if isinstance(value_addr, str):
+            # String literal
+            print(f"OUTPUT: {value_addr}")
+        else:
+            # Variable o constante
+            value = self.memory.get_value(value_addr)
+            print(f"OUTPUT: {value}")
+    
+    def execute_era(self, func_name):
+        """Ejecuta ERA - reserva espacio para función"""
+        print(f"  ERA: Reserving space for function '{func_name}'")
+        self.memory.push_local_context()
+    
+    def execute_param(self, param_addr, param_id):
+        """Ejecuta paso de parámetro"""
+        param_value = self.memory.get_value(param_addr)
+        print(f"  Parameter: {param_id} = {param_value}")
+        # En una implementación completa, aquí asignarías el parámetro
+        # a la dirección local correspondiente
+    
+    def execute_gosub(self, func_name):
+        """Ejecuta llamada a función"""
+        print(f"  GOSUB: Calling function '{func_name}'")
         
-        # Global variables
-        print("Global Integers (1000-2999):")
-        for addr in range(1000, 3000):
-            if self.memory[addr] != 0:
-                print(f"  [{addr}]: {self.memory[addr]}")
+        # Guardar contexto actual
+        return_addr = self.instruction_pointer + 1
+        self.memory.push_execution_context(return_addr, func_name)
         
-        print("Global Floats (3000-4999):")
-        for addr in range(3000, 5000):
-            if self.memory[addr] != 0.0:
-                print(f"  [{addr}]: {self.memory[addr]}")
+        # Saltar a la función
+        if func_name in self.function_directory:
+            func_start = self.function_directory[func_name].start_address
+            if func_start is not None:
+                self.instruction_pointer = func_start
+                self.memory.instruction_pointer = func_start
+            else:
+                print(f"Error: Function '{func_name}' has no start address")
+        else:
+            print(f"Error: Function '{func_name}' not found")
+    
+    def execute_endfunc(self):
+        """Ejecuta fin de función"""
+        print("  ENDFUNC: Ending function")
         
-        # Local variables
-        print("Local Integers (5000-6999):")
-        for addr in range(5000, 7000):
-            if self.memory[addr] != 0:
-                print(f"  [{addr}]: {self.memory[addr]}")
+        # Restaurar contexto
+        context = self.memory.pop_execution_context()
+        if context:
+            self.instruction_pointer = context['return_address']
+            self.memory.instruction_pointer = context['return_address']
+            print(f"  Returning to address {context['return_address']}")
         
-        print("Local Floats (7000-8999):")
-        for addr in range(7000, 9000):
-            if self.memory[addr] != 0.0:
-                print(f"  [{addr}]: {self.memory[addr]}")
+        # Limpiar contexto local
+        self.memory.pop_local_context()
+    
+    def execute_return(self, value_addr):
+        """Ejecuta retorno de función"""
+        if value_addr is not None:
+            return_value = self.memory.get_value(value_addr)
+            print(f"  RETURN: Returning value {return_value}")
+        else:
+            print("  RETURN: Returning void")
         
-        # Temporary variables
-        print("Temp Integers (9000-10999):")
-        for addr in range(9000, 11000):
-            if self.memory[addr] != 0:
-                print(f"  [{addr}]: {self.memory[addr]}")
-        
-        print("Temp Floats (11000-12999):")
-        for addr in range(11000, 13000):
-            if self.memory[addr] != 0.0:
-                print(f"  [{addr}]: {self.memory[addr]}")
-        
-        # Constants
-        print("Constants:")
-        for addr in range(13000, 19000):
-            if addr in self.memory and self.memory[addr] not in [0, 0.0, ""]:
-                print(f"  [{addr}]: {self.memory[addr]}")
-        
-        print("===================\n")
+        # Ejecutar el mismo proceso que ENDFUNC
+        self.execute_endfunc()
+    
+    def debug_step(self):
+        """Ejecuta una instrucción paso a paso para depuración"""
+        if self.instruction_pointer < len(self.quadruples):
+            quad = self.quadruples[self.instruction_pointer]
+            print(f"\nDEBUG - Next instruction: {quad}")
+            self.memory.print_memory_state()
+            
+            input("Press Enter to execute next instruction...")
+            self.execute_instruction(quad)
+            self.instruction_pointer += 1
+            
+            return True
+        else:
+            print("Program finished")
+            return False
