@@ -23,6 +23,7 @@ class QuadrupleGenerator:
         self.false_bottom = '('  
         self.constants_table = {}  
         self.param_counter = 0
+        self.main_goto_index = None 
         
     def new_temp(self, temp_type):
         temp = f"t{self.temp_counter}"

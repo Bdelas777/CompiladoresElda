@@ -21,20 +21,30 @@ def get_operand_name(expr_node):
     return str(expr_node)
 
 def p_programa(p):
-    '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funcs  TOKEN_MAIN body TOKEN_END'''
+    '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON saveGo dec_var dec_funcs TOKEN_MAIN fillMain body TOKEN_END'''
     semantic.program_start(p[2])
-    p[0] = ('programa', p[2], p[4], p[5], p[8])
+    p[0] = ('programa', p[2], p[5], p[6], p[9])
     semantic.end_main()
     semantic.program_end()
     quad_gen.print_quads()
-    
 
-def p_programa_error_no_main(p):
-    '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON dec_var dec_funcs TOKEN_END'''
-    semantic.program_start(p[2])
-    semantic.add_error("Missing 'main' section in program")
-    p[0] = ('programa_error', p[2], p[4], p[5])
-    semantic.program_end()
+# 2. Agregar la función saveGo
+def p_saveGo(p):
+    '''saveGo : empty'''
+    # Generar el cuádruplo GOTO inicial (será llenado después)
+    goto_index = quad_gen.generate_goto_quad()
+    quad_gen.main_goto_index = goto_index  # Guardar el índice para llenarlo después
+    p[0] = goto_index
+
+# 3. Agregar la función fillMain
+def p_fillMain(p):
+    '''fillMain : empty'''
+    semantic.declare_main()
+    # Llenar el cuádruplo GOTO inicial con la posición actual (inicio del main)
+    if hasattr(quad_gen, 'main_goto_index'):
+        quad_gen.fill_quad(quad_gen.main_goto_index, len(quad_gen.Quads))
+    p[0] = None
+    
     
 def p_dec_var(p):
     '''dec_var : vars
