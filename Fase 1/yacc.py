@@ -676,20 +676,26 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = '''
-    program operaciones_basicas;
+program control_if;
 var
-    a, b, c, resultado, resultado2 : int;
-    resultado3 : float;
-
+    x, y, max : int;
 main {
-    a = 5;
-    b = 3;
-    c = 2;
+    x = 15;
+    y = 7;
     
-    resultado = a + b * c;
-    print("Resultado 1: ", resultado);
+    if (x > y) {
+        max = x;
+        print("El mayor es x: ", max);
+    } else {
+        max = y;
+        print("El mayor es y: ", max);
+    };
     
-    
+    if (x < 10) {
+        print("x es menor que 10");
+    } else {
+        print("x es mayor o igual que 10");
+    };
 }
 end
         '''
