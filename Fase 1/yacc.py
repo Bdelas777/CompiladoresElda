@@ -135,7 +135,9 @@ def p_print(p):
             quad_gen.generate_print_quad(expr[1])
         else:
             operand = get_operand_name(expr)
-            quad_gen.generate_print_quad(operand)
+            # CAMBIO: Obtener la dirección del operando en lugar del nombre
+            operand_address = quad_gen.get_operand_address(operand)
+            quad_gen.generate_print_quad(operand_address)
     p[0] = ('print', p[3])
     
 def p_expresiones(p):
@@ -620,15 +622,15 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = '''
-    program test1;
-    var
-    e, z : int;
-        x, y, a : float;
-    void uno(i : int)
-    [
-        var x : int;
-        {
-            x = 1;
+    program test;
+    var a, b : int;
+        result : float;
+    main {
+        a = 5;
+        b = 3;
+        result = a + b * 2;
+        print(result);
+    }
     end
         '''
     execute_program(test_code)

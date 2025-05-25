@@ -120,11 +120,16 @@ class QuadrupleGenerator:
         return True
         
     def generate_print_quad(self, value):
-        quad = Quadruple('print', value, None, None)
+        # CAMBIO: Si es una dirección numérica, usarla directamente
+        if isinstance(value, int):
+            quad = Quadruple('print', value, None, None)
+        else:
+            # Si es un string u otro valor, usar como estaba
+            quad = Quadruple('print', value, None, None)
         self.Quads.append(quad)
         self.quad_counter += 1
         return True
-        
+            
     def generate_goto_quad(self):
         quad = Quadruple('goto', None, None, None)
         self.Quads.append(quad)
