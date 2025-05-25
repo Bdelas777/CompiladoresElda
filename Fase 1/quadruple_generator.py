@@ -33,18 +33,26 @@ class QuadrupleGenerator:
         return temp_address
         
     def generate_arithmetic_quad(self):
-        if not self.POper or not self.PilaO or not self.PTypes:
+        """Versión corregida que maneja mejor las operaciones encadenadas"""
+        if not self.POper or len(self.PilaO) < 2 or not self.PTypes:
             return False
             
         operator = self.POper[-1]
         if operator in ['+', '-', '*', '/', '>', '<', '!=']:
-            print(self.PilaO, "PilaO")
+            print(self.PilaO, "PilaO antes")  # Mostrar pila antes
+
+        
+            
+            # Extraer operandos
             right_operand = self.PilaO.pop()
             right_type = self.PTypes.pop()
             left_operand = self.PilaO.pop()
             left_type = self.PTypes.pop()
             operator = self.POper.pop()
+            
             print(f"Check {left_operand} {right_operand} {operator}")
+            
+            # Mapear operador a operación
             operation = None
             if operator == '+': operation = Operation.PLUS
             elif operator == '-': operation = Operation.MINUS
@@ -63,8 +71,12 @@ class QuadrupleGenerator:
                 quad = Quadruple(operator, left_address, right_address, result)
                 self.Quads.append(quad)
                 self.quad_counter += 1
+                
+                # IMPORTANTE: El resultado va a la pila para ser usado en la siguiente operación
                 self.PilaO.append(result)
                 self.PTypes.append(result_type)
+                
+                print(self.PilaO, "PilaO después")
                 return True
             else:
                 self.semantic.add_error(f"Type mismatch: {left_type} {operator} {right_type}")

@@ -252,7 +252,7 @@ def p_signo(p):
     | TOKEN_NE'''
     p[0] = p[1]
     
-# CORRECCIÓN PRINCIPAL: Simplificar manejo de suma/resta
+
 def p_exp(p):
     '''exp : termino exp_tail'''
     if p[2] is None:
@@ -642,7 +642,7 @@ if __name__ == "__main__":
         a = 5;
         b = 3;
         c = 2;
-        result = a + b + c * 2;
+        result = a +  c * 2;
         print(result);
     }
     end
