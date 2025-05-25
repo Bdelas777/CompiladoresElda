@@ -57,11 +57,8 @@ class QuadrupleGenerator:
             
             if result_type != Type.ERROR:
                 result = self.new_temp(result_type)
-                
-                # Convert operands to addresses if they're not already
                 left_address = self.get_operand_address(left_operand)
-                right_address = self.get_operand_address(right_operand)
-                
+                right_address = self.get_operand_address(right_operand)          
                 quad = Quadruple(operator, left_address, right_address, result)
                 self.Quads.append(quad)
                 self.quad_counter += 1
@@ -74,32 +71,23 @@ class QuadrupleGenerator:
         return False
     
     def get_operand_address(self, operand):
-        # If operand is already an address (number)
         if isinstance(operand, int):
             return operand
-            
-        # If operand is a variable name
         if self.semantic.current_scope != "global" and operand in self.semantic.function_directory[self.semantic.current_scope].local_vars:
             return self.semantic.function_directory[self.semantic.current_scope].local_vars[operand].address
         if operand in self.semantic.global_vars:
             return self.semantic.global_vars[operand].address
-            
-        # If operand is a constant
         try:
-            # Try to convert to int or float
             if '.' in str(operand):
                 value = float(operand)
             else:
                 value = int(operand)
-            # Get or create address for constant
             if value not in self.constants_table:
                 address = self.semantic.memory_manager.get_constant_address(value)
                 self.constants_table[value] = address
             return self.constants_table[value]
         except ValueError:
             pass
-        
-        # Return -1 if not found
         return -1
        
     def process_operator(self, operator):
@@ -124,11 +112,8 @@ class QuadrupleGenerator:
         return False
         
     def generate_assignment_quad(self, target_id, expression_result):
-        # Get the address of the target variable
         target_address = self.get_operand_address(target_id)
-        # Get the address of the expression result
         expr_address = self.get_operand_address(expression_result)
-        
         quad = Quadruple('=', expr_address, None, target_address)
         self.Quads.append(quad)
         self.quad_counter += 1
@@ -147,9 +132,7 @@ class QuadrupleGenerator:
         return self.quad_counter - 1
             
     def generate_gotof_quad(self, condition):
-        # Get the address of the condition
         condition_address = self.get_operand_address(condition)
-        
         quad = Quadruple('gotof', condition_address, None, None)
         self.Quads.append(quad)
         self.quad_counter += 1
@@ -169,23 +152,16 @@ class QuadrupleGenerator:
         
     def get_address_content(self, address):
         """Try to find the variable or constant name associated with an address."""
-        # Check global variables
         for var_name, var in self.semantic.global_vars.items():
             if var.address == address:
                 return f"{var_name} (global)"
-        
-        # Check local variables in current scope
         if self.semantic.current_scope != "global":
             for var_name, var in self.semantic.function_directory[self.semantic.current_scope].local_vars.items():
                 if var.address == address:
                     return f"{var_name} (local in {self.semantic.current_scope})"
-        
-        # Check constants (reverse lookup)
         for value, addr in self.constants_table.items():
             if addr == address:
                 return f"constant({value})"
-        
-        # For temporaries, we can't easily find the original name
         if isinstance(address, str) and address.startswith('t'):
             return f"temp {address}"
         
@@ -197,45 +173,29 @@ class QuadrupleGenerator:
         left = quad.left_operand
         right = quad.right_operand
         result = quad.result
-        
-        # Get human-readable names for addresses
         left_name = self.get_address_content(left) if left is not None else None
         right_name = self.get_address_content(right) if right is not None else None
         result_name = self.get_address_content(result) if result is not None else None
-        
-        # Basic arithmetic operations
         if op in ['+', '-', '*', '/']:
             op_map = {'+': 'add', '-': 'subtract', '*': 'multiply', '/': 'divide'}
             return f"{op_map[op]} {left_name} and {right_name}, store result in {result_name}"
-        
-        # Assignment
         elif op == '=':
             return f"assign value of {left_name} to {result_name}"
-        
-        # Comparison operations
         elif op in ['>', '<', '!=']:
             op_map = {'>': 'greater than', '<': 'less than', '!=': 'not equal to'}
             return f"compare if {left_name} is {op_map[op]} {right_name}, store boolean result in {result_name}"
-        
-        # Jumps
         elif op == 'goto':
             return f"jump to quadruple {result}"
         elif op == 'gotof':
             return f"if {left_name} is false, jump to quadruple {result}"
-        
-        # Function operations
         elif op == 'call':
             return f"call function {left}"
         elif op == 'param':
             return f"pass parameter {left_name}"
         elif op == 'return':
             return f"return value {left_name}"
-        
-        # Print
         elif op == 'print':
             return f"print value {left_name}"
-        
-        # Default case
         else:
             if right is None and result is None:
                 return f"perform operation {op} with operand {left_name}"
@@ -249,32 +209,21 @@ class QuadrupleGenerator:
         print("INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)")
         print("      EXPLANATION")
         print("-" * 70)
-        
-        # Imprimir información de funciones primero
         self._print_function_info()
-        
         current_function = None
-        
         for i, quad in enumerate(self.Quads):
-            # Detectar inicio de función
             function_name = self._get_function_at_quad(i)
             if function_name and function_name != current_function:
                 current_function = function_name
                 print(f"\n{'='*20} FUNCTION: {function_name.upper()} {'='*20}")
                 print(f"Starting at quadruple {i}")
                 print("-" * 70)
-            
             print(f"{i}: {quad}")
-            
-            # Generate explanation based on operator
             explanation = self._get_quad_explanation(quad)
             print(f"      {explanation}")
-            
-            # Detectar fin de función
             if quad.operator == 'ENDFUNC':
                 print(f"{'='*20} END OF {current_function.upper()} {'='*20}")
-                current_function = None
-            
+                current_function = None 
             print("-" * 70)
         
     def _print_function_info(self):
@@ -287,7 +236,6 @@ class QuadrupleGenerator:
     
     def _get_function_at_quad(self, quad_index):
         """Determina qué función está ejecutándose en el cuádruplo dado"""
-        # Buscar en el directorio de funciones cuál tiene esta dirección de inicio
         for func_name, func_info in self.semantic.function_directory.items():
             if hasattr(func_info, 'start_address') and func_info.start_address == quad_index:
                 return func_name

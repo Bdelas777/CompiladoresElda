@@ -3,10 +3,8 @@ from lex import tokens
 from semantic_cube import Type, Operation, get_result_type
 from semantic_analyzer import SemanticAnalyzer
 from quadruple_generator import QuadrupleGenerator, Quadruple
-
 semantic = SemanticAnalyzer()
 quad_gen = QuadrupleGenerator(semantic)
-
 def get_operand_name(expr_node):
     if isinstance(expr_node, tuple):
         if expr_node[0] == 'id':
@@ -20,7 +18,6 @@ def get_operand_name(expr_node):
                 return quad_gen.PilaO[-1]
     return str(expr_node)
 
-
 def p_programa(p):
     '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON saveGo dec_var dec_funcs TOKEN_MAIN fillMain body TOKEN_END'''
     semantic.program_start(p[2])
@@ -28,19 +25,15 @@ def p_programa(p):
     semantic.program_end()
     quad_gen.print_quads()
 
-# 2. Agregar la función saveGo
 def p_saveGo(p):
     '''saveGo : empty'''
-    # Generar el cuádruplo GOTO inicial (será llenado después)
     goto_index = quad_gen.generate_goto_quad()
     quad_gen.main_goto_index = goto_index  # Guardar el índice para llenarlo después
     p[0] = goto_index
 
-# 3. Agregar la función fillMain
 def p_fillMain(p):
     '''fillMain : empty'''
     semantic.declare_main()
-    # Llenar el cuádruplo GOTO inicial con la posición actual (inicio del main)
     if hasattr(quad_gen, 'main_goto_index'):
         quad_gen.fill_quad(quad_gen.main_goto_index, len(quad_gen.Quads))
     p[0] = None
@@ -167,66 +160,47 @@ def p_comas(p):
 
 def p_saveQuad(p):
     '''saveQuad : empty'''
-    # Save the quad position to return to when the loop completes
     p[0] = len(quad_gen.Quads)
 
 def p_GotoF(p):
     '''GotoF : empty'''
-    # Generate GOTOF quadruple and save its position
-    condition = get_operand_name(p[-1])  # Get the condition from the expression
+    condition = get_operand_name(p[-1]) 
     gotof_index = quad_gen.generate_gotof_quad(condition)
     p[0] = gotof_index
            
 def p_cycle(p):
     '''cycle : TOKEN_WHILE TOKEN_LPAREN saveQuad expresion GotoF TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON'''
-    # Save position to return to (beginning of condition)
-    return_position = p[3]  # This is the position saved by saveQuad
-    
-    # Generate GOTO back to condition evaluation
+    return_position = p[3]  
     quad_gen.generate_goto_quad()
     quad_gen.fill_quad(len(quad_gen.Quads) - 1, return_position)
-    
-    # Fill the GOTOF with the position after the loop
-    gotof_index = p[5]  # This is the GOTOF index saved by GotoF
+    gotof_index = p[5]
     quad_gen.fill_quad(gotof_index, len(quad_gen.Quads))
     
     p[0] = ('while', p[4], p[8])
 
 def p_saveQuadIF(p):
     '''saveQuadIF : empty'''
-    # Get the condition from the expression
     condition = get_operand_name(p[-1])
-    
-    # Generate GOTOF quadruple and save its position
     gotof_index = quad_gen.generate_gotof_quad(condition)
     p[0] = gotof_index
     
 def p_GotoFIF(p):
     '''GotoFIF : empty'''
-    # Generate GOTO quadruple to skip else part
-    # This will be filled after processing the else block
     goto_index = quad_gen.generate_goto_quad()
-    
-    # Fill the previous GOTOF with the current position (after the 'then' part)
     gotof_index = p[-3]  # This is the GOTOF index saved by saveQuadIF
     quad_gen.fill_quad(gotof_index, len(quad_gen.Quads))
-    
     p[0] = goto_index  # Return the GOTO index to be filled after the else block
 
 def p_condition(p):
     '''condition : TOKEN_IF TOKEN_LPAREN expresion saveQuadIF TOKEN_RPAREN body GotoFIF else TOKEN_SEMICOLON'''
     expr_type = get_expr_type(p[3])
     semantic.check_condition(expr_type)
-    
-    # Fill the GOTO that jumps over the else part
-    # We need to fill it with the current position (end of the if-else structure)
     if p[7] is not None:  # If we have a GotoFIF (a goto index)
         goto_index = p[7]
         quad_gen.fill_quad(goto_index, len(quad_gen.Quads))
         
     p[0] = ('if', p[3], p[6], p[8])
-
-    
+ 
 def p_else(p):
     '''else : TOKEN_ELSE body
     | empty'''
@@ -400,20 +374,16 @@ def p_funcs(p):
 
 def p_save_func_start(p):
     '''save_func_start : empty'''
-    # Obtener el nombre de la función del token anterior
     function_name = p[-1]  
     semantic.declare_function(function_name)
-    # Guardar la dirección de inicio de la función
     quad_gen.save_function_start(function_name)
     p[0] = None
 
 def p_end_func(p):
     '''end_func : empty'''
-    # Generar ENDFUNC al final de cada función
     quad_gen.generate_endfunc_quad()
     semantic.end_function_declaration()
     p[0] = None
-    
 
 def p_scopefun(p):
     '''scopefun : empty'''
@@ -467,7 +437,6 @@ def p_f_call(p):
         if len(args) != len(func.parameters):
             semantic.add_error(f"Function '{p[1]}' expects {len(func.parameters)} arguments, got {len(args)}")
         else:
-            # Validar tipos de parámetros
             for i, (arg, param) in enumerate(zip(args, func.parameters)):
                 arg_type = get_expr_type(arg)
                 param_type = param.type
@@ -486,7 +455,6 @@ def p_era_quad(p):
 
 def p_gosub_quad(p):
     '''gosub_quad : empty'''
-    # Generar cuádruplo GOSUB después de los parámetros
     function_name = p[-5]  # Obtener nombre de función
     quad_gen.generate_gosub_quad(function_name)
     p[0] = None
@@ -521,11 +489,9 @@ def p_coma2(p):
 
 def p_param_quad_coma(p):
     '''param_quad_coma : empty'''
-    # Generar cuádruplo de parámetro para parámetros adicionales
     if len(p) > 1 and p[-1] is not None:
         operand = get_operand_name(p[-1])
         operand_address = quad_gen.get_operand_address(operand)
-        # Incrementar contador de parámetros
         param_number = 2  # Esto debería ser un contador apropiado
         quad_gen.generate_param_quad(operand_address, param_number)
     p[0] = None
@@ -536,8 +502,7 @@ def p_assign(p):
     expr_type = get_expr_type(p[3])
     semantic.check_assignment_compatibility(p[1], expr_type)
     expression_result = get_operand_name(p[3])
-    quad_gen.generate_assignment_quad(p[1], expression_result)
-    
+    quad_gen.generate_assignment_quad(p[1], expression_result)  
     p[0] = ('assign', p[1], p[3])
     
 def p_empty(p):
@@ -607,7 +572,6 @@ def get_expr_type(expr_node):
             op = token_to_operation(expr_node[2])
             return get_result_type(left_type, right_type, op)
         elif expr_node[0] == 'comparison':
-            # Las comparaciones siempre retornan BOOL
             return Type.BOOL
         elif expr_node[0] == 'function_call_expr':
             func = semantic.check_function(expr_node[1])
