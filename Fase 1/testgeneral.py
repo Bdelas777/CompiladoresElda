@@ -282,6 +282,8 @@ end'''
     test6_expected = ["-2"]
     logger.test_case("Números Negativos", test6_code, test6_expected)
     
+    
+    
     # Finalizar sesión de pruebas
     logger.end_session()
     
