@@ -1,6 +1,6 @@
 
 ================================================================================
-SESIÓN DE PRUEBAS - 2025-05-25 14:38:26
+SESIÓN DE PRUEBAS - 2025-05-25 21:52:52
 ================================================================================
 
 
@@ -75,10 +75,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 ----------------------------------------------------------------------
 
 ===== FUNCTION DIRECTORY =====
-Function: main - Start Address: None
+Function: main - Start Address: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
       jump to quadruple 1
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 5000)
       assign value of constant(5) to a (global)
@@ -206,6 +210,9 @@ Function: main - Start Address: None
 42: (print, 8000, None, None)
       print value resultado3 (global)
 ----------------------------------------------------------------------
+43: (END, None, None, None)
+      perform operation END with operand None
+----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
   Salto a: 1
@@ -293,6 +300,8 @@ IP: 41 -> Ejecutando: (print, Resultado 7: , None, None)
 OUTPUT: Resultado 7: 
 IP: 42 -> Ejecutando: (print, 8000, None, None)
 OUTPUT: -6.0
+IP: 43 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
 === ESTADO DE LA MEMORIA SEGMENTADA ===
@@ -397,10 +406,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 ----------------------------------------------------------------------
 
 ===== FUNCTION DIRECTORY =====
-Function: main - Start Address: None
+Function: main - Start Address: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
       jump to quadruple 1
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 5000)
       assign value of constant(15) to x (global)
@@ -450,6 +463,9 @@ Function: main - Start Address: None
 16: (print, x es mayor o igual que 10, None, None)
       print value addr:x es mayor o igual que 10
 ----------------------------------------------------------------------
+17: (END, None, None, None)
+      perform operation END with operand None
+----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
   Salto a: 1
@@ -475,6 +491,8 @@ IP: 13 -> Ejecutando: (gotof, 19001, None, 16)
   Salto condicional a: 16 (condición falsa)
 IP: 16 -> Ejecutando: (print, x es mayor o igual que 10, None, None)
 OUTPUT: x es mayor o igual que 10
+IP: 17 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
 === ESTADO DE LA MEMORIA SEGMENTADA ===
@@ -546,10 +564,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 ----------------------------------------------------------------------
 
 ===== FUNCTION DIRECTORY =====
-Function: main - Start Address: None
+Function: main - Start Address: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
       jump to quadruple 1
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 5000)
       assign value of constant(1) to contador (global)
@@ -595,6 +617,9 @@ Function: main - Start Address: None
 ----------------------------------------------------------------------
 15: (print, 5001, None, None)
       print value suma (global)
+----------------------------------------------------------------------
+16: (END, None, None, None)
+      perform operation END with operand None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
@@ -699,6 +724,8 @@ IP: 14 -> Ejecutando: (print, Suma final: , None, None)
 OUTPUT: Suma final: 
 IP: 15 -> Ejecutando: (print, 5001, None, None)
 OUTPUT: 10
+IP: 16 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
 === ESTADO DE LA MEMORIA SEGMENTADA ===
@@ -831,7 +858,7 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 ===== FUNCTION DIRECTORY =====
 Function: sumar - Start Address: 1
 Function: multiplicar - Start Address: 6
-Function: main - Start Address: None
+Function: main - Start Address: 11
 ----------------------------------------------------------------------
 0: (goto, None, None, 11)
       jump to quadruple 11
@@ -875,6 +902,10 @@ Starting at quadruple 6
 10: (ENDFUNC, None, None, None)
       perform operation ENDFUNC with operand None
 ==================== END OF MULTIPLICAR ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 11
 ----------------------------------------------------------------------
 11: (=, 20000, None, 5001)
       assign value of constant(8) to num1 (global)
@@ -935,6 +966,9 @@ Starting at quadruple 6
 ----------------------------------------------------------------------
 30: (GOSUB, multiplicar, None, None)
       perform operation GOSUB with operand addr:multiplicar
+----------------------------------------------------------------------
+31: (END, None, None, None)
+      perform operation END with operand None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 11)
@@ -1027,6 +1061,8 @@ IP: 9 -> Ejecutando: (print, 11005, None, None)
 OUTPUT: 60
 IP: 10 -> Ejecutando: (ENDFUNC, None, None, None)
   ENDFUNC: Retornando a dirección 31
+IP: 31 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
 === ESTADO DE LA MEMORIA SEGMENTADA ===
@@ -1111,10 +1147,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 ----------------------------------------------------------------------
 
 ===== FUNCTION DIRECTORY =====
-Function: main - Start Address: None
+Function: main - Start Address: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
       jump to quadruple 1
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 1
 ----------------------------------------------------------------------
 1: (=, 20500, None, 8000)
       assign value of constant(3.5) to x (global)
@@ -1137,6 +1177,9 @@ Function: main - Start Address: None
 7: (print, 8001, None, None)
       print value z (global)
 ----------------------------------------------------------------------
+8: (END, None, None, None)
+      perform operation END with operand None
+----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
   Salto a: 1
@@ -1154,6 +1197,8 @@ IP: 6 -> Ejecutando: (print, Resultado flotante: , None, None)
 OUTPUT: Resultado flotante: 
 IP: 7 -> Ejecutando: (print, 8001, None, None)
 OUTPUT: 8.5
+IP: 8 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
 === ESTADO DE LA MEMORIA SEGMENTADA ===
@@ -1224,10 +1269,14 @@ INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
 ----------------------------------------------------------------------
 
 ===== FUNCTION DIRECTORY =====
-Function: main - Start Address: None
+Function: main - Start Address: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
       jump to quadruple 1
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 1
 ----------------------------------------------------------------------
 1: (*, 20000, 20001, 15000)
       multiply constant(-1) and constant(5), store result in addr:15000
@@ -1250,6 +1299,9 @@ Function: main - Start Address: None
 7: (print, 5002, None, None)
       print value resultado (global)
 ----------------------------------------------------------------------
+8: (END, None, None, None)
+      perform operation END with operand None
+----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
   Salto a: 1
@@ -1267,6 +1319,8 @@ IP: 6 -> Ejecutando: (print, Resultado con negativos: , None, None)
 OUTPUT: Resultado con negativos: 
 IP: 7 -> Ejecutando: (print, 5002, None, None)
 OUTPUT: -2
+IP: 8 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
 === ESTADO DE LA MEMORIA SEGMENTADA ===

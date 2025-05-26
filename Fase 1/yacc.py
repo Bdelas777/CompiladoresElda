@@ -4,15 +4,6 @@ from semantic_cube import Type, Operation, get_result_type
 from semantic_analyzer import SemanticAnalyzer
 from quadruple_generator import QuadrupleGenerator, Quadruple
 
-# Flag para controlar debugging
-DEBUG = True
-
-def debug_print(message, level=1):
-    """Función centralizada para prints de debugging"""
-    if DEBUG:
-        indent = "  " * (level - 1)
-        print(f"[DEBUG] {indent}{message}")
-
 semantic = SemanticAnalyzer()
 quad_gen = QuadrupleGenerator(semantic)
 
@@ -42,6 +33,7 @@ def p_programa(p):
     semantic.program_start(p[2])
     p[0] = ('programa', p[2], p[5], p[6], p[9])
     semantic.program_end()
+    quad_gen.generate_end_quad()
     quad_gen.print_quads()
 
 def p_saveGo(p):
@@ -53,6 +45,9 @@ def p_saveGo(p):
 def p_fillMain(p):
     '''fillMain : empty'''
     semantic.declare_main()
+    if 'main' in semantic.function_directory:
+        semantic.function_directory['main'].start_address = len(quad_gen.Quads)
+    
     if hasattr(quad_gen, 'main_goto_index'):
         quad_gen.fill_quad(quad_gen.main_goto_index, len(quad_gen.Quads))
     p[0] = None
@@ -278,8 +273,6 @@ def p_exp(p):
         p[0] = p[1]
     else:
         result = p[1]
-        
-        # CORRECCIÓN: Procesar el primer operando antes del bucle
         first_type = get_expr_type(result)
         first_operand = get_operand_name(result)
         quad_gen.process_operand(first_operand, first_type)

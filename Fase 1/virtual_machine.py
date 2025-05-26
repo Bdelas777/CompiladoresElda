@@ -133,7 +133,11 @@ class VirtualMachine:
             self.instruction_pointer += 1
         
         print("=== EJECUCIÓN TERMINADA ===")
-    
+    def _execute_end(self, quad):
+        """Termina la ejecución del programa"""
+        print("  END: Terminando programa")
+        return False
+
     def execute_quadruple(self, quad):
         """Ejecuta un cuádruplo individual"""
         op = quad.operator
@@ -180,6 +184,8 @@ class VirtualMachine:
             return self._execute_endfunc(quad)
         elif op == 'RETURN':
             return self._execute_return(quad)
+        elif op == 'END':
+            return self._execute_end(quad)
         else:
             print(f"Operación no implementada: {op}")
             return True
