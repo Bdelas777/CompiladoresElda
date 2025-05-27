@@ -25,6 +25,8 @@ def get_operand_name(expr_node):
             if quad_gen.PilaO:
                 result = quad_gen.PilaO[-1]
                 return result
+        else:
+            raise SyntaxError("error_msg: Invalid expression node type")
     result = str(expr_node)
     return result
 
@@ -47,7 +49,9 @@ def p_fillMain(p):
     semantic.declare_main()
     if 'main' in semantic.function_directory:
         semantic.function_directory['main'].start_address = len(quad_gen.Quads)
-    
+    else:
+        
+        semantic.add_error("'main' function not declared")
     if hasattr(quad_gen, 'main_goto_index'):
         quad_gen.fill_quad(quad_gen.main_goto_index, len(quad_gen.Quads))
     p[0] = None
@@ -240,7 +244,6 @@ def p_expresion(p):
         left_type = get_expr_type(p[1])
         right_type = get_expr_type(p[2][1])
         op = token_to_operation(p[2][0])
-        
         result_type = semantic.check_expression_compatibility(left_type, right_type, op)  
         left_operand = get_operand_name(p[1])
         quad_gen.process_operand(left_operand, left_type)     
@@ -268,7 +271,6 @@ def p_signo(p):
 
 def p_exp(p):
     '''exp : termino suma_resta'''
-    
     if p[2] is None:
         p[0] = p[1]
     else:
@@ -276,19 +278,12 @@ def p_exp(p):
         first_type = get_expr_type(result)
         first_operand = get_operand_name(result)
         quad_gen.process_operand(first_operand, first_type)
-        
         for i, (op, operand) in enumerate(p[2]):
-            
-            # Procesar operador y segundo operando
             quad_gen.process_operator(op)
             right_type = get_expr_type(operand)
             right_operand = get_operand_name(operand)
             quad_gen.process_operand(right_operand, right_type)
-            
-            # Generar cuádruplo
             quad_gen.generate_arithmetic_quad()
-
-        # El resultado final está en la cima de PilaO
         if hasattr(quad_gen, 'PilaO') and quad_gen.PilaO:
             temp_address = quad_gen.PilaO[-1]
             final_type = quad_gen.PTypes[-1] if quad_gen.PTypes else Type.INT
@@ -321,24 +316,15 @@ def p_termino(p):
         p[0] = p[1]
     else:
         result = p[1]
-        
-        # CORRECCIÓN: Procesar el primer operando antes del bucle
         first_type = get_expr_type(result)
         first_operand = get_operand_name(result)
         quad_gen.process_operand(first_operand, first_type)
-        
         for i, (op, operand) in enumerate(p[2]):
-            
-            # Procesar operador y segundo operando
             quad_gen.process_operator(op)
             right_type = get_expr_type(operand)
             right_operand = get_operand_name(operand)
             quad_gen.process_operand(right_operand, right_type)
-            
-            # Generar cuádruplo
             quad_gen.generate_arithmetic_quad()
-            
-        # El resultado final está en la cima de PilaO
         if hasattr(quad_gen, 'PilaO') and quad_gen.PilaO:
             temp_address = quad_gen.PilaO[-1]
             final_type = quad_gen.PTypes[-1] if quad_gen.PTypes else Type.INT
@@ -534,7 +520,6 @@ def p_param_quad_coma(p):
     if len(p) > 1 and p[-1] is not None:
         operand = get_operand_name(p[-1])
         operand_address = quad_gen.get_operand_address(operand)
-        # CORRECCIÓN: Usar el contador incremental en lugar de valor fijo
         param_number = quad_gen.increment_param_counter()
         quad_gen.generate_param_quad(operand_address, param_number)
     p[0] = None
@@ -553,10 +538,15 @@ def p_empty(p):
     p[0] = None
     
 def p_error(p):
+    if not'main' in semantic.function_directory:
+        raise SyntaxError("Syntax error in main function")
     if p:
         print(f"Syntax error at '{p.value}', line {p.lineno}")
+        error_msg = f"Syntax error at '{p.value}' on line {p.lineno}"
     else:
         print("Syntax error at EOF")
+        error_msg = "Syntax error at EOF"
+    raise SyntaxError(error_msg)
         
 def token_to_operation(token):
     if token == '+' or token == 'TOKEN_PLUS':
@@ -576,7 +566,7 @@ def token_to_operation(token):
     elif token == '=' or token == 'TOKEN_ASSIGN':
         return Operation.ASSIGN
     else:
-        return None
+        raise SyntaxError("error_msg: Invalid operation token {token}")
         
 def set_expr_type(expr_node, expr_type):
     if isinstance(expr_node, tuple):
@@ -594,7 +584,6 @@ def get_expr_type(expr_node):
                 if expr_node[i] == 'type' and i + 1 < len(expr_node):
                     return expr_node[i + 1]
         
-        # Resto del código original...
         for i in range(len(expr_node) - 1):
             if expr_node[i] == 'type' and i + 1 < len(expr_node):
                 return expr_node[i + 1]
@@ -670,16 +659,26 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = """
-program negativos;
+program control_if;
 var
-    a, b : int;
-    resultado : int;
-
+    x, y, max : int;
 main {
-    a = -5;
-    b = 3;
-    resultado = a + b;
-    print("Resultado con negativos: ", resultado);
+    x = 15;
+    y = 7;
+    
+    if (x > y) {
+        max = x;
+        print("El mayor es x: ", max);
+    } else {
+        max = y;
+        print("El mayor es y: ", max);
+    };
+    
+    if (x < 10) {
+        print("x es menor que 10");
+    } else {
+        print("x es mayor o igual que 10");
+    };
 }
 end
 """

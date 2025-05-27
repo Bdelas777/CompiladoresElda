@@ -41,7 +41,7 @@ semantic_cube = {
             Operation.GREATER: Type.BOOL,
             Operation.LESS: Type.BOOL,
             Operation.NOT_EQUAL: Type.BOOL,
-            Operation.ASSIGN: Type.ERROR  
+            Operation.ASSIGN: Type.FLOAT 
         }
     },
     Type.FLOAT: {
