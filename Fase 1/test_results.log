@@ -1,6 +1,6 @@
 
 ================================================================================
-SESIÓN DE PRUEBAS - 2025-05-26 22:26:03
+SESIÓN DE PRUEBAS - 2025-05-26 22:38:14
 ================================================================================
 
 
@@ -3652,31 +3652,13 @@ OUTPUT:  y
 IP: 37 -> Ejecutando: (print, 13001, None, None)
 OUTPUT: 18.0
 IP: 38 -> Ejecutando: (!=, 13001, 20002, 19002)
-  Comparación: 18.0 != 0 = True
-IP: 39 -> Ejecutando: (gotof, 19002, None, 47)
-  No hay salto (condición verdadera)
-IP: 40 -> Ejecutando: (=, 13001, None, 13002)
-  Asignación: direccion[13002] = 18.0
-IP: 41 -> Ejecutando: (/, 13000, 13001, 17000)
-  Aritmética: 48.0 / 18.0 = 2.6666666666666665
-IP: 42 -> Ejecutando: (*, 17000, 13001, 17001)
-  Aritmética: 2.6666666666666665 * 18.0 = 48.0
-IP: 43 -> Ejecutando: (-, 13000, 17001, 17002)
-  Aritmética: 48.0 - 48.0 = 0.0
-IP: 44 -> Ejecutando: (=, 17002, None, 13001)
-  Asignación: direccion[13001] = 0.0
-IP: 45 -> Ejecutando: (=, 13002, None, 13000)
-  Asignación: direccion[13000] = 18.0
-IP: 46 -> Ejecutando: (goto, None, None, 38)
-  Salto a: 38
-IP: 38 -> Ejecutando: (!=, 13001, 20002, 19002)
-  Comparación: 0.0 != 0 = False
+Operación no implementada: !=
 IP: 39 -> Ejecutando: (gotof, 19002, None, 47)
   Salto condicional a: 47 (condición falsa)
 IP: 47 -> Ejecutando: (print, MCD = , None, None)
 OUTPUT: MCD = 
 IP: 48 -> Ejecutando: (print, 13000, None, None)
-OUTPUT: 18.0
+OUTPUT: 48.0
 IP: 49 -> Ejecutando: (ENDFUNC, None, None, None)
   ENDFUNC: Retornando a dirección 65
 IP: 65 -> Ejecutando: (END, None, None, None)
@@ -3695,13 +3677,9 @@ Memoria Temporal Enteros (15000-16999):
   [15003]: 70
   [15004]: 11
 Memoria Temporal Flotantes (17000-18999):
-  [17000]: 2.6666666666666665
-  [17001]: 48.0
-  [17002]: 0.0
 Memoria Temporal Booleanos (19000-19999):
   [19000]: False
   [19001]: False
-  [19002]: False
 Constantes Enteras (20000-20499):
   [20000]: 1
   [20001]: 11
@@ -3852,7 +3830,6 @@ Added local variable 'suma' of type Type.INT at address 11003 to function 'opera
 Added local variable 'producto' of type Type.INT at address 11004 to function 'operaciones_basicas'
 Added local variable 'promedio' of type Type.INT at address 11005 to function 'operaciones_basicas'
 Starting variable declaration in scope 'operaciones_basicas'
-SEMANTIC ERROR: Incompatible types in assignment to 'promedio': Cannot assign Type.FLOAT to Type.INT
 Popped scope: operaciones_basicas, current scope is now: global
 Ended function 'operaciones_basicas' declaration, returned to scope: global
 Pushed scope: comparar_numeros, current scope stack: ['global', 'comparar_numeros']
@@ -4173,8 +4150,385 @@ Starting at quadruple 64
 86: (END, None, None, None)
       perform operation END with operand None
 ----------------------------------------------------------------------
-ERRORES SEMÁNTICOS:
-  Semantic error: Incompatible types in assignment to 'promedio': Cannot assign Type.FLOAT to Type.INT
+=== INICIANDO EJECUCIÓN ===
+IP: 0 -> Ejecutando: (goto, None, None, 64)
+  Salto a: 64
+IP: 64 -> Ejecutando: (ERA, operaciones_basicas, None, None)
+  ERA: Reservando espacio para función 'operaciones_basicas'
+IP: 65 -> Ejecutando: (parámetro, 20003, par1, None)
+  Parámetro: 4 -> posición 1
+IP: 66 -> Ejecutando: (parámetro, 20004, par2, None)
+  Parámetro: 7 -> posición 2
+IP: 67 -> Ejecutando: (parámetro, 20005, par3, None)
+  Parámetro: 2 -> posición 3
+IP: 68 -> Ejecutando: (GOSUB, operaciones_basicas, None, None)
+    Asignando parámetro x (addr: 11000) = 4
+    Asignando parámetro y (addr: 11001) = 7
+    Asignando parámetro z (addr: 11002) = 2
+  GOSUB: Llamando función 'operaciones_basicas' en dirección 1
+IP: 1 -> Ejecutando: (+, 11000, 11001, 15000)
+  Aritmética: 4 + 7 = 11
+IP: 2 -> Ejecutando: (+, 15000, 11002, 15001)
+  Aritmética: 11 + 2 = 13
+IP: 3 -> Ejecutando: (=, 15001, None, 11003)
+  Asignación: direccion[11003] = 13
+IP: 4 -> Ejecutando: (*, 11000, 11001, 15002)
+  Aritmética: 4 * 7 = 28
+IP: 5 -> Ejecutando: (*, 15002, 11002, 15003)
+  Aritmética: 28 * 2 = 56
+IP: 6 -> Ejecutando: (=, 15003, None, 11004)
+  Asignación: direccion[11004] = 56
+IP: 7 -> Ejecutando: (/, 11003, 20000, 17000)
+  Aritmética: 13 / 3 = 4.333333333333333
+IP: 8 -> Ejecutando: (=, 17000, None, 11005)
+  Asignación: direccion[11005] = 4.333333333333333
+IP: 9 -> Ejecutando: (print, Números: , None, None)
+OUTPUT: Números: 
+IP: 10 -> Ejecutando: (print, 11000, None, None)
+OUTPUT: 4
+IP: 11 -> Ejecutando: (print, , , None, None)
+OUTPUT: , 
+IP: 12 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 7
+IP: 13 -> Ejecutando: (print, , , None, None)
+OUTPUT: , 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 2
+IP: 15 -> Ejecutando: (print, Suma: , None, None)
+OUTPUT: Suma: 
+IP: 16 -> Ejecutando: (print, 11003, None, None)
+OUTPUT: 13
+IP: 17 -> Ejecutando: (print, Producto: , None, None)
+OUTPUT: Producto: 
+IP: 18 -> Ejecutando: (print, 11004, None, None)
+OUTPUT: 56
+IP: 19 -> Ejecutando: (print, Promedio: , None, None)
+OUTPUT: Promedio: 
+IP: 20 -> Ejecutando: (print, 11005, None, None)
+OUTPUT: 4
+IP: 21 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 69
+IP: 69 -> Ejecutando: (ERA, comparar_numeros, None, None)
+  ERA: Reservando espacio para función 'comparar_numeros'
+IP: 70 -> Ejecutando: (parámetro, 20006, par1, None)
+  Parámetro: 15 -> posición 1
+IP: 71 -> Ejecutando: (parámetro, 20007, par2, None)
+  Parámetro: 8 -> posición 2
+IP: 72 -> Ejecutando: (GOSUB, comparar_numeros, None, None)
+    Asignando parámetro num1 (addr: 11006) = 15
+    Asignando parámetro num2 (addr: 11007) = 8
+  GOSUB: Llamando función 'comparar_numeros' en dirección 22
+IP: 22 -> Ejecutando: (print, Comparando , None, None)
+OUTPUT: Comparando 
+IP: 23 -> Ejecutando: (print, 11006, None, None)
+OUTPUT: 15
+IP: 24 -> Ejecutando: (print,  y , None, None)
+OUTPUT:  y 
+IP: 25 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 8
+IP: 26 -> Ejecutando: (>, 11006, 11007, 19000)
+  Comparación: 15 > 8 = True
+IP: 27 -> Ejecutando: (gotof, 19000, None, 32)
+  No hay salto (condición verdadera)
+IP: 28 -> Ejecutando: (print, 11006, None, None)
+OUTPUT: 15
+IP: 29 -> Ejecutando: (print,  es mayor que , None, None)
+OUTPUT:  es mayor que 
+IP: 30 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 8
+IP: 31 -> Ejecutando: (goto, None, None, 41)
+  Salto a: 41
+IP: 41 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 73
+IP: 73 -> Ejecutando: (ERA, comparar_numeros, None, None)
+  ERA: Reservando espacio para función 'comparar_numeros'
+IP: 74 -> Ejecutando: (parámetro, 20008, par1, None)
+  Parámetro: 5 -> posición 1
+IP: 75 -> Ejecutando: (parámetro, 20009, par2, None)
+  Parámetro: 12 -> posición 2
+IP: 76 -> Ejecutando: (GOSUB, comparar_numeros, None, None)
+    Asignando parámetro num1 (addr: 11006) = 5
+    Asignando parámetro num2 (addr: 11007) = 12
+  GOSUB: Llamando función 'comparar_numeros' en dirección 22
+IP: 22 -> Ejecutando: (print, Comparando , None, None)
+OUTPUT: Comparando 
+IP: 23 -> Ejecutando: (print, 11006, None, None)
+OUTPUT: 5
+IP: 24 -> Ejecutando: (print,  y , None, None)
+OUTPUT:  y 
+IP: 25 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 12
+IP: 26 -> Ejecutando: (>, 11006, 11007, 19000)
+  Comparación: 5 > 12 = False
+IP: 27 -> Ejecutando: (gotof, 19000, None, 32)
+  Salto condicional a: 32 (condición falsa)
+IP: 32 -> Ejecutando: (<, 11006, 11007, 19001)
+  Comparación: 5 < 12 = True
+IP: 33 -> Ejecutando: (gotof, 19001, None, 38)
+  No hay salto (condición verdadera)
+IP: 34 -> Ejecutando: (print, 11006, None, None)
+OUTPUT: 5
+IP: 35 -> Ejecutando: (print,  es menor que , None, None)
+OUTPUT:  es menor que 
+IP: 36 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 12
+IP: 37 -> Ejecutando: (goto, None, None, 41)
+  Salto a: 41
+IP: 41 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 77
+IP: 77 -> Ejecutando: (ERA, comparar_numeros, None, None)
+  ERA: Reservando espacio para función 'comparar_numeros'
+IP: 78 -> Ejecutando: (parámetro, 20010, par1, None)
+  Parámetro: 9 -> posición 1
+IP: 79 -> Ejecutando: (parámetro, 20010, par2, None)
+  Parámetro: 9 -> posición 2
+IP: 80 -> Ejecutando: (GOSUB, comparar_numeros, None, None)
+    Asignando parámetro num1 (addr: 11006) = 9
+    Asignando parámetro num2 (addr: 11007) = 9
+  GOSUB: Llamando función 'comparar_numeros' en dirección 22
+IP: 22 -> Ejecutando: (print, Comparando , None, None)
+OUTPUT: Comparando 
+IP: 23 -> Ejecutando: (print, 11006, None, None)
+OUTPUT: 9
+IP: 24 -> Ejecutando: (print,  y , None, None)
+OUTPUT:  y 
+IP: 25 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 9
+IP: 26 -> Ejecutando: (>, 11006, 11007, 19000)
+  Comparación: 9 > 9 = False
+IP: 27 -> Ejecutando: (gotof, 19000, None, 32)
+  Salto condicional a: 32 (condición falsa)
+IP: 32 -> Ejecutando: (<, 11006, 11007, 19001)
+  Comparación: 9 < 9 = False
+IP: 33 -> Ejecutando: (gotof, 19001, None, 38)
+  Salto condicional a: 38 (condición falsa)
+IP: 38 -> Ejecutando: (print, 11006, None, None)
+OUTPUT: 9
+IP: 39 -> Ejecutando: (print,  es igual a , None, None)
+OUTPUT:  es igual a 
+IP: 40 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 9
+IP: 41 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 81
+IP: 81 -> Ejecutando: (ERA, serie_aritmetica, None, None)
+  ERA: Reservando espacio para función 'serie_aritmetica'
+IP: 82 -> Ejecutando: (parámetro, 20008, par1, None)
+  Parámetro: 5 -> posición 1
+IP: 83 -> Ejecutando: (parámetro, 20000, par2, None)
+  Parámetro: 3 -> posición 2
+IP: 84 -> Ejecutando: (parámetro, 20011, par3, None)
+  Parámetro: 6 -> posición 3
+IP: 85 -> Ejecutando: (GOSUB, serie_aritmetica, None, None)
+    Asignando parámetro inicio (addr: 11008) = 5
+    Asignando parámetro diferencia (addr: 11009) = 3
+    Asignando parámetro terminos (addr: 11010) = 6
+  GOSUB: Llamando función 'serie_aritmetica' en dirección 42
+IP: 42 -> Ejecutando: (print, Serie aritmética:, None, None)
+OUTPUT: Serie aritmética:
+IP: 43 -> Ejecutando: (print, Inicio: , None, None)
+OUTPUT: Inicio: 
+IP: 44 -> Ejecutando: (print, 11008, None, None)
+OUTPUT: 5
+IP: 45 -> Ejecutando: (print, , Diferencia: , None, None)
+OUTPUT: , Diferencia: 
+IP: 46 -> Ejecutando: (print, 11009, None, None)
+OUTPUT: 3
+IP: 47 -> Ejecutando: (print, , Términos: , None, None)
+OUTPUT: , Términos: 
+IP: 48 -> Ejecutando: (print, 11010, None, None)
+OUTPUT: 6
+IP: 49 -> Ejecutando: (=, 20001, None, 11011)
+  Asignación: direccion[11011] = 0
+IP: 50 -> Ejecutando: (=, 11008, None, 11012)
+  Asignación: direccion[11012] = 5
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 0 < 6 = True
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  No hay salto (condición verdadera)
+IP: 53 -> Ejecutando: (+, 11011, 20002, 15004)
+  Aritmética: 0 + 1 = 1
+IP: 54 -> Ejecutando: (print, Término , None, None)
+OUTPUT: Término 
+IP: 55 -> Ejecutando: (print, 15004, None, None)
+OUTPUT: 1
+IP: 56 -> Ejecutando: (print, : , None, None)
+OUTPUT: : 
+IP: 57 -> Ejecutando: (print, 11012, None, None)
+OUTPUT: 5
+IP: 58 -> Ejecutando: (+, 11012, 11009, 15005)
+  Aritmética: 5 + 3 = 8
+IP: 59 -> Ejecutando: (=, 15005, None, 11012)
+  Asignación: direccion[11012] = 8
+IP: 60 -> Ejecutando: (+, 11011, 20002, 15006)
+  Aritmética: 0 + 1 = 1
+IP: 61 -> Ejecutando: (=, 15006, None, 11011)
+  Asignación: direccion[11011] = 1
+IP: 62 -> Ejecutando: (goto, None, None, 51)
+  Salto a: 51
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 1 < 6 = True
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  No hay salto (condición verdadera)
+IP: 53 -> Ejecutando: (+, 11011, 20002, 15004)
+  Aritmética: 1 + 1 = 2
+IP: 54 -> Ejecutando: (print, Término , None, None)
+OUTPUT: Término 
+IP: 55 -> Ejecutando: (print, 15004, None, None)
+OUTPUT: 2
+IP: 56 -> Ejecutando: (print, : , None, None)
+OUTPUT: : 
+IP: 57 -> Ejecutando: (print, 11012, None, None)
+OUTPUT: 8
+IP: 58 -> Ejecutando: (+, 11012, 11009, 15005)
+  Aritmética: 8 + 3 = 11
+IP: 59 -> Ejecutando: (=, 15005, None, 11012)
+  Asignación: direccion[11012] = 11
+IP: 60 -> Ejecutando: (+, 11011, 20002, 15006)
+  Aritmética: 1 + 1 = 2
+IP: 61 -> Ejecutando: (=, 15006, None, 11011)
+  Asignación: direccion[11011] = 2
+IP: 62 -> Ejecutando: (goto, None, None, 51)
+  Salto a: 51
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 2 < 6 = True
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  No hay salto (condición verdadera)
+IP: 53 -> Ejecutando: (+, 11011, 20002, 15004)
+  Aritmética: 2 + 1 = 3
+IP: 54 -> Ejecutando: (print, Término , None, None)
+OUTPUT: Término 
+IP: 55 -> Ejecutando: (print, 15004, None, None)
+OUTPUT: 3
+IP: 56 -> Ejecutando: (print, : , None, None)
+OUTPUT: : 
+IP: 57 -> Ejecutando: (print, 11012, None, None)
+OUTPUT: 11
+IP: 58 -> Ejecutando: (+, 11012, 11009, 15005)
+  Aritmética: 11 + 3 = 14
+IP: 59 -> Ejecutando: (=, 15005, None, 11012)
+  Asignación: direccion[11012] = 14
+IP: 60 -> Ejecutando: (+, 11011, 20002, 15006)
+  Aritmética: 2 + 1 = 3
+IP: 61 -> Ejecutando: (=, 15006, None, 11011)
+  Asignación: direccion[11011] = 3
+IP: 62 -> Ejecutando: (goto, None, None, 51)
+  Salto a: 51
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 3 < 6 = True
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  No hay salto (condición verdadera)
+IP: 53 -> Ejecutando: (+, 11011, 20002, 15004)
+  Aritmética: 3 + 1 = 4
+IP: 54 -> Ejecutando: (print, Término , None, None)
+OUTPUT: Término 
+IP: 55 -> Ejecutando: (print, 15004, None, None)
+OUTPUT: 4
+IP: 56 -> Ejecutando: (print, : , None, None)
+OUTPUT: : 
+IP: 57 -> Ejecutando: (print, 11012, None, None)
+OUTPUT: 14
+IP: 58 -> Ejecutando: (+, 11012, 11009, 15005)
+  Aritmética: 14 + 3 = 17
+IP: 59 -> Ejecutando: (=, 15005, None, 11012)
+  Asignación: direccion[11012] = 17
+IP: 60 -> Ejecutando: (+, 11011, 20002, 15006)
+  Aritmética: 3 + 1 = 4
+IP: 61 -> Ejecutando: (=, 15006, None, 11011)
+  Asignación: direccion[11011] = 4
+IP: 62 -> Ejecutando: (goto, None, None, 51)
+  Salto a: 51
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 4 < 6 = True
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  No hay salto (condición verdadera)
+IP: 53 -> Ejecutando: (+, 11011, 20002, 15004)
+  Aritmética: 4 + 1 = 5
+IP: 54 -> Ejecutando: (print, Término , None, None)
+OUTPUT: Término 
+IP: 55 -> Ejecutando: (print, 15004, None, None)
+OUTPUT: 5
+IP: 56 -> Ejecutando: (print, : , None, None)
+OUTPUT: : 
+IP: 57 -> Ejecutando: (print, 11012, None, None)
+OUTPUT: 17
+IP: 58 -> Ejecutando: (+, 11012, 11009, 15005)
+  Aritmética: 17 + 3 = 20
+IP: 59 -> Ejecutando: (=, 15005, None, 11012)
+  Asignación: direccion[11012] = 20
+IP: 60 -> Ejecutando: (+, 11011, 20002, 15006)
+  Aritmética: 4 + 1 = 5
+IP: 61 -> Ejecutando: (=, 15006, None, 11011)
+  Asignación: direccion[11011] = 5
+IP: 62 -> Ejecutando: (goto, None, None, 51)
+  Salto a: 51
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 5 < 6 = True
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  No hay salto (condición verdadera)
+IP: 53 -> Ejecutando: (+, 11011, 20002, 15004)
+  Aritmética: 5 + 1 = 6
+IP: 54 -> Ejecutando: (print, Término , None, None)
+OUTPUT: Término 
+IP: 55 -> Ejecutando: (print, 15004, None, None)
+OUTPUT: 6
+IP: 56 -> Ejecutando: (print, : , None, None)
+OUTPUT: : 
+IP: 57 -> Ejecutando: (print, 11012, None, None)
+OUTPUT: 20
+IP: 58 -> Ejecutando: (+, 11012, 11009, 15005)
+  Aritmética: 20 + 3 = 23
+IP: 59 -> Ejecutando: (=, 15005, None, 11012)
+  Asignación: direccion[11012] = 23
+IP: 60 -> Ejecutando: (+, 11011, 20002, 15006)
+  Aritmética: 5 + 1 = 6
+IP: 61 -> Ejecutando: (=, 15006, None, 11011)
+  Asignación: direccion[11011] = 6
+IP: 62 -> Ejecutando: (goto, None, None, 51)
+  Salto a: 51
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 6 < 6 = False
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  Salto condicional a: 63 (condición falsa)
+IP: 63 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 86
+IP: 86 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
+=== EJECUCIÓN TERMINADA ===
+
+=== ESTADO DE LA MEMORIA SEGMENTADA ===
+Memoria Global Enteros (5000-7999):
+Memoria Global Flotantes (8000-10999):
+Memoria Local Enteros (11000-12999):
+Memoria Local Flotantes (13000-14999):
+Memoria Temporal Enteros (15000-16999):
+  [15000]: 11
+  [15001]: 13
+  [15002]: 28
+  [15003]: 56
+  [15004]: 6
+  [15005]: 23
+  [15006]: 6
+Memoria Temporal Flotantes (17000-18999):
+  [17000]: 4.333333333333333
+Memoria Temporal Booleanos (19000-19999):
+  [19000]: False
+  [19001]: False
+  [19002]: False
+Constantes Enteras (20000-20499):
+  [20000]: 3
+  [20001]: 0
+  [20002]: 1
+  [20003]: 4
+  [20004]: 7
+  [20005]: 2
+  [20006]: 15
+  [20007]: 8
+  [20008]: 5
+  [20009]: 12
+  [20010]: 9
+  [20011]: 6
+Constantes Flotantes (20500+):
+========================================
 
 RESULTADOS ESPERADOS:
   - Números:

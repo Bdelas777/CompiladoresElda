@@ -154,18 +154,6 @@ class VirtualMachine:
             return self._execute_comparison(quad, lambda a, b: a > b)
         elif op == '<':
             return self._execute_comparison(quad, lambda a, b: a < b)
-        elif op == '>=':
-            return self._execute_comparison(quad, lambda a, b: a >= b)
-        elif op == '<=':
-            return self._execute_comparison(quad, lambda a, b: a <= b)
-        elif op == '==':
-            return self._execute_comparison(quad, lambda a, b: a == b)
-        elif op == '!=':
-            return self._execute_comparison(quad, lambda a, b: a != b)
-        elif op == '&&':
-            return self._execute_logical(quad, lambda a, b: bool(a) and bool(b))
-        elif op == '||':
-            return self._execute_logical(quad, lambda a, b: bool(a) or bool(b))
         elif op == '=':
             return self._execute_assignment(quad)
         elif op == 'goto':
