@@ -535,8 +535,11 @@ def p_empty(p):
 def p_error(p):
     if p:
         print(f"Syntax error at '{p.value}', line {p.lineno}")
+        error_msg = f"Syntax error at '{p.value}' on line {p.lineno}"
     else:
         print("Syntax error at EOF")
+        error_msg = "Syntax error at EOF"
+    raise SyntaxError(error_msg)
         
 def token_to_operation(token):
     if token == '+' or token == 'TOKEN_PLUS':
