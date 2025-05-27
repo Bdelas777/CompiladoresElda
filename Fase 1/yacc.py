@@ -538,6 +538,8 @@ def p_empty(p):
     p[0] = None
     
 def p_error(p):
+    if not'main' in semantic.function_directory:
+        raise SyntaxError("Syntax error in main function")
     if p:
         print(f"Syntax error at '{p.value}', line {p.lineno}")
         error_msg = f"Syntax error at '{p.value}' on line {p.lineno}"
@@ -657,16 +659,26 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = """
-program negativos;
+program control_if;
 var
-    a, b : int;
-    resultado : int;
-
- {
-    a = -5;
-    b = 3;
-    resultado = a + b;
-    print("Resultado con negativos: ", resultado);
+    x, y, max : int;
+main {
+    x = 15;
+    y = 7;
+    
+    if (x > y) {
+        max = x;
+        print("El mayor es x: ", max);
+    } else {
+        max = y;
+        print("El mayor es y: ", max);
+    };
+    
+    if (x < 10) {
+        print("x es menor que 10");
+    } else {
+        print("x es mayor o igual que 10");
+    };
 }
 end
 """
