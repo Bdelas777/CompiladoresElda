@@ -1,6 +1,6 @@
 
 ================================================================================
-SESIÓN DE PRUEBAS - 2025-05-26 22:26:03
+SESIÓN DE PRUEBAS - 2025-05-27 14:40:34
 ================================================================================
 
 
@@ -3852,7 +3852,6 @@ Added local variable 'suma' of type Type.INT at address 11003 to function 'opera
 Added local variable 'producto' of type Type.INT at address 11004 to function 'operaciones_basicas'
 Added local variable 'promedio' of type Type.INT at address 11005 to function 'operaciones_basicas'
 Starting variable declaration in scope 'operaciones_basicas'
-SEMANTIC ERROR: Incompatible types in assignment to 'promedio': Cannot assign Type.FLOAT to Type.INT
 Popped scope: operaciones_basicas, current scope is now: global
 Ended function 'operaciones_basicas' declaration, returned to scope: global
 Pushed scope: comparar_numeros, current scope stack: ['global', 'comparar_numeros']
@@ -4173,8 +4172,385 @@ Starting at quadruple 64
 86: (END, None, None, None)
       perform operation END with operand None
 ----------------------------------------------------------------------
-ERRORES SEMÁNTICOS:
-  Semantic error: Incompatible types in assignment to 'promedio': Cannot assign Type.FLOAT to Type.INT
+=== INICIANDO EJECUCIÓN ===
+IP: 0 -> Ejecutando: (goto, None, None, 64)
+  Salto a: 64
+IP: 64 -> Ejecutando: (ERA, operaciones_basicas, None, None)
+  ERA: Reservando espacio para función 'operaciones_basicas'
+IP: 65 -> Ejecutando: (parámetro, 20003, par1, None)
+  Parámetro: 4 -> posición 1
+IP: 66 -> Ejecutando: (parámetro, 20004, par2, None)
+  Parámetro: 7 -> posición 2
+IP: 67 -> Ejecutando: (parámetro, 20005, par3, None)
+  Parámetro: 2 -> posición 3
+IP: 68 -> Ejecutando: (GOSUB, operaciones_basicas, None, None)
+    Asignando parámetro x (addr: 11000) = 4
+    Asignando parámetro y (addr: 11001) = 7
+    Asignando parámetro z (addr: 11002) = 2
+  GOSUB: Llamando función 'operaciones_basicas' en dirección 1
+IP: 1 -> Ejecutando: (+, 11000, 11001, 15000)
+  Aritmética: 4 + 7 = 11
+IP: 2 -> Ejecutando: (+, 15000, 11002, 15001)
+  Aritmética: 11 + 2 = 13
+IP: 3 -> Ejecutando: (=, 15001, None, 11003)
+  Asignación: direccion[11003] = 13
+IP: 4 -> Ejecutando: (*, 11000, 11001, 15002)
+  Aritmética: 4 * 7 = 28
+IP: 5 -> Ejecutando: (*, 15002, 11002, 15003)
+  Aritmética: 28 * 2 = 56
+IP: 6 -> Ejecutando: (=, 15003, None, 11004)
+  Asignación: direccion[11004] = 56
+IP: 7 -> Ejecutando: (/, 11003, 20000, 17000)
+  Aritmética: 13 / 3 = 4.333333333333333
+IP: 8 -> Ejecutando: (=, 17000, None, 11005)
+  Asignación: direccion[11005] = 4.333333333333333
+IP: 9 -> Ejecutando: (print, Números: , None, None)
+OUTPUT: Números: 
+IP: 10 -> Ejecutando: (print, 11000, None, None)
+OUTPUT: 4
+IP: 11 -> Ejecutando: (print, , , None, None)
+OUTPUT: , 
+IP: 12 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 7
+IP: 13 -> Ejecutando: (print, , , None, None)
+OUTPUT: , 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 2
+IP: 15 -> Ejecutando: (print, Suma: , None, None)
+OUTPUT: Suma: 
+IP: 16 -> Ejecutando: (print, 11003, None, None)
+OUTPUT: 13
+IP: 17 -> Ejecutando: (print, Producto: , None, None)
+OUTPUT: Producto: 
+IP: 18 -> Ejecutando: (print, 11004, None, None)
+OUTPUT: 56
+IP: 19 -> Ejecutando: (print, Promedio: , None, None)
+OUTPUT: Promedio: 
+IP: 20 -> Ejecutando: (print, 11005, None, None)
+OUTPUT: 4
+IP: 21 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 69
+IP: 69 -> Ejecutando: (ERA, comparar_numeros, None, None)
+  ERA: Reservando espacio para función 'comparar_numeros'
+IP: 70 -> Ejecutando: (parámetro, 20006, par1, None)
+  Parámetro: 15 -> posición 1
+IP: 71 -> Ejecutando: (parámetro, 20007, par2, None)
+  Parámetro: 8 -> posición 2
+IP: 72 -> Ejecutando: (GOSUB, comparar_numeros, None, None)
+    Asignando parámetro num1 (addr: 11006) = 15
+    Asignando parámetro num2 (addr: 11007) = 8
+  GOSUB: Llamando función 'comparar_numeros' en dirección 22
+IP: 22 -> Ejecutando: (print, Comparando , None, None)
+OUTPUT: Comparando 
+IP: 23 -> Ejecutando: (print, 11006, None, None)
+OUTPUT: 15
+IP: 24 -> Ejecutando: (print,  y , None, None)
+OUTPUT:  y 
+IP: 25 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 8
+IP: 26 -> Ejecutando: (>, 11006, 11007, 19000)
+  Comparación: 15 > 8 = True
+IP: 27 -> Ejecutando: (gotof, 19000, None, 32)
+  No hay salto (condición verdadera)
+IP: 28 -> Ejecutando: (print, 11006, None, None)
+OUTPUT: 15
+IP: 29 -> Ejecutando: (print,  es mayor que , None, None)
+OUTPUT:  es mayor que 
+IP: 30 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 8
+IP: 31 -> Ejecutando: (goto, None, None, 41)
+  Salto a: 41
+IP: 41 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 73
+IP: 73 -> Ejecutando: (ERA, comparar_numeros, None, None)
+  ERA: Reservando espacio para función 'comparar_numeros'
+IP: 74 -> Ejecutando: (parámetro, 20008, par1, None)
+  Parámetro: 5 -> posición 1
+IP: 75 -> Ejecutando: (parámetro, 20009, par2, None)
+  Parámetro: 12 -> posición 2
+IP: 76 -> Ejecutando: (GOSUB, comparar_numeros, None, None)
+    Asignando parámetro num1 (addr: 11006) = 5
+    Asignando parámetro num2 (addr: 11007) = 12
+  GOSUB: Llamando función 'comparar_numeros' en dirección 22
+IP: 22 -> Ejecutando: (print, Comparando , None, None)
+OUTPUT: Comparando 
+IP: 23 -> Ejecutando: (print, 11006, None, None)
+OUTPUT: 5
+IP: 24 -> Ejecutando: (print,  y , None, None)
+OUTPUT:  y 
+IP: 25 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 12
+IP: 26 -> Ejecutando: (>, 11006, 11007, 19000)
+  Comparación: 5 > 12 = False
+IP: 27 -> Ejecutando: (gotof, 19000, None, 32)
+  Salto condicional a: 32 (condición falsa)
+IP: 32 -> Ejecutando: (<, 11006, 11007, 19001)
+  Comparación: 5 < 12 = True
+IP: 33 -> Ejecutando: (gotof, 19001, None, 38)
+  No hay salto (condición verdadera)
+IP: 34 -> Ejecutando: (print, 11006, None, None)
+OUTPUT: 5
+IP: 35 -> Ejecutando: (print,  es menor que , None, None)
+OUTPUT:  es menor que 
+IP: 36 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 12
+IP: 37 -> Ejecutando: (goto, None, None, 41)
+  Salto a: 41
+IP: 41 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 77
+IP: 77 -> Ejecutando: (ERA, comparar_numeros, None, None)
+  ERA: Reservando espacio para función 'comparar_numeros'
+IP: 78 -> Ejecutando: (parámetro, 20010, par1, None)
+  Parámetro: 9 -> posición 1
+IP: 79 -> Ejecutando: (parámetro, 20010, par2, None)
+  Parámetro: 9 -> posición 2
+IP: 80 -> Ejecutando: (GOSUB, comparar_numeros, None, None)
+    Asignando parámetro num1 (addr: 11006) = 9
+    Asignando parámetro num2 (addr: 11007) = 9
+  GOSUB: Llamando función 'comparar_numeros' en dirección 22
+IP: 22 -> Ejecutando: (print, Comparando , None, None)
+OUTPUT: Comparando 
+IP: 23 -> Ejecutando: (print, 11006, None, None)
+OUTPUT: 9
+IP: 24 -> Ejecutando: (print,  y , None, None)
+OUTPUT:  y 
+IP: 25 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 9
+IP: 26 -> Ejecutando: (>, 11006, 11007, 19000)
+  Comparación: 9 > 9 = False
+IP: 27 -> Ejecutando: (gotof, 19000, None, 32)
+  Salto condicional a: 32 (condición falsa)
+IP: 32 -> Ejecutando: (<, 11006, 11007, 19001)
+  Comparación: 9 < 9 = False
+IP: 33 -> Ejecutando: (gotof, 19001, None, 38)
+  Salto condicional a: 38 (condición falsa)
+IP: 38 -> Ejecutando: (print, 11006, None, None)
+OUTPUT: 9
+IP: 39 -> Ejecutando: (print,  es igual a , None, None)
+OUTPUT:  es igual a 
+IP: 40 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 9
+IP: 41 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 81
+IP: 81 -> Ejecutando: (ERA, serie_aritmetica, None, None)
+  ERA: Reservando espacio para función 'serie_aritmetica'
+IP: 82 -> Ejecutando: (parámetro, 20008, par1, None)
+  Parámetro: 5 -> posición 1
+IP: 83 -> Ejecutando: (parámetro, 20000, par2, None)
+  Parámetro: 3 -> posición 2
+IP: 84 -> Ejecutando: (parámetro, 20011, par3, None)
+  Parámetro: 6 -> posición 3
+IP: 85 -> Ejecutando: (GOSUB, serie_aritmetica, None, None)
+    Asignando parámetro inicio (addr: 11008) = 5
+    Asignando parámetro diferencia (addr: 11009) = 3
+    Asignando parámetro terminos (addr: 11010) = 6
+  GOSUB: Llamando función 'serie_aritmetica' en dirección 42
+IP: 42 -> Ejecutando: (print, Serie aritmética:, None, None)
+OUTPUT: Serie aritmética:
+IP: 43 -> Ejecutando: (print, Inicio: , None, None)
+OUTPUT: Inicio: 
+IP: 44 -> Ejecutando: (print, 11008, None, None)
+OUTPUT: 5
+IP: 45 -> Ejecutando: (print, , Diferencia: , None, None)
+OUTPUT: , Diferencia: 
+IP: 46 -> Ejecutando: (print, 11009, None, None)
+OUTPUT: 3
+IP: 47 -> Ejecutando: (print, , Términos: , None, None)
+OUTPUT: , Términos: 
+IP: 48 -> Ejecutando: (print, 11010, None, None)
+OUTPUT: 6
+IP: 49 -> Ejecutando: (=, 20001, None, 11011)
+  Asignación: direccion[11011] = 0
+IP: 50 -> Ejecutando: (=, 11008, None, 11012)
+  Asignación: direccion[11012] = 5
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 0 < 6 = True
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  No hay salto (condición verdadera)
+IP: 53 -> Ejecutando: (+, 11011, 20002, 15004)
+  Aritmética: 0 + 1 = 1
+IP: 54 -> Ejecutando: (print, Término , None, None)
+OUTPUT: Término 
+IP: 55 -> Ejecutando: (print, 15004, None, None)
+OUTPUT: 1
+IP: 56 -> Ejecutando: (print, : , None, None)
+OUTPUT: : 
+IP: 57 -> Ejecutando: (print, 11012, None, None)
+OUTPUT: 5
+IP: 58 -> Ejecutando: (+, 11012, 11009, 15005)
+  Aritmética: 5 + 3 = 8
+IP: 59 -> Ejecutando: (=, 15005, None, 11012)
+  Asignación: direccion[11012] = 8
+IP: 60 -> Ejecutando: (+, 11011, 20002, 15006)
+  Aritmética: 0 + 1 = 1
+IP: 61 -> Ejecutando: (=, 15006, None, 11011)
+  Asignación: direccion[11011] = 1
+IP: 62 -> Ejecutando: (goto, None, None, 51)
+  Salto a: 51
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 1 < 6 = True
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  No hay salto (condición verdadera)
+IP: 53 -> Ejecutando: (+, 11011, 20002, 15004)
+  Aritmética: 1 + 1 = 2
+IP: 54 -> Ejecutando: (print, Término , None, None)
+OUTPUT: Término 
+IP: 55 -> Ejecutando: (print, 15004, None, None)
+OUTPUT: 2
+IP: 56 -> Ejecutando: (print, : , None, None)
+OUTPUT: : 
+IP: 57 -> Ejecutando: (print, 11012, None, None)
+OUTPUT: 8
+IP: 58 -> Ejecutando: (+, 11012, 11009, 15005)
+  Aritmética: 8 + 3 = 11
+IP: 59 -> Ejecutando: (=, 15005, None, 11012)
+  Asignación: direccion[11012] = 11
+IP: 60 -> Ejecutando: (+, 11011, 20002, 15006)
+  Aritmética: 1 + 1 = 2
+IP: 61 -> Ejecutando: (=, 15006, None, 11011)
+  Asignación: direccion[11011] = 2
+IP: 62 -> Ejecutando: (goto, None, None, 51)
+  Salto a: 51
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 2 < 6 = True
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  No hay salto (condición verdadera)
+IP: 53 -> Ejecutando: (+, 11011, 20002, 15004)
+  Aritmética: 2 + 1 = 3
+IP: 54 -> Ejecutando: (print, Término , None, None)
+OUTPUT: Término 
+IP: 55 -> Ejecutando: (print, 15004, None, None)
+OUTPUT: 3
+IP: 56 -> Ejecutando: (print, : , None, None)
+OUTPUT: : 
+IP: 57 -> Ejecutando: (print, 11012, None, None)
+OUTPUT: 11
+IP: 58 -> Ejecutando: (+, 11012, 11009, 15005)
+  Aritmética: 11 + 3 = 14
+IP: 59 -> Ejecutando: (=, 15005, None, 11012)
+  Asignación: direccion[11012] = 14
+IP: 60 -> Ejecutando: (+, 11011, 20002, 15006)
+  Aritmética: 2 + 1 = 3
+IP: 61 -> Ejecutando: (=, 15006, None, 11011)
+  Asignación: direccion[11011] = 3
+IP: 62 -> Ejecutando: (goto, None, None, 51)
+  Salto a: 51
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 3 < 6 = True
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  No hay salto (condición verdadera)
+IP: 53 -> Ejecutando: (+, 11011, 20002, 15004)
+  Aritmética: 3 + 1 = 4
+IP: 54 -> Ejecutando: (print, Término , None, None)
+OUTPUT: Término 
+IP: 55 -> Ejecutando: (print, 15004, None, None)
+OUTPUT: 4
+IP: 56 -> Ejecutando: (print, : , None, None)
+OUTPUT: : 
+IP: 57 -> Ejecutando: (print, 11012, None, None)
+OUTPUT: 14
+IP: 58 -> Ejecutando: (+, 11012, 11009, 15005)
+  Aritmética: 14 + 3 = 17
+IP: 59 -> Ejecutando: (=, 15005, None, 11012)
+  Asignación: direccion[11012] = 17
+IP: 60 -> Ejecutando: (+, 11011, 20002, 15006)
+  Aritmética: 3 + 1 = 4
+IP: 61 -> Ejecutando: (=, 15006, None, 11011)
+  Asignación: direccion[11011] = 4
+IP: 62 -> Ejecutando: (goto, None, None, 51)
+  Salto a: 51
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 4 < 6 = True
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  No hay salto (condición verdadera)
+IP: 53 -> Ejecutando: (+, 11011, 20002, 15004)
+  Aritmética: 4 + 1 = 5
+IP: 54 -> Ejecutando: (print, Término , None, None)
+OUTPUT: Término 
+IP: 55 -> Ejecutando: (print, 15004, None, None)
+OUTPUT: 5
+IP: 56 -> Ejecutando: (print, : , None, None)
+OUTPUT: : 
+IP: 57 -> Ejecutando: (print, 11012, None, None)
+OUTPUT: 17
+IP: 58 -> Ejecutando: (+, 11012, 11009, 15005)
+  Aritmética: 17 + 3 = 20
+IP: 59 -> Ejecutando: (=, 15005, None, 11012)
+  Asignación: direccion[11012] = 20
+IP: 60 -> Ejecutando: (+, 11011, 20002, 15006)
+  Aritmética: 4 + 1 = 5
+IP: 61 -> Ejecutando: (=, 15006, None, 11011)
+  Asignación: direccion[11011] = 5
+IP: 62 -> Ejecutando: (goto, None, None, 51)
+  Salto a: 51
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 5 < 6 = True
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  No hay salto (condición verdadera)
+IP: 53 -> Ejecutando: (+, 11011, 20002, 15004)
+  Aritmética: 5 + 1 = 6
+IP: 54 -> Ejecutando: (print, Término , None, None)
+OUTPUT: Término 
+IP: 55 -> Ejecutando: (print, 15004, None, None)
+OUTPUT: 6
+IP: 56 -> Ejecutando: (print, : , None, None)
+OUTPUT: : 
+IP: 57 -> Ejecutando: (print, 11012, None, None)
+OUTPUT: 20
+IP: 58 -> Ejecutando: (+, 11012, 11009, 15005)
+  Aritmética: 20 + 3 = 23
+IP: 59 -> Ejecutando: (=, 15005, None, 11012)
+  Asignación: direccion[11012] = 23
+IP: 60 -> Ejecutando: (+, 11011, 20002, 15006)
+  Aritmética: 5 + 1 = 6
+IP: 61 -> Ejecutando: (=, 15006, None, 11011)
+  Asignación: direccion[11011] = 6
+IP: 62 -> Ejecutando: (goto, None, None, 51)
+  Salto a: 51
+IP: 51 -> Ejecutando: (<, 11011, 11010, 19002)
+  Comparación: 6 < 6 = False
+IP: 52 -> Ejecutando: (gotof, 19002, None, 63)
+  Salto condicional a: 63 (condición falsa)
+IP: 63 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 86
+IP: 86 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
+=== EJECUCIÓN TERMINADA ===
+
+=== ESTADO DE LA MEMORIA SEGMENTADA ===
+Memoria Global Enteros (5000-7999):
+Memoria Global Flotantes (8000-10999):
+Memoria Local Enteros (11000-12999):
+Memoria Local Flotantes (13000-14999):
+Memoria Temporal Enteros (15000-16999):
+  [15000]: 11
+  [15001]: 13
+  [15002]: 28
+  [15003]: 56
+  [15004]: 6
+  [15005]: 23
+  [15006]: 6
+Memoria Temporal Flotantes (17000-18999):
+  [17000]: 4.333333333333333
+Memoria Temporal Booleanos (19000-19999):
+  [19000]: False
+  [19001]: False
+  [19002]: False
+Constantes Enteras (20000-20499):
+  [20000]: 3
+  [20001]: 0
+  [20002]: 1
+  [20003]: 4
+  [20004]: 7
+  [20005]: 2
+  [20006]: 15
+  [20007]: 8
+  [20008]: 5
+  [20009]: 12
+  [20010]: 9
+  [20011]: 6
+Constantes Flotantes (20500+):
+========================================
 
 RESULTADOS ESPERADOS:
   - Números:
@@ -4229,11 +4605,1071 @@ RESULTADOS ESPERADOS:
 ✅ PRUEBA EXITOSA
 ------------------------------------------------------------
 
+[TEST 11] FOR con Función
+------------------------------------------------------------
+CÓDIGO:
+ 1: program for_con_funcion;
+ 2: var
+ 3:     limite : int;
+ 4: 
+ 5: void contar_hasta(n : int)
+ 6: [
+ 7:     var i, contador : int;
+ 8:     {
+ 9:         print("Contando hasta ", n, ":");
+10:         contador = 0;
+11:         
+12:         for (i = 1; i < n + 1; i = i + 1) do {
+13:             contador = contador + 1;
+14:             print("Contador: ", contador, " (i = ", i, ")");
+15:         };
+16:         
+17:         print("Terminé de contar hasta ", n);
+18:     }
+19: ];
+20: 
+21: void tabla_cuadrados(hasta : int)
+22: [
+23:     var i, cuadrado : int;
+24:     {
+25:         print("Tabla de cuadrados hasta ", hasta, ":");
+26:         
+27:         for (i = 1; i < hasta + 1; i = i + 1) do {
+28:             cuadrado = i * i;
+29:             print(i, " al cuadrado = ", cuadrado);
+30:         };
+31:     }
+32: ];
+33: 
+34: main {
+35:     limite = 5;
+36:     
+37:     contar_hasta(limite);
+38:     
+39:     tabla_cuadrados(4);
+40:     
+41:     print("FOR anidado:");
+42:     for (limite = 1; limite < 4; limite = limite + 1) do {
+43:         print("Tabla del ", limite, ":");
+44:         contar_hasta(limite);
+45:     };
+46: }
+47: end
+
+SALIDA OBTENIDA:
+Adding ID 'limite' to temp list in scope: global
+Added 'limite' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'limite' of type Type.INT at address 5000
+Starting variable declaration in scope 'global'
+Pushed scope: contar_hasta, current scope stack: ['global', 'contar_hasta']
+Declared function 'contar_hasta' with return type Type.VOID, scope changed to: contar_hasta
+Added parameter 'n' of type Type.INT at address 11000 to function 'contar_hasta'
+Adding ID 'i' to temp list in scope: contar_hasta
+Added 'i' to temporary variable list in scope: contar_hasta
+Adding ID 'contador' to temp list in scope: contar_hasta
+Added 'contador' to temporary variable list in scope: contar_hasta
+Set current type to Type.INT
+Adding variables to table in scope: contar_hasta
+Added local variable 'i' of type Type.INT at address 11001 to function 'contar_hasta'
+Added local variable 'contador' of type Type.INT at address 11002 to function 'contar_hasta'
+Starting variable declaration in scope 'contar_hasta'
+Popped scope: contar_hasta, current scope is now: global
+Ended function 'contar_hasta' declaration, returned to scope: global
+Pushed scope: tabla_cuadrados, current scope stack: ['global', 'tabla_cuadrados']
+Declared function 'tabla_cuadrados' with return type Type.VOID, scope changed to: tabla_cuadrados
+Added parameter 'hasta' of type Type.INT at address 11003 to function 'tabla_cuadrados'
+Adding ID 'i' to temp list in scope: tabla_cuadrados
+Added 'i' to temporary variable list in scope: tabla_cuadrados
+Adding ID 'cuadrado' to temp list in scope: tabla_cuadrados
+Added 'cuadrado' to temporary variable list in scope: tabla_cuadrados
+Set current type to Type.INT
+Adding variables to table in scope: tabla_cuadrados
+Added local variable 'i' of type Type.INT at address 11004 to function 'tabla_cuadrados'
+Added local variable 'cuadrado' of type Type.INT at address 11005 to function 'tabla_cuadrados'
+Starting variable declaration in scope 'tabla_cuadrados'
+Popped scope: tabla_cuadrados, current scope is now: global
+Ended function 'tabla_cuadrados' declaration, returned to scope: global
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program for_con_funcion started, scope reset to global
+Program for_con_funcion completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: contar_hasta - Start Address: 1
+Function: tabla_cuadrados - Start Address: 23
+Function: main - Start Address: 40
+----------------------------------------------------------------------
+0: (goto, None, None, 40)
+      jump to quadruple 40
+----------------------------------------------------------------------
+
+==================== FUNCTION: CONTAR_HASTA ====================
+Starting at quadruple 1
+----------------------------------------------------------------------
+1: (print, Contando hasta , None, None)
+      print value addr:Contando hasta 
+----------------------------------------------------------------------
+2: (print, 11000, None, None)
+      print value addr:11000
+----------------------------------------------------------------------
+3: (print, :, None, None)
+      print value addr::
+----------------------------------------------------------------------
+4: (=, 20000, None, 11002)
+      assign value of constant(0) to addr:11002
+----------------------------------------------------------------------
+5: (=, 20001, None, 11001)
+      assign value of constant(1) to addr:11001
+----------------------------------------------------------------------
+6: (+, 11000, 20001, 15000)
+      add addr:11000 and constant(1), store result in addr:15000
+----------------------------------------------------------------------
+7: (<, 11001, 15000, 19000)
+      compare if addr:11001 is less than addr:15000, store boolean result in addr:19000
+----------------------------------------------------------------------
+8: (gotof, 19000, None, 20)
+      if addr:19000 is false, jump to quadruple 20
+----------------------------------------------------------------------
+9: (+, 11001, 20001, 15001)
+      add addr:11001 and constant(1), store result in addr:15001
+----------------------------------------------------------------------
+10: (=, 15001, None, 11001)
+      assign value of addr:15001 to addr:11001
+----------------------------------------------------------------------
+11: (+, 11002, 20001, 15002)
+      add addr:11002 and constant(1), store result in addr:15002
+----------------------------------------------------------------------
+12: (=, 15002, None, 11002)
+      assign value of addr:15002 to addr:11002
+----------------------------------------------------------------------
+13: (print, Contador: , None, None)
+      print value addr:Contador: 
+----------------------------------------------------------------------
+14: (print, 11002, None, None)
+      print value addr:11002
+----------------------------------------------------------------------
+15: (print,  (i = , None, None)
+      print value addr: (i = 
+----------------------------------------------------------------------
+16: (print, 11001, None, None)
+      print value addr:11001
+----------------------------------------------------------------------
+17: (print, ), None, None)
+      print value addr:)
+----------------------------------------------------------------------
+18: (=, 15001, None, 11001)
+      assign value of addr:15001 to addr:11001
+----------------------------------------------------------------------
+19: (goto, None, None, 6)
+      jump to quadruple 6
+----------------------------------------------------------------------
+20: (print, Terminé de contar hasta , None, None)
+      print value addr:Terminé de contar hasta 
+----------------------------------------------------------------------
+21: (print, 11000, None, None)
+      print value addr:11000
+----------------------------------------------------------------------
+22: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF CONTAR_HASTA ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: TABLA_CUADRADOS ====================
+Starting at quadruple 23
+----------------------------------------------------------------------
+23: (print, Tabla de cuadrados hasta , None, None)
+      print value addr:Tabla de cuadrados hasta 
+----------------------------------------------------------------------
+24: (print, 11003, None, None)
+      print value addr:11003
+----------------------------------------------------------------------
+25: (print, :, None, None)
+      print value addr::
+----------------------------------------------------------------------
+26: (=, 20001, None, 11004)
+      assign value of constant(1) to addr:11004
+----------------------------------------------------------------------
+27: (+, 11003, 20001, 15003)
+      add addr:11003 and constant(1), store result in addr:15003
+----------------------------------------------------------------------
+28: (<, 11004, 15003, 19001)
+      compare if addr:11004 is less than addr:15003, store boolean result in addr:19001
+----------------------------------------------------------------------
+29: (gotof, 19001, None, 39)
+      if addr:19001 is false, jump to quadruple 39
+----------------------------------------------------------------------
+30: (+, 11004, 20001, 15004)
+      add addr:11004 and constant(1), store result in addr:15004
+----------------------------------------------------------------------
+31: (=, 15004, None, 11004)
+      assign value of addr:15004 to addr:11004
+----------------------------------------------------------------------
+32: (*, 11004, 11004, 15005)
+      multiply addr:11004 and addr:11004, store result in addr:15005
+----------------------------------------------------------------------
+33: (=, 15005, None, 11005)
+      assign value of addr:15005 to addr:11005
+----------------------------------------------------------------------
+34: (print, 11004, None, None)
+      print value addr:11004
+----------------------------------------------------------------------
+35: (print,  al cuadrado = , None, None)
+      print value addr: al cuadrado = 
+----------------------------------------------------------------------
+36: (print, 11005, None, None)
+      print value addr:11005
+----------------------------------------------------------------------
+37: (=, 15004, None, 11004)
+      assign value of addr:15004 to addr:11004
+----------------------------------------------------------------------
+38: (goto, None, None, 27)
+      jump to quadruple 27
+----------------------------------------------------------------------
+39: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF TABLA_CUADRADOS ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 40
+----------------------------------------------------------------------
+40: (=, 20002, None, 5000)
+      assign value of constant(5) to limite (global)
+----------------------------------------------------------------------
+41: (ERA, contar_hasta, None, None)
+      perform operation ERA with operand addr:contar_hasta
+----------------------------------------------------------------------
+42: (parámetro, 5000, par1, None)
+      perform operation parámetro with operands limite (global), addr:par1, result in None
+----------------------------------------------------------------------
+43: (GOSUB, contar_hasta, None, None)
+      perform operation GOSUB with operand addr:contar_hasta
+----------------------------------------------------------------------
+44: (ERA, tabla_cuadrados, None, None)
+      perform operation ERA with operand temp tabla_cuadrados
+----------------------------------------------------------------------
+45: (parámetro, 20003, par1, None)
+      perform operation parámetro with operands constant(4), addr:par1, result in None
+----------------------------------------------------------------------
+46: (GOSUB, tabla_cuadrados, None, None)
+      perform operation GOSUB with operand temp tabla_cuadrados
+----------------------------------------------------------------------
+47: (print, FOR anidado:, None, None)
+      print value addr:FOR anidado:
+----------------------------------------------------------------------
+48: (=, 20001, None, 5000)
+      assign value of constant(1) to limite (global)
+----------------------------------------------------------------------
+49: (<, 5000, 20003, 19002)
+      compare if limite (global) is less than constant(4), store boolean result in addr:19002
+----------------------------------------------------------------------
+50: (gotof, 19002, None, 61)
+      if addr:19002 is false, jump to quadruple 61
+----------------------------------------------------------------------
+51: (+, 5000, 20001, 15006)
+      add limite (global) and constant(1), store result in addr:15006
+----------------------------------------------------------------------
+52: (=, 15006, None, 5000)
+      assign value of addr:15006 to limite (global)
+----------------------------------------------------------------------
+53: (print, Tabla del , None, None)
+      print value addr:Tabla del 
+----------------------------------------------------------------------
+54: (print, 5000, None, None)
+      print value limite (global)
+----------------------------------------------------------------------
+55: (print, :, None, None)
+      print value addr::
+----------------------------------------------------------------------
+56: (ERA, contar_hasta, None, None)
+      perform operation ERA with operand addr:contar_hasta
+----------------------------------------------------------------------
+57: (parámetro, 5000, par1, None)
+      perform operation parámetro with operands limite (global), addr:par1, result in None
+----------------------------------------------------------------------
+58: (GOSUB, contar_hasta, None, None)
+      perform operation GOSUB with operand addr:contar_hasta
+----------------------------------------------------------------------
+59: (=, 15006, None, 5000)
+      assign value of addr:15006 to limite (global)
+----------------------------------------------------------------------
+60: (goto, None, None, 49)
+      jump to quadruple 49
+----------------------------------------------------------------------
+61: (END, None, None, None)
+      perform operation END with operand None
+----------------------------------------------------------------------
+=== INICIANDO EJECUCIÓN ===
+IP: 0 -> Ejecutando: (goto, None, None, 40)
+  Salto a: 40
+IP: 40 -> Ejecutando: (=, 20002, None, 5000)
+  Asignación: direccion[5000] = 5
+IP: 41 -> Ejecutando: (ERA, contar_hasta, None, None)
+  ERA: Reservando espacio para función 'contar_hasta'
+IP: 42 -> Ejecutando: (parámetro, 5000, par1, None)
+  Parámetro: 5 -> posición 1
+IP: 43 -> Ejecutando: (GOSUB, contar_hasta, None, None)
+    Asignando parámetro n (addr: 11000) = 5
+  GOSUB: Llamando función 'contar_hasta' en dirección 1
+IP: 1 -> Ejecutando: (print, Contando hasta , None, None)
+OUTPUT: Contando hasta 
+IP: 2 -> Ejecutando: (print, 11000, None, None)
+OUTPUT: 5
+IP: 3 -> Ejecutando: (print, :, None, None)
+OUTPUT: :
+IP: 4 -> Ejecutando: (=, 20000, None, 11002)
+  Asignación: direccion[11002] = 0
+IP: 5 -> Ejecutando: (=, 20001, None, 11001)
+  Asignación: direccion[11001] = 1
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 5 + 1 = 6
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 1 < 6 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 1 + 1 = 2
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 2
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 0 + 1 = 1
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 1
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 1
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 2
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 2
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 5 + 1 = 6
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 2 < 6 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 2 + 1 = 3
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 3
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 1 + 1 = 2
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 2
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 2
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 3
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 3
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 5 + 1 = 6
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 3 < 6 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 3 + 1 = 4
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 4
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 2 + 1 = 3
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 3
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 3
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 4
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 4
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 5 + 1 = 6
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 4 < 6 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 4 + 1 = 5
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 5
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 3 + 1 = 4
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 4
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 4
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 5
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 5
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 5 + 1 = 6
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 5 < 6 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 5 + 1 = 6
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 6
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 4 + 1 = 5
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 5
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 5
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 6
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 6
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 5 + 1 = 6
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 6 < 6 = False
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  Salto condicional a: 20 (condición falsa)
+IP: 20 -> Ejecutando: (print, Terminé de contar hasta , None, None)
+OUTPUT: Terminé de contar hasta 
+IP: 21 -> Ejecutando: (print, 11000, None, None)
+OUTPUT: 5
+IP: 22 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 44
+IP: 44 -> Ejecutando: (ERA, tabla_cuadrados, None, None)
+  ERA: Reservando espacio para función 'tabla_cuadrados'
+IP: 45 -> Ejecutando: (parámetro, 20003, par1, None)
+  Parámetro: 4 -> posición 1
+IP: 46 -> Ejecutando: (GOSUB, tabla_cuadrados, None, None)
+    Asignando parámetro hasta (addr: 11003) = 4
+  GOSUB: Llamando función 'tabla_cuadrados' en dirección 23
+IP: 23 -> Ejecutando: (print, Tabla de cuadrados hasta , None, None)
+OUTPUT: Tabla de cuadrados hasta 
+IP: 24 -> Ejecutando: (print, 11003, None, None)
+OUTPUT: 4
+IP: 25 -> Ejecutando: (print, :, None, None)
+OUTPUT: :
+IP: 26 -> Ejecutando: (=, 20001, None, 11004)
+  Asignación: direccion[11004] = 1
+IP: 27 -> Ejecutando: (+, 11003, 20001, 15003)
+  Aritmética: 4 + 1 = 5
+IP: 28 -> Ejecutando: (<, 11004, 15003, 19001)
+  Comparación: 1 < 5 = True
+IP: 29 -> Ejecutando: (gotof, 19001, None, 39)
+  No hay salto (condición verdadera)
+IP: 30 -> Ejecutando: (+, 11004, 20001, 15004)
+  Aritmética: 1 + 1 = 2
+IP: 31 -> Ejecutando: (=, 15004, None, 11004)
+  Asignación: direccion[11004] = 2
+IP: 32 -> Ejecutando: (*, 11004, 11004, 15005)
+  Aritmética: 2 * 2 = 4
+IP: 33 -> Ejecutando: (=, 15005, None, 11005)
+  Asignación: direccion[11005] = 4
+IP: 34 -> Ejecutando: (print, 11004, None, None)
+OUTPUT: 2
+IP: 35 -> Ejecutando: (print,  al cuadrado = , None, None)
+OUTPUT:  al cuadrado = 
+IP: 36 -> Ejecutando: (print, 11005, None, None)
+OUTPUT: 4
+IP: 37 -> Ejecutando: (=, 15004, None, 11004)
+  Asignación: direccion[11004] = 2
+IP: 38 -> Ejecutando: (goto, None, None, 27)
+  Salto a: 27
+IP: 27 -> Ejecutando: (+, 11003, 20001, 15003)
+  Aritmética: 4 + 1 = 5
+IP: 28 -> Ejecutando: (<, 11004, 15003, 19001)
+  Comparación: 2 < 5 = True
+IP: 29 -> Ejecutando: (gotof, 19001, None, 39)
+  No hay salto (condición verdadera)
+IP: 30 -> Ejecutando: (+, 11004, 20001, 15004)
+  Aritmética: 2 + 1 = 3
+IP: 31 -> Ejecutando: (=, 15004, None, 11004)
+  Asignación: direccion[11004] = 3
+IP: 32 -> Ejecutando: (*, 11004, 11004, 15005)
+  Aritmética: 3 * 3 = 9
+IP: 33 -> Ejecutando: (=, 15005, None, 11005)
+  Asignación: direccion[11005] = 9
+IP: 34 -> Ejecutando: (print, 11004, None, None)
+OUTPUT: 3
+IP: 35 -> Ejecutando: (print,  al cuadrado = , None, None)
+OUTPUT:  al cuadrado = 
+IP: 36 -> Ejecutando: (print, 11005, None, None)
+OUTPUT: 9
+IP: 37 -> Ejecutando: (=, 15004, None, 11004)
+  Asignación: direccion[11004] = 3
+IP: 38 -> Ejecutando: (goto, None, None, 27)
+  Salto a: 27
+IP: 27 -> Ejecutando: (+, 11003, 20001, 15003)
+  Aritmética: 4 + 1 = 5
+IP: 28 -> Ejecutando: (<, 11004, 15003, 19001)
+  Comparación: 3 < 5 = True
+IP: 29 -> Ejecutando: (gotof, 19001, None, 39)
+  No hay salto (condición verdadera)
+IP: 30 -> Ejecutando: (+, 11004, 20001, 15004)
+  Aritmética: 3 + 1 = 4
+IP: 31 -> Ejecutando: (=, 15004, None, 11004)
+  Asignación: direccion[11004] = 4
+IP: 32 -> Ejecutando: (*, 11004, 11004, 15005)
+  Aritmética: 4 * 4 = 16
+IP: 33 -> Ejecutando: (=, 15005, None, 11005)
+  Asignación: direccion[11005] = 16
+IP: 34 -> Ejecutando: (print, 11004, None, None)
+OUTPUT: 4
+IP: 35 -> Ejecutando: (print,  al cuadrado = , None, None)
+OUTPUT:  al cuadrado = 
+IP: 36 -> Ejecutando: (print, 11005, None, None)
+OUTPUT: 16
+IP: 37 -> Ejecutando: (=, 15004, None, 11004)
+  Asignación: direccion[11004] = 4
+IP: 38 -> Ejecutando: (goto, None, None, 27)
+  Salto a: 27
+IP: 27 -> Ejecutando: (+, 11003, 20001, 15003)
+  Aritmética: 4 + 1 = 5
+IP: 28 -> Ejecutando: (<, 11004, 15003, 19001)
+  Comparación: 4 < 5 = True
+IP: 29 -> Ejecutando: (gotof, 19001, None, 39)
+  No hay salto (condición verdadera)
+IP: 30 -> Ejecutando: (+, 11004, 20001, 15004)
+  Aritmética: 4 + 1 = 5
+IP: 31 -> Ejecutando: (=, 15004, None, 11004)
+  Asignación: direccion[11004] = 5
+IP: 32 -> Ejecutando: (*, 11004, 11004, 15005)
+  Aritmética: 5 * 5 = 25
+IP: 33 -> Ejecutando: (=, 15005, None, 11005)
+  Asignación: direccion[11005] = 25
+IP: 34 -> Ejecutando: (print, 11004, None, None)
+OUTPUT: 5
+IP: 35 -> Ejecutando: (print,  al cuadrado = , None, None)
+OUTPUT:  al cuadrado = 
+IP: 36 -> Ejecutando: (print, 11005, None, None)
+OUTPUT: 25
+IP: 37 -> Ejecutando: (=, 15004, None, 11004)
+  Asignación: direccion[11004] = 5
+IP: 38 -> Ejecutando: (goto, None, None, 27)
+  Salto a: 27
+IP: 27 -> Ejecutando: (+, 11003, 20001, 15003)
+  Aritmética: 4 + 1 = 5
+IP: 28 -> Ejecutando: (<, 11004, 15003, 19001)
+  Comparación: 5 < 5 = False
+IP: 29 -> Ejecutando: (gotof, 19001, None, 39)
+  Salto condicional a: 39 (condición falsa)
+IP: 39 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 47
+IP: 47 -> Ejecutando: (print, FOR anidado:, None, None)
+OUTPUT: FOR anidado:
+IP: 48 -> Ejecutando: (=, 20001, None, 5000)
+  Asignación: direccion[5000] = 1
+IP: 49 -> Ejecutando: (<, 5000, 20003, 19002)
+  Comparación: 1 < 4 = True
+IP: 50 -> Ejecutando: (gotof, 19002, None, 61)
+  No hay salto (condición verdadera)
+IP: 51 -> Ejecutando: (+, 5000, 20001, 15006)
+  Aritmética: 1 + 1 = 2
+IP: 52 -> Ejecutando: (=, 15006, None, 5000)
+  Asignación: direccion[5000] = 2
+IP: 53 -> Ejecutando: (print, Tabla del , None, None)
+OUTPUT: Tabla del 
+IP: 54 -> Ejecutando: (print, 5000, None, None)
+OUTPUT: 2
+IP: 55 -> Ejecutando: (print, :, None, None)
+OUTPUT: :
+IP: 56 -> Ejecutando: (ERA, contar_hasta, None, None)
+  ERA: Reservando espacio para función 'contar_hasta'
+IP: 57 -> Ejecutando: (parámetro, 5000, par1, None)
+  Parámetro: 2 -> posición 1
+IP: 58 -> Ejecutando: (GOSUB, contar_hasta, None, None)
+    Asignando parámetro n (addr: 11000) = 2
+  GOSUB: Llamando función 'contar_hasta' en dirección 1
+IP: 1 -> Ejecutando: (print, Contando hasta , None, None)
+OUTPUT: Contando hasta 
+IP: 2 -> Ejecutando: (print, 11000, None, None)
+OUTPUT: 2
+IP: 3 -> Ejecutando: (print, :, None, None)
+OUTPUT: :
+IP: 4 -> Ejecutando: (=, 20000, None, 11002)
+  Asignación: direccion[11002] = 0
+IP: 5 -> Ejecutando: (=, 20001, None, 11001)
+  Asignación: direccion[11001] = 1
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 2 + 1 = 3
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 1 < 3 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 1 + 1 = 2
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 2
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 0 + 1 = 1
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 1
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 1
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 2
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 2
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 2 + 1 = 3
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 2 < 3 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 2 + 1 = 3
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 3
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 1 + 1 = 2
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 2
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 2
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 3
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 3
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 2 + 1 = 3
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 3 < 3 = False
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  Salto condicional a: 20 (condición falsa)
+IP: 20 -> Ejecutando: (print, Terminé de contar hasta , None, None)
+OUTPUT: Terminé de contar hasta 
+IP: 21 -> Ejecutando: (print, 11000, None, None)
+OUTPUT: 2
+IP: 22 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 59
+IP: 59 -> Ejecutando: (=, 15006, None, 5000)
+  Asignación: direccion[5000] = 2
+IP: 60 -> Ejecutando: (goto, None, None, 49)
+  Salto a: 49
+IP: 49 -> Ejecutando: (<, 5000, 20003, 19002)
+  Comparación: 2 < 4 = True
+IP: 50 -> Ejecutando: (gotof, 19002, None, 61)
+  No hay salto (condición verdadera)
+IP: 51 -> Ejecutando: (+, 5000, 20001, 15006)
+  Aritmética: 2 + 1 = 3
+IP: 52 -> Ejecutando: (=, 15006, None, 5000)
+  Asignación: direccion[5000] = 3
+IP: 53 -> Ejecutando: (print, Tabla del , None, None)
+OUTPUT: Tabla del 
+IP: 54 -> Ejecutando: (print, 5000, None, None)
+OUTPUT: 3
+IP: 55 -> Ejecutando: (print, :, None, None)
+OUTPUT: :
+IP: 56 -> Ejecutando: (ERA, contar_hasta, None, None)
+  ERA: Reservando espacio para función 'contar_hasta'
+IP: 57 -> Ejecutando: (parámetro, 5000, par1, None)
+  Parámetro: 3 -> posición 1
+IP: 58 -> Ejecutando: (GOSUB, contar_hasta, None, None)
+    Asignando parámetro n (addr: 11000) = 3
+  GOSUB: Llamando función 'contar_hasta' en dirección 1
+IP: 1 -> Ejecutando: (print, Contando hasta , None, None)
+OUTPUT: Contando hasta 
+IP: 2 -> Ejecutando: (print, 11000, None, None)
+OUTPUT: 3
+IP: 3 -> Ejecutando: (print, :, None, None)
+OUTPUT: :
+IP: 4 -> Ejecutando: (=, 20000, None, 11002)
+  Asignación: direccion[11002] = 0
+IP: 5 -> Ejecutando: (=, 20001, None, 11001)
+  Asignación: direccion[11001] = 1
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 3 + 1 = 4
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 1 < 4 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 1 + 1 = 2
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 2
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 0 + 1 = 1
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 1
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 1
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 2
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 2
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 3 + 1 = 4
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 2 < 4 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 2 + 1 = 3
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 3
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 1 + 1 = 2
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 2
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 2
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 3
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 3
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 3 + 1 = 4
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 3 < 4 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 3 + 1 = 4
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 4
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 2 + 1 = 3
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 3
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 3
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 4
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 4
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 3 + 1 = 4
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 4 < 4 = False
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  Salto condicional a: 20 (condición falsa)
+IP: 20 -> Ejecutando: (print, Terminé de contar hasta , None, None)
+OUTPUT: Terminé de contar hasta 
+IP: 21 -> Ejecutando: (print, 11000, None, None)
+OUTPUT: 3
+IP: 22 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 59
+IP: 59 -> Ejecutando: (=, 15006, None, 5000)
+  Asignación: direccion[5000] = 3
+IP: 60 -> Ejecutando: (goto, None, None, 49)
+  Salto a: 49
+IP: 49 -> Ejecutando: (<, 5000, 20003, 19002)
+  Comparación: 3 < 4 = True
+IP: 50 -> Ejecutando: (gotof, 19002, None, 61)
+  No hay salto (condición verdadera)
+IP: 51 -> Ejecutando: (+, 5000, 20001, 15006)
+  Aritmética: 3 + 1 = 4
+IP: 52 -> Ejecutando: (=, 15006, None, 5000)
+  Asignación: direccion[5000] = 4
+IP: 53 -> Ejecutando: (print, Tabla del , None, None)
+OUTPUT: Tabla del 
+IP: 54 -> Ejecutando: (print, 5000, None, None)
+OUTPUT: 4
+IP: 55 -> Ejecutando: (print, :, None, None)
+OUTPUT: :
+IP: 56 -> Ejecutando: (ERA, contar_hasta, None, None)
+  ERA: Reservando espacio para función 'contar_hasta'
+IP: 57 -> Ejecutando: (parámetro, 5000, par1, None)
+  Parámetro: 4 -> posición 1
+IP: 58 -> Ejecutando: (GOSUB, contar_hasta, None, None)
+    Asignando parámetro n (addr: 11000) = 4
+  GOSUB: Llamando función 'contar_hasta' en dirección 1
+IP: 1 -> Ejecutando: (print, Contando hasta , None, None)
+OUTPUT: Contando hasta 
+IP: 2 -> Ejecutando: (print, 11000, None, None)
+OUTPUT: 4
+IP: 3 -> Ejecutando: (print, :, None, None)
+OUTPUT: :
+IP: 4 -> Ejecutando: (=, 20000, None, 11002)
+  Asignación: direccion[11002] = 0
+IP: 5 -> Ejecutando: (=, 20001, None, 11001)
+  Asignación: direccion[11001] = 1
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 4 + 1 = 5
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 1 < 5 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 1 + 1 = 2
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 2
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 0 + 1 = 1
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 1
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 1
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 2
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 2
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 4 + 1 = 5
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 2 < 5 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 2 + 1 = 3
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 3
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 1 + 1 = 2
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 2
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 2
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 3
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 3
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 4 + 1 = 5
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 3 < 5 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 3 + 1 = 4
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 4
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 2 + 1 = 3
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 3
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 3
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 4
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 4
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 4 + 1 = 5
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 4 < 5 = True
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  No hay salto (condición verdadera)
+IP: 9 -> Ejecutando: (+, 11001, 20001, 15001)
+  Aritmética: 4 + 1 = 5
+IP: 10 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 5
+IP: 11 -> Ejecutando: (+, 11002, 20001, 15002)
+  Aritmética: 3 + 1 = 4
+IP: 12 -> Ejecutando: (=, 15002, None, 11002)
+  Asignación: direccion[11002] = 4
+IP: 13 -> Ejecutando: (print, Contador: , None, None)
+OUTPUT: Contador: 
+IP: 14 -> Ejecutando: (print, 11002, None, None)
+OUTPUT: 4
+IP: 15 -> Ejecutando: (print,  (i = , None, None)
+OUTPUT:  (i = 
+IP: 16 -> Ejecutando: (print, 11001, None, None)
+OUTPUT: 5
+IP: 17 -> Ejecutando: (print, ), None, None)
+OUTPUT: )
+IP: 18 -> Ejecutando: (=, 15001, None, 11001)
+  Asignación: direccion[11001] = 5
+IP: 19 -> Ejecutando: (goto, None, None, 6)
+  Salto a: 6
+IP: 6 -> Ejecutando: (+, 11000, 20001, 15000)
+  Aritmética: 4 + 1 = 5
+IP: 7 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 5 < 5 = False
+IP: 8 -> Ejecutando: (gotof, 19000, None, 20)
+  Salto condicional a: 20 (condición falsa)
+IP: 20 -> Ejecutando: (print, Terminé de contar hasta , None, None)
+OUTPUT: Terminé de contar hasta 
+IP: 21 -> Ejecutando: (print, 11000, None, None)
+OUTPUT: 4
+IP: 22 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 59
+IP: 59 -> Ejecutando: (=, 15006, None, 5000)
+  Asignación: direccion[5000] = 4
+IP: 60 -> Ejecutando: (goto, None, None, 49)
+  Salto a: 49
+IP: 49 -> Ejecutando: (<, 5000, 20003, 19002)
+  Comparación: 4 < 4 = False
+IP: 50 -> Ejecutando: (gotof, 19002, None, 61)
+  Salto condicional a: 61 (condición falsa)
+IP: 61 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
+=== EJECUCIÓN TERMINADA ===
+
+=== ESTADO DE LA MEMORIA SEGMENTADA ===
+Memoria Global Enteros (5000-7999):
+  [5000]: 4
+Memoria Global Flotantes (8000-10999):
+Memoria Local Enteros (11000-12999):
+Memoria Local Flotantes (13000-14999):
+Memoria Temporal Enteros (15000-16999):
+  [15000]: 5
+  [15001]: 5
+  [15002]: 4
+  [15003]: 5
+  [15004]: 5
+  [15005]: 25
+  [15006]: 4
+Memoria Temporal Flotantes (17000-18999):
+Memoria Temporal Booleanos (19000-19999):
+  [19000]: False
+  [19001]: False
+  [19002]: False
+Constantes Enteras (20000-20499):
+  [20000]: 0
+  [20001]: 1
+  [20002]: 5
+  [20003]: 4
+Constantes Flotantes (20500+):
+========================================
+
+RESULTADOS ESPERADOS:
+  - Contando hasta
+  - 5
+  - Contador:
+  - 1
+  - (i =
+  - 1
+  - )
+  - Contador:
+  - 5
+  - (i =
+  - 5
+  - )
+  - Terminé de contar hasta
+  - 5
+  - Tabla de cuadrados hasta
+  - 4
+  - 1
+  - al cuadrado =
+  - 1
+  - 4
+  - al cuadrado =
+  - 16
+  - FOR anidado:
+  - Tabla del
+  - 1
+  - Tabla del
+  - 3
+  - Terminé de contar hasta
+  - 3
+
+✅ PRUEBA EXITOSA
+------------------------------------------------------------
+
 ================================================================================
 RESUMEN DE PRUEBAS
 ================================================================================
-Total de pruebas: 10
-Pruebas exitosas: 10
+Total de pruebas: 11
+Pruebas exitosas: 11
 Pruebas fallidas: 0
 Porcentaje de éxito: 100.0%
 ================================================================================

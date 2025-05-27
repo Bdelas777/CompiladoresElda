@@ -142,7 +142,8 @@ def p_statement(p):
         | condition
         | cycle
         | f_call
-        | print'''
+        | print
+        | for_cycle'''
     p[0] = p[1]
     
 def p_print(p):
@@ -532,7 +533,69 @@ def p_assign(p):
     expression_result = get_operand_name(p[3])
     quad_gen.generate_assignment_quad(p[1], expression_result)  
     p[0] = ('assign', p[1], p[3])
+
+def p_for_cycle(p):
+    '''for_cycle : TOKEN_FOR TOKEN_LPAREN for_init TOKEN_SEMICOLON saveQuadFor expresion GotoFFor TOKEN_SEMICOLON for_increment TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON'''
+    # Estructura del FOR:
+    # for (init; condition; increment) do { body };
     
+    # p[3] = init (assignment)
+    # p[5] = saveQuadFor (posición para el loop)
+    # p[6] = condition (expresión)
+    # p[7] = GotoFFor (índice del gotof)
+    # p[9] = increment (assignment)
+    # p[12] = body
+    increment_quad_pos = len(quad_gen.Quads)
+    
+    # Generar cuádruplos para el incremento
+    if p[9]:  # Si hay incremento
+        if p[9][0] == 'assign':
+            var_name = p[9][1] 
+            expr_result = get_operand_name(p[9][2])
+            quad_gen.generate_assignment_quad(var_name, expr_result)
+    
+    # Saltar de vuelta al inicio del loop (a la condición)
+    loop_start = p[5]  # Posición guardada antes de la condición
+    quad_gen.generate_goto_quad()
+    quad_gen.fill_quad(len(quad_gen.Quads) - 1, loop_start)
+    
+    # Llenar el GOTOF con la posición actual (salida del loop)
+    gotof_index = p[7]
+    quad_gen.fill_quad(gotof_index, len(quad_gen.Quads))
+    
+    p[0] = ('for', p[3], p[6], p[9], p[12])
+
+def p_for_init(p):
+    '''for_init : assign_for
+                | empty'''
+    p[0] = p[1]
+
+def p_assign_for(p):
+    '''assign_for : TOKEN_ID TOKEN_ASSIGN expresion'''
+    var_type = semantic.check_variable(p[1])
+    expr_type = get_expr_type(p[3])
+    semantic.check_assignment_compatibility(p[1], expr_type)
+    expression_result = get_operand_name(p[3])
+    quad_gen.generate_assignment_quad(p[1], expression_result)  
+    p[0] = ('assign', p[1], p[3])
+
+def p_for_increment(p):
+    '''for_increment : assign_for
+                     | empty'''
+    p[0] = p[1]
+
+def p_saveQuadFor(p):
+    '''saveQuadFor : empty'''
+    # Guarda la posición actual para el loop de vuelta
+    p[0] = len(quad_gen.Quads)
+
+def p_GotoFFor(p):
+    '''GotoFFor : empty'''
+    # Genera GOTOF basado en la condición
+    condition = get_operand_name(p[-1])  
+    gotof_index = quad_gen.generate_gotof_quad(condition)
+    p[0] = gotof_index
+       
 def p_empty(p):
     'empty :'
     p[0] = None
@@ -659,26 +722,18 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = """
-program control_if;
+program test_for;
 var
-    x, y, max : int;
+    i, suma : int;
 main {
-    x = 15;
-    y = 7;
+    suma = 0;
     
-    if (x > y) {
-        max = x;
-        print("El mayor es x: ", max);
-    } else {
-        max = y;
-        print("El mayor es y: ", max);
+    for (i = 1; i < 5; i = i + 1) do {
+        suma = suma + i;
+        print("i = ", i, ", suma = ", suma);
     };
     
-    if (x < 10) {
-        print("x es menor que 10");
-    } else {
-        print("x es mayor o igual que 10");
-    };
+    print("Suma final: ", suma);
 }
 end
 """

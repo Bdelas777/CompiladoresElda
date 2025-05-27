@@ -538,6 +538,62 @@ end'''
                       "Término", "1", ":", "5", "Término", "6", ":", "20"]
     logger.test_case("Funciones con Parámetros Múltiples", test10_code, test10_expected)
     
+    # Test 11: FOR con Función 
+    test11_code = '''program for_con_funcion;
+var
+    limite : int;
+
+void contar_hasta(n : int)
+[
+    var i, contador : int;
+    {
+        print("Contando hasta ", n, ":");
+        contador = 0;
+        
+        for (i = 1; i < n + 1; i = i + 1) do {
+            contador = contador + 1;
+            print("Contador: ", contador, " (i = ", i, ")");
+        };
+        
+        print("Terminé de contar hasta ", n);
+    }
+];
+
+void tabla_cuadrados(hasta : int)
+[
+    var i, cuadrado : int;
+    {
+        print("Tabla de cuadrados hasta ", hasta, ":");
+        
+        for (i = 1; i < hasta + 1; i = i + 1) do {
+            cuadrado = i * i;
+            print(i, " al cuadrado = ", cuadrado);
+        };
+    }
+];
+
+main {
+    limite = 5;
+    
+    contar_hasta(limite);
+    
+    tabla_cuadrados(4);
+    
+    print("FOR anidado:");
+    for (limite = 1; limite < 4; limite = limite + 1) do {
+        print("Tabla del ", limite, ":");
+        contar_hasta(limite);
+    };
+}
+end'''
+    
+    test11_expected = ["Contando hasta", "5", "Contador:", "1", "(i =", "1", ")", 
+                     "Contador:", "5", "(i =", "5", ")", "Terminé de contar hasta", "5",
+                     "Tabla de cuadrados hasta", "4", "1", "al cuadrado =", "1",
+                     "4", "al cuadrado =", "16", "FOR anidado:", "Tabla del", "1",
+                     "Tabla del", "3", "Terminé de contar hasta", "3"]
+    logger.test_case("FOR con Función", test11_code, test11_expected)
+    
     # Finalizar sesión de pruebas
     logger.end_session()
     
