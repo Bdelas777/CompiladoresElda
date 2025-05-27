@@ -25,6 +25,8 @@ def get_operand_name(expr_node):
             if quad_gen.PilaO:
                 result = quad_gen.PilaO[-1]
                 return result
+        else:
+            raise SyntaxError("error_msg: Invalid expression node type")
     result = str(expr_node)
     return result
 
@@ -47,6 +49,9 @@ def p_fillMain(p):
     semantic.declare_main()
     if 'main' in semantic.function_directory:
         semantic.function_directory['main'].start_address = len(quad_gen.Quads)
+    else:
+        
+        semantic.add_error("'main' function not declared")
     if hasattr(quad_gen, 'main_goto_index'):
         quad_gen.fill_quad(quad_gen.main_goto_index, len(quad_gen.Quads))
     p[0] = None
@@ -559,7 +564,7 @@ def token_to_operation(token):
     elif token == '=' or token == 'TOKEN_ASSIGN':
         return Operation.ASSIGN
     else:
-        return None
+        raise SyntaxError("error_msg: Invalid operation token {token}")
         
 def set_expr_type(expr_node, expr_type):
     if isinstance(expr_node, tuple):
@@ -577,7 +582,6 @@ def get_expr_type(expr_node):
                 if expr_node[i] == 'type' and i + 1 < len(expr_node):
                     return expr_node[i + 1]
         
-        # Resto del código original...
         for i in range(len(expr_node) - 1):
             if expr_node[i] == 'type' and i + 1 < len(expr_node):
                 return expr_node[i + 1]
@@ -658,7 +662,7 @@ var
     a, b : int;
     resultado : int;
 
-main {
+ {
     a = -5;
     b = 3;
     resultado = a + b;
