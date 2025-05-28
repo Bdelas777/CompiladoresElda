@@ -536,25 +536,12 @@ def p_assign(p):
 
 def p_for_cycle(p):
     '''for_cycle : TOKEN_FOR TOKEN_LPAREN for_init TOKEN_SEMICOLON saveQuadFor expresion GotoFFor TOKEN_SEMICOLON for_increment TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON'''
-    # Estructura del FOR:
-    # for (init; condition; increment) do { body };
-    
-    # p[3] = init (assignment)
-    # p[5] = saveQuadFor (posición para el loop)
-    # p[6] = condition (expresión)
-    # p[7] = GotoFFor (índice del gotof)
-    # p[9] = increment (assignment)
-    # p[12] = body
     increment_quad_pos = len(quad_gen.Quads)
-    
-    # Generar cuádruplos para el incremento
     if p[9]:  # Si hay incremento
         if p[9][0] == 'assign':
             var_name = p[9][1] 
             expr_result = get_operand_name(p[9][2])
             quad_gen.generate_assignment_quad(var_name, expr_result)
-    
-    # Saltar de vuelta al inicio del loop (a la condición)
     loop_start = p[5]  # Posición guardada antes de la condición
     quad_gen.generate_goto_quad()
     quad_gen.fill_quad(len(quad_gen.Quads) - 1, loop_start)

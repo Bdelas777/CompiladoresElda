@@ -28,7 +28,6 @@ class QuadrupleGenerator:
     def new_temp(self, temp_type):
         temp = f"t{self.temp_counter}"
         self.temp_counter += 1
-        # Assign virtual address to temporary variable
         temp_address = self.semantic.memory_manager.get_address(temp_type, self.semantic.current_scope, is_temp=True)
         return temp_address
         
@@ -36,19 +35,13 @@ class QuadrupleGenerator:
         """Versión corregida que maneja mejor las operaciones encadenadas"""
         if not self.POper or len(self.PilaO) < 2 or not self.PTypes:
             return False
-            
         operator = self.POper[-1]
         if operator in ['+', '-', '*', '/', '>', '<', '!=']:
-            
-            # Extraer operandos
             right_operand = self.PilaO.pop()
             right_type = self.PTypes.pop()
             left_operand = self.PilaO.pop()
             left_type = self.PTypes.pop()
             operator = self.POper.pop()
-        
-            
-            # Mapear operador a operación
             operation = None
             if operator == '+': operation = Operation.PLUS
             elif operator == '-': operation = Operation.MINUS
@@ -57,7 +50,6 @@ class QuadrupleGenerator:
             elif operator == '>': operation = Operation.GREATER
             elif operator == '<': operation = Operation.LESS
             elif operator == '!=': operation = Operation.NOT_EQUAL
-            
             result_type = get_result_type(left_type, right_type, operation)
             
             if result_type != Type.ERROR:
@@ -67,12 +59,8 @@ class QuadrupleGenerator:
                 quad = Quadruple(operator, left_address, right_address, result)
                 self.Quads.append(quad)
                 self.quad_counter += 1
-                
-                # IMPORTANTE: El resultado va a la pila para ser usado en la siguiente operación
                 self.PilaO.append(result)
                 self.PTypes.append(result_type)
-                
-             
                 return True
             else:
                 self.semantic.add_error(f"Type mismatch: {left_type} {operator} {right_type}")
@@ -105,8 +93,6 @@ class QuadrupleGenerator:
         self.PilaO.append(operand_id)
         self.PTypes.append(operand_type)
        
-        
-        
     def check_top_operation(self, operators_list):
         if self.POper and self.POper[-1] in operators_list:
             return self.generate_arithmetic_quad()
@@ -130,11 +116,9 @@ class QuadrupleGenerator:
         return True
         
     def generate_print_quad(self, value):
-        # CAMBIO: Si es una dirección numérica, usarla directamente
         if isinstance(value, int):
             quad = Quadruple('print', value, None, None)
         else:
-            # Si es un string u otro valor, usar como estaba
             quad = Quadruple('print', value, None, None)
         self.Quads.append(quad)
         self.quad_counter += 1
