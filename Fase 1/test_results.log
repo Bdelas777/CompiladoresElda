@@ -1,6 +1,6 @@
 
 ================================================================================
-SESIÓN DE PRUEBAS - 2025-05-28 07:15:36
+SESIÓN DE PRUEBAS - 2025-05-28 10:12:57
 ================================================================================
 
 
@@ -5665,11 +5665,1834 @@ RESULTADOS ESPERADOS:
 ✅ PRUEBA EXITOSA
 ------------------------------------------------------------
 
+[TEST 12] Calculadora Avanzada
+------------------------------------------------------------
+CÓDIGO:
+ 1: program calculadora_avanzada;
+ 2: var 
+ 3:     num1, num2, num3, resultado, factorial_num : int;
+ 4:     promedio_val : int;
+ 5:     
+ 6: int calcular_factorial(n : int)
+ 7: [
+ 8:     var i, fact : int;
+ 9:     {
+10:         fact = 1;
+11:         i = 1;
+12:         while (i < n + 1) do {
+13:             fact = fact * i;
+14:             i = i + 1;
+15:         };
+16:         return fact;
+17:     }
+18: ];
+19: 
+20: int potencia(base : int, exponente : int)
+21: [
+22:     var i, resultado : int;
+23:     {
+24:         resultado = 1;
+25:         i = 1;
+26:         while (i < exponente + 1) do {
+27:             resultado = resultado * base;
+28:             i = i + 1;
+29:         };
+30:         return resultado;
+31:     }
+32: ];
+33: 
+34: int maximo_de_tres(a : int, b : int, c : int)
+35: [
+36:     var max : int;
+37:     {
+38:         max = a;
+39:         if (b > max) {
+40:             max = b;
+41:         };
+42:         if (c > max) {
+43:             max = c;
+44:         };
+45:         return max;
+46:     }
+47: ];
+48: 
+49: void mostrar_tabla_multiplicar(numero : int, limite : int)
+50: [
+51:     var i, producto : int;
+52:     {
+53:         print("Tabla de multiplicar del ", numero, ":");
+54:         i = 1;
+55:         while (i < limite + 1) do {
+56:             producto = numero * i;
+57:             print(numero, " x ", i, " = ", producto);
+58:             i = i + 1;
+59:         };
+60:     }
+61: ];
+62: 
+63: void analizar_numero(num : int)
+64: [
+65:     {
+66:         print("Analizando el número: ", num);
+67:         
+68:         if (num > 0) {
+69:             print("El número es positivo");
+70:         } else {
+71:             if (num < 0) {
+72:                 print("El número es negativo");
+73:             } else {
+74:                 print("El número es cero");
+75:             };
+76:         };
+77:                 
+78:         if (num > 0) {
+79:             print("El número es par");
+80:         } else {
+81:             print("El número es impar");
+82:         };
+83:     }
+84: ];
+85: 
+86: void mostrar_operaciones_basicas(a : int, b : int)
+87: [
+88:     var suma, resta, multiplicacion, division : int;
+89:     {
+90:         suma = a + b;
+91:         resta = a - b;
+92:         multiplicacion = a * b;
+93:         
+94:         print("Operaciones básicas entre ", a, " y ", b, ":");
+95:         print("Suma: ", suma);
+96:         print("Resta: ", resta);
+97:         print("Multiplicación: ", multiplicacion);
+98:         
+99:         if (b > 0) {
+100:             division = a / b;
+101:             print("División: ", division);
+102:         } else {
+103:             print("No se puede dividir entre cero");
+104:         };
+105:     }
+106: ];
+107: 
+108: int calcular_promedio(a : int, b : int, c : int)
+109: [
+110:     var suma, promedio : int;
+111:     {
+112:         suma = a + b + c;
+113:         promedio = suma / 3;
+114:         return promedio;
+115:     }
+116: ];
+117: 
+118: void mostrar_estadisticas(a : int, b : int, c : int)
+119: [
+120:     var suma, mayor, menor : int;
+121:     {
+122:         suma = a + b + c;
+123:         mayor = maximo_de_tres(a, b, c);
+124:         
+125:         menor = a;
+126:         if (b < menor) {
+127:             menor = b;
+128:         };
+129:         if (c < menor) {
+130:             menor = c;
+131:         };
+132:             
+133:         print("=== ESTADÍSTICAS ===");
+134:         print("Números: ", a, ", ", b, ", ", c);
+135:         print("Suma total: ", suma);
+136:         print("Número mayor: ", mayor);
+137:         print("Número menor: ", menor);
+138:         print("Promedio: ", calcular_promedio(a, b, c));
+139:     }
+140: ];
+141: 
+142: main {
+143:     print("=== CALCULADORA AVANZADA ===");
+144:     
+145:     num1 = 12;
+146:     num2 = 8;
+147:     num3 = 15;
+148:     
+149:     print("Números de trabajo: ", num1, ", ", num2, ", ", num3);
+150:     print("");
+151:     
+152:     mostrar_operaciones_basicas(num1, num2);
+153:     print("");
+154:     
+155:     analizar_numero(num1);
+156:     print("");
+157:     
+158:     mostrar_tabla_multiplicar(num2, 5);
+159:     print("");
+160:     
+161:     factorial_num = 5;
+162:     resultado = calcular_factorial(factorial_num);
+163:     print("Factorial de ", factorial_num, " es: ", resultado);
+164:     
+165:     resultado = potencia(num2, 3);
+166:     print(num2, " elevado a la 3 es: ", resultado);
+167:     
+168:     resultado = maximo_de_tres(num1, num2, num3);
+169:     print("El mayor de los tres números es: ", resultado);
+170:     
+171:     promedio_val = calcular_promedio(num1, num2, num3);
+172:     print("El promedio de los tres números es: ", promedio_val);
+173:     print("");
+174:     
+175:     mostrar_estadisticas(num1, num2, num3);
+176:     
+177:     print("");
+178:     print("=== FIN DEL PROGRAMA ===");
+179: }
+180: end
+
+SALIDA OBTENIDA:
+Adding ID 'num1' to temp list in scope: global
+Added 'num1' to temporary variable list in scope: global
+Adding ID 'num2' to temp list in scope: global
+Added 'num2' to temporary variable list in scope: global
+Adding ID 'num3' to temp list in scope: global
+Added 'num3' to temporary variable list in scope: global
+Adding ID 'resultado' to temp list in scope: global
+Added 'resultado' to temporary variable list in scope: global
+Adding ID 'factorial_num' to temp list in scope: global
+Added 'factorial_num' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'num1' of type Type.INT at address 5000
+Added global variable 'num2' of type Type.INT at address 5001
+Added global variable 'num3' of type Type.INT at address 5002
+Added global variable 'resultado' of type Type.INT at address 5003
+Added global variable 'factorial_num' of type Type.INT at address 5004
+Adding ID 'promedio_val' to temp list in scope: global
+Added 'promedio_val' to temporary variable list in scope: global
+Set current type to Type.INT
+Adding variables to table in scope: global
+Added global variable 'promedio_val' of type Type.INT at address 5005
+Starting variable declaration in scope 'global'
+Pushed scope: calcular_factorial, current scope stack: ['global', 'calcular_factorial']
+Declared function 'calcular_factorial' with return type Type.INT, scope changed to: calcular_factorial
+Added parameter 'n' of type Type.INT at address 11000 to function 'calcular_factorial'
+Adding ID 'i' to temp list in scope: calcular_factorial
+Added 'i' to temporary variable list in scope: calcular_factorial
+Adding ID 'fact' to temp list in scope: calcular_factorial
+Added 'fact' to temporary variable list in scope: calcular_factorial
+Set current type to Type.INT
+Adding variables to table in scope: calcular_factorial
+Added local variable 'i' of type Type.INT at address 11001 to function 'calcular_factorial'
+Added local variable 'fact' of type Type.INT at address 11002 to function 'calcular_factorial'
+Starting variable declaration in scope 'calcular_factorial'
+Popped scope: calcular_factorial, current scope is now: global
+Ended function 'calcular_factorial' declaration, returned to scope: global
+Pushed scope: potencia, current scope stack: ['global', 'potencia']
+Declared function 'potencia' with return type Type.INT, scope changed to: potencia
+Added parameter 'base' of type Type.INT at address 11003 to function 'potencia'
+Added parameter 'exponente' of type Type.INT at address 11004 to function 'potencia'
+Adding ID 'i' to temp list in scope: potencia
+Added 'i' to temporary variable list in scope: potencia
+Adding ID 'resultado' to temp list in scope: potencia
+Added 'resultado' to temporary variable list in scope: potencia
+Set current type to Type.INT
+Adding variables to table in scope: potencia
+Added local variable 'i' of type Type.INT at address 11005 to function 'potencia'
+Added local variable 'resultado' of type Type.INT at address 11006 to function 'potencia'
+Starting variable declaration in scope 'potencia'
+Popped scope: potencia, current scope is now: global
+Ended function 'potencia' declaration, returned to scope: global
+Pushed scope: maximo_de_tres, current scope stack: ['global', 'maximo_de_tres']
+Declared function 'maximo_de_tres' with return type Type.INT, scope changed to: maximo_de_tres
+Added parameter 'a' of type Type.INT at address 11007 to function 'maximo_de_tres'
+Added parameter 'b' of type Type.INT at address 11008 to function 'maximo_de_tres'
+Added parameter 'c' of type Type.INT at address 11009 to function 'maximo_de_tres'
+Adding ID 'max' to temp list in scope: maximo_de_tres
+Added 'max' to temporary variable list in scope: maximo_de_tres
+Set current type to Type.INT
+Adding variables to table in scope: maximo_de_tres
+Added local variable 'max' of type Type.INT at address 11010 to function 'maximo_de_tres'
+Starting variable declaration in scope 'maximo_de_tres'
+Popped scope: maximo_de_tres, current scope is now: global
+Ended function 'maximo_de_tres' declaration, returned to scope: global
+Pushed scope: mostrar_tabla_multiplicar, current scope stack: ['global', 'mostrar_tabla_multiplicar']
+Declared function 'mostrar_tabla_multiplicar' with return type Type.VOID, scope changed to: mostrar_tabla_multiplicar
+Added parameter 'numero' of type Type.INT at address 11011 to function 'mostrar_tabla_multiplicar'
+Added parameter 'limite' of type Type.INT at address 11012 to function 'mostrar_tabla_multiplicar'
+Adding ID 'i' to temp list in scope: mostrar_tabla_multiplicar
+Added 'i' to temporary variable list in scope: mostrar_tabla_multiplicar
+Adding ID 'producto' to temp list in scope: mostrar_tabla_multiplicar
+Added 'producto' to temporary variable list in scope: mostrar_tabla_multiplicar
+Set current type to Type.INT
+Adding variables to table in scope: mostrar_tabla_multiplicar
+Added local variable 'i' of type Type.INT at address 11013 to function 'mostrar_tabla_multiplicar'
+Added local variable 'producto' of type Type.INT at address 11014 to function 'mostrar_tabla_multiplicar'
+Starting variable declaration in scope 'mostrar_tabla_multiplicar'
+Popped scope: mostrar_tabla_multiplicar, current scope is now: global
+Ended function 'mostrar_tabla_multiplicar' declaration, returned to scope: global
+Pushed scope: analizar_numero, current scope stack: ['global', 'analizar_numero']
+Declared function 'analizar_numero' with return type Type.VOID, scope changed to: analizar_numero
+Added parameter 'num' of type Type.INT at address 11015 to function 'analizar_numero'
+Popped scope: analizar_numero, current scope is now: global
+Ended function 'analizar_numero' declaration, returned to scope: global
+Pushed scope: mostrar_operaciones_basicas, current scope stack: ['global', 'mostrar_operaciones_basicas']
+Declared function 'mostrar_operaciones_basicas' with return type Type.VOID, scope changed to: mostrar_operaciones_basicas
+Added parameter 'a' of type Type.INT at address 11016 to function 'mostrar_operaciones_basicas'
+Added parameter 'b' of type Type.INT at address 11017 to function 'mostrar_operaciones_basicas'
+Adding ID 'suma' to temp list in scope: mostrar_operaciones_basicas
+Added 'suma' to temporary variable list in scope: mostrar_operaciones_basicas
+Adding ID 'resta' to temp list in scope: mostrar_operaciones_basicas
+Added 'resta' to temporary variable list in scope: mostrar_operaciones_basicas
+Adding ID 'multiplicacion' to temp list in scope: mostrar_operaciones_basicas
+Added 'multiplicacion' to temporary variable list in scope: mostrar_operaciones_basicas
+Adding ID 'division' to temp list in scope: mostrar_operaciones_basicas
+Added 'division' to temporary variable list in scope: mostrar_operaciones_basicas
+Set current type to Type.INT
+Adding variables to table in scope: mostrar_operaciones_basicas
+Added local variable 'suma' of type Type.INT at address 11018 to function 'mostrar_operaciones_basicas'
+Added local variable 'resta' of type Type.INT at address 11019 to function 'mostrar_operaciones_basicas'
+Added local variable 'multiplicacion' of type Type.INT at address 11020 to function 'mostrar_operaciones_basicas'
+Added local variable 'division' of type Type.INT at address 11021 to function 'mostrar_operaciones_basicas'
+Starting variable declaration in scope 'mostrar_operaciones_basicas'
+Popped scope: mostrar_operaciones_basicas, current scope is now: global
+Ended function 'mostrar_operaciones_basicas' declaration, returned to scope: global
+Pushed scope: calcular_promedio, current scope stack: ['global', 'calcular_promedio']
+Declared function 'calcular_promedio' with return type Type.INT, scope changed to: calcular_promedio
+Added parameter 'a' of type Type.INT at address 11022 to function 'calcular_promedio'
+Added parameter 'b' of type Type.INT at address 11023 to function 'calcular_promedio'
+Added parameter 'c' of type Type.INT at address 11024 to function 'calcular_promedio'
+Adding ID 'suma' to temp list in scope: calcular_promedio
+Added 'suma' to temporary variable list in scope: calcular_promedio
+Adding ID 'promedio' to temp list in scope: calcular_promedio
+Added 'promedio' to temporary variable list in scope: calcular_promedio
+Set current type to Type.INT
+Adding variables to table in scope: calcular_promedio
+Added local variable 'suma' of type Type.INT at address 11025 to function 'calcular_promedio'
+Added local variable 'promedio' of type Type.INT at address 11026 to function 'calcular_promedio'
+Starting variable declaration in scope 'calcular_promedio'
+Popped scope: calcular_promedio, current scope is now: global
+Ended function 'calcular_promedio' declaration, returned to scope: global
+Pushed scope: mostrar_estadisticas, current scope stack: ['global', 'mostrar_estadisticas']
+Declared function 'mostrar_estadisticas' with return type Type.VOID, scope changed to: mostrar_estadisticas
+Added parameter 'a' of type Type.INT at address 11027 to function 'mostrar_estadisticas'
+Added parameter 'b' of type Type.INT at address 11028 to function 'mostrar_estadisticas'
+Added parameter 'c' of type Type.INT at address 11029 to function 'mostrar_estadisticas'
+Adding ID 'suma' to temp list in scope: mostrar_estadisticas
+Added 'suma' to temporary variable list in scope: mostrar_estadisticas
+Adding ID 'mayor' to temp list in scope: mostrar_estadisticas
+Added 'mayor' to temporary variable list in scope: mostrar_estadisticas
+Adding ID 'menor' to temp list in scope: mostrar_estadisticas
+Added 'menor' to temporary variable list in scope: mostrar_estadisticas
+Set current type to Type.INT
+Adding variables to table in scope: mostrar_estadisticas
+Added local variable 'suma' of type Type.INT at address 11030 to function 'mostrar_estadisticas'
+Added local variable 'mayor' of type Type.INT at address 11031 to function 'mostrar_estadisticas'
+Added local variable 'menor' of type Type.INT at address 11032 to function 'mostrar_estadisticas'
+Starting variable declaration in scope 'mostrar_estadisticas'
+Popped scope: mostrar_estadisticas, current scope is now: global
+Ended function 'mostrar_estadisticas' declaration, returned to scope: global
+Pushed scope: main, current scope stack: ['global', 'main']
+Main function declared, scope changed to main
+Program calculadora_avanzada started, scope reset to global
+Program calculadora_avanzada completed
+
+===== QUADRUPLES WITH MEMORY ADDRESSES =====
+INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
+      EXPLANATION
+----------------------------------------------------------------------
+
+===== FUNCTION DIRECTORY =====
+Function: calcular_factorial - Start Address: 1
+Function: potencia - Start Address: 13
+Function: maximo_de_tres - Start Address: 25
+Function: mostrar_tabla_multiplicar - Start Address: 36
+Function: analizar_numero - Start Address: 54
+Function: mostrar_operaciones_basicas - Start Address: 71
+Function: calcular_promedio - Start Address: 97
+Function: mostrar_estadisticas - Start Address: 104
+Function: main - Start Address: 143
+----------------------------------------------------------------------
+0: (goto, None, None, 143)
+      jump to quadruple 143
+----------------------------------------------------------------------
+
+==================== FUNCTION: CALCULAR_FACTORIAL ====================
+Starting at quadruple 1
+----------------------------------------------------------------------
+1: (=, 20000, None, 11002)
+      assign value of constant(1) to addr:11002
+----------------------------------------------------------------------
+2: (=, 20000, None, 11001)
+      assign value of constant(1) to addr:11001
+----------------------------------------------------------------------
+3: (+, 11000, 20000, 15000)
+      add addr:11000 and constant(1), store result in addr:15000
+----------------------------------------------------------------------
+4: (<, 11001, 15000, 19000)
+      compare if addr:11001 is less than addr:15000, store boolean result in addr:19000
+----------------------------------------------------------------------
+5: (gotof, 19000, None, 11)
+      if addr:19000 is false, jump to quadruple 11
+----------------------------------------------------------------------
+6: (*, 11002, 11001, 15001)
+      multiply addr:11002 and addr:11001, store result in addr:15001
+----------------------------------------------------------------------
+7: (=, 15001, None, 11002)
+      assign value of addr:15001 to addr:11002
+----------------------------------------------------------------------
+8: (+, 11001, 20000, 15002)
+      add addr:11001 and constant(1), store result in addr:15002
+----------------------------------------------------------------------
+9: (=, 15002, None, 11001)
+      assign value of addr:15002 to addr:11001
+----------------------------------------------------------------------
+10: (goto, None, None, 3)
+      jump to quadruple 3
+----------------------------------------------------------------------
+11: (RETURN, 11002, None, None)
+      perform operation RETURN with operand addr:11002
+----------------------------------------------------------------------
+12: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF CALCULAR_FACTORIAL ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: POTENCIA ====================
+Starting at quadruple 13
+----------------------------------------------------------------------
+13: (=, 20000, None, 11006)
+      assign value of constant(1) to addr:11006
+----------------------------------------------------------------------
+14: (=, 20000, None, 11005)
+      assign value of constant(1) to addr:11005
+----------------------------------------------------------------------
+15: (+, 11004, 20000, 15003)
+      add addr:11004 and constant(1), store result in addr:15003
+----------------------------------------------------------------------
+16: (<, 11005, 15003, 19001)
+      compare if addr:11005 is less than addr:15003, store boolean result in addr:19001
+----------------------------------------------------------------------
+17: (gotof, 19001, None, 23)
+      if addr:19001 is false, jump to quadruple 23
+----------------------------------------------------------------------
+18: (*, 11006, 11003, 15004)
+      multiply addr:11006 and addr:11003, store result in addr:15004
+----------------------------------------------------------------------
+19: (=, 15004, None, 11006)
+      assign value of addr:15004 to addr:11006
+----------------------------------------------------------------------
+20: (+, 11005, 20000, 15005)
+      add addr:11005 and constant(1), store result in addr:15005
+----------------------------------------------------------------------
+21: (=, 15005, None, 11005)
+      assign value of addr:15005 to addr:11005
+----------------------------------------------------------------------
+22: (goto, None, None, 15)
+      jump to quadruple 15
+----------------------------------------------------------------------
+23: (RETURN, 11006, None, None)
+      perform operation RETURN with operand addr:11006
+----------------------------------------------------------------------
+24: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF POTENCIA ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAXIMO_DE_TRES ====================
+Starting at quadruple 25
+----------------------------------------------------------------------
+25: (=, 11007, None, 11010)
+      assign value of addr:11007 to addr:11010
+----------------------------------------------------------------------
+26: (>, 11008, 11010, 19002)
+      compare if addr:11008 is greater than addr:11010, store boolean result in addr:19002
+----------------------------------------------------------------------
+27: (gotof, 19002, None, 30)
+      if addr:19002 is false, jump to quadruple 30
+----------------------------------------------------------------------
+28: (=, 11008, None, 11010)
+      assign value of addr:11008 to addr:11010
+----------------------------------------------------------------------
+29: (goto, None, None, 30)
+      jump to quadruple 30
+----------------------------------------------------------------------
+30: (>, 11009, 11010, 19003)
+      compare if addr:11009 is greater than addr:11010, store boolean result in addr:19003
+----------------------------------------------------------------------
+31: (gotof, 19003, None, 34)
+      if addr:19003 is false, jump to quadruple 34
+----------------------------------------------------------------------
+32: (=, 11009, None, 11010)
+      assign value of addr:11009 to addr:11010
+----------------------------------------------------------------------
+33: (goto, None, None, 34)
+      jump to quadruple 34
+----------------------------------------------------------------------
+34: (RETURN, 11010, None, None)
+      perform operation RETURN with operand addr:11010
+----------------------------------------------------------------------
+35: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF MAXIMO_DE_TRES ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: MOSTRAR_TABLA_MULTIPLICAR ====================
+Starting at quadruple 36
+----------------------------------------------------------------------
+36: (print, Tabla de multiplicar del , None, None)
+      print value addr:Tabla de multiplicar del 
+----------------------------------------------------------------------
+37: (print, 11011, None, None)
+      print value addr:11011
+----------------------------------------------------------------------
+38: (print, :, None, None)
+      print value addr::
+----------------------------------------------------------------------
+39: (=, 20000, None, 11013)
+      assign value of constant(1) to addr:11013
+----------------------------------------------------------------------
+40: (+, 11012, 20000, 15006)
+      add addr:11012 and constant(1), store result in addr:15006
+----------------------------------------------------------------------
+41: (<, 11013, 15006, 19004)
+      compare if addr:11013 is less than addr:15006, store boolean result in addr:19004
+----------------------------------------------------------------------
+42: (gotof, 19004, None, 53)
+      if addr:19004 is false, jump to quadruple 53
+----------------------------------------------------------------------
+43: (*, 11011, 11013, 15007)
+      multiply addr:11011 and addr:11013, store result in addr:15007
+----------------------------------------------------------------------
+44: (=, 15007, None, 11014)
+      assign value of addr:15007 to addr:11014
+----------------------------------------------------------------------
+45: (print, 11011, None, None)
+      print value addr:11011
+----------------------------------------------------------------------
+46: (print,  x , None, None)
+      print value addr: x 
+----------------------------------------------------------------------
+47: (print, 11013, None, None)
+      print value addr:11013
+----------------------------------------------------------------------
+48: (print,  = , None, None)
+      print value addr: = 
+----------------------------------------------------------------------
+49: (print, 11014, None, None)
+      print value addr:11014
+----------------------------------------------------------------------
+50: (+, 11013, 20000, 15008)
+      add addr:11013 and constant(1), store result in addr:15008
+----------------------------------------------------------------------
+51: (=, 15008, None, 11013)
+      assign value of addr:15008 to addr:11013
+----------------------------------------------------------------------
+52: (goto, None, None, 40)
+      jump to quadruple 40
+----------------------------------------------------------------------
+53: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF MOSTRAR_TABLA_MULTIPLICAR ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: ANALIZAR_NUMERO ====================
+Starting at quadruple 54
+----------------------------------------------------------------------
+54: (print, Analizando el número: , None, None)
+      print value addr:Analizando el número: 
+----------------------------------------------------------------------
+55: (print, 11015, None, None)
+      print value addr:11015
+----------------------------------------------------------------------
+56: (>, 11015, 20001, 19005)
+      compare if addr:11015 is greater than constant(0), store boolean result in addr:19005
+----------------------------------------------------------------------
+57: (gotof, 19005, None, 60)
+      if addr:19005 is false, jump to quadruple 60
+----------------------------------------------------------------------
+58: (print, El número es positivo, None, None)
+      print value addr:El número es positivo
+----------------------------------------------------------------------
+59: (goto, None, None, 65)
+      jump to quadruple 65
+----------------------------------------------------------------------
+60: (<, 11015, 20001, 19006)
+      compare if addr:11015 is less than constant(0), store boolean result in addr:19006
+----------------------------------------------------------------------
+61: (gotof, 19006, None, 64)
+      if addr:19006 is false, jump to quadruple 64
+----------------------------------------------------------------------
+62: (print, El número es negativo, None, None)
+      print value addr:El número es negativo
+----------------------------------------------------------------------
+63: (goto, None, None, 65)
+      jump to quadruple 65
+----------------------------------------------------------------------
+64: (print, El número es cero, None, None)
+      print value addr:El número es cero
+----------------------------------------------------------------------
+65: (>, 11015, 20001, 19007)
+      compare if addr:11015 is greater than constant(0), store boolean result in addr:19007
+----------------------------------------------------------------------
+66: (gotof, 19007, None, 69)
+      if addr:19007 is false, jump to quadruple 69
+----------------------------------------------------------------------
+67: (print, El número es par, None, None)
+      print value addr:El número es par
+----------------------------------------------------------------------
+68: (goto, None, None, 70)
+      jump to quadruple 70
+----------------------------------------------------------------------
+69: (print, El número es impar, None, None)
+      print value addr:El número es impar
+----------------------------------------------------------------------
+70: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF ANALIZAR_NUMERO ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: MOSTRAR_OPERACIONES_BASICAS ====================
+Starting at quadruple 71
+----------------------------------------------------------------------
+71: (+, 11016, 11017, 15009)
+      add addr:11016 and addr:11017, store result in addr:15009
+----------------------------------------------------------------------
+72: (=, 15009, None, 11018)
+      assign value of addr:15009 to addr:11018
+----------------------------------------------------------------------
+73: (-, 11016, 11017, 15010)
+      subtract addr:11016 and addr:11017, store result in addr:15010
+----------------------------------------------------------------------
+74: (=, 15010, None, 11019)
+      assign value of addr:15010 to addr:11019
+----------------------------------------------------------------------
+75: (*, 11016, 11017, 15011)
+      multiply addr:11016 and addr:11017, store result in addr:15011
+----------------------------------------------------------------------
+76: (=, 15011, None, 11020)
+      assign value of addr:15011 to addr:11020
+----------------------------------------------------------------------
+77: (print, Operaciones básicas entre , None, None)
+      print value addr:Operaciones básicas entre 
+----------------------------------------------------------------------
+78: (print, 11016, None, None)
+      print value addr:11016
+----------------------------------------------------------------------
+79: (print,  y , None, None)
+      print value addr: y 
+----------------------------------------------------------------------
+80: (print, 11017, None, None)
+      print value addr:11017
+----------------------------------------------------------------------
+81: (print, :, None, None)
+      print value addr::
+----------------------------------------------------------------------
+82: (print, Suma: , None, None)
+      print value addr:Suma: 
+----------------------------------------------------------------------
+83: (print, 11018, None, None)
+      print value addr:11018
+----------------------------------------------------------------------
+84: (print, Resta: , None, None)
+      print value addr:Resta: 
+----------------------------------------------------------------------
+85: (print, 11019, None, None)
+      print value addr:11019
+----------------------------------------------------------------------
+86: (print, Multiplicación: , None, None)
+      print value addr:Multiplicación: 
+----------------------------------------------------------------------
+87: (print, 11020, None, None)
+      print value addr:11020
+----------------------------------------------------------------------
+88: (>, 11017, 20001, 19008)
+      compare if addr:11017 is greater than constant(0), store boolean result in addr:19008
+----------------------------------------------------------------------
+89: (gotof, 19008, None, 95)
+      if addr:19008 is false, jump to quadruple 95
+----------------------------------------------------------------------
+90: (/, 11016, 11017, 17000)
+      divide addr:11016 and addr:11017, store result in addr:17000
+----------------------------------------------------------------------
+91: (=, 17000, None, 11021)
+      assign value of addr:17000 to addr:11021
+----------------------------------------------------------------------
+92: (print, División: , None, None)
+      print value addr:División: 
+----------------------------------------------------------------------
+93: (print, 11021, None, None)
+      print value addr:11021
+----------------------------------------------------------------------
+94: (goto, None, None, 96)
+      jump to quadruple 96
+----------------------------------------------------------------------
+95: (print, No se puede dividir entre cero, None, None)
+      print value addr:No se puede dividir entre cero
+----------------------------------------------------------------------
+96: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF MOSTRAR_OPERACIONES_BASICAS ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: CALCULAR_PROMEDIO ====================
+Starting at quadruple 97
+----------------------------------------------------------------------
+97: (+, 11022, 11023, 15012)
+      add addr:11022 and addr:11023, store result in addr:15012
+----------------------------------------------------------------------
+98: (+, 15012, 11024, 15013)
+      add addr:15012 and addr:11024, store result in addr:15013
+----------------------------------------------------------------------
+99: (=, 15013, None, 11025)
+      assign value of addr:15013 to addr:11025
+----------------------------------------------------------------------
+100: (/, 11025, 20002, 17001)
+      divide addr:11025 and constant(3), store result in addr:17001
+----------------------------------------------------------------------
+101: (=, 17001, None, 11026)
+      assign value of addr:17001 to addr:11026
+----------------------------------------------------------------------
+102: (RETURN, 11026, None, None)
+      perform operation RETURN with operand addr:11026
+----------------------------------------------------------------------
+103: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF CALCULAR_PROMEDIO ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: MOSTRAR_ESTADISTICAS ====================
+Starting at quadruple 104
+----------------------------------------------------------------------
+104: (+, 11027, 11028, 15014)
+      add addr:11027 and addr:11028, store result in addr:15014
+----------------------------------------------------------------------
+105: (+, 15014, 11029, 15015)
+      add addr:15014 and addr:11029, store result in addr:15015
+----------------------------------------------------------------------
+106: (=, 15015, None, 11030)
+      assign value of addr:15015 to addr:11030
+----------------------------------------------------------------------
+107: (ERA, maximo_de_tres, None, None)
+      perform operation ERA with operand addr:maximo_de_tres
+----------------------------------------------------------------------
+108: (parámetro, 11027, par1, None)
+      perform operation parámetro with operands addr:11027, addr:par1, result in None
+----------------------------------------------------------------------
+109: (parámetro, 11028, par2, None)
+      perform operation parámetro with operands addr:11028, addr:par2, result in None
+----------------------------------------------------------------------
+110: (parámetro, 11029, par3, None)
+      perform operation parámetro with operands addr:11029, addr:par3, result in None
+----------------------------------------------------------------------
+111: (GOSUB, maximo_de_tres, None, 15016)
+      perform operation GOSUB with operand addr:maximo_de_tres, result in addr:15016
+----------------------------------------------------------------------
+112: (=, 15016, None, 11031)
+      assign value of addr:15016 to addr:11031
+----------------------------------------------------------------------
+113: (=, 11027, None, 11032)
+      assign value of addr:11027 to addr:11032
+----------------------------------------------------------------------
+114: (<, 11028, 11032, 19009)
+      compare if addr:11028 is less than addr:11032, store boolean result in addr:19009
+----------------------------------------------------------------------
+115: (gotof, 19009, None, 118)
+      if addr:19009 is false, jump to quadruple 118
+----------------------------------------------------------------------
+116: (=, 11028, None, 11032)
+      assign value of addr:11028 to addr:11032
+----------------------------------------------------------------------
+117: (goto, None, None, 118)
+      jump to quadruple 118
+----------------------------------------------------------------------
+118: (<, 11029, 11032, 19010)
+      compare if addr:11029 is less than addr:11032, store boolean result in addr:19010
+----------------------------------------------------------------------
+119: (gotof, 19010, None, 122)
+      if addr:19010 is false, jump to quadruple 122
+----------------------------------------------------------------------
+120: (=, 11029, None, 11032)
+      assign value of addr:11029 to addr:11032
+----------------------------------------------------------------------
+121: (goto, None, None, 122)
+      jump to quadruple 122
+----------------------------------------------------------------------
+122: (print, === ESTADÍSTICAS ===, None, None)
+      print value addr:=== ESTADÍSTICAS ===
+----------------------------------------------------------------------
+123: (print, Números: , None, None)
+      print value addr:Números: 
+----------------------------------------------------------------------
+124: (print, 11027, None, None)
+      print value addr:11027
+----------------------------------------------------------------------
+125: (print, , , None, None)
+      print value addr:, 
+----------------------------------------------------------------------
+126: (print, 11028, None, None)
+      print value addr:11028
+----------------------------------------------------------------------
+127: (print, , , None, None)
+      print value addr:, 
+----------------------------------------------------------------------
+128: (print, 11029, None, None)
+      print value addr:11029
+----------------------------------------------------------------------
+129: (print, Suma total: , None, None)
+      print value addr:Suma total: 
+----------------------------------------------------------------------
+130: (print, 11030, None, None)
+      print value addr:11030
+----------------------------------------------------------------------
+131: (print, Número mayor: , None, None)
+      print value addr:Número mayor: 
+----------------------------------------------------------------------
+132: (print, 11031, None, None)
+      print value addr:11031
+----------------------------------------------------------------------
+133: (print, Número menor: , None, None)
+      print value addr:Número menor: 
+----------------------------------------------------------------------
+134: (print, 11032, None, None)
+      print value addr:11032
+----------------------------------------------------------------------
+135: (ERA, calcular_promedio, None, None)
+      perform operation ERA with operand addr:calcular_promedio
+----------------------------------------------------------------------
+136: (parámetro, 11027, par1, None)
+      perform operation parámetro with operands addr:11027, addr:par1, result in None
+----------------------------------------------------------------------
+137: (parámetro, 11028, par2, None)
+      perform operation parámetro with operands addr:11028, addr:par2, result in None
+----------------------------------------------------------------------
+138: (parámetro, 11029, par3, None)
+      perform operation parámetro with operands addr:11029, addr:par3, result in None
+----------------------------------------------------------------------
+139: (GOSUB, calcular_promedio, None, 15017)
+      perform operation GOSUB with operand addr:calcular_promedio, result in addr:15017
+----------------------------------------------------------------------
+140: (print, Promedio: , None, None)
+      print value addr:Promedio: 
+----------------------------------------------------------------------
+141: (print, 15017, None, None)
+      print value addr:15017
+----------------------------------------------------------------------
+142: (ENDFUNC, None, None, None)
+      perform operation ENDFUNC with operand None
+==================== END OF MOSTRAR_ESTADISTICAS ====================
+----------------------------------------------------------------------
+
+==================== FUNCTION: MAIN ====================
+Starting at quadruple 143
+----------------------------------------------------------------------
+143: (print, === CALCULADORA AVANZADA ===, None, None)
+      print value addr:=== CALCULADORA AVANZADA ===
+----------------------------------------------------------------------
+144: (=, 20003, None, 5000)
+      assign value of constant(12) to num1 (global)
+----------------------------------------------------------------------
+145: (=, 20004, None, 5001)
+      assign value of constant(8) to num2 (global)
+----------------------------------------------------------------------
+146: (=, 20005, None, 5002)
+      assign value of constant(15) to num3 (global)
+----------------------------------------------------------------------
+147: (print, Números de trabajo: , None, None)
+      print value addr:Números de trabajo: 
+----------------------------------------------------------------------
+148: (print, 5000, None, None)
+      print value num1 (global)
+----------------------------------------------------------------------
+149: (print, , , None, None)
+      print value addr:, 
+----------------------------------------------------------------------
+150: (print, 5001, None, None)
+      print value num2 (global)
+----------------------------------------------------------------------
+151: (print, , , None, None)
+      print value addr:, 
+----------------------------------------------------------------------
+152: (print, 5002, None, None)
+      print value num3 (global)
+----------------------------------------------------------------------
+153: (print, , None, None)
+      print value addr:
+----------------------------------------------------------------------
+154: (ERA, mostrar_operaciones_basicas, None, None)
+      perform operation ERA with operand addr:mostrar_operaciones_basicas
+----------------------------------------------------------------------
+155: (parámetro, 5000, par1, None)
+      perform operation parámetro with operands num1 (global), addr:par1, result in None
+----------------------------------------------------------------------
+156: (parámetro, 5001, par2, None)
+      perform operation parámetro with operands num2 (global), addr:par2, result in None
+----------------------------------------------------------------------
+157: (GOSUB, mostrar_operaciones_basicas, None, None)
+      perform operation GOSUB with operand addr:mostrar_operaciones_basicas
+----------------------------------------------------------------------
+158: (print, , None, None)
+      print value addr:
+----------------------------------------------------------------------
+159: (ERA, analizar_numero, None, None)
+      perform operation ERA with operand addr:analizar_numero
+----------------------------------------------------------------------
+160: (parámetro, 5000, par1, None)
+      perform operation parámetro with operands num1 (global), addr:par1, result in None
+----------------------------------------------------------------------
+161: (GOSUB, analizar_numero, None, None)
+      perform operation GOSUB with operand addr:analizar_numero
+----------------------------------------------------------------------
+162: (print, , None, None)
+      print value addr:
+----------------------------------------------------------------------
+163: (ERA, mostrar_tabla_multiplicar, None, None)
+      perform operation ERA with operand addr:mostrar_tabla_multiplicar
+----------------------------------------------------------------------
+164: (parámetro, 5001, par1, None)
+      perform operation parámetro with operands num2 (global), addr:par1, result in None
+----------------------------------------------------------------------
+165: (parámetro, 20006, par2, None)
+      perform operation parámetro with operands constant(5), addr:par2, result in None
+----------------------------------------------------------------------
+166: (GOSUB, mostrar_tabla_multiplicar, None, None)
+      perform operation GOSUB with operand addr:mostrar_tabla_multiplicar
+----------------------------------------------------------------------
+167: (print, , None, None)
+      print value addr:
+----------------------------------------------------------------------
+168: (=, 20006, None, 5004)
+      assign value of constant(5) to factorial_num (global)
+----------------------------------------------------------------------
+169: (ERA, calcular_factorial, None, None)
+      perform operation ERA with operand addr:calcular_factorial
+----------------------------------------------------------------------
+170: (parámetro, 5004, par1, None)
+      perform operation parámetro with operands factorial_num (global), addr:par1, result in None
+----------------------------------------------------------------------
+171: (GOSUB, calcular_factorial, None, 15018)
+      perform operation GOSUB with operand addr:calcular_factorial, result in addr:15018
+----------------------------------------------------------------------
+172: (=, 15018, None, 5003)
+      assign value of addr:15018 to resultado (global)
+----------------------------------------------------------------------
+173: (print, Factorial de , None, None)
+      print value addr:Factorial de 
+----------------------------------------------------------------------
+174: (print, 5004, None, None)
+      print value factorial_num (global)
+----------------------------------------------------------------------
+175: (print,  es: , None, None)
+      print value addr: es: 
+----------------------------------------------------------------------
+176: (print, 5003, None, None)
+      print value resultado (global)
+----------------------------------------------------------------------
+177: (ERA, potencia, None, None)
+      perform operation ERA with operand addr:potencia
+----------------------------------------------------------------------
+178: (parámetro, 5001, par1, None)
+      perform operation parámetro with operands num2 (global), addr:par1, result in None
+----------------------------------------------------------------------
+179: (parámetro, 20002, par2, None)
+      perform operation parámetro with operands constant(3), addr:par2, result in None
+----------------------------------------------------------------------
+180: (GOSUB, potencia, None, 15019)
+      perform operation GOSUB with operand addr:potencia, result in addr:15019
+----------------------------------------------------------------------
+181: (=, 15019, None, 5003)
+      assign value of addr:15019 to resultado (global)
+----------------------------------------------------------------------
+182: (print, 5001, None, None)
+      print value num2 (global)
+----------------------------------------------------------------------
+183: (print,  elevado a la 3 es: , None, None)
+      print value addr: elevado a la 3 es: 
+----------------------------------------------------------------------
+184: (print, 5003, None, None)
+      print value resultado (global)
+----------------------------------------------------------------------
+185: (ERA, maximo_de_tres, None, None)
+      perform operation ERA with operand addr:maximo_de_tres
+----------------------------------------------------------------------
+186: (parámetro, 5000, par1, None)
+      perform operation parámetro with operands num1 (global), addr:par1, result in None
+----------------------------------------------------------------------
+187: (parámetro, 5001, par2, None)
+      perform operation parámetro with operands num2 (global), addr:par2, result in None
+----------------------------------------------------------------------
+188: (parámetro, 5002, par3, None)
+      perform operation parámetro with operands num3 (global), addr:par3, result in None
+----------------------------------------------------------------------
+189: (GOSUB, maximo_de_tres, None, 15020)
+      perform operation GOSUB with operand addr:maximo_de_tres, result in addr:15020
+----------------------------------------------------------------------
+190: (=, 15020, None, 5003)
+      assign value of addr:15020 to resultado (global)
+----------------------------------------------------------------------
+191: (print, El mayor de los tres números es: , None, None)
+      print value addr:El mayor de los tres números es: 
+----------------------------------------------------------------------
+192: (print, 5003, None, None)
+      print value resultado (global)
+----------------------------------------------------------------------
+193: (ERA, calcular_promedio, None, None)
+      perform operation ERA with operand addr:calcular_promedio
+----------------------------------------------------------------------
+194: (parámetro, 5000, par1, None)
+      perform operation parámetro with operands num1 (global), addr:par1, result in None
+----------------------------------------------------------------------
+195: (parámetro, 5001, par2, None)
+      perform operation parámetro with operands num2 (global), addr:par2, result in None
+----------------------------------------------------------------------
+196: (parámetro, 5002, par3, None)
+      perform operation parámetro with operands num3 (global), addr:par3, result in None
+----------------------------------------------------------------------
+197: (GOSUB, calcular_promedio, None, 15021)
+      perform operation GOSUB with operand addr:calcular_promedio, result in addr:15021
+----------------------------------------------------------------------
+198: (=, 15021, None, 5005)
+      assign value of addr:15021 to promedio_val (global)
+----------------------------------------------------------------------
+199: (print, El promedio de los tres números es: , None, None)
+      print value addr:El promedio de los tres números es: 
+----------------------------------------------------------------------
+200: (print, 5005, None, None)
+      print value promedio_val (global)
+----------------------------------------------------------------------
+201: (print, , None, None)
+      print value addr:
+----------------------------------------------------------------------
+202: (ERA, mostrar_estadisticas, None, None)
+      perform operation ERA with operand addr:mostrar_estadisticas
+----------------------------------------------------------------------
+203: (parámetro, 5000, par1, None)
+      perform operation parámetro with operands num1 (global), addr:par1, result in None
+----------------------------------------------------------------------
+204: (parámetro, 5001, par2, None)
+      perform operation parámetro with operands num2 (global), addr:par2, result in None
+----------------------------------------------------------------------
+205: (parámetro, 5002, par3, None)
+      perform operation parámetro with operands num3 (global), addr:par3, result in None
+----------------------------------------------------------------------
+206: (GOSUB, mostrar_estadisticas, None, None)
+      perform operation GOSUB with operand addr:mostrar_estadisticas
+----------------------------------------------------------------------
+207: (print, , None, None)
+      print value addr:
+----------------------------------------------------------------------
+208: (print, === FIN DEL PROGRAMA ===, None, None)
+      print value addr:=== FIN DEL PROGRAMA ===
+----------------------------------------------------------------------
+209: (END, None, None, None)
+      perform operation END with operand None
+----------------------------------------------------------------------
+=== INICIANDO EJECUCIÓN ===
+IP: 0 -> Ejecutando: (goto, None, None, 143)
+  Salto a: 143
+IP: 143 -> Ejecutando: (print, === CALCULADORA AVANZADA ===, None, None)
+OUTPUT: === CALCULADORA AVANZADA ===
+IP: 144 -> Ejecutando: (=, 20003, None, 5000)
+  Asignación: direccion[5000] = 12
+IP: 145 -> Ejecutando: (=, 20004, None, 5001)
+  Asignación: direccion[5001] = 8
+IP: 146 -> Ejecutando: (=, 20005, None, 5002)
+  Asignación: direccion[5002] = 15
+IP: 147 -> Ejecutando: (print, Números de trabajo: , None, None)
+OUTPUT: Números de trabajo: 
+IP: 148 -> Ejecutando: (print, 5000, None, None)
+OUTPUT: 12
+IP: 149 -> Ejecutando: (print, , , None, None)
+OUTPUT: , 
+IP: 150 -> Ejecutando: (print, 5001, None, None)
+OUTPUT: 8
+IP: 151 -> Ejecutando: (print, , , None, None)
+OUTPUT: , 
+IP: 152 -> Ejecutando: (print, 5002, None, None)
+OUTPUT: 15
+IP: 153 -> Ejecutando: (print, , None, None)
+OUTPUT: 
+IP: 154 -> Ejecutando: (ERA, mostrar_operaciones_basicas, None, None)
+  ERA: Reservando espacio para función 'mostrar_operaciones_basicas'
+IP: 155 -> Ejecutando: (parámetro, 5000, par1, None)
+  Parámetro: 12 -> posición 1
+IP: 156 -> Ejecutando: (parámetro, 5001, par2, None)
+  Parámetro: 8 -> posición 2
+IP: 157 -> Ejecutando: (GOSUB, mostrar_operaciones_basicas, None, None)
+    Asignando parámetro a (addr: 11016) = 12
+    Asignando parámetro b (addr: 11017) = 8
+  GOSUB: Llamando función 'mostrar_operaciones_basicas' en dirección 71
+IP: 71 -> Ejecutando: (+, 11016, 11017, 15009)
+  Aritmética: 12 + 8 = 20
+IP: 72 -> Ejecutando: (=, 15009, None, 11018)
+  Asignación: direccion[11018] = 20
+IP: 73 -> Ejecutando: (-, 11016, 11017, 15010)
+  Aritmética: 12 - 8 = 4
+IP: 74 -> Ejecutando: (=, 15010, None, 11019)
+  Asignación: direccion[11019] = 4
+IP: 75 -> Ejecutando: (*, 11016, 11017, 15011)
+  Aritmética: 12 * 8 = 96
+IP: 76 -> Ejecutando: (=, 15011, None, 11020)
+  Asignación: direccion[11020] = 96
+IP: 77 -> Ejecutando: (print, Operaciones básicas entre , None, None)
+OUTPUT: Operaciones básicas entre 
+IP: 78 -> Ejecutando: (print, 11016, None, None)
+OUTPUT: 12
+IP: 79 -> Ejecutando: (print,  y , None, None)
+OUTPUT:  y 
+IP: 80 -> Ejecutando: (print, 11017, None, None)
+OUTPUT: 8
+IP: 81 -> Ejecutando: (print, :, None, None)
+OUTPUT: :
+IP: 82 -> Ejecutando: (print, Suma: , None, None)
+OUTPUT: Suma: 
+IP: 83 -> Ejecutando: (print, 11018, None, None)
+OUTPUT: 20
+IP: 84 -> Ejecutando: (print, Resta: , None, None)
+OUTPUT: Resta: 
+IP: 85 -> Ejecutando: (print, 11019, None, None)
+OUTPUT: 4
+IP: 86 -> Ejecutando: (print, Multiplicación: , None, None)
+OUTPUT: Multiplicación: 
+IP: 87 -> Ejecutando: (print, 11020, None, None)
+OUTPUT: 96
+IP: 88 -> Ejecutando: (>, 11017, 20001, 19008)
+  Comparación: 8 > 0 = True
+IP: 89 -> Ejecutando: (gotof, 19008, None, 95)
+  No hay salto (condición verdadera)
+IP: 90 -> Ejecutando: (/, 11016, 11017, 17000)
+  Aritmética: 12 / 8 = 1.5
+IP: 91 -> Ejecutando: (=, 17000, None, 11021)
+  Asignación: direccion[11021] = 1.5
+IP: 92 -> Ejecutando: (print, División: , None, None)
+OUTPUT: División: 
+IP: 93 -> Ejecutando: (print, 11021, None, None)
+OUTPUT: 1
+IP: 94 -> Ejecutando: (goto, None, None, 96)
+  Salto a: 96
+IP: 96 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 158
+IP: 158 -> Ejecutando: (print, , None, None)
+OUTPUT: 
+IP: 159 -> Ejecutando: (ERA, analizar_numero, None, None)
+  ERA: Reservando espacio para función 'analizar_numero'
+IP: 160 -> Ejecutando: (parámetro, 5000, par1, None)
+  Parámetro: 12 -> posición 1
+IP: 161 -> Ejecutando: (GOSUB, analizar_numero, None, None)
+    Asignando parámetro num (addr: 11015) = 12
+  GOSUB: Llamando función 'analizar_numero' en dirección 54
+IP: 54 -> Ejecutando: (print, Analizando el número: , None, None)
+OUTPUT: Analizando el número: 
+IP: 55 -> Ejecutando: (print, 11015, None, None)
+OUTPUT: 12
+IP: 56 -> Ejecutando: (>, 11015, 20001, 19005)
+  Comparación: 12 > 0 = True
+IP: 57 -> Ejecutando: (gotof, 19005, None, 60)
+  No hay salto (condición verdadera)
+IP: 58 -> Ejecutando: (print, El número es positivo, None, None)
+OUTPUT: El número es positivo
+IP: 59 -> Ejecutando: (goto, None, None, 65)
+  Salto a: 65
+IP: 65 -> Ejecutando: (>, 11015, 20001, 19007)
+  Comparación: 12 > 0 = True
+IP: 66 -> Ejecutando: (gotof, 19007, None, 69)
+  No hay salto (condición verdadera)
+IP: 67 -> Ejecutando: (print, El número es par, None, None)
+OUTPUT: El número es par
+IP: 68 -> Ejecutando: (goto, None, None, 70)
+  Salto a: 70
+IP: 70 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 162
+IP: 162 -> Ejecutando: (print, , None, None)
+OUTPUT: 
+IP: 163 -> Ejecutando: (ERA, mostrar_tabla_multiplicar, None, None)
+  ERA: Reservando espacio para función 'mostrar_tabla_multiplicar'
+IP: 164 -> Ejecutando: (parámetro, 5001, par1, None)
+  Parámetro: 8 -> posición 1
+IP: 165 -> Ejecutando: (parámetro, 20006, par2, None)
+  Parámetro: 5 -> posición 2
+IP: 166 -> Ejecutando: (GOSUB, mostrar_tabla_multiplicar, None, None)
+    Asignando parámetro numero (addr: 11011) = 8
+    Asignando parámetro limite (addr: 11012) = 5
+  GOSUB: Llamando función 'mostrar_tabla_multiplicar' en dirección 36
+IP: 36 -> Ejecutando: (print, Tabla de multiplicar del , None, None)
+OUTPUT: Tabla de multiplicar del 
+IP: 37 -> Ejecutando: (print, 11011, None, None)
+OUTPUT: 8
+IP: 38 -> Ejecutando: (print, :, None, None)
+OUTPUT: :
+IP: 39 -> Ejecutando: (=, 20000, None, 11013)
+  Asignación: direccion[11013] = 1
+IP: 40 -> Ejecutando: (+, 11012, 20000, 15006)
+  Aritmética: 5 + 1 = 6
+IP: 41 -> Ejecutando: (<, 11013, 15006, 19004)
+  Comparación: 1 < 6 = True
+IP: 42 -> Ejecutando: (gotof, 19004, None, 53)
+  No hay salto (condición verdadera)
+IP: 43 -> Ejecutando: (*, 11011, 11013, 15007)
+  Aritmética: 8 * 1 = 8
+IP: 44 -> Ejecutando: (=, 15007, None, 11014)
+  Asignación: direccion[11014] = 8
+IP: 45 -> Ejecutando: (print, 11011, None, None)
+OUTPUT: 8
+IP: 46 -> Ejecutando: (print,  x , None, None)
+OUTPUT:  x 
+IP: 47 -> Ejecutando: (print, 11013, None, None)
+OUTPUT: 1
+IP: 48 -> Ejecutando: (print,  = , None, None)
+OUTPUT:  = 
+IP: 49 -> Ejecutando: (print, 11014, None, None)
+OUTPUT: 8
+IP: 50 -> Ejecutando: (+, 11013, 20000, 15008)
+  Aritmética: 1 + 1 = 2
+IP: 51 -> Ejecutando: (=, 15008, None, 11013)
+  Asignación: direccion[11013] = 2
+IP: 52 -> Ejecutando: (goto, None, None, 40)
+  Salto a: 40
+IP: 40 -> Ejecutando: (+, 11012, 20000, 15006)
+  Aritmética: 5 + 1 = 6
+IP: 41 -> Ejecutando: (<, 11013, 15006, 19004)
+  Comparación: 2 < 6 = True
+IP: 42 -> Ejecutando: (gotof, 19004, None, 53)
+  No hay salto (condición verdadera)
+IP: 43 -> Ejecutando: (*, 11011, 11013, 15007)
+  Aritmética: 8 * 2 = 16
+IP: 44 -> Ejecutando: (=, 15007, None, 11014)
+  Asignación: direccion[11014] = 16
+IP: 45 -> Ejecutando: (print, 11011, None, None)
+OUTPUT: 8
+IP: 46 -> Ejecutando: (print,  x , None, None)
+OUTPUT:  x 
+IP: 47 -> Ejecutando: (print, 11013, None, None)
+OUTPUT: 2
+IP: 48 -> Ejecutando: (print,  = , None, None)
+OUTPUT:  = 
+IP: 49 -> Ejecutando: (print, 11014, None, None)
+OUTPUT: 16
+IP: 50 -> Ejecutando: (+, 11013, 20000, 15008)
+  Aritmética: 2 + 1 = 3
+IP: 51 -> Ejecutando: (=, 15008, None, 11013)
+  Asignación: direccion[11013] = 3
+IP: 52 -> Ejecutando: (goto, None, None, 40)
+  Salto a: 40
+IP: 40 -> Ejecutando: (+, 11012, 20000, 15006)
+  Aritmética: 5 + 1 = 6
+IP: 41 -> Ejecutando: (<, 11013, 15006, 19004)
+  Comparación: 3 < 6 = True
+IP: 42 -> Ejecutando: (gotof, 19004, None, 53)
+  No hay salto (condición verdadera)
+IP: 43 -> Ejecutando: (*, 11011, 11013, 15007)
+  Aritmética: 8 * 3 = 24
+IP: 44 -> Ejecutando: (=, 15007, None, 11014)
+  Asignación: direccion[11014] = 24
+IP: 45 -> Ejecutando: (print, 11011, None, None)
+OUTPUT: 8
+IP: 46 -> Ejecutando: (print,  x , None, None)
+OUTPUT:  x 
+IP: 47 -> Ejecutando: (print, 11013, None, None)
+OUTPUT: 3
+IP: 48 -> Ejecutando: (print,  = , None, None)
+OUTPUT:  = 
+IP: 49 -> Ejecutando: (print, 11014, None, None)
+OUTPUT: 24
+IP: 50 -> Ejecutando: (+, 11013, 20000, 15008)
+  Aritmética: 3 + 1 = 4
+IP: 51 -> Ejecutando: (=, 15008, None, 11013)
+  Asignación: direccion[11013] = 4
+IP: 52 -> Ejecutando: (goto, None, None, 40)
+  Salto a: 40
+IP: 40 -> Ejecutando: (+, 11012, 20000, 15006)
+  Aritmética: 5 + 1 = 6
+IP: 41 -> Ejecutando: (<, 11013, 15006, 19004)
+  Comparación: 4 < 6 = True
+IP: 42 -> Ejecutando: (gotof, 19004, None, 53)
+  No hay salto (condición verdadera)
+IP: 43 -> Ejecutando: (*, 11011, 11013, 15007)
+  Aritmética: 8 * 4 = 32
+IP: 44 -> Ejecutando: (=, 15007, None, 11014)
+  Asignación: direccion[11014] = 32
+IP: 45 -> Ejecutando: (print, 11011, None, None)
+OUTPUT: 8
+IP: 46 -> Ejecutando: (print,  x , None, None)
+OUTPUT:  x 
+IP: 47 -> Ejecutando: (print, 11013, None, None)
+OUTPUT: 4
+IP: 48 -> Ejecutando: (print,  = , None, None)
+OUTPUT:  = 
+IP: 49 -> Ejecutando: (print, 11014, None, None)
+OUTPUT: 32
+IP: 50 -> Ejecutando: (+, 11013, 20000, 15008)
+  Aritmética: 4 + 1 = 5
+IP: 51 -> Ejecutando: (=, 15008, None, 11013)
+  Asignación: direccion[11013] = 5
+IP: 52 -> Ejecutando: (goto, None, None, 40)
+  Salto a: 40
+IP: 40 -> Ejecutando: (+, 11012, 20000, 15006)
+  Aritmética: 5 + 1 = 6
+IP: 41 -> Ejecutando: (<, 11013, 15006, 19004)
+  Comparación: 5 < 6 = True
+IP: 42 -> Ejecutando: (gotof, 19004, None, 53)
+  No hay salto (condición verdadera)
+IP: 43 -> Ejecutando: (*, 11011, 11013, 15007)
+  Aritmética: 8 * 5 = 40
+IP: 44 -> Ejecutando: (=, 15007, None, 11014)
+  Asignación: direccion[11014] = 40
+IP: 45 -> Ejecutando: (print, 11011, None, None)
+OUTPUT: 8
+IP: 46 -> Ejecutando: (print,  x , None, None)
+OUTPUT:  x 
+IP: 47 -> Ejecutando: (print, 11013, None, None)
+OUTPUT: 5
+IP: 48 -> Ejecutando: (print,  = , None, None)
+OUTPUT:  = 
+IP: 49 -> Ejecutando: (print, 11014, None, None)
+OUTPUT: 40
+IP: 50 -> Ejecutando: (+, 11013, 20000, 15008)
+  Aritmética: 5 + 1 = 6
+IP: 51 -> Ejecutando: (=, 15008, None, 11013)
+  Asignación: direccion[11013] = 6
+IP: 52 -> Ejecutando: (goto, None, None, 40)
+  Salto a: 40
+IP: 40 -> Ejecutando: (+, 11012, 20000, 15006)
+  Aritmética: 5 + 1 = 6
+IP: 41 -> Ejecutando: (<, 11013, 15006, 19004)
+  Comparación: 6 < 6 = False
+IP: 42 -> Ejecutando: (gotof, 19004, None, 53)
+  Salto condicional a: 53 (condición falsa)
+IP: 53 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 167
+IP: 167 -> Ejecutando: (print, , None, None)
+OUTPUT: 
+IP: 168 -> Ejecutando: (=, 20006, None, 5004)
+  Asignación: direccion[5004] = 5
+IP: 169 -> Ejecutando: (ERA, calcular_factorial, None, None)
+  ERA: Reservando espacio para función 'calcular_factorial'
+IP: 170 -> Ejecutando: (parámetro, 5004, par1, None)
+  Parámetro: 5 -> posición 1
+IP: 171 -> Ejecutando: (GOSUB, calcular_factorial, None, 15018)
+    Asignando parámetro n (addr: 11000) = 5
+  GOSUB: Llamando función 'calcular_factorial' en dirección 1
+    Valor de retorno se guardará en dirección: 15018
+IP: 1 -> Ejecutando: (=, 20000, None, 11002)
+  Asignación: direccion[11002] = 1
+IP: 2 -> Ejecutando: (=, 20000, None, 11001)
+  Asignación: direccion[11001] = 1
+IP: 3 -> Ejecutando: (+, 11000, 20000, 15000)
+  Aritmética: 5 + 1 = 6
+IP: 4 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 1 < 6 = True
+IP: 5 -> Ejecutando: (gotof, 19000, None, 11)
+  No hay salto (condición verdadera)
+IP: 6 -> Ejecutando: (*, 11002, 11001, 15001)
+  Aritmética: 1 * 1 = 1
+IP: 7 -> Ejecutando: (=, 15001, None, 11002)
+  Asignación: direccion[11002] = 1
+IP: 8 -> Ejecutando: (+, 11001, 20000, 15002)
+  Aritmética: 1 + 1 = 2
+IP: 9 -> Ejecutando: (=, 15002, None, 11001)
+  Asignación: direccion[11001] = 2
+IP: 10 -> Ejecutando: (goto, None, None, 3)
+  Salto a: 3
+IP: 3 -> Ejecutando: (+, 11000, 20000, 15000)
+  Aritmética: 5 + 1 = 6
+IP: 4 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 2 < 6 = True
+IP: 5 -> Ejecutando: (gotof, 19000, None, 11)
+  No hay salto (condición verdadera)
+IP: 6 -> Ejecutando: (*, 11002, 11001, 15001)
+  Aritmética: 1 * 2 = 2
+IP: 7 -> Ejecutando: (=, 15001, None, 11002)
+  Asignación: direccion[11002] = 2
+IP: 8 -> Ejecutando: (+, 11001, 20000, 15002)
+  Aritmética: 2 + 1 = 3
+IP: 9 -> Ejecutando: (=, 15002, None, 11001)
+  Asignación: direccion[11001] = 3
+IP: 10 -> Ejecutando: (goto, None, None, 3)
+  Salto a: 3
+IP: 3 -> Ejecutando: (+, 11000, 20000, 15000)
+  Aritmética: 5 + 1 = 6
+IP: 4 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 3 < 6 = True
+IP: 5 -> Ejecutando: (gotof, 19000, None, 11)
+  No hay salto (condición verdadera)
+IP: 6 -> Ejecutando: (*, 11002, 11001, 15001)
+  Aritmética: 2 * 3 = 6
+IP: 7 -> Ejecutando: (=, 15001, None, 11002)
+  Asignación: direccion[11002] = 6
+IP: 8 -> Ejecutando: (+, 11001, 20000, 15002)
+  Aritmética: 3 + 1 = 4
+IP: 9 -> Ejecutando: (=, 15002, None, 11001)
+  Asignación: direccion[11001] = 4
+IP: 10 -> Ejecutando: (goto, None, None, 3)
+  Salto a: 3
+IP: 3 -> Ejecutando: (+, 11000, 20000, 15000)
+  Aritmética: 5 + 1 = 6
+IP: 4 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 4 < 6 = True
+IP: 5 -> Ejecutando: (gotof, 19000, None, 11)
+  No hay salto (condición verdadera)
+IP: 6 -> Ejecutando: (*, 11002, 11001, 15001)
+  Aritmética: 6 * 4 = 24
+IP: 7 -> Ejecutando: (=, 15001, None, 11002)
+  Asignación: direccion[11002] = 24
+IP: 8 -> Ejecutando: (+, 11001, 20000, 15002)
+  Aritmética: 4 + 1 = 5
+IP: 9 -> Ejecutando: (=, 15002, None, 11001)
+  Asignación: direccion[11001] = 5
+IP: 10 -> Ejecutando: (goto, None, None, 3)
+  Salto a: 3
+IP: 3 -> Ejecutando: (+, 11000, 20000, 15000)
+  Aritmética: 5 + 1 = 6
+IP: 4 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 5 < 6 = True
+IP: 5 -> Ejecutando: (gotof, 19000, None, 11)
+  No hay salto (condición verdadera)
+IP: 6 -> Ejecutando: (*, 11002, 11001, 15001)
+  Aritmética: 24 * 5 = 120
+IP: 7 -> Ejecutando: (=, 15001, None, 11002)
+  Asignación: direccion[11002] = 120
+IP: 8 -> Ejecutando: (+, 11001, 20000, 15002)
+  Aritmética: 5 + 1 = 6
+IP: 9 -> Ejecutando: (=, 15002, None, 11001)
+  Asignación: direccion[11001] = 6
+IP: 10 -> Ejecutando: (goto, None, None, 3)
+  Salto a: 3
+IP: 3 -> Ejecutando: (+, 11000, 20000, 15000)
+  Aritmética: 5 + 1 = 6
+IP: 4 -> Ejecutando: (<, 11001, 15000, 19000)
+  Comparación: 6 < 6 = False
+IP: 5 -> Ejecutando: (gotof, 19000, None, 11)
+  Salto condicional a: 11 (condición falsa)
+IP: 11 -> Ejecutando: (RETURN, 11002, None, None)
+  RETURN: Retornando valor 120
+    Valor guardado en dirección temporal: 15018
+  ENDFUNC: Retornando a dirección 172
+IP: 172 -> Ejecutando: (=, 15018, None, 5003)
+  Asignación: direccion[5003] = 120
+IP: 173 -> Ejecutando: (print, Factorial de , None, None)
+OUTPUT: Factorial de 
+IP: 174 -> Ejecutando: (print, 5004, None, None)
+OUTPUT: 5
+IP: 175 -> Ejecutando: (print,  es: , None, None)
+OUTPUT:  es: 
+IP: 176 -> Ejecutando: (print, 5003, None, None)
+OUTPUT: 120
+IP: 177 -> Ejecutando: (ERA, potencia, None, None)
+  ERA: Reservando espacio para función 'potencia'
+IP: 178 -> Ejecutando: (parámetro, 5001, par1, None)
+  Parámetro: 8 -> posición 1
+IP: 179 -> Ejecutando: (parámetro, 20002, par2, None)
+  Parámetro: 3 -> posición 2
+IP: 180 -> Ejecutando: (GOSUB, potencia, None, 15019)
+    Asignando parámetro base (addr: 11003) = 8
+    Asignando parámetro exponente (addr: 11004) = 3
+  GOSUB: Llamando función 'potencia' en dirección 13
+    Valor de retorno se guardará en dirección: 15019
+IP: 13 -> Ejecutando: (=, 20000, None, 11006)
+  Asignación: direccion[11006] = 1
+IP: 14 -> Ejecutando: (=, 20000, None, 11005)
+  Asignación: direccion[11005] = 1
+IP: 15 -> Ejecutando: (+, 11004, 20000, 15003)
+  Aritmética: 3 + 1 = 4
+IP: 16 -> Ejecutando: (<, 11005, 15003, 19001)
+  Comparación: 1 < 4 = True
+IP: 17 -> Ejecutando: (gotof, 19001, None, 23)
+  No hay salto (condición verdadera)
+IP: 18 -> Ejecutando: (*, 11006, 11003, 15004)
+  Aritmética: 1 * 8 = 8
+IP: 19 -> Ejecutando: (=, 15004, None, 11006)
+  Asignación: direccion[11006] = 8
+IP: 20 -> Ejecutando: (+, 11005, 20000, 15005)
+  Aritmética: 1 + 1 = 2
+IP: 21 -> Ejecutando: (=, 15005, None, 11005)
+  Asignación: direccion[11005] = 2
+IP: 22 -> Ejecutando: (goto, None, None, 15)
+  Salto a: 15
+IP: 15 -> Ejecutando: (+, 11004, 20000, 15003)
+  Aritmética: 3 + 1 = 4
+IP: 16 -> Ejecutando: (<, 11005, 15003, 19001)
+  Comparación: 2 < 4 = True
+IP: 17 -> Ejecutando: (gotof, 19001, None, 23)
+  No hay salto (condición verdadera)
+IP: 18 -> Ejecutando: (*, 11006, 11003, 15004)
+  Aritmética: 8 * 8 = 64
+IP: 19 -> Ejecutando: (=, 15004, None, 11006)
+  Asignación: direccion[11006] = 64
+IP: 20 -> Ejecutando: (+, 11005, 20000, 15005)
+  Aritmética: 2 + 1 = 3
+IP: 21 -> Ejecutando: (=, 15005, None, 11005)
+  Asignación: direccion[11005] = 3
+IP: 22 -> Ejecutando: (goto, None, None, 15)
+  Salto a: 15
+IP: 15 -> Ejecutando: (+, 11004, 20000, 15003)
+  Aritmética: 3 + 1 = 4
+IP: 16 -> Ejecutando: (<, 11005, 15003, 19001)
+  Comparación: 3 < 4 = True
+IP: 17 -> Ejecutando: (gotof, 19001, None, 23)
+  No hay salto (condición verdadera)
+IP: 18 -> Ejecutando: (*, 11006, 11003, 15004)
+  Aritmética: 64 * 8 = 512
+IP: 19 -> Ejecutando: (=, 15004, None, 11006)
+  Asignación: direccion[11006] = 512
+IP: 20 -> Ejecutando: (+, 11005, 20000, 15005)
+  Aritmética: 3 + 1 = 4
+IP: 21 -> Ejecutando: (=, 15005, None, 11005)
+  Asignación: direccion[11005] = 4
+IP: 22 -> Ejecutando: (goto, None, None, 15)
+  Salto a: 15
+IP: 15 -> Ejecutando: (+, 11004, 20000, 15003)
+  Aritmética: 3 + 1 = 4
+IP: 16 -> Ejecutando: (<, 11005, 15003, 19001)
+  Comparación: 4 < 4 = False
+IP: 17 -> Ejecutando: (gotof, 19001, None, 23)
+  Salto condicional a: 23 (condición falsa)
+IP: 23 -> Ejecutando: (RETURN, 11006, None, None)
+  RETURN: Retornando valor 512
+    Valor guardado en dirección temporal: 15019
+  ENDFUNC: Retornando a dirección 181
+IP: 181 -> Ejecutando: (=, 15019, None, 5003)
+  Asignación: direccion[5003] = 512
+IP: 182 -> Ejecutando: (print, 5001, None, None)
+OUTPUT: 8
+IP: 183 -> Ejecutando: (print,  elevado a la 3 es: , None, None)
+OUTPUT:  elevado a la 3 es: 
+IP: 184 -> Ejecutando: (print, 5003, None, None)
+OUTPUT: 512
+IP: 185 -> Ejecutando: (ERA, maximo_de_tres, None, None)
+  ERA: Reservando espacio para función 'maximo_de_tres'
+IP: 186 -> Ejecutando: (parámetro, 5000, par1, None)
+  Parámetro: 12 -> posición 1
+IP: 187 -> Ejecutando: (parámetro, 5001, par2, None)
+  Parámetro: 8 -> posición 2
+IP: 188 -> Ejecutando: (parámetro, 5002, par3, None)
+  Parámetro: 15 -> posición 3
+IP: 189 -> Ejecutando: (GOSUB, maximo_de_tres, None, 15020)
+    Asignando parámetro a (addr: 11007) = 12
+    Asignando parámetro b (addr: 11008) = 8
+    Asignando parámetro c (addr: 11009) = 15
+  GOSUB: Llamando función 'maximo_de_tres' en dirección 25
+    Valor de retorno se guardará en dirección: 15020
+IP: 25 -> Ejecutando: (=, 11007, None, 11010)
+  Asignación: direccion[11010] = 12
+IP: 26 -> Ejecutando: (>, 11008, 11010, 19002)
+  Comparación: 8 > 12 = False
+IP: 27 -> Ejecutando: (gotof, 19002, None, 30)
+  Salto condicional a: 30 (condición falsa)
+IP: 30 -> Ejecutando: (>, 11009, 11010, 19003)
+  Comparación: 15 > 12 = True
+IP: 31 -> Ejecutando: (gotof, 19003, None, 34)
+  No hay salto (condición verdadera)
+IP: 32 -> Ejecutando: (=, 11009, None, 11010)
+  Asignación: direccion[11010] = 15
+IP: 33 -> Ejecutando: (goto, None, None, 34)
+  Salto a: 34
+IP: 34 -> Ejecutando: (RETURN, 11010, None, None)
+  RETURN: Retornando valor 15
+    Valor guardado en dirección temporal: 15020
+  ENDFUNC: Retornando a dirección 190
+IP: 190 -> Ejecutando: (=, 15020, None, 5003)
+  Asignación: direccion[5003] = 15
+IP: 191 -> Ejecutando: (print, El mayor de los tres números es: , None, None)
+OUTPUT: El mayor de los tres números es: 
+IP: 192 -> Ejecutando: (print, 5003, None, None)
+OUTPUT: 15
+IP: 193 -> Ejecutando: (ERA, calcular_promedio, None, None)
+  ERA: Reservando espacio para función 'calcular_promedio'
+IP: 194 -> Ejecutando: (parámetro, 5000, par1, None)
+  Parámetro: 12 -> posición 1
+IP: 195 -> Ejecutando: (parámetro, 5001, par2, None)
+  Parámetro: 8 -> posición 2
+IP: 196 -> Ejecutando: (parámetro, 5002, par3, None)
+  Parámetro: 15 -> posición 3
+IP: 197 -> Ejecutando: (GOSUB, calcular_promedio, None, 15021)
+    Asignando parámetro a (addr: 11022) = 12
+    Asignando parámetro b (addr: 11023) = 8
+    Asignando parámetro c (addr: 11024) = 15
+  GOSUB: Llamando función 'calcular_promedio' en dirección 97
+    Valor de retorno se guardará en dirección: 15021
+IP: 97 -> Ejecutando: (+, 11022, 11023, 15012)
+  Aritmética: 12 + 8 = 20
+IP: 98 -> Ejecutando: (+, 15012, 11024, 15013)
+  Aritmética: 20 + 15 = 35
+IP: 99 -> Ejecutando: (=, 15013, None, 11025)
+  Asignación: direccion[11025] = 35
+IP: 100 -> Ejecutando: (/, 11025, 20002, 17001)
+  Aritmética: 35 / 3 = 11.666666666666666
+IP: 101 -> Ejecutando: (=, 17001, None, 11026)
+  Asignación: direccion[11026] = 11.666666666666666
+IP: 102 -> Ejecutando: (RETURN, 11026, None, None)
+  RETURN: Retornando valor 11
+    Valor guardado en dirección temporal: 15021
+  ENDFUNC: Retornando a dirección 198
+IP: 198 -> Ejecutando: (=, 15021, None, 5005)
+  Asignación: direccion[5005] = 11
+IP: 199 -> Ejecutando: (print, El promedio de los tres números es: , None, None)
+OUTPUT: El promedio de los tres números es: 
+IP: 200 -> Ejecutando: (print, 5005, None, None)
+OUTPUT: 11
+IP: 201 -> Ejecutando: (print, , None, None)
+OUTPUT: 
+IP: 202 -> Ejecutando: (ERA, mostrar_estadisticas, None, None)
+  ERA: Reservando espacio para función 'mostrar_estadisticas'
+IP: 203 -> Ejecutando: (parámetro, 5000, par1, None)
+  Parámetro: 12 -> posición 1
+IP: 204 -> Ejecutando: (parámetro, 5001, par2, None)
+  Parámetro: 8 -> posición 2
+IP: 205 -> Ejecutando: (parámetro, 5002, par3, None)
+  Parámetro: 15 -> posición 3
+IP: 206 -> Ejecutando: (GOSUB, mostrar_estadisticas, None, None)
+    Asignando parámetro a (addr: 11027) = 12
+    Asignando parámetro b (addr: 11028) = 8
+    Asignando parámetro c (addr: 11029) = 15
+  GOSUB: Llamando función 'mostrar_estadisticas' en dirección 104
+IP: 104 -> Ejecutando: (+, 11027, 11028, 15014)
+  Aritmética: 12 + 8 = 20
+IP: 105 -> Ejecutando: (+, 15014, 11029, 15015)
+  Aritmética: 20 + 15 = 35
+IP: 106 -> Ejecutando: (=, 15015, None, 11030)
+  Asignación: direccion[11030] = 35
+IP: 107 -> Ejecutando: (ERA, maximo_de_tres, None, None)
+  ERA: Reservando espacio para función 'maximo_de_tres'
+IP: 108 -> Ejecutando: (parámetro, 11027, par1, None)
+  Parámetro: 0 -> posición 1
+IP: 109 -> Ejecutando: (parámetro, 11028, par2, None)
+  Parámetro: 0 -> posición 2
+IP: 110 -> Ejecutando: (parámetro, 11029, par3, None)
+  Parámetro: 0 -> posición 3
+IP: 111 -> Ejecutando: (GOSUB, maximo_de_tres, None, 15016)
+    Asignando parámetro a (addr: 11007) = 0
+    Asignando parámetro b (addr: 11008) = 0
+    Asignando parámetro c (addr: 11009) = 0
+  GOSUB: Llamando función 'maximo_de_tres' en dirección 25
+    Valor de retorno se guardará en dirección: 15016
+IP: 25 -> Ejecutando: (=, 11007, None, 11010)
+  Asignación: direccion[11010] = 0
+IP: 26 -> Ejecutando: (>, 11008, 11010, 19002)
+  Comparación: 0 > 0 = False
+IP: 27 -> Ejecutando: (gotof, 19002, None, 30)
+  Salto condicional a: 30 (condición falsa)
+IP: 30 -> Ejecutando: (>, 11009, 11010, 19003)
+  Comparación: 0 > 0 = False
+IP: 31 -> Ejecutando: (gotof, 19003, None, 34)
+  Salto condicional a: 34 (condición falsa)
+IP: 34 -> Ejecutando: (RETURN, 11010, None, None)
+  RETURN: Retornando valor 0
+    Valor guardado en dirección temporal: 15016
+  ENDFUNC: Retornando a dirección 112
+IP: 112 -> Ejecutando: (=, 15016, None, 11031)
+  Asignación: direccion[11031] = 0
+IP: 113 -> Ejecutando: (=, 11027, None, 11032)
+  Asignación: direccion[11032] = 12
+IP: 114 -> Ejecutando: (<, 11028, 11032, 19009)
+  Comparación: 8 < 12 = True
+IP: 115 -> Ejecutando: (gotof, 19009, None, 118)
+  No hay salto (condición verdadera)
+IP: 116 -> Ejecutando: (=, 11028, None, 11032)
+  Asignación: direccion[11032] = 8
+IP: 117 -> Ejecutando: (goto, None, None, 118)
+  Salto a: 118
+IP: 118 -> Ejecutando: (<, 11029, 11032, 19010)
+  Comparación: 15 < 8 = False
+IP: 119 -> Ejecutando: (gotof, 19010, None, 122)
+  Salto condicional a: 122 (condición falsa)
+IP: 122 -> Ejecutando: (print, === ESTADÍSTICAS ===, None, None)
+OUTPUT: === ESTADÍSTICAS ===
+IP: 123 -> Ejecutando: (print, Números: , None, None)
+OUTPUT: Números: 
+IP: 124 -> Ejecutando: (print, 11027, None, None)
+OUTPUT: 12
+IP: 125 -> Ejecutando: (print, , , None, None)
+OUTPUT: , 
+IP: 126 -> Ejecutando: (print, 11028, None, None)
+OUTPUT: 8
+IP: 127 -> Ejecutando: (print, , , None, None)
+OUTPUT: , 
+IP: 128 -> Ejecutando: (print, 11029, None, None)
+OUTPUT: 15
+IP: 129 -> Ejecutando: (print, Suma total: , None, None)
+OUTPUT: Suma total: 
+IP: 130 -> Ejecutando: (print, 11030, None, None)
+OUTPUT: 35
+IP: 131 -> Ejecutando: (print, Número mayor: , None, None)
+OUTPUT: Número mayor: 
+IP: 132 -> Ejecutando: (print, 11031, None, None)
+OUTPUT: 0
+IP: 133 -> Ejecutando: (print, Número menor: , None, None)
+OUTPUT: Número menor: 
+IP: 134 -> Ejecutando: (print, 11032, None, None)
+OUTPUT: 8
+IP: 135 -> Ejecutando: (ERA, calcular_promedio, None, None)
+  ERA: Reservando espacio para función 'calcular_promedio'
+IP: 136 -> Ejecutando: (parámetro, 11027, par1, None)
+  Parámetro: 0 -> posición 1
+IP: 137 -> Ejecutando: (parámetro, 11028, par2, None)
+  Parámetro: 0 -> posición 2
+IP: 138 -> Ejecutando: (parámetro, 11029, par3, None)
+  Parámetro: 0 -> posición 3
+IP: 139 -> Ejecutando: (GOSUB, calcular_promedio, None, 15017)
+    Asignando parámetro a (addr: 11022) = 0
+    Asignando parámetro b (addr: 11023) = 0
+    Asignando parámetro c (addr: 11024) = 0
+  GOSUB: Llamando función 'calcular_promedio' en dirección 97
+    Valor de retorno se guardará en dirección: 15017
+IP: 97 -> Ejecutando: (+, 11022, 11023, 15012)
+  Aritmética: 0 + 0 = 0
+IP: 98 -> Ejecutando: (+, 15012, 11024, 15013)
+  Aritmética: 0 + 0 = 0
+IP: 99 -> Ejecutando: (=, 15013, None, 11025)
+  Asignación: direccion[11025] = 0
+IP: 100 -> Ejecutando: (/, 11025, 20002, 17001)
+  Aritmética: 0 / 3 = 0.0
+IP: 101 -> Ejecutando: (=, 17001, None, 11026)
+  Asignación: direccion[11026] = 0.0
+IP: 102 -> Ejecutando: (RETURN, 11026, None, None)
+  RETURN: Retornando valor 0
+    Valor guardado en dirección temporal: 15017
+  ENDFUNC: Retornando a dirección 140
+IP: 140 -> Ejecutando: (print, Promedio: , None, None)
+OUTPUT: Promedio: 
+IP: 141 -> Ejecutando: (print, 15017, None, None)
+OUTPUT: 0
+IP: 142 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 207
+IP: 207 -> Ejecutando: (print, , None, None)
+OUTPUT: 
+IP: 208 -> Ejecutando: (print, === FIN DEL PROGRAMA ===, None, None)
+OUTPUT: === FIN DEL PROGRAMA ===
+IP: 209 -> Ejecutando: (END, None, None, None)
+  END: Terminando programa
+=== EJECUCIÓN TERMINADA ===
+
+=== ESTADO DE LA MEMORIA SEGMENTADA ===
+Memoria Global Enteros (5000-7999):
+  [5000]: 12
+  [5001]: 8
+  [5002]: 15
+  [5003]: 15
+  [5004]: 5
+  [5005]: 11
+Memoria Global Flotantes (8000-10999):
+Memoria Local Enteros (11000-12999):
+Memoria Local Flotantes (13000-14999):
+Memoria Temporal Enteros (15000-16999):
+  [15000]: 6
+  [15001]: 120
+  [15002]: 6
+  [15003]: 4
+  [15004]: 512
+  [15005]: 4
+  [15006]: 6
+  [15007]: 40
+  [15008]: 6
+  [15009]: 20
+  [15010]: 4
+  [15011]: 96
+  [15012]: 0
+  [15013]: 0
+  [15014]: 20
+  [15015]: 35
+  [15016]: 0
+  [15017]: 0
+  [15018]: 120
+  [15019]: 512
+  [15020]: 15
+  [15021]: 11
+Memoria Temporal Flotantes (17000-18999):
+  [17000]: 1.5
+  [17001]: 0.0
+Memoria Temporal Booleanos (19000-19999):
+  [19000]: False
+  [19001]: False
+  [19002]: False
+  [19003]: False
+  [19004]: False
+  [19005]: True
+  [19007]: True
+  [19008]: True
+  [19009]: True
+  [19010]: False
+Constantes Enteras (20000-20499):
+  [20000]: 1
+  [20001]: 0
+  [20002]: 3
+  [20003]: 12
+  [20004]: 8
+  [20005]: 15
+  [20006]: 5
+Constantes Flotantes (20500+):
+========================================
+
+RESULTADOS ESPERADOS:
+  - === CALCULADORA AVANZADA ===
+  - Números de trabajo:
+  - 12
+  - ,
+  - 8
+  - ,
+  - 15
+  - Operaciones básicas entre
+  - 12
+  - y
+  - 8
+  - Suma:
+  - 20
+  - Resta:
+  - 4
+  - Multiplicación:
+  - 96
+  - División:
+  - 1
+  - Analizando el número:
+  - 12
+  - El número es positivo
+  - El número es par
+  - Tabla de multiplicar del
+  - 8
+  - 8
+  -  x 
+  - 1
+  -  = 
+  - 8
+  - 8
+  -  x 
+  - 5
+  -  = 
+  - 40
+  - Factorial de
+  - 5
+  - es:
+  - 120
+  - 8
+  - elevado a la 3 es:
+  - 512
+  - El mayor de los tres números es:
+  - 15
+  - El promedio de los tres números es:
+  - 11
+  - === ESTADÍSTICAS ===
+  - Números:
+  - 12
+  - ,
+  - 8
+  - ,
+  - 15
+  - Suma total:
+  - 35
+  - Número mayor:
+  - 15
+  - Número menor:
+  - 8
+  - Promedio:
+  - 11
+  - === FIN DEL PROGRAMA ===
+
+✅ PRUEBA EXITOSA
+------------------------------------------------------------
+
 ================================================================================
 RESUMEN DE PRUEBAS
 ================================================================================
-Total de pruebas: 11
-Pruebas exitosas: 11
+Total de pruebas: 12
+Pruebas exitosas: 12
 Pruebas fallidas: 0
 Porcentaje de éxito: 100.0%
 ================================================================================
