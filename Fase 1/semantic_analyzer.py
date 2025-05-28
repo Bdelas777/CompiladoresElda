@@ -152,11 +152,12 @@ class SemanticAnalyzer:
         self.temp_vars = []
         return True
     
-    def declare_function(self,func_id,return_type=Type.VOID):
+    def declare_function(self, func_id, return_type=Type.VOID):
         if func_id in self.function_directory and not self.allow_function_redefinition:
             return self.add_error(f"Function '{func_id}' already declared")
-        new_function=Function(func_id,return_type)
-        self.function_directory[func_id]=new_function
+        
+        new_function = Function(func_id, return_type)  # Pasar el return_type
+        self.function_directory[func_id] = new_function
         self.push_scope(func_id)
         print(f"Declared function '{func_id}' with return type {return_type}, scope changed to: {self.current_scope}")
         return True

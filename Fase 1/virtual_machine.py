@@ -101,6 +101,18 @@ class ExecutionMemory:
         self.temp_float_memory.clear()
         self.temp_bool_memory.clear()
 
+    def save_local_context(self):
+        """Guarda el contexto local actual"""
+        return {
+            'local_int': self.local_int_memory.copy(),
+            'local_float': self.local_float_memory.copy()
+        }
+    
+    def restore_local_context(self, context):
+        """Restaura un contexto local"""
+        self.local_int_memory = context['local_int']
+        self.local_float_memory = context['local_float']
+
 class VirtualMachine:
     """Máquina Virtual para ejecutar cuádruplos con memoria segmentada"""
     def __init__(self, quadruples, constants_table, function_directory):
@@ -113,6 +125,9 @@ class VirtualMachine:
         # Stack para manejar parámetros de funciones
         self.param_stack = []
         self.current_function = None
+        
+        # Stack para contextos de memoria local
+        self.memory_context_stack = []
         
         # Inicializar tabla de constantes en memoria
         for value, address in constants_table.items():
@@ -133,6 +148,7 @@ class VirtualMachine:
             self.instruction_pointer += 1
         
         print("=== EJECUCIÓN TERMINADA ===")
+    
     def _execute_end(self, quad):
         """Termina la ejecución del programa"""
         print("  END: Terminando programa")
@@ -256,8 +272,15 @@ class VirtualMachine:
         """Reserva espacio para función (ERA)"""
         func_name = quad.left_operand
         print(f"  ERA: Reservando espacio para función '{func_name}'")
+        
+        # Guardar contexto de memoria local actual
+        if hasattr(self, 'current_function') and self.current_function:
+            context = self.memory.save_local_context()
+            self.memory_context_stack.append(context)
+        
         # Limpiar memoria local para nueva función
         self.memory.clear_local_memory()
+        
         # Preparar para recibir parámetros
         self.param_stack = []
         self.current_function = func_name
@@ -274,6 +297,8 @@ class VirtualMachine:
     def _execute_gosub(self, quad):
         """Llama a función"""
         func_name = quad.left_operand
+        return_address = quad.result  # Dirección donde guardar el valor de retorno
+        
         if func_name in self.function_directory:
             func_info = self.function_directory[func_name]
             func_start = func_info.start_address
@@ -295,18 +320,34 @@ class VirtualMachine:
                         self.memory.set_value(param_address, param_value)
                         print(f"    Asignando parámetro {param_vars[i][0]} (addr: {param_address}) = {param_value}")
             
-            # Guardar contexto actual
-            self.call_stack.append(self.instruction_pointer + 1)
+            # Guardar contexto actual (incluyendo dirección de retorno si existe)
+            context = {
+                'return_address': self.instruction_pointer + 1,
+                'return_value_address': return_address,
+                'function_name': func_name
+            }
+            self.call_stack.append(context)
+            
             self.instruction_pointer = func_start - 1
             print(f"  GOSUB: Llamando función '{func_name}' en dirección {func_start}")
+            if return_address:
+                print(f"    Valor de retorno se guardará en dirección: {return_address}")
         return True
     
     def _execute_endfunc(self, quad):
         """Termina función"""
         if self.call_stack:
-            self.instruction_pointer = self.call_stack.pop() - 1
-            print(f"  ENDFUNC: Retornando a dirección {self.instruction_pointer + 1}")
-            self.memory.clear_local_memory()
+            context = self.call_stack.pop()
+            self.instruction_pointer = context['return_address'] - 1
+            print(f"  ENDFUNC: Retornando a dirección {context['return_address']}")
+            
+            # Restaurar contexto de memoria local anterior si existe
+            if self.memory_context_stack:
+                previous_context = self.memory_context_stack.pop()
+                self.memory.restore_local_context(previous_context)
+            else:
+                self.memory.clear_local_memory()
+            
             # Limpiar contexto de función
             self.param_stack = []
             self.current_function = None
@@ -314,11 +355,20 @@ class VirtualMachine:
     
     def _execute_return(self, quad):
         """Retorna de función con valor"""
-        if quad.left_operand:
+        if quad.left_operand is not None:
             return_value = self.memory.get_value(quad.left_operand)
             print(f"  RETURN: Retornando valor {return_value}")
+            
+            # Si hay un contexto de llamada y dirección de retorno, guardar el valor
+            if self.call_stack:
+                context = self.call_stack[-1]  # Peek sin hacer pop
+                if context.get('return_value_address'):
+                    self.memory.set_value(context['return_value_address'], return_value)
+                    print(f"    Valor guardado en dirección temporal: {context['return_value_address']}")
         else:
             print(f"  RETURN: Retorno sin valor")
+        
+        # Continuar con ENDFUNC
         return self._execute_endfunc(quad)
     
     def print_memory_state(self):
