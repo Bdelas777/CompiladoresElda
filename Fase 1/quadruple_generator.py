@@ -256,7 +256,18 @@ class QuadrupleGenerator:
 
     def generate_gosub_quad(self, func_name):
         """Genera cuádruplo GOSUB para llamar función"""
-        quad = Quadruple('GOSUB', func_name, None, None)
+        # Obtener información de la función
+        func_info = self.semantic.function_directory.get(func_name)
+        if func_info and func_info.return_type != Type.VOID:
+            # Si la función retorna un valor, crear una variable temporal para almacenarlo
+            temp_result = self.new_temp(func_info.return_type)
+            quad = Quadruple('GOSUB', func_name, None, temp_result)
+            # Guardar el resultado temporal en la pila para que pueda ser usado
+            self.PilaO.append(temp_result)
+            self.PTypes.append(func_info.return_type)
+        else:
+            quad = Quadruple('GOSUB', func_name, None, None)
+        
         self.Quads.append(quad)
         self.quad_counter += 1
         return self.quad_counter - 1
@@ -274,12 +285,21 @@ class QuadrupleGenerator:
         self.Quads.append(quad)
         self.quad_counter += 1
         return self.quad_counter - 1
+    
+    def generate_assignment_from_function_quad(self, target_var, function_result_var):
+        """Genera asignación desde el resultado de una función"""
+        target_address = self.get_operand_address(target_var)
+        # El resultado de la función se almacena en una variable especial
+        result_address = self.get_operand_address(function_result_var)
+        quad = Quadruple('=', result_address, None, target_address)
+        self.Quads.append(quad)
+        self.quad_counter += 1
+        return True
 
     def generate_return_quad(self, return_value=None):
-        """Genera cuádruplo RETURN"""
+        """Genera cuádruplo RETURN - ya existe pero asegurar que esté correcto"""
         if return_value:
-            return_address = self.get_operand_address(return_value)
-            quad = Quadruple('RETURN', return_address, None, None)
+            quad = Quadruple('RETURN', return_value, None, None)
         else:
             quad = Quadruple('RETURN', None, None, None)
         self.Quads.append(quad)

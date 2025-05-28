@@ -21,6 +21,11 @@ def get_operand_name(expr_node):
         elif expr_node[0] == 'temp_result':
             result = expr_node[1]
             return result
+        elif expr_node[0] == 'function_call_expr':  # Agregar esta línea
+            # El resultado de la función está en la pila de operandos
+            if quad_gen.PilaO:
+                result = quad_gen.PilaO[-1]
+                return result
         elif expr_node[0] in ['operation', 'comparison', 'unary']:
             if quad_gen.PilaO:
                 result = quad_gen.PilaO[-1]
@@ -114,10 +119,11 @@ def p_mas_ids(p):
             
 def p_type(p):
     '''type : TOKEN_INT
-    | TOKEN_FLOAT'''
-    if p[1] not in ['int', 'float']:
-        print(f"Error: Tipo inválido '{p[1]}', se esperaba 'int' o 'float'")
-        semantic.add_error(f"Invalid type: '{p[1]}', expected 'int' or 'float'")
+    | TOKEN_FLOAT
+    | TOKEN_VOID'''  # Agregar TOKEN_VOID aquí
+    if p[1] not in ['int', 'float', 'void']:
+        print(f"Error: Tipo inválido '{p[1]}', se esperaba 'int', 'float' o 'void'")
+        semantic.add_error(f"Invalid type: '{p[1]}', expected 'int', 'float' or 'void'")
         p[0] = 'int'  
     else:
         p[0] = p[1]
@@ -143,8 +149,20 @@ def p_statement(p):
         | cycle
         | f_call
         | print
-        | for_cycle'''
+        | for_cycle
+        | return_stmt'''  # Agregar return_stmt
     p[0] = p[1]
+
+def p_return_stmt(p):
+    '''return_stmt : TOKEN_RETURN expresion TOKEN_SEMICOLON'''
+    if len(p) == 4:  # return expresion;
+        return_value = get_operand_name(p[2])
+        return_address = quad_gen.get_operand_address(return_value)
+        quad_gen.generate_return_quad(return_address)
+        p[0] = ('return', p[2])
+    else:  # return;
+        quad_gen.generate_return_quad()
+        p[0] = ('return', None)
     
 def p_print(p):
     '''print : TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON'''
@@ -387,7 +405,8 @@ def p_opciones_mas_menos(p):
     
 def p_id_cte(p):
     '''id_cte : TOKEN_ID
-    | cte'''
+    | cte
+    | function_call_expr'''  # Agregar esta línea
     if isinstance(p[1], tuple):
         p[0] = p[1]
     else:
@@ -401,8 +420,29 @@ def p_id_cte(p):
             else:
                 p[0] = ('id', p[1])
 
+def p_function_call_expr(p):
+    '''function_call_expr : TOKEN_ID era_quad TOKEN_LPAREN def_exp TOKEN_RPAREN gosub_quad_expr'''
+    func = semantic.check_function(p[1])
+    if func:
+        args = p[4] if p[4] else []
+        if len(args) != len(func.parameters):
+            semantic.add_error(f"Function '{p[1]}' expects {len(func.parameters)} arguments, got {len(args)}")
+        else:
+            for i, (arg, param) in enumerate(zip(args, func.parameters)):
+                arg_type = get_expr_type(arg)
+                param_type = param.type
+                result_type = get_result_type(param_type, arg_type, Operation.ASSIGN)
+                if result_type == Type.ERROR:
+                    semantic.add_error(f"Parameter type mismatch in call to '{p[1]}': Parameter {i+1} expects {param_type}, got {arg_type}")
+    
+    # La función retorna una expresión que puede ser usada
+    p[0] = ('function_call_expr', p[1], p[4] if p[4] else [])
+    if func and func.return_type != Type.VOID:
+        p[0] = set_expr_type(p[0], func.return_type)
+
 def p_funcs(p):
-    '''funcs : TOKEN_VOID TOKEN_ID save_func_start TOKEN_LPAREN tipo TOKEN_RPAREN TOKEN_LCOL var body TOKEN_RCOL end_func TOKEN_SEMICOLON'''
+    '''funcs : type TOKEN_ID save_func_start TOKEN_LPAREN tipo TOKEN_RPAREN TOKEN_LCOL var body TOKEN_RCOL end_func TOKEN_SEMICOLON'''
+    # Cambiar TOKEN_VOID por type para permitir int/float/void
     func = semantic.check_function(p[2])    
     params = p[5] if p[5] else []   
     p[0] = ('function', p[2], params, p[8], p[9])
@@ -410,7 +450,17 @@ def p_funcs(p):
 def p_save_func_start(p):
     '''save_func_start : empty'''
     function_name = p[-1]  
-    semantic.declare_function(function_name)
+    return_type_str = p[-2]  # Capturar el tipo de retorno
+    
+    # Convertir string a Type enum
+    if return_type_str == 'int':
+        return_type = Type.INT
+    elif return_type_str == 'float':
+        return_type = Type.FLOAT
+    else:
+        return_type = Type.VOID
+        
+    semantic.declare_function(function_name, return_type)
     quad_gen.save_function_start(function_name)
     p[0] = None
 
@@ -487,6 +537,12 @@ def p_gosub_quad(p):
     function_name = p[-5]
     quad_gen.generate_gosub_quad(function_name)
     p[0] = None
+
+def p_gosub_quad_expr(p):
+    '''gosub_quad_expr : empty'''
+    function_name = p[-5]
+    quad_gen.generate_gosub_quad(function_name)
+    p[0] = None
     
 def p_def_exp(p):
     '''def_exp : expresion param_quad coma2
@@ -536,12 +592,25 @@ def p_assign(p):
 
 def p_for_cycle(p):
     '''for_cycle : TOKEN_FOR TOKEN_LPAREN for_init TOKEN_SEMICOLON saveQuadFor expresion GotoFFor TOKEN_SEMICOLON for_increment TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON'''
+    # Estructura del FOR:
+    # for (init; condition; increment) do { body };
+    
+    # p[3] = init (assignment)
+    # p[5] = saveQuadFor (posición para el loop)
+    # p[6] = condition (expresión)
+    # p[7] = GotoFFor (índice del gotof)
+    # p[9] = increment (assignment)
+    # p[12] = body
     increment_quad_pos = len(quad_gen.Quads)
+    
+    # Generar cuádruplos para el incremento
     if p[9]:  # Si hay incremento
         if p[9][0] == 'assign':
             var_name = p[9][1] 
             expr_result = get_operand_name(p[9][2])
             quad_gen.generate_assignment_quad(var_name, expr_result)
+    
+    # Saltar de vuelta al inicio del loop (a la condición)
     loop_start = p[5]  # Posición guardada antes de la condición
     quad_gen.generate_goto_quad()
     quad_gen.fill_quad(len(quad_gen.Quads) - 1, loop_start)
@@ -573,12 +642,10 @@ def p_for_increment(p):
 
 def p_saveQuadFor(p):
     '''saveQuadFor : empty'''
-    # Guarda la posición actual para el loop de vuelta
     p[0] = len(quad_gen.Quads)
 
 def p_GotoFFor(p):
     '''GotoFFor : empty'''
-    # Genera GOTOF basado en la condición
     condition = get_operand_name(p[-1])  
     gotof_index = quad_gen.generate_gotof_quad(condition)
     p[0] = gotof_index
@@ -588,8 +655,8 @@ def p_empty(p):
     p[0] = None
     
 def p_error(p):
-    if not'main' in semantic.function_directory:
-        raise SyntaxError("Syntax error in main function")
+    # if not'main' in semantic.function_directory:
+    #     raise SyntaxError("Syntax error in main function")
     if p:
         print(f"Syntax error at '{p.value}', line {p.lineno}")
         error_msg = f"Syntax error at '{p.value}' on line {p.lineno}"
@@ -628,7 +695,6 @@ def set_expr_type(expr_node, expr_type):
     
 def get_expr_type(expr_node):
     if isinstance(expr_node, tuple):
-        # Manejar temp_result
         if expr_node[0] == 'temp_result':
             for i in range(len(expr_node) - 1):
                 if expr_node[i] == 'type' and i + 1 < len(expr_node):
@@ -662,10 +728,11 @@ def get_expr_type(expr_node):
             return get_result_type(left_type, right_type, op)
         elif expr_node[0] == 'comparison':
             return Type.BOOL
-        elif expr_node[0] == 'function_call_expr':
+        elif expr_node[0] == 'function_call_expr':  # Agregar este bloque
             func = semantic.check_function(expr_node[1])
             if func:
                 return func.return_type
+            return Type.ERROR
     return Type.ERROR
     
 parser = yacc.yacc(debug=False)
@@ -681,8 +748,6 @@ def parse_program(code):
 def execute_program(code):
     """Parsea y ejecuta un programa completo"""
     from virtual_machine import VirtualMachine
-    
-    # Parsear el programa
     result, errors = parse_program(code)
     
     if errors:
@@ -690,18 +755,12 @@ def execute_program(code):
         for error in errors:
             print(f"  {error}")
         return None
-    
-    # Obtener datos para ejecución
     execution_data = quad_gen.get_execution_data()
-    
-    # Crear y ejecutar máquina virtual
     vm = VirtualMachine(
         execution_data['quadruples'],
         execution_data['constants_table'],
         execution_data['function_directory']
     )
-    
-    # Ejecutar programa
     vm.execute()
     vm.print_memory_state()
     
@@ -709,19 +768,37 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = """
-program test_for;
+ program funciones;
 var
-    i, suma : int;
-main {
-    suma = 0;
+    resultado, num1, num2 ,x: int;
+ 
+int sumar(a : int, b : int)
+ [
+     var res : int;
+     {
+         res = a + b;
+         print("La suma es: ", res);
+         return res;
+     }
+ ];
+ 
+ void multiplicar(c : int, d : int)
+ [
+     var res : int;
+     {
+         res = c * d;
+         print("El producto es: ", res);
+     }
+ ];
+ 
+ main {
+     num1 = 8;
+     num2 = 3;
+     
+    x =  sumar(num1, num2);
+    print(x);
     
-    for (i = 1; i < 5; i = i + 1) do {
-        suma = suma + i;
-        print("i = ", i, ", suma = ", suma);
-    };
-    
-    print("Suma final: ", suma);
-}
+ }
 end
 """
     execute_program(test_code)

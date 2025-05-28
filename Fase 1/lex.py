@@ -15,7 +15,8 @@ reserved = {
     'void': 'TOKEN_VOID',
     'main': 'TOKEN_MAIN',
     'end': 'TOKEN_END',
-    'for':  'TOKEN_FOR'
+    'for':  'TOKEN_FOR',
+    'return': 'TOKEN_RETURN',
 }
 
 # Lista de los tokens
@@ -41,7 +42,6 @@ tokens = [
     'TOKEN_RBRACE',
     'TOKEN_LCOL',   # Added TOKEN_LCOL
     'TOKEN_RCOL',   # Added TOKEN_RCOL
-    'TOKEN_FOR',
 ] + list(reserved.values())
 
 # Expresiones regulares simples
