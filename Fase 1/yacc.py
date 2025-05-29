@@ -4,10 +4,16 @@ from semantic_cube import Type, Operation, get_result_type
 from semantic_analyzer import SemanticAnalyzer
 from quadruple_generator import QuadrupleGenerator, Quadruple
 
+# Instanciamos el analizador semántico y el generador de cuádruplos
 semantic = SemanticAnalyzer()
 quad_gen = QuadrupleGenerator(semantic)
 
 def get_operand_name(expr_node):
+    """
+    Extrae el nombre, valor o dirección de un operando a partir de un nodo de expresión.
+    Esto es útil para traducir los nodos del árbol de sintaxis a operandos concretos
+    que se usan en los cuádruplos.
+    """
     if isinstance(expr_node, tuple):
         if expr_node[0] == 'id':
             result = expr_node[1]
@@ -21,7 +27,7 @@ def get_operand_name(expr_node):
         elif expr_node[0] == 'temp_result':
             result = expr_node[1]
             return result
-        elif expr_node[0] == 'function_call_expr':  # Agregar esta línea
+        elif expr_node[0] == 'function_call_expr':
             # El resultado de la función está en la pila de operandos
             if quad_gen.PilaO:
                 result = quad_gen.PilaO[-1]
@@ -37,6 +43,10 @@ def get_operand_name(expr_node):
 
 def p_programa(p):
     '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON saveGo dec_var dec_funcs TOKEN_MAIN fillMain body TOKEN_END'''
+    """
+    Regla principal del programa.
+    Aquí se inicializa el análisis semántico y se generan los cuádruplos de fin de programa.
+    """
     semantic.program_start(p[2])
     p[0] = ('programa', p[2], p[5], p[6], p[9])
     semantic.program_end()
@@ -45,30 +55,42 @@ def p_programa(p):
 
 def p_saveGo(p):
     '''saveGo : empty'''
+    """
+    Guarda la posición del cuádruplo GOTO para saltar al main.
+    """
     goto_index = quad_gen.generate_goto_quad()
     quad_gen.main_goto_index = goto_index
     p[0] = goto_index
 
 def p_fillMain(p):
     '''fillMain : empty'''
+    """
+    Marca el inicio del main y rellena el GOTO para que el flujo del programa
+    salte correctamente al bloque principal.
+    """
     semantic.declare_main()
     if 'main' in semantic.function_directory:
         semantic.function_directory['main'].start_address = len(quad_gen.Quads)
     else:
-        
         semantic.add_error("'main' function not declared")
     if hasattr(quad_gen, 'main_goto_index'):
         quad_gen.fill_quad(quad_gen.main_goto_index, len(quad_gen.Quads))
     p[0] = None
-    
+
 def p_dec_var(p):
     '''dec_var : vars
     | empty'''
+    """
+    Declaración de variables globales.
+    """
     p[0] = p[1]
-    
+
 def p_dec_funcs(p):
     '''dec_funcs : funcs dec_funcs
     | empty'''
+    """
+    Declaración de funciones del usuario.
+    """
     if p[1] == None:
         p[0] = []
     else:
@@ -76,18 +98,24 @@ def p_dec_funcs(p):
             p[0] = [p[1]] + p[2]
         else:
             p[0] = [p[1]]
-        
+
 def p_vars(p):
     '''vars : TOKEN_VAR variable rep_var'''
+    """
+    Declaración de variables (puede ser una o varias).
+    """
     semantic.start_var_declaration()
     if p[3] == None:
         p[0] = ('vars', [p[2]])
     else:
         p[0] = ('vars', [p[2]] + p[3])
-        
+
 def p_rep_var(p):
     '''rep_var  : variable rep_var
     |  empty'''
+    """
+    Permite declarar varias variables del mismo tipo en una sola línea.
+    """
     if p[1] == None:
         p[0] = None
     else:
@@ -95,9 +123,12 @@ def p_rep_var(p):
             p[0] = [p[1]]
         else:
             p[0] = [p[1]] + p[2]
-        
+
 def p_variable(p):
     '''variable : TOKEN_ID mas_ids TOKEN_COLON type TOKEN_SEMICOLON'''
+    """
+    Declara una variable (o varias, separadas por coma) de un tipo específico.
+    """
     semantic.add_id_to_temp_list(p[1])
     ids = [p[1]] + (p[2] if p[2] else [])
     for id in ids[1:]:
@@ -105,10 +136,13 @@ def p_variable(p):
     semantic.set_current_type(p[4])
     semantic.add_vars_to_table()
     p[0] = ('variable', ids, p[4])
-    
+
 def p_mas_ids(p):
     '''mas_ids : TOKEN_COMMA TOKEN_ID mas_ids
     |  empty'''
+    """
+    Permite agregar más identificadores a la declaración de variables.
+    """
     if p[1] == None:
         p[0] = []
     else:
@@ -649,8 +683,7 @@ def p_empty(p):
     p[0] = None
     
 def p_error(p):
-    if not'main' in semantic.function_directory:
-        raise SyntaxError("Syntax error in main function")
+    
     if p:
         print(f"Syntax error at '{p.value}', line {p.lineno}")
         error_msg = f"Syntax error at '{p.value}' on line {p.lineno}"
