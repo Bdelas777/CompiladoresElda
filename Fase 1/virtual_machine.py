@@ -243,7 +243,7 @@ class VirtualMachine:
     
     def _execute_goto(self, quad):
         """Ejecuta salto incondicional"""
-        self.instruction_pointer = quad.result - 1  # -1 porque se incrementará
+        self.instruction_pointer = quad.result - 1 
         print(f"  Salto a: {quad.result}")
         return True
     

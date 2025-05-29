@@ -1,7 +1,6 @@
-# lex.py - Scanner/Lexer for BabyDuck language
 import ply.lex as lex
 
-# Palabras que estan reservadas
+# Definimos los tokens que tenemos reservados en nuestro lenguaje
 reserved = {
     'program': 'TOKEN_PROGRAM',
     'var': 'TOKEN_VAR',
@@ -19,7 +18,7 @@ reserved = {
     'return': 'TOKEN_RETURN',
 }
 
-# Lista de los tokens
+# Lista de tokens de operaciones y delimitadores mas tokens reservados
 tokens = [
     'TOKEN_ID',
     'TOKEN_CTE_INT',
@@ -40,11 +39,11 @@ tokens = [
     'TOKEN_RPAREN',
     'TOKEN_LBRACE',
     'TOKEN_RBRACE',
-    'TOKEN_LCOL',   # Added TOKEN_LCOL
-    'TOKEN_RCOL',   # Added TOKEN_RCOL
+    'TOKEN_LCOL',   
+    'TOKEN_RCOL',   
 ] + list(reserved.values())
 
-# Expresiones regulares simples
+# Expresiones regulares para los tokens de operaciones y delimitadores
 t_TOKEN_PLUS = r'\+'
 t_TOKEN_MINUS = r'-'
 t_TOKEN_MULT = r'\*'
@@ -60,8 +59,8 @@ t_TOKEN_LPAREN = r'\('
 t_TOKEN_RPAREN = r'\)'
 t_TOKEN_LBRACE = r'\{'
 t_TOKEN_RBRACE = r'\}'
-t_TOKEN_LCOL = r'\['   # Added definition for [
-t_TOKEN_RCOL = r'\]'   # Added definition for ]
+t_TOKEN_LCOL = r'\['   
+t_TOKEN_RCOL = r'\]' 
 
 # Expresiones regulares para ids
 def t_TOKEN_ID(t):
@@ -74,6 +73,7 @@ def t_TOKEN_CTE_FLOAT(t):
     r'[0-9]+\.[0-9]+'
     t.value = float(t.value)
     return t
+
 #Expresiones regulares de enteros
 def t_TOKEN_CTE_INT(t):
     r'[0-9]+'
