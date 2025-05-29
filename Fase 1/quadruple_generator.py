@@ -261,7 +261,7 @@ class QuadrupleGenerator:
         if func_info and func_info.return_type != Type.VOID:
             # Si la función retorna un valor, crear una variable temporal para almacenarlo
             temp_result = self.new_temp(func_info.return_type)
-            quad = Quadruple('GOSUB', func_name, None, temp_result)
+            quad = Quadruple('GOSUB', func_name, None, None)
             # Guardar el resultado temporal en la pila para que pueda ser usado
             self.PilaO.append(temp_result)
             self.PTypes.append(func_info.return_type)

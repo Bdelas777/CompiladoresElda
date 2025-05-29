@@ -117,13 +117,23 @@ def p_mas_ids(p):
         else:
             p[0] = [p[2]] + p[3]
             
-def p_type(p):
-    '''type : TOKEN_INT
+def p_type_fun(p):
+    '''type_fun : TOKEN_INT
     | TOKEN_FLOAT
-    | TOKEN_VOID'''  # Agregar TOKEN_VOID aquí
+    | TOKEN_VOID''' 
     if p[1] not in ['int', 'float', 'void']:
         print(f"Error: Tipo inválido '{p[1]}', se esperaba 'int', 'float' o 'void'")
         semantic.add_error(f"Invalid type: '{p[1]}', expected 'int', 'float' or 'void'")
+        p[0] = 'int'  
+    else:
+        p[0] = p[1]
+        
+def p_type(p):
+    '''type : TOKEN_INT
+    | TOKEN_FLOAT'''
+    if p[1] not in ['int', 'float']:
+        print(f"Error: Tipo inválido '{p[1]}', se esperaba 'int' o 'float'")
+        semantic.add_error(f"Invalid type: '{p[1]}', expected 'int' or 'float'")
         p[0] = 'int'  
     else:
         p[0] = p[1]
@@ -150,17 +160,17 @@ def p_statement(p):
         | f_call
         | print
         | for_cycle
-        | return_stmt'''  # Agregar return_stmt
+        | return_stmt'''  
     p[0] = p[1]
 
 def p_return_stmt(p):
     '''return_stmt : TOKEN_RETURN expresion TOKEN_SEMICOLON'''
-    if len(p) == 4:  # return expresion;
+    if len(p) == 4: 
         return_value = get_operand_name(p[2])
         return_address = quad_gen.get_operand_address(return_value)
         quad_gen.generate_return_quad(return_address)
         p[0] = ('return', p[2])
-    else:  # return;
+    else: 
         quad_gen.generate_return_quad()
         p[0] = ('return', None)
     
@@ -420,28 +430,10 @@ def p_id_cte(p):
             else:
                 p[0] = ('id', p[1])
 
-def p_function_call_expr(p):
-    '''function_call_expr : TOKEN_ID era_quad TOKEN_LPAREN def_exp TOKEN_RPAREN gosub_quad_expr'''
-    func = semantic.check_function(p[1])
-    if func:
-        args = p[4] if p[4] else []
-        if len(args) != len(func.parameters):
-            semantic.add_error(f"Function '{p[1]}' expects {len(func.parameters)} arguments, got {len(args)}")
-        else:
-            for i, (arg, param) in enumerate(zip(args, func.parameters)):
-                arg_type = get_expr_type(arg)
-                param_type = param.type
-                result_type = get_result_type(param_type, arg_type, Operation.ASSIGN)
-                if result_type == Type.ERROR:
-                    semantic.add_error(f"Parameter type mismatch in call to '{p[1]}': Parameter {i+1} expects {param_type}, got {arg_type}")
-    
-    # La función retorna una expresión que puede ser usada
-    p[0] = ('function_call_expr', p[1], p[4] if p[4] else [])
-    if func and func.return_type != Type.VOID:
-        p[0] = set_expr_type(p[0], func.return_type)
+
 
 def p_funcs(p):
-    '''funcs : type TOKEN_ID save_func_start TOKEN_LPAREN tipo TOKEN_RPAREN TOKEN_LCOL var body TOKEN_RCOL end_func TOKEN_SEMICOLON'''
+    '''funcs : type_fun TOKEN_ID save_func_start TOKEN_LPAREN tipo TOKEN_RPAREN TOKEN_LCOL var body TOKEN_RCOL end_func TOKEN_SEMICOLON'''
     # Cambiar TOKEN_VOID por type para permitir int/float/void
     func = semantic.check_function(p[2])    
     params = p[5] if p[5] else []   
@@ -525,6 +517,26 @@ def p_f_call(p):
         
     p[0] = ('function_call', p[1], p[4] if p[4] else [])
 
+def p_function_call_expr(p):
+    '''function_call_expr : TOKEN_ID era_quad TOKEN_LPAREN def_exp TOKEN_RPAREN gosub_quad'''
+    func = semantic.check_function(p[1])
+    if func:
+        args = p[4] if p[4] else []
+        if len(args) != len(func.parameters):
+            semantic.add_error(f"Function '{p[1]}' expects {len(func.parameters)} arguments, got {len(args)}")
+        else:
+            for i, (arg, param) in enumerate(zip(args, func.parameters)):
+                arg_type = get_expr_type(arg)
+                param_type = param.type
+                result_type = get_result_type(param_type, arg_type, Operation.ASSIGN)
+                if result_type == Type.ERROR:
+                    semantic.add_error(f"Parameter type mismatch in call to '{p[1]}': Parameter {i+1} expects {param_type}, got {arg_type}")
+    
+    # La función retorna una expresión que puede ser usada
+    p[0] = ('function_call_expr', p[1], p[4] if p[4] else [])
+    if func and func.return_type != Type.VOID:
+        p[0] = set_expr_type(p[0], func.return_type)
+        
 def p_era_quad(p):
     '''era_quad : empty'''
     function_name = p[-1]
@@ -538,12 +550,6 @@ def p_gosub_quad(p):
     quad_gen.generate_gosub_quad(function_name)
     p[0] = None
 
-def p_gosub_quad_expr(p):
-    '''gosub_quad_expr : empty'''
-    function_name = p[-5]
-    quad_gen.generate_gosub_quad(function_name)
-    p[0] = None
-    
 def p_def_exp(p):
     '''def_exp : expresion param_quad coma2
     | empty'''
@@ -592,30 +598,18 @@ def p_assign(p):
 
 def p_for_cycle(p):
     '''for_cycle : TOKEN_FOR TOKEN_LPAREN for_init TOKEN_SEMICOLON saveQuadFor expresion GotoFFor TOKEN_SEMICOLON for_increment TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON'''
-    # Estructura del FOR:
-    # for (init; condition; increment) do { body };
-    
-    # p[3] = init (assignment)
-    # p[5] = saveQuadFor (posición para el loop)
-    # p[6] = condition (expresión)
-    # p[7] = GotoFFor (índice del gotof)
-    # p[9] = increment (assignment)
-    # p[12] = body
     increment_quad_pos = len(quad_gen.Quads)
-    
-    # Generar cuádruplos para el incremento
+
     if p[9]:  # Si hay incremento
         if p[9][0] == 'assign':
             var_name = p[9][1] 
             expr_result = get_operand_name(p[9][2])
             quad_gen.generate_assignment_quad(var_name, expr_result)
-    
-    # Saltar de vuelta al inicio del loop (a la condición)
+
     loop_start = p[5]  # Posición guardada antes de la condición
     quad_gen.generate_goto_quad()
     quad_gen.fill_quad(len(quad_gen.Quads) - 1, loop_start)
-    
-    # Llenar el GOTOF con la posición actual (salida del loop)
+
     gotof_index = p[7]
     quad_gen.fill_quad(gotof_index, len(quad_gen.Quads))
     
@@ -655,8 +649,8 @@ def p_empty(p):
     p[0] = None
     
 def p_error(p):
-    # if not'main' in semantic.function_directory:
-    #     raise SyntaxError("Syntax error in main function")
+    if not'main' in semantic.function_directory:
+        raise SyntaxError("Syntax error in main function")
     if p:
         print(f"Syntax error at '{p.value}', line {p.lineno}")
         error_msg = f"Syntax error at '{p.value}' on line {p.lineno}"
@@ -728,7 +722,7 @@ def get_expr_type(expr_node):
             return get_result_type(left_type, right_type, op)
         elif expr_node[0] == 'comparison':
             return Type.BOOL
-        elif expr_node[0] == 'function_call_expr':  # Agregar este bloque
+        elif expr_node[0] == 'function_call_expr':  
             func = semantic.check_function(expr_node[1])
             if func:
                 return func.return_type
@@ -768,184 +762,26 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = """
-program calculadora_avanzada;
-var 
-    num1, num2, num3, resultado, factorial_num : int;
-    promedio_val : int;
-    
-int calcular_factorial(n : int)
-[
-    var i, fact : int;
-    {
-        fact = 1;
-        i = 1;
-        while (i < n + 1) do {
-            fact = fact * i;
-            i = i + 1;
-        };
-        return fact;
-    }
-];
-
-int potencia(base : int, exponente : int)
-[
-    var i, resultado : int;
-    {
-        resultado = 1;
-        i = 1;
-        while (i < exponente + 1) do {
-            resultado = resultado * base;
-            i = i + 1;
-        };
-        return resultado;
-    }
-];
-
-int maximo_de_tres(a : int, b : int, c : int)
-[
-    var max : int;
-    {
-        max = a;
-        if (b > max) {
-            max = b;
-        };
-        if (c > max) {
-            max = c;
-        };
-        return max;
-    }
-];
-
-void mostrar_tabla_multiplicar(numero : int, limite : int)
-[
-    var i, producto : int;
-    {
-        print("Tabla de multiplicar del ", numero, ":");
-        i = 1;
-        while (i < limite + 1) do {
-            producto = numero * i;
-            print(numero, " x ", i, " = ", producto);
-            i = i + 1;
-        };
-    }
-];
-
-void analizar_numero(num : int)
-[
-    {
-        print("Analizando el número: ", num);
-        
-        if (num > 0) {
-            print("El número es positivo");
-        } else {
-            if (num < 0) {
-                print("El número es negativo");
-            } else {
-                print("El número es cero");
-            };
-        };
-                
-        if (num > 0) {
-            print("El número es par");
-        } else {
-            print("El número es impar");
-        };
-    }
-];
-
-void mostrar_operaciones_basicas(a : int, b : int)
-[
-    var suma, resta, multiplicacion, division : int;
-    {
-        suma = a + b;
-        resta = a - b;
-        multiplicacion = a * b;
-        
-        print("Operaciones básicas entre ", a, " y ", b, ":");
-        print("Suma: ", suma);
-        print("Resta: ", resta);
-        print("Multiplicación: ", multiplicacion);
-        
-        if (b > 0) {
-            division = a / b;
-            print("División: ", division);
-        } else {
-            print("No se puede dividir entre cero");
-        };
-    }
-];
-
-int calcular_promedio(a : int, b : int, c : int)
-[
-    var suma, promedio : int;
-    {
-        suma = a + b + c;
-        promedio = suma / 3;
-        return promedio;
-    }
-];
-
-void mostrar_estadisticas(a : int, b : int, c : int)
-[
-    var suma, mayor, menor : int;
-    {
-        suma = a + b + c;
-        mayor = maximo_de_tres(a, b, c);
-        
-        menor = a;
-        if (b < menor) {
-            menor = b;
-        };
-        if (c < menor) {
-            menor = c;
-        };
-            
-        print("=== ESTADÍSTICAS ===");
-        print("Números: ", a, ", ", b, ", ", c);
-        print("Suma total: ", suma);
-        print("Número mayor: ", mayor);
-        print("Número menor: ", menor);
-        print("Promedio: ", calcular_promedio(a, b, c));
-    }
-];
-
+program control_if;
+var
+    x, y, max : int;
 main {
-    print("=== CALCULADORA AVANZADA ===");
+    x = 15;
+    y = 7;
     
-    num1 = 12;
-    num2 = 8;
-    num3 = 15;
+    if (x > y) {
+        max = x;
+        print("El mayor es x: ", max);
+    } else {
+        max = y;
+        print("El mayor es y: ", max);
+    };
     
-    print("Números de trabajo: ", num1, ", ", num2, ", ", num3);
-    print("");
-    
-    mostrar_operaciones_basicas(num1, num2);
-    print("");
-    
-    analizar_numero(num1);
-    print("");
-    
-    mostrar_tabla_multiplicar(num2, 5);
-    print("");
-    
-    factorial_num = 5;
-    resultado = calcular_factorial(factorial_num);
-    print("Factorial de ", factorial_num, " es: ", resultado);
-    
-    resultado = potencia(num2, 3);
-    print(num2, " elevado a la 3 es: ", resultado);
-    
-    resultado = maximo_de_tres(num1, num2, num3);
-    print("El mayor de los tres números es: ", resultado);
-    
-    promedio_val = calcular_promedio(num1, num2, num3);
-    print("El promedio de los tres números es: ", promedio_val);
-    print("");
-    
-    mostrar_estadisticas(num1, num2, num3);
-    
-    print("");
-    print("=== FIN DEL PROGRAMA ===");
+    if (x < 10) {
+        print("x es menor que 10");
+    } else {
+        print("x es mayor o igual que 10");
+    };
 }
 end
 """

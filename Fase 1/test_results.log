@@ -1,6 +1,6 @@
 
 ================================================================================
-SESIÓN DE PRUEBAS - 2025-05-28 10:12:57
+SESIÓN DE PRUEBAS - 2025-05-29 00:19:11
 ================================================================================
 
 
@@ -6384,8 +6384,8 @@ Starting at quadruple 104
 110: (parámetro, 11029, par3, None)
       perform operation parámetro with operands addr:11029, addr:par3, result in None
 ----------------------------------------------------------------------
-111: (GOSUB, maximo_de_tres, None, 15016)
-      perform operation GOSUB with operand addr:maximo_de_tres, result in addr:15016
+111: (GOSUB, maximo_de_tres, None, None)
+      perform operation GOSUB with operand addr:maximo_de_tres
 ----------------------------------------------------------------------
 112: (=, 15016, None, 11031)
       assign value of addr:15016 to addr:11031
@@ -6468,8 +6468,8 @@ Starting at quadruple 104
 138: (parámetro, 11029, par3, None)
       perform operation parámetro with operands addr:11029, addr:par3, result in None
 ----------------------------------------------------------------------
-139: (GOSUB, calcular_promedio, None, 15017)
-      perform operation GOSUB with operand addr:calcular_promedio, result in addr:15017
+139: (GOSUB, calcular_promedio, None, None)
+      perform operation GOSUB with operand addr:calcular_promedio
 ----------------------------------------------------------------------
 140: (print, Promedio: , None, None)
       print value addr:Promedio: 
@@ -6569,8 +6569,8 @@ Starting at quadruple 143
 170: (parámetro, 5004, par1, None)
       perform operation parámetro with operands factorial_num (global), addr:par1, result in None
 ----------------------------------------------------------------------
-171: (GOSUB, calcular_factorial, None, 15018)
-      perform operation GOSUB with operand addr:calcular_factorial, result in addr:15018
+171: (GOSUB, calcular_factorial, None, None)
+      perform operation GOSUB with operand addr:calcular_factorial
 ----------------------------------------------------------------------
 172: (=, 15018, None, 5003)
       assign value of addr:15018 to resultado (global)
@@ -6596,8 +6596,8 @@ Starting at quadruple 143
 179: (parámetro, 20002, par2, None)
       perform operation parámetro with operands constant(3), addr:par2, result in None
 ----------------------------------------------------------------------
-180: (GOSUB, potencia, None, 15019)
-      perform operation GOSUB with operand addr:potencia, result in addr:15019
+180: (GOSUB, potencia, None, None)
+      perform operation GOSUB with operand addr:potencia
 ----------------------------------------------------------------------
 181: (=, 15019, None, 5003)
       assign value of addr:15019 to resultado (global)
@@ -6623,8 +6623,8 @@ Starting at quadruple 143
 188: (parámetro, 5002, par3, None)
       perform operation parámetro with operands num3 (global), addr:par3, result in None
 ----------------------------------------------------------------------
-189: (GOSUB, maximo_de_tres, None, 15020)
-      perform operation GOSUB with operand addr:maximo_de_tres, result in addr:15020
+189: (GOSUB, maximo_de_tres, None, None)
+      perform operation GOSUB with operand addr:maximo_de_tres
 ----------------------------------------------------------------------
 190: (=, 15020, None, 5003)
       assign value of addr:15020 to resultado (global)
@@ -6647,8 +6647,8 @@ Starting at quadruple 143
 196: (parámetro, 5002, par3, None)
       perform operation parámetro with operands num3 (global), addr:par3, result in None
 ----------------------------------------------------------------------
-197: (GOSUB, calcular_promedio, None, 15021)
-      perform operation GOSUB with operand addr:calcular_promedio, result in addr:15021
+197: (GOSUB, calcular_promedio, None, None)
+      perform operation GOSUB with operand addr:calcular_promedio
 ----------------------------------------------------------------------
 198: (=, 15021, None, 5005)
       assign value of addr:15021 to promedio_val (global)
@@ -6968,10 +6968,9 @@ IP: 169 -> Ejecutando: (ERA, calcular_factorial, None, None)
   ERA: Reservando espacio para función 'calcular_factorial'
 IP: 170 -> Ejecutando: (parámetro, 5004, par1, None)
   Parámetro: 5 -> posición 1
-IP: 171 -> Ejecutando: (GOSUB, calcular_factorial, None, 15018)
+IP: 171 -> Ejecutando: (GOSUB, calcular_factorial, None, None)
     Asignando parámetro n (addr: 11000) = 5
   GOSUB: Llamando función 'calcular_factorial' en dirección 1
-    Valor de retorno se guardará en dirección: 15018
 IP: 1 -> Ejecutando: (=, 20000, None, 11002)
   Asignación: direccion[11002] = 1
 IP: 2 -> Ejecutando: (=, 20000, None, 11001)
@@ -7064,10 +7063,9 @@ IP: 5 -> Ejecutando: (gotof, 19000, None, 11)
   Salto condicional a: 11 (condición falsa)
 IP: 11 -> Ejecutando: (RETURN, 11002, None, None)
   RETURN: Retornando valor 120
-    Valor guardado en dirección temporal: 15018
   ENDFUNC: Retornando a dirección 172
 IP: 172 -> Ejecutando: (=, 15018, None, 5003)
-  Asignación: direccion[5003] = 120
+  Asignación: direccion[5003] = 0
 IP: 173 -> Ejecutando: (print, Factorial de , None, None)
 OUTPUT: Factorial de 
 IP: 174 -> Ejecutando: (print, 5004, None, None)
@@ -7075,18 +7073,17 @@ OUTPUT: 5
 IP: 175 -> Ejecutando: (print,  es: , None, None)
 OUTPUT:  es: 
 IP: 176 -> Ejecutando: (print, 5003, None, None)
-OUTPUT: 120
+OUTPUT: 0
 IP: 177 -> Ejecutando: (ERA, potencia, None, None)
   ERA: Reservando espacio para función 'potencia'
 IP: 178 -> Ejecutando: (parámetro, 5001, par1, None)
   Parámetro: 8 -> posición 1
 IP: 179 -> Ejecutando: (parámetro, 20002, par2, None)
   Parámetro: 3 -> posición 2
-IP: 180 -> Ejecutando: (GOSUB, potencia, None, 15019)
+IP: 180 -> Ejecutando: (GOSUB, potencia, None, None)
     Asignando parámetro base (addr: 11003) = 8
     Asignando parámetro exponente (addr: 11004) = 3
   GOSUB: Llamando función 'potencia' en dirección 13
-    Valor de retorno se guardará en dirección: 15019
 IP: 13 -> Ejecutando: (=, 20000, None, 11006)
   Asignación: direccion[11006] = 1
 IP: 14 -> Ejecutando: (=, 20000, None, 11005)
@@ -7147,16 +7144,15 @@ IP: 17 -> Ejecutando: (gotof, 19001, None, 23)
   Salto condicional a: 23 (condición falsa)
 IP: 23 -> Ejecutando: (RETURN, 11006, None, None)
   RETURN: Retornando valor 512
-    Valor guardado en dirección temporal: 15019
   ENDFUNC: Retornando a dirección 181
 IP: 181 -> Ejecutando: (=, 15019, None, 5003)
-  Asignación: direccion[5003] = 512
+  Asignación: direccion[5003] = 0
 IP: 182 -> Ejecutando: (print, 5001, None, None)
 OUTPUT: 8
 IP: 183 -> Ejecutando: (print,  elevado a la 3 es: , None, None)
 OUTPUT:  elevado a la 3 es: 
 IP: 184 -> Ejecutando: (print, 5003, None, None)
-OUTPUT: 512
+OUTPUT: 0
 IP: 185 -> Ejecutando: (ERA, maximo_de_tres, None, None)
   ERA: Reservando espacio para función 'maximo_de_tres'
 IP: 186 -> Ejecutando: (parámetro, 5000, par1, None)
@@ -7165,12 +7161,11 @@ IP: 187 -> Ejecutando: (parámetro, 5001, par2, None)
   Parámetro: 8 -> posición 2
 IP: 188 -> Ejecutando: (parámetro, 5002, par3, None)
   Parámetro: 15 -> posición 3
-IP: 189 -> Ejecutando: (GOSUB, maximo_de_tres, None, 15020)
+IP: 189 -> Ejecutando: (GOSUB, maximo_de_tres, None, None)
     Asignando parámetro a (addr: 11007) = 12
     Asignando parámetro b (addr: 11008) = 8
     Asignando parámetro c (addr: 11009) = 15
   GOSUB: Llamando función 'maximo_de_tres' en dirección 25
-    Valor de retorno se guardará en dirección: 15020
 IP: 25 -> Ejecutando: (=, 11007, None, 11010)
   Asignación: direccion[11010] = 12
 IP: 26 -> Ejecutando: (>, 11008, 11010, 19002)
@@ -7187,14 +7182,13 @@ IP: 33 -> Ejecutando: (goto, None, None, 34)
   Salto a: 34
 IP: 34 -> Ejecutando: (RETURN, 11010, None, None)
   RETURN: Retornando valor 15
-    Valor guardado en dirección temporal: 15020
   ENDFUNC: Retornando a dirección 190
 IP: 190 -> Ejecutando: (=, 15020, None, 5003)
-  Asignación: direccion[5003] = 15
+  Asignación: direccion[5003] = 0
 IP: 191 -> Ejecutando: (print, El mayor de los tres números es: , None, None)
 OUTPUT: El mayor de los tres números es: 
 IP: 192 -> Ejecutando: (print, 5003, None, None)
-OUTPUT: 15
+OUTPUT: 0
 IP: 193 -> Ejecutando: (ERA, calcular_promedio, None, None)
   ERA: Reservando espacio para función 'calcular_promedio'
 IP: 194 -> Ejecutando: (parámetro, 5000, par1, None)
@@ -7203,12 +7197,11 @@ IP: 195 -> Ejecutando: (parámetro, 5001, par2, None)
   Parámetro: 8 -> posición 2
 IP: 196 -> Ejecutando: (parámetro, 5002, par3, None)
   Parámetro: 15 -> posición 3
-IP: 197 -> Ejecutando: (GOSUB, calcular_promedio, None, 15021)
+IP: 197 -> Ejecutando: (GOSUB, calcular_promedio, None, None)
     Asignando parámetro a (addr: 11022) = 12
     Asignando parámetro b (addr: 11023) = 8
     Asignando parámetro c (addr: 11024) = 15
   GOSUB: Llamando función 'calcular_promedio' en dirección 97
-    Valor de retorno se guardará en dirección: 15021
 IP: 97 -> Ejecutando: (+, 11022, 11023, 15012)
   Aritmética: 12 + 8 = 20
 IP: 98 -> Ejecutando: (+, 15012, 11024, 15013)
@@ -7221,14 +7214,13 @@ IP: 101 -> Ejecutando: (=, 17001, None, 11026)
   Asignación: direccion[11026] = 11.666666666666666
 IP: 102 -> Ejecutando: (RETURN, 11026, None, None)
   RETURN: Retornando valor 11
-    Valor guardado en dirección temporal: 15021
   ENDFUNC: Retornando a dirección 198
 IP: 198 -> Ejecutando: (=, 15021, None, 5005)
-  Asignación: direccion[5005] = 11
+  Asignación: direccion[5005] = 0
 IP: 199 -> Ejecutando: (print, El promedio de los tres números es: , None, None)
 OUTPUT: El promedio de los tres números es: 
 IP: 200 -> Ejecutando: (print, 5005, None, None)
-OUTPUT: 11
+OUTPUT: 0
 IP: 201 -> Ejecutando: (print, , None, None)
 OUTPUT: 
 IP: 202 -> Ejecutando: (ERA, mostrar_estadisticas, None, None)
@@ -7258,12 +7250,11 @@ IP: 109 -> Ejecutando: (parámetro, 11028, par2, None)
   Parámetro: 0 -> posición 2
 IP: 110 -> Ejecutando: (parámetro, 11029, par3, None)
   Parámetro: 0 -> posición 3
-IP: 111 -> Ejecutando: (GOSUB, maximo_de_tres, None, 15016)
+IP: 111 -> Ejecutando: (GOSUB, maximo_de_tres, None, None)
     Asignando parámetro a (addr: 11007) = 0
     Asignando parámetro b (addr: 11008) = 0
     Asignando parámetro c (addr: 11009) = 0
   GOSUB: Llamando función 'maximo_de_tres' en dirección 25
-    Valor de retorno se guardará en dirección: 15016
 IP: 25 -> Ejecutando: (=, 11007, None, 11010)
   Asignación: direccion[11010] = 0
 IP: 26 -> Ejecutando: (>, 11008, 11010, 19002)
@@ -7276,7 +7267,6 @@ IP: 31 -> Ejecutando: (gotof, 19003, None, 34)
   Salto condicional a: 34 (condición falsa)
 IP: 34 -> Ejecutando: (RETURN, 11010, None, None)
   RETURN: Retornando valor 0
-    Valor guardado en dirección temporal: 15016
   ENDFUNC: Retornando a dirección 112
 IP: 112 -> Ejecutando: (=, 15016, None, 11031)
   Asignación: direccion[11031] = 0
@@ -7328,12 +7318,11 @@ IP: 137 -> Ejecutando: (parámetro, 11028, par2, None)
   Parámetro: 0 -> posición 2
 IP: 138 -> Ejecutando: (parámetro, 11029, par3, None)
   Parámetro: 0 -> posición 3
-IP: 139 -> Ejecutando: (GOSUB, calcular_promedio, None, 15017)
+IP: 139 -> Ejecutando: (GOSUB, calcular_promedio, None, None)
     Asignando parámetro a (addr: 11022) = 0
     Asignando parámetro b (addr: 11023) = 0
     Asignando parámetro c (addr: 11024) = 0
   GOSUB: Llamando función 'calcular_promedio' en dirección 97
-    Valor de retorno se guardará en dirección: 15017
 IP: 97 -> Ejecutando: (+, 11022, 11023, 15012)
   Aritmética: 0 + 0 = 0
 IP: 98 -> Ejecutando: (+, 15012, 11024, 15013)
@@ -7346,7 +7335,6 @@ IP: 101 -> Ejecutando: (=, 17001, None, 11026)
   Asignación: direccion[11026] = 0.0
 IP: 102 -> Ejecutando: (RETURN, 11026, None, None)
   RETURN: Retornando valor 0
-    Valor guardado en dirección temporal: 15017
   ENDFUNC: Retornando a dirección 140
 IP: 140 -> Ejecutando: (print, Promedio: , None, None)
 OUTPUT: Promedio: 
@@ -7367,9 +7355,9 @@ Memoria Global Enteros (5000-7999):
   [5000]: 12
   [5001]: 8
   [5002]: 15
-  [5003]: 15
+  [5003]: 0
   [5004]: 5
-  [5005]: 11
+  [5005]: 0
 Memoria Global Flotantes (8000-10999):
 Memoria Local Enteros (11000-12999):
 Memoria Local Flotantes (13000-14999):
@@ -7390,12 +7378,6 @@ Memoria Temporal Enteros (15000-16999):
   [15013]: 0
   [15014]: 20
   [15015]: 35
-  [15016]: 0
-  [15017]: 0
-  [15018]: 120
-  [15019]: 512
-  [15020]: 15
-  [15021]: 11
 Memoria Temporal Flotantes (17000-18999):
   [17000]: 1.5
   [17001]: 0.0
