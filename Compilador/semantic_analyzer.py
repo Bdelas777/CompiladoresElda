@@ -65,11 +65,14 @@ class SemanticAnalyzer:
         return True
     
     def declare_main(self):
-        if "main" in self.function_directory:return self.add_error("Function 'main' already declared")
+        if "main" in self.function_directory:
+            return self.add_error("Function 'main' already declared")
         main_function=Function("main",Type.VOID)
         self.function_directory["main"]=main_function
         self.push_scope("main")
         print("Main function declared, scope changed to main")
+        if not "main" in self.function_directory:
+            return self.add_error("Function 'main' was not declared before")
         return True
     
     def end_main(self):

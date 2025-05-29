@@ -215,14 +215,14 @@ class QuadrupleGenerator:
             function_name = self._get_function_at_quad(i)
             if function_name and function_name != current_function:
                 current_function = function_name
-                print(f"\n{'='*20} FUNCTION: {function_name.upper()} {'='*20}")
+                print(f"\n{'='*20} FUNCTION: {function_name} {'='*20}")
                 print(f"Starting at quadruple {i}")
                 print("-" * 70)
             print(f"{i}: {quad}")
             explanation = self._get_quad_explanation(quad)
             print(f"      {explanation}")
             if quad.operator == 'ENDFUNC':
-                print(f"{'='*20} END OF {current_function.upper()} {'='*20}")
+                print(f"{'='*20} END OF {current_function} {'='*20}")
                 current_function = None 
             print("-" * 70)
         

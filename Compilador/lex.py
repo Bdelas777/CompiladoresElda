@@ -14,7 +14,7 @@ reserved = {
     'void': 'TOKEN_VOID',
     'main': 'TOKEN_MAIN',
     'end': 'TOKEN_END',
-    'for':  'TOKEN_FOR',
+    'for': 'TOKEN_FOR',
     'return': 'TOKEN_RETURN',
 }
 
@@ -62,29 +62,32 @@ t_TOKEN_RBRACE = r'\}'
 t_TOKEN_LCOL = r'\['   
 t_TOKEN_RCOL = r'\]' 
 
-# Expresiones regulares para ids
-def t_TOKEN_ID(t):
-    r'[a-zA-Z][a-zA-Z0-9_]*'
-    t.type = reserved.get(t.value, 'TOKEN_ID')
-    return t
-
-# Expresines reguares para flontantes
+# CORRECCIÓN 1: El orden de las funciones es importante
+# Los flotantes DEBEN ir antes que los enteros para evitar conflictos
 def t_TOKEN_CTE_FLOAT(t):
     r'[0-9]+\.[0-9]+'
     t.value = float(t.value)
     return t
 
-#Expresiones regulares de enteros
 def t_TOKEN_CTE_INT(t):
     r'[0-9]+'
     t.value = int(t.value)
     return t
 
-# Expresiones regulares para strings
+def t_TOKEN_ID(t):
+    r'[a-zA-Z][a-zA-Z0-9_]*'
+    t.type = reserved.get(t.value, 'TOKEN_ID')
+    return t
+
 def t_TOKEN_CTE_STRING(t):
-    r'"[^"]*"'
+    r'"([^"\\]|\\.)*"'
     t.value = t.value[1:-1]  
     return t
+
+def t_UNCLOSED_STRING(t):
+    r'"[^"]*$'
+    print(f"Illegal character: Unclosed string at line {t.lexer.lineno}")
+    t.lexer.skip(1)
 
 # Comentarios que se descartan si vienen para que el token no los lea
 def t_COMMENT(t):
@@ -96,15 +99,20 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
+# Caracteres a ignorar (espacios y tabs)
 t_ignore = ' \t'
 
-# Manejo de errores
 def t_error(t):
     print(f"Illegal character '{t.value[0]}' at line {t.lexer.lineno}")
     t.lexer.skip(1)
 
 # Construimos el lexer
 lexer = lex.lex()
+
+# Función para resetear el lexer (útil para las pruebas)
+def reset_lexer():
+    global lexer
+    lexer = lex.lex()
 
 # Probamos el lexer
 if __name__ == "__main__":
