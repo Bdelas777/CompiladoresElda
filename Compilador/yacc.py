@@ -636,7 +636,7 @@ def p_empty(p):
 def p_error(p):
 
     if p:
-        print(f"Syntax error at '{p.value}', line {p.lineno}")
+        print(f"Syntax error at '{p.value}', line {p.lineno}, token type: {p.type}")
         error_msg = f"Syntax error at '{p.value}' on line {p.lineno}"
     else:
         print("Syntax error at EOF")

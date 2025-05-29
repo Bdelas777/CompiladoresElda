@@ -27,7 +27,7 @@ semantic_cube = {
             Operation.PLUS: Type.INT,
             Operation.MINUS: Type.INT,
             Operation.MULTIPLY: Type.INT,
-            Operation.DIVIDE: Type.FLOAT,  # División siempre da float
+            Operation.DIVIDE: Type.FLOAT,  
             Operation.GREATER: Type.BOOL,
             Operation.LESS: Type.BOOL,
             Operation.NOT_EQUAL: Type.BOOL,
@@ -41,7 +41,7 @@ semantic_cube = {
             Operation.GREATER: Type.BOOL,
             Operation.LESS: Type.BOOL,
             Operation.NOT_EQUAL: Type.BOOL,
-            Operation.ASSIGN: Type.ERROR
+            Operation.ASSIGN: Type.FLOAT
         }
     },
     Type.FLOAT: {

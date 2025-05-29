@@ -62,8 +62,7 @@ t_TOKEN_RBRACE = r'\}'
 t_TOKEN_LCOL = r'\['   
 t_TOKEN_RCOL = r'\]' 
 
-# CORRECCIÓN 1: El orden de las funciones es importante
-# Los flotantes DEBEN ir antes que los enteros para evitar conflictos
+# Definimos las reglas de los tokens
 def t_TOKEN_CTE_FLOAT(t):
     r'[0-9]+\.[0-9]+'
     t.value = float(t.value)
@@ -109,7 +108,7 @@ def t_error(t):
 # Construimos el lexer
 lexer = lex.lex()
 
-# Función para resetear el lexer (útil para las pruebas)
+# Función para resetear el lexer se usa en pruebas
 def reset_lexer():
     global lexer
     lexer = lex.lex()
