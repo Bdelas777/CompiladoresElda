@@ -65,6 +65,7 @@ class QuadrupleGenerator:
             else:
                 self.semantic.add_error(f"Type mismatch: {left_type} {operator} {right_type}")
                 return False
+            
     def get_operand_address(self, operand):
         if isinstance(operand, int):
             return operand
@@ -214,14 +215,14 @@ class QuadrupleGenerator:
             function_name = self._get_function_at_quad(i)
             if function_name and function_name != current_function:
                 current_function = function_name
-                print(f"\n{'='*20} FUNCTION: {function_name.upper()} {'='*20}")
+                print(f"\n{'='*20} FUNCTION: {function_name} {'='*20}")
                 print(f"Starting at quadruple {i}")
                 print("-" * 70)
             print(f"{i}: {quad}")
             explanation = self._get_quad_explanation(quad)
             print(f"      {explanation}")
             if quad.operator == 'ENDFUNC':
-                print(f"{'='*20} END OF {current_function.upper()} {'='*20}")
+                print(f"{'='*20} END OF {current_function} {'='*20}")
                 current_function = None 
             print("-" * 70)
         
@@ -261,7 +262,7 @@ class QuadrupleGenerator:
         if func_info and func_info.return_type != Type.VOID:
             # Si la función retorna un valor, crear una variable temporal para almacenarlo
             temp_result = self.new_temp(func_info.return_type)
-            quad = Quadruple('GOSUB', func_name, None, temp_result)
+            quad = Quadruple('GOSUB', func_name, None, None)
             # Guardar el resultado temporal en la pila para que pueda ser usado
             self.PilaO.append(temp_result)
             self.PTypes.append(func_info.return_type)
