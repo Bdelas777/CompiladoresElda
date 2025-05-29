@@ -28,7 +28,6 @@ def get_operand_name(expr_node):
             result = expr_node[1]
             return result
         elif expr_node[0] == 'function_call_expr':
-            # El resultado de la función está en la pila de operandos
             if quad_gen.PilaO:
                 result = quad_gen.PilaO[-1]
                 return result
@@ -450,7 +449,7 @@ def p_opciones_mas_menos(p):
 def p_id_cte(p):
     '''id_cte : TOKEN_ID
     | cte
-    | function_call_expr'''  # Agregar esta línea
+    | function_call_expr'''  
     if isinstance(p[1], tuple):
         p[0] = p[1]
     else:
@@ -468,7 +467,6 @@ def p_id_cte(p):
 
 def p_funcs(p):
     '''funcs : type_fun TOKEN_ID save_func_start TOKEN_LPAREN tipo TOKEN_RPAREN TOKEN_LCOL var body TOKEN_RCOL end_func TOKEN_SEMICOLON'''
-    # Cambiar TOKEN_VOID por type para permitir int/float/void
     func = semantic.check_function(p[2])    
     params = p[5] if p[5] else []   
     p[0] = ('function', p[2], params, p[8], p[9])
@@ -476,9 +474,7 @@ def p_funcs(p):
 def p_save_func_start(p):
     '''save_func_start : empty'''
     function_name = p[-1]  
-    return_type_str = p[-2]  # Capturar el tipo de retorno
-    
-    # Convertir string a Type enum
+    return_type_str = p[-2] 
     if return_type_str == 'int':
         return_type = Type.INT
     elif return_type_str == 'float':

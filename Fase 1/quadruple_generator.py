@@ -65,6 +65,7 @@ class QuadrupleGenerator:
             else:
                 self.semantic.add_error(f"Type mismatch: {left_type} {operator} {right_type}")
                 return False
+            
     def get_operand_address(self, operand):
         if isinstance(operand, int):
             return operand
