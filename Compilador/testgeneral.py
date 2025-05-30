@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-"""
-Test Generator para el compilador con logging de resultados
-Ejecuta múltiples casos de prueba y registra los resultados en un archivo log
-"""
-
 import sys
 import io
 from contextlib import redirect_stdout, redirect_stderr
@@ -19,25 +13,21 @@ class TestLogger:
         self.failed_tests = 0
         
     def log(self, message, print_console=True):
-        """Escribe mensaje tanto al archivo log como a la consola"""
         with open(self.log_file, 'a', encoding='utf-8') as f:
             f.write(message + '\n')
         if print_console:
             print(message)
     
     def start_session(self):
-        """Inicia una nueva sesión de pruebas"""
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         header = f"\n{'='*80}\nSESIÓN DE PRUEBAS - {timestamp}\n{'='*80}\n"
         self.log(header)
     
     def test_case(self, name, code, expected_outputs):
-        """Ejecuta un caso de prueba y registra los resultados"""
         self.test_count += 1
         self.log(f"\n[TEST {self.test_count}] {name}")
         self.log("-" * 60)
         
-        # Capturar toda la salida del programa
         captured_output = io.StringIO()
         captured_error = io.StringIO()
         
@@ -66,7 +56,6 @@ class TestLogger:
             for expected in expected_outputs:
                 self.log(f"  - {expected}")
             
-            # Verificar si la salida contiene los resultados esperados
             success = self._verify_output(output_lines, expected_outputs)
             
             if success:
@@ -83,11 +72,9 @@ class TestLogger:
         self.log("-" * 60)
     
     def _verify_output(self, output, expected_outputs):
-        """Verifica si la salida contiene los resultados esperados"""
         if not output:
             return len(expected_outputs) == 0
         
-        # Convertir salida a minúsculas para comparación más flexible
         output_lower = output.lower()
         
         for expected in expected_outputs:
@@ -113,10 +100,8 @@ Porcentaje de éxito: {(self.passed_tests/self.test_count*100) if self.test_coun
 def run_all_tests():
     """Ejecuta todos los casos de prueba definidos"""
     
-    # Inicializar logger
     logger = TestLogger("test_results.log")
     
-    # Limpiar archivo log anterior
     if os.path.exists("test_results.log"):
         os.remove("test_results.log")
     

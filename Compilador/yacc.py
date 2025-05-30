@@ -36,7 +36,6 @@ def get_operand_name(expr_node):
 def p_programa(p):
     '''programa : TOKEN_PROGRAM TOKEN_ID TOKEN_SEMICOLON saveGo dec_var dec_funcs TOKEN_MAIN fillMain body TOKEN_END'''
     semantic.program_start(p[2])
-
     p[0] = ('programa', p[2], p[5], p[6], p[9])
     semantic.program_end()
     quad_gen.generate_end_quad()
@@ -422,11 +421,9 @@ def p_id_cte(p):
             else:
                 p[0] = ('id', p[1])
 
-
-
 def p_funcs(p):
     '''funcs : type_fun TOKEN_ID save_func_start TOKEN_LPAREN tipo TOKEN_RPAREN TOKEN_LCOL var body TOKEN_RCOL end_func TOKEN_SEMICOLON'''
-    func = semantic.check_function(p[2])    
+    semantic.check_function(p[2])    
     params = p[5] if p[5] else []   
     p[0] = ('function', p[2], params, p[8], p[9])
 
@@ -439,8 +436,7 @@ def p_save_func_start(p):
     elif return_type_str == 'float':
         return_type = Type.FLOAT
     else:
-        return_type = Type.VOID
-        
+        return_type = Type.VOID  
     semantic.declare_function(function_name, return_type)
     quad_gen.save_function_start(function_name)
     p[0] = None
@@ -585,7 +581,6 @@ def p_assign(p):
 
 def p_for_cycle(p):
     '''for_cycle : TOKEN_FOR TOKEN_LPAREN for_init TOKEN_SEMICOLON saveQuadFor expresion GotoFFor TOKEN_SEMICOLON for_increment TOKEN_RPAREN TOKEN_DO body TOKEN_SEMICOLON'''
-    increment_quad_pos = len(quad_gen.Quads)
     if p[9]:  
         if p[9][0] == 'assign':
             var_name = p[9][1] 
@@ -634,7 +629,6 @@ def p_empty(p):
     p[0] = None
     
 def p_error(p):
-
     if p:
         print(f"Syntax error at '{p.value}', line {p.lineno}, token type: {p.type}")
         error_msg = f"Syntax error at '{p.value}' on line {p.lineno}"
@@ -724,7 +718,6 @@ def parse_program(code):
     return result, semantic.error_list
 
 def execute_program(code):
-    """Parsea y ejecuta un programa completo"""
     from virtual_machine import VirtualMachine
     result, errors = parse_program(code)
     
