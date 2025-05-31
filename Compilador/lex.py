@@ -88,7 +88,7 @@ def t_UNCLOSED_STRING(t):
     print(f"Illegal character: Unclosed string at line {t.lexer.lineno}")
     t.lexer.skip(1)
 
-# Comentarios que se descartan si vienen para que el token no los lea
+# Comentarios que se descartan si vienen para que el token no los lea y es # para que python no los lea
 def t_COMMENT(t):
     r'\#.*'
     pass  

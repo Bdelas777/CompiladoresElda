@@ -32,7 +32,6 @@ class QuadrupleGenerator:
         return temp_address
         
     def generate_arithmetic_quad(self):
-        """Versión corregida que maneja mejor las operaciones encadenadas"""
         if not self.POper or len(self.PilaO) < 2 or not self.PTypes:
             return False
         operator = self.POper[-1]
@@ -151,7 +150,6 @@ class QuadrupleGenerator:
         return False
         
     def get_address_content(self, address):
-        """Try to find the variable or constant name associated with an address."""
         for var_name, var in self.semantic.global_vars.items():
             if var.address == address:
                 return f"{var_name} (global)"
@@ -168,7 +166,6 @@ class QuadrupleGenerator:
         return f"addr:{address}"
     
     def _get_quad_explanation(self, quad):
-        """Generate a human-readable explanation of the quadruple."""
         op = quad.operator
         left = quad.left_operand
         right = quad.right_operand
@@ -257,13 +254,10 @@ class QuadrupleGenerator:
 
     def generate_gosub_quad(self, func_name):
         """Genera cuádruplo GOSUB para llamar función"""
-        # Obtener información de la función
         func_info = self.semantic.function_directory.get(func_name)
         if func_info and func_info.return_type != Type.VOID:
-            # Si la función retorna un valor, crear una variable temporal para almacenarlo
             temp_result = self.new_temp(func_info.return_type)
             quad = Quadruple('GOSUB', func_name, None, None)
-            # Guardar el resultado temporal en la pila para que pueda ser usado
             self.PilaO.append(temp_result)
             self.PTypes.append(func_info.return_type)
         else:
@@ -290,7 +284,6 @@ class QuadrupleGenerator:
     def generate_assignment_from_function_quad(self, target_var, function_result_var):
         """Genera asignación desde el resultado de una función"""
         target_address = self.get_operand_address(target_var)
-        # El resultado de la función se almacena en una variable especial
         result_address = self.get_operand_address(function_result_var)
         quad = Quadruple('=', result_address, None, target_address)
         self.Quads.append(quad)

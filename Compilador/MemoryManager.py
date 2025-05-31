@@ -2,7 +2,7 @@ from semantic_cube import Type
 
 class MemoryManager:
     def __init__(self):
-        # Memory segments
+        # Definimos la memoria por segmentos dependiendo de que vamos a usar
         self.GLOBAL_INT_START = 5000
         self.GLOBAL_FLOAT_START = 8000
         self.LOCAL_INT_START = 11000
@@ -23,7 +23,8 @@ class MemoryManager:
         self.const_int_counter = 0
         self.const_float_counter = 0
         self.constants = {}
-        
+    
+    # Funcion para obtener la dirección de memoria de una variable
     def get_address(self, var_type, scope, is_temp=False):
         if is_temp:
             if var_type == Type.INT:
@@ -47,7 +48,7 @@ class MemoryManager:
                 addr = self.GLOBAL_FLOAT_START + self.global_float_counter
                 self.global_float_counter += 1
                 return addr
-        else:  # Local scope
+        else:  
             if var_type == Type.INT:
                 addr = self.LOCAL_INT_START + self.local_int_counter
                 self.local_int_counter += 1
@@ -59,6 +60,7 @@ class MemoryManager:
         
         return -1  
     
+    # Funcion para obtener la dirección de memoria de una constante
     def get_constant_address(self, value):
         if value in self.constants:
             return self.constants[value]      
@@ -74,9 +76,10 @@ class MemoryManager:
         self.constants[value] = addr
         return addr
     
+    # Resetear los contadores locales y temporales
     def reset_local_counters(self):
         self.local_int_counter = 0
         self.local_float_counter = 0
         self.temp_int_counter = 0
         self.temp_float_counter = 0
-        self.temp_bool_counter = 0  # Agregado para temporales boolea
+        self.temp_bool_counter = 0  

@@ -167,9 +167,7 @@ def p_return_stmt(p):
         return_address = quad_gen.get_operand_address(return_value)
         quad_gen.generate_return_quad(return_address)
         p[0] = ('return', p[2])
-    else: 
-        quad_gen.generate_return_quad()
-        p[0] = ('return', None)
+   
     
 def p_print(p):
     '''print : TOKEN_PRINT TOKEN_LPAREN expresiones TOKEN_RPAREN TOKEN_SEMICOLON'''
