@@ -1,6 +1,6 @@
 
 ================================================================================
-SESIÓN DE PRUEBAS - 2025-05-31 17:43:15
+SESIÓN DE PRUEBAS - 2025-05-31 17:49:18
 ================================================================================
 
 
@@ -69,149 +69,149 @@ Función main declarada, ámbito cambiado a main
 Programa operaciones_basicas iniciado, ámbito reiniciado a global
 Programa operaciones_basicas completado
 
-===== QUADRUPLES WITH MEMORY ADDRESSES =====
-INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
-      EXPLANATION
+===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====
+ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)
+        EXPLICACIÓN
 ----------------------------------------------------------------------
 
-===== FUNCTION DIRECTORY =====
-Function: main - Start Address: 1
+===== DIRECTORIO DE FUNCIONES =====
+Función: main - Dirección de Inicio: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
-      jump to quadruple 1
+        saltar al cuádruplo 1
 ----------------------------------------------------------------------
 
-==================== FUNCTION: main ====================
-Starting at quadruple 1
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 5000)
-      assign value of constant(5) to a (global)
+        asignar valor de constante(5) a a (global)
 ----------------------------------------------------------------------
 2: (=, 20001, None, 5001)
-      assign value of constant(3) to b (global)
+        asignar valor de constante(3) a b (global)
 ----------------------------------------------------------------------
 3: (=, 20002, None, 5002)
-      assign value of constant(2) to c (global)
+        asignar valor de constante(2) a c (global)
 ----------------------------------------------------------------------
 4: (*, 5001, 5002, 15000)
-      multiply b (global) and c (global), store result in addr:15000
+        multiplicar b (global) y c (global), guardar resultado en dir:15000
 ----------------------------------------------------------------------
 5: (+, 5000, 15000, 15001)
-      add a (global) and addr:15000, store result in addr:15001
+        sumar a (global) y dir:15000, guardar resultado en dir:15001
 ----------------------------------------------------------------------
 6: (=, 15001, None, 5003)
-      assign value of addr:15001 to resultado (global)
+        asignar valor de dir:15001 a resultado (global)
 ----------------------------------------------------------------------
 7: (print, Resultado 1: , None, None)
-      print value addr:Resultado 1: 
+        imprimir valor dir:Resultado 1: 
 ----------------------------------------------------------------------
 8: (print, 5003, None, None)
-      print value resultado (global)
+        imprimir valor resultado (global)
 ----------------------------------------------------------------------
 9: (+, 5000, 5001, 15002)
-      add a (global) and b (global), store result in addr:15002
+        sumar a (global) y b (global), guardar resultado en dir:15002
 ----------------------------------------------------------------------
 10: (*, 15002, 5002, 15003)
-      multiply addr:15002 and c (global), store result in addr:15003
+        multiplicar dir:15002 y c (global), guardar resultado en dir:15003
 ----------------------------------------------------------------------
 11: (=, 15003, None, 5004)
-      assign value of addr:15003 to resultado2 (global)
+        asignar valor de dir:15003 a resultado2 (global)
 ----------------------------------------------------------------------
 12: (print, Resultado 2: , None, None)
-      print value addr:Resultado 2: 
+        imprimir valor dir:Resultado 2: 
 ----------------------------------------------------------------------
 13: (print, 5004, None, None)
-      print value resultado2 (global)
+        imprimir valor resultado2 (global)
 ----------------------------------------------------------------------
 14: (/, 5001, 5002, 17000)
-      divide b (global) and c (global), store result in addr:17000
+        dividir b (global) y c (global), guardar resultado en dir:17000
 ----------------------------------------------------------------------
 15: (-, 5000, 17000, 17001)
-      subtract a (global) and addr:17000, store result in addr:17001
+        restar a (global) y dir:17000, guardar resultado en dir:17001
 ----------------------------------------------------------------------
 16: (=, 17001, None, 8000)
-      assign value of addr:17001 to resultado3 (global)
+        asignar valor de dir:17001 a resultado3 (global)
 ----------------------------------------------------------------------
 17: (print, Resultado 3: , None, None)
-      print value addr:Resultado 3: 
+        imprimir valor dir:Resultado 3: 
 ----------------------------------------------------------------------
 18: (print, 8000, None, None)
-      print value resultado3 (global)
+        imprimir valor resultado3 (global)
 ----------------------------------------------------------------------
 19: (+, 5000, 5001, 15004)
-      add a (global) and b (global), store result in addr:15004
+        sumar a (global) y b (global), guardar resultado en dir:15004
 ----------------------------------------------------------------------
 20: (+, 15004, 5002, 15005)
-      add addr:15004 and c (global), store result in addr:15005
+        sumar dir:15004 y c (global), guardar resultado en dir:15005
 ----------------------------------------------------------------------
 21: (=, 15005, None, 5003)
-      assign value of addr:15005 to resultado (global)
+        asignar valor de dir:15005 a resultado (global)
 ----------------------------------------------------------------------
 22: (print, Resultado 4: , None, None)
-      print value addr:Resultado 4: 
+        imprimir valor dir:Resultado 4: 
 ----------------------------------------------------------------------
 23: (print, 5003, None, None)
-      print value resultado (global)
+        imprimir valor resultado (global)
 ----------------------------------------------------------------------
 24: (*, 5001, 5002, 15006)
-      multiply b (global) and c (global), store result in addr:15006
+        multiplicar b (global) y c (global), guardar resultado en dir:15006
 ----------------------------------------------------------------------
 25: (*, 15006, 20002, 15007)
-      multiply addr:15006 and constant(2), store result in addr:15007
+        multiplicar dir:15006 y constante(2), guardar resultado en dir:15007
 ----------------------------------------------------------------------
 26: (+, 5000, 15007, 15008)
-      add a (global) and addr:15007, store result in addr:15008
+        sumar a (global) y dir:15007, guardar resultado en dir:15008
 ----------------------------------------------------------------------
 27: (=, 15008, None, 5004)
-      assign value of addr:15008 to resultado2 (global)
+        asignar valor de dir:15008 a resultado2 (global)
 ----------------------------------------------------------------------
 28: (print, Resultado 5: , None, None)
-      print value addr:Resultado 5: 
+        imprimir valor dir:Resultado 5: 
 ----------------------------------------------------------------------
 29: (print, 5004, None, None)
-      print value resultado2 (global)
+        imprimir valor resultado2 (global)
 ----------------------------------------------------------------------
 30: (*, 5002, 20002, 15009)
-      multiply c (global) and constant(2), store result in addr:15009
+        multiplicar c (global) y constante(2), guardar resultado en dir:15009
 ----------------------------------------------------------------------
 31: (+, 5000, 5001, 15010)
-      add a (global) and b (global), store result in addr:15010
+        sumar a (global) y b (global), guardar resultado en dir:15010
 ----------------------------------------------------------------------
 32: (+, 15010, 15009, 15011)
-      add addr:15010 and addr:15009, store result in addr:15011
+        sumar dir:15010 y dir:15009, guardar resultado en dir:15011
 ----------------------------------------------------------------------
 33: (=, 15011, None, 8000)
-      assign value of addr:15011 to resultado3 (global)
+        asignar valor de dir:15011 a resultado3 (global)
 ----------------------------------------------------------------------
 34: (print, Resultado 6: , None, None)
-      print value addr:Resultado 6: 
+        imprimir valor dir:Resultado 6: 
 ----------------------------------------------------------------------
 35: (print, 8000, None, None)
-      print value resultado3 (global)
+        imprimir valor resultado3 (global)
 ----------------------------------------------------------------------
 36: (*, 5001, 5002, 15012)
-      multiply b (global) and c (global), store result in addr:15012
+        multiplicar b (global) y c (global), guardar resultado en dir:15012
 ----------------------------------------------------------------------
 37: (*, 15012, 20002, 15013)
-      multiply addr:15012 and constant(2), store result in addr:15013
+        multiplicar dir:15012 y constante(2), guardar resultado en dir:15013
 ----------------------------------------------------------------------
 38: (-, 5000, 15013, 15014)
-      subtract a (global) and addr:15013, store result in addr:15014
+        restar a (global) y dir:15013, guardar resultado en dir:15014
 ----------------------------------------------------------------------
 39: (+, 15014, 20003, 15015)
-      add addr:15014 and constant(1), store result in addr:15015
+        sumar dir:15014 y constante(1), guardar resultado en dir:15015
 ----------------------------------------------------------------------
 40: (=, 15015, None, 8000)
-      assign value of addr:15015 to resultado3 (global)
+        asignar valor de dir:15015 a resultado3 (global)
 ----------------------------------------------------------------------
 41: (print, Resultado 7: , None, None)
-      print value addr:Resultado 7: 
+        imprimir valor dir:Resultado 7: 
 ----------------------------------------------------------------------
 42: (print, 8000, None, None)
-      print value resultado3 (global)
+        imprimir valor resultado3 (global)
 ----------------------------------------------------------------------
 43: (END, None, None, None)
-      perform operation END with operand None
+        realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
@@ -400,71 +400,71 @@ Función main declarada, ámbito cambiado a main
 Programa control_if iniciado, ámbito reiniciado a global
 Programa control_if completado
 
-===== QUADRUPLES WITH MEMORY ADDRESSES =====
-INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
-      EXPLANATION
+===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====
+ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)
+        EXPLICACIÓN
 ----------------------------------------------------------------------
 
-===== FUNCTION DIRECTORY =====
-Function: main - Start Address: 1
+===== DIRECTORIO DE FUNCIONES =====
+Función: main - Dirección de Inicio: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
-      jump to quadruple 1
+        saltar al cuádruplo 1
 ----------------------------------------------------------------------
 
-==================== FUNCTION: main ====================
-Starting at quadruple 1
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 5000)
-      assign value of constant(15) to x (global)
+        asignar valor de constante(15) a x (global)
 ----------------------------------------------------------------------
 2: (=, 20001, None, 5001)
-      assign value of constant(7) to y (global)
+        asignar valor de constante(7) a y (global)
 ----------------------------------------------------------------------
 3: (>, 5000, 5001, 19000)
-      compare if x (global) is greater than y (global), store boolean result in addr:19000
+        comparar si x (global) es mayor que y (global), guardar resultado booleano en dir:19000
 ----------------------------------------------------------------------
 4: (gotof, 19000, None, 9)
-      if addr:19000 is false, jump to quadruple 9
+        si dir:19000 es falso, saltar al cuádruplo 9
 ----------------------------------------------------------------------
 5: (=, 5000, None, 5002)
-      assign value of x (global) to max (global)
+        asignar valor de x (global) a max (global)
 ----------------------------------------------------------------------
 6: (print, El mayor es x: , None, None)
-      print value addr:El mayor es x: 
+        imprimir valor dir:El mayor es x: 
 ----------------------------------------------------------------------
 7: (print, 5002, None, None)
-      print value max (global)
+        imprimir valor max (global)
 ----------------------------------------------------------------------
 8: (goto, None, None, 12)
-      jump to quadruple 12
+        saltar al cuádruplo 12
 ----------------------------------------------------------------------
 9: (=, 5001, None, 5002)
-      assign value of y (global) to max (global)
+        asignar valor de y (global) a max (global)
 ----------------------------------------------------------------------
 10: (print, El mayor es y: , None, None)
-      print value addr:El mayor es y: 
+        imprimir valor dir:El mayor es y: 
 ----------------------------------------------------------------------
 11: (print, 5002, None, None)
-      print value max (global)
+        imprimir valor max (global)
 ----------------------------------------------------------------------
 12: (<, 5000, 20002, 19001)
-      compare if x (global) is less than constant(10), store boolean result in addr:19001
+        comparar si x (global) es menor que constante(10), guardar resultado booleano en dir:19001
 ----------------------------------------------------------------------
 13: (gotof, 19001, None, 16)
-      if addr:19001 is false, jump to quadruple 16
+        si dir:19001 es falso, saltar al cuádruplo 16
 ----------------------------------------------------------------------
 14: (print, x es menor que 10, None, None)
-      print value addr:x es menor que 10
+        imprimir valor dir:x es menor que 10
 ----------------------------------------------------------------------
 15: (goto, None, None, 17)
-      jump to quadruple 17
+        saltar al cuádruplo 17
 ----------------------------------------------------------------------
 16: (print, x es mayor o igual que 10, None, None)
-      print value addr:x es mayor o igual que 10
+        imprimir valor dir:x es mayor o igual que 10
 ----------------------------------------------------------------------
 17: (END, None, None, None)
-      perform operation END with operand None
+        realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
@@ -558,68 +558,68 @@ Función main declarada, ámbito cambiado a main
 Programa ciclo_while iniciado, ámbito reiniciado a global
 Programa ciclo_while completado
 
-===== QUADRUPLES WITH MEMORY ADDRESSES =====
-INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
-      EXPLANATION
+===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====
+ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)
+        EXPLICACIÓN
 ----------------------------------------------------------------------
 
-===== FUNCTION DIRECTORY =====
-Function: main - Start Address: 1
+===== DIRECTORIO DE FUNCIONES =====
+Función: main - Dirección de Inicio: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
-      jump to quadruple 1
+        saltar al cuádruplo 1
 ----------------------------------------------------------------------
 
-==================== FUNCTION: main ====================
-Starting at quadruple 1
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 5000)
-      assign value of constant(1) to contador (global)
+        asignar valor de constante(1) a contador (global)
 ----------------------------------------------------------------------
 2: (=, 20001, None, 5001)
-      assign value of constant(0) to suma (global)
+        asignar valor de constante(0) a suma (global)
 ----------------------------------------------------------------------
 3: (<, 5000, 20002, 19000)
-      compare if contador (global) is less than constant(5), store boolean result in addr:19000
+        comparar si contador (global) es menor que constante(5), guardar resultado booleano en dir:19000
 ----------------------------------------------------------------------
 4: (gotof, 19000, None, 14)
-      if addr:19000 is false, jump to quadruple 14
+        si dir:19000 es falso, saltar al cuádruplo 14
 ----------------------------------------------------------------------
 5: (+, 5001, 5000, 15000)
-      add suma (global) and contador (global), store result in addr:15000
+        sumar suma (global) y contador (global), guardar resultado en dir:15000
 ----------------------------------------------------------------------
 6: (=, 15000, None, 5001)
-      assign value of addr:15000 to suma (global)
+        asignar valor de dir:15000 a suma (global)
 ----------------------------------------------------------------------
 7: (print, Iteración: , None, None)
-      print value addr:Iteración: 
+        imprimir valor dir:Iteración: 
 ----------------------------------------------------------------------
 8: (print, 5000, None, None)
-      print value contador (global)
+        imprimir valor contador (global)
 ----------------------------------------------------------------------
 9: (print,  Suma actual: , None, None)
-      print value addr: Suma actual: 
+        imprimir valor dir: Suma actual: 
 ----------------------------------------------------------------------
 10: (print, 5001, None, None)
-      print value suma (global)
+        imprimir valor suma (global)
 ----------------------------------------------------------------------
 11: (+, 5000, 20000, 15001)
-      add contador (global) and constant(1), store result in addr:15001
+        sumar contador (global) y constante(1), guardar resultado en dir:15001
 ----------------------------------------------------------------------
 12: (=, 15001, None, 5000)
-      assign value of addr:15001 to contador (global)
+        asignar valor de dir:15001 a contador (global)
 ----------------------------------------------------------------------
 13: (goto, None, None, 3)
-      jump to quadruple 3
+        saltar al cuádruplo 3
 ----------------------------------------------------------------------
 14: (print, Suma final: , None, None)
-      print value addr:Suma final: 
+        imprimir valor dir:Suma final: 
 ----------------------------------------------------------------------
 15: (print, 5001, None, None)
-      print value suma (global)
+        imprimir valor suma (global)
 ----------------------------------------------------------------------
 16: (END, None, None, None)
-      perform operation END with operand None
+        realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
@@ -850,125 +850,125 @@ Función main declarada, ámbito cambiado a main
 Programa funciones iniciado, ámbito reiniciado a global
 Programa funciones completado
 
-===== QUADRUPLES WITH MEMORY ADDRESSES =====
-INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
-      EXPLANATION
+===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====
+ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)
+        EXPLICACIÓN
 ----------------------------------------------------------------------
 
-===== FUNCTION DIRECTORY =====
-Function: sumar - Start Address: 1
-Function: multiplicar - Start Address: 6
-Function: main - Start Address: 11
+===== DIRECTORIO DE FUNCIONES =====
+Función: sumar - Dirección de Inicio: 1
+Función: multiplicar - Dirección de Inicio: 6
+Función: main - Dirección de Inicio: 11
 ----------------------------------------------------------------------
 0: (goto, None, None, 11)
-      jump to quadruple 11
+        saltar al cuádruplo 11
 ----------------------------------------------------------------------
 
-==================== FUNCTION: sumar ====================
-Starting at quadruple 1
+==================== FUNCIÓN: sumar ====================
+Inicia en el cuádruplo 1
 ----------------------------------------------------------------------
 1: (+, 11000, 11001, 15000)
-      add addr:11000 and addr:11001, store result in addr:15000
+        sumar dir:11000 y dir:11001, guardar resultado en dir:15000
 ----------------------------------------------------------------------
 2: (=, 15000, None, 11002)
-      assign value of addr:15000 to addr:11002
+        asignar valor de dir:15000 a dir:11002
 ----------------------------------------------------------------------
 3: (print, La suma es: , None, None)
-      print value addr:La suma es: 
+        imprimir valor dir:La suma es: 
 ----------------------------------------------------------------------
 4: (print, 11002, None, None)
-      print value addr:11002
+        imprimir valor dir:11002
 ----------------------------------------------------------------------
 5: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF sumar ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE sumar ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: multiplicar ====================
-Starting at quadruple 6
+==================== FUNCIÓN: multiplicar ====================
+Inicia en el cuádruplo 6
 ----------------------------------------------------------------------
 6: (*, 11003, 11004, 15001)
-      multiply addr:11003 and addr:11004, store result in addr:15001
+        multiplicar dir:11003 y dir:11004, guardar resultado en dir:15001
 ----------------------------------------------------------------------
 7: (=, 15001, None, 11005)
-      assign value of addr:15001 to addr:11005
+        asignar valor de dir:15001 a dir:11005
 ----------------------------------------------------------------------
 8: (print, El producto es: , None, None)
-      print value addr:El producto es: 
+        imprimir valor dir:El producto es: 
 ----------------------------------------------------------------------
 9: (print, 11005, None, None)
-      print value addr:11005
+        imprimir valor dir:11005
 ----------------------------------------------------------------------
 10: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF multiplicar ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE multiplicar ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: main ====================
-Starting at quadruple 11
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 11
 ----------------------------------------------------------------------
 11: (=, 20000, None, 5001)
-      assign value of constant(8) to num1 (global)
+        asignar valor de constante(8) a num1 (global)
 ----------------------------------------------------------------------
 12: (=, 20001, None, 5002)
-      assign value of constant(3) to num2 (global)
+        asignar valor de constante(3) a num2 (global)
 ----------------------------------------------------------------------
 13: (ERA, sumar, None, None)
-      perform operation ERA with operand addr:sumar
+        realizar operación ERA con operando dir:sumar
 ----------------------------------------------------------------------
 14: (parámetro, 5001, par1, None)
-      perform operation parámetro with operands num1 (global), addr:par1, result in None
+        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 15: (parámetro, 5002, par2, None)
-      perform operation parámetro with operands num2 (global), addr:par2, result in None
+        realizar operación parámetro con operandos num2 (global), dir:par2, resultado en None
 ----------------------------------------------------------------------
 16: (GOSUB, sumar, None, None)
-      perform operation GOSUB with operand addr:sumar
+        realizar operación GOSUB con operando dir:sumar
 ----------------------------------------------------------------------
 17: (ERA, multiplicar, None, None)
-      perform operation ERA with operand addr:multiplicar
+        realizar operación ERA con operando dir:multiplicar
 ----------------------------------------------------------------------
 18: (parámetro, 5001, par1, None)
-      perform operation parámetro with operands num1 (global), addr:par1, result in None
+        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 19: (parámetro, 5002, par2, None)
-      perform operation parámetro with operands num2 (global), addr:par2, result in None
+        realizar operación parámetro con operandos num2 (global), dir:par2, resultado en None
 ----------------------------------------------------------------------
 20: (GOSUB, multiplicar, None, None)
-      perform operation GOSUB with operand addr:multiplicar
+        realizar operación GOSUB con operando dir:multiplicar
 ----------------------------------------------------------------------
 21: (ERA, sumar, None, None)
-      perform operation ERA with operand addr:sumar
+        realizar operación ERA con operando dir:sumar
 ----------------------------------------------------------------------
 22: (parámetro, 20002, par1, None)
-      perform operation parámetro with operands constant(5), addr:par1, result in None
+        realizar operación parámetro con operandos constante(5), dir:par1, resultado en None
 ----------------------------------------------------------------------
 23: (parámetro, 20003, par2, None)
-      perform operation parámetro with operands constant(7), addr:par2, result in None
+        realizar operación parámetro con operandos constante(7), dir:par2, resultado en None
 ----------------------------------------------------------------------
 24: (GOSUB, sumar, None, None)
-      perform operation GOSUB with operand addr:sumar
+        realizar operación GOSUB con operando dir:sumar
 ----------------------------------------------------------------------
 25: (ERA, multiplicar, None, None)
-      perform operation ERA with operand addr:multiplicar
+        realizar operación ERA con operando dir:multiplicar
 ----------------------------------------------------------------------
 26: (+, 5001, 20004, 15002)
-      add num1 (global) and constant(2), store result in addr:15002
+        sumar num1 (global) y constante(2), guardar resultado en dir:15002
 ----------------------------------------------------------------------
 27: (parámetro, 15002, par1, None)
-      perform operation parámetro with operands addr:15002, addr:par1, result in None
+        realizar operación parámetro con operandos dir:15002, dir:par1, resultado en None
 ----------------------------------------------------------------------
 28: (*, 5002, 20004, 15003)
-      multiply num2 (global) and constant(2), store result in addr:15003
+        multiplicar num2 (global) y constante(2), guardar resultado en dir:15003
 ----------------------------------------------------------------------
 29: (parámetro, 15003, par2, None)
-      perform operation parámetro with operands addr:15003, addr:par2, result in None
+        realizar operación parámetro con operandos dir:15003, dir:par2, resultado en None
 ----------------------------------------------------------------------
 30: (GOSUB, multiplicar, None, None)
-      perform operation GOSUB with operand addr:multiplicar
+        realizar operación GOSUB con operando dir:multiplicar
 ----------------------------------------------------------------------
 31: (END, None, None, None)
-      perform operation END with operand None
+        realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 11)
@@ -1141,44 +1141,44 @@ Función main declarada, ámbito cambiado a main
 Programa operaciones_flotantes iniciado, ámbito reiniciado a global
 Programa operaciones_flotantes completado
 
-===== QUADRUPLES WITH MEMORY ADDRESSES =====
-INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
-      EXPLANATION
+===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====
+ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)
+        EXPLICACIÓN
 ----------------------------------------------------------------------
 
-===== FUNCTION DIRECTORY =====
-Function: main - Start Address: 1
+===== DIRECTORIO DE FUNCIONES =====
+Función: main - Dirección de Inicio: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
-      jump to quadruple 1
+        saltar al cuádruplo 1
 ----------------------------------------------------------------------
 
-==================== FUNCTION: main ====================
-Starting at quadruple 1
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 1
 ----------------------------------------------------------------------
 1: (=, 20500, None, 8000)
-      assign value of constant(3.5) to x (global)
+        asignar valor de constante(3.5) a x (global)
 ----------------------------------------------------------------------
 2: (=, 20000, None, 5000)
-      assign value of constant(2) to y (global)
+        asignar valor de constante(2) a y (global)
 ----------------------------------------------------------------------
 3: (*, 8000, 5000, 17000)
-      multiply x (global) and y (global), store result in addr:17000
+        multiplicar x (global) y y (global), guardar resultado en dir:17000
 ----------------------------------------------------------------------
 4: (+, 17000, 20501, 17001)
-      add addr:17000 and constant(1.5), store result in addr:17001
+        sumar dir:17000 y constante(1.5), guardar resultado en dir:17001
 ----------------------------------------------------------------------
 5: (=, 17001, None, 8001)
-      assign value of addr:17001 to z (global)
+        asignar valor de dir:17001 a z (global)
 ----------------------------------------------------------------------
 6: (print, Resultado flotante: , None, None)
-      print value addr:Resultado flotante: 
+        imprimir valor dir:Resultado flotante: 
 ----------------------------------------------------------------------
 7: (print, 8001, None, None)
-      print value z (global)
+        imprimir valor z (global)
 ----------------------------------------------------------------------
 8: (END, None, None, None)
-      perform operation END with operand None
+        realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
@@ -1263,44 +1263,44 @@ Función main declarada, ámbito cambiado a main
 Programa negativos iniciado, ámbito reiniciado a global
 Programa negativos completado
 
-===== QUADRUPLES WITH MEMORY ADDRESSES =====
-INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
-      EXPLANATION
+===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====
+ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)
+        EXPLICACIÓN
 ----------------------------------------------------------------------
 
-===== FUNCTION DIRECTORY =====
-Function: main - Start Address: 1
+===== DIRECTORIO DE FUNCIONES =====
+Función: main - Dirección de Inicio: 1
 ----------------------------------------------------------------------
 0: (goto, None, None, 1)
-      jump to quadruple 1
+        saltar al cuádruplo 1
 ----------------------------------------------------------------------
 
-==================== FUNCTION: main ====================
-Starting at quadruple 1
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 1
 ----------------------------------------------------------------------
 1: (*, 20000, 20001, 15000)
-      multiply constant(-1) and constant(5), store result in addr:15000
+        multiplicar constante(-1) y constante(5), guardar resultado en dir:15000
 ----------------------------------------------------------------------
 2: (=, 15000, None, 5000)
-      assign value of addr:15000 to a (global)
+        asignar valor de dir:15000 a a (global)
 ----------------------------------------------------------------------
 3: (=, 20002, None, 5001)
-      assign value of constant(3) to b (global)
+        asignar valor de constante(3) a b (global)
 ----------------------------------------------------------------------
 4: (+, 5000, 5001, 15001)
-      add a (global) and b (global), store result in addr:15001
+        sumar a (global) y b (global), guardar resultado en dir:15001
 ----------------------------------------------------------------------
 5: (=, 15001, None, 5002)
-      assign value of addr:15001 to resultado (global)
+        asignar valor de dir:15001 a resultado (global)
 ----------------------------------------------------------------------
 6: (print, Resultado con negativos: , None, None)
-      print value addr:Resultado con negativos: 
+        imprimir valor dir:Resultado con negativos: 
 ----------------------------------------------------------------------
 7: (print, 5002, None, None)
-      print value resultado (global)
+        imprimir valor resultado (global)
 ----------------------------------------------------------------------
 8: (END, None, None, None)
-      perform operation END with operand None
+        realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 1)
@@ -1413,122 +1413,122 @@ Función main declarada, ámbito cambiado a main
 Programa factorial_funcion iniciado, ámbito reiniciado a global
 Programa factorial_funcion completado
 
-===== QUADRUPLES WITH MEMORY ADDRESSES =====
-INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
-      EXPLANATION
+===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====
+ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)
+        EXPLICACIÓN
 ----------------------------------------------------------------------
 
-===== FUNCTION DIRECTORY =====
-Function: calcular_factorial - Start Address: 1
-Function: main - Start Address: 22
+===== DIRECTORIO DE FUNCIONES =====
+Función: calcular_factorial - Dirección de Inicio: 1
+Función: main - Dirección de Inicio: 22
 ----------------------------------------------------------------------
 0: (goto, None, None, 22)
-      jump to quadruple 22
+        saltar al cuádruplo 22
 ----------------------------------------------------------------------
 
-==================== FUNCTION: calcular_factorial ====================
-Starting at quadruple 1
+==================== FUNCIÓN: calcular_factorial ====================
+Inicia en el cuádruplo 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 11001)
-      assign value of constant(1) to addr:11001
+        asignar valor de constante(1) a dir:11001
 ----------------------------------------------------------------------
 2: (=, 20000, None, 11002)
-      assign value of constant(1) to addr:11002
+        asignar valor de constante(1) a dir:11002
 ----------------------------------------------------------------------
 3: (print, Calculando factorial de , None, None)
-      print value addr:Calculando factorial de 
+        imprimir valor dir:Calculando factorial de 
 ----------------------------------------------------------------------
 4: (print, 11000, None, None)
-      print value addr:11000
+        imprimir valor dir:11000
 ----------------------------------------------------------------------
 5: (+, 11000, 20000, 15000)
-      add addr:11000 and constant(1), store result in addr:15000
+        sumar dir:11000 y constante(1), guardar resultado en dir:15000
 ----------------------------------------------------------------------
 6: (<, 11002, 15000, 19000)
-      compare if addr:11002 is less than addr:15000, store boolean result in addr:19000
+        comparar si dir:11002 es menor que dir:15000, guardar resultado booleano en dir:19000
 ----------------------------------------------------------------------
 7: (gotof, 19000, None, 17)
-      if addr:19000 is false, jump to quadruple 17
+        si dir:19000 es falso, saltar al cuádruplo 17
 ----------------------------------------------------------------------
 8: (*, 11001, 11002, 15001)
-      multiply addr:11001 and addr:11002, store result in addr:15001
+        multiplicar dir:11001 y dir:11002, guardar resultado en dir:15001
 ----------------------------------------------------------------------
 9: (=, 15001, None, 11001)
-      assign value of addr:15001 to addr:11001
+        asignar valor de dir:15001 a dir:11001
 ----------------------------------------------------------------------
 10: (print, Paso , None, None)
-      print value addr:Paso 
+        imprimir valor dir:Paso 
 ----------------------------------------------------------------------
 11: (print, 11002, None, None)
-      print value addr:11002
+        imprimir valor dir:11002
 ----------------------------------------------------------------------
 12: (print, : , None, None)
-      print value addr:: 
+        imprimir valor dir:: 
 ----------------------------------------------------------------------
 13: (print, 11001, None, None)
-      print value addr:11001
+        imprimir valor dir:11001
 ----------------------------------------------------------------------
 14: (+, 11002, 20000, 15002)
-      add addr:11002 and constant(1), store result in addr:15002
+        sumar dir:11002 y constante(1), guardar resultado en dir:15002
 ----------------------------------------------------------------------
 15: (=, 15002, None, 11002)
-      assign value of addr:15002 to addr:11002
+        asignar valor de dir:15002 a dir:11002
 ----------------------------------------------------------------------
 16: (goto, None, None, 5)
-      jump to quadruple 5
+        saltar al cuádruplo 5
 ----------------------------------------------------------------------
 17: (print, Factorial de , None, None)
-      print value addr:Factorial de 
+        imprimir valor dir:Factorial de 
 ----------------------------------------------------------------------
 18: (print, 11000, None, None)
-      print value addr:11000
+        imprimir valor dir:11000
 ----------------------------------------------------------------------
 19: (print,  es: , None, None)
-      print value addr: es: 
+        imprimir valor dir: es: 
 ----------------------------------------------------------------------
 20: (print, 11001, None, None)
-      print value addr:11001
+        imprimir valor dir:11001
 ----------------------------------------------------------------------
 21: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF calcular_factorial ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE calcular_factorial ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: main ====================
-Starting at quadruple 22
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 22
 ----------------------------------------------------------------------
 22: (=, 20001, None, 5000)
-      assign value of constant(5) to numero (global)
+        asignar valor de constante(5) a numero (global)
 ----------------------------------------------------------------------
 23: (ERA, calcular_factorial, None, None)
-      perform operation ERA with operand addr:calcular_factorial
+        realizar operación ERA con operando dir:calcular_factorial
 ----------------------------------------------------------------------
 24: (parámetro, 5000, par1, None)
-      perform operation parámetro with operands numero (global), addr:par1, result in None
+        realizar operación parámetro con operandos numero (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 25: (GOSUB, calcular_factorial, None, None)
-      perform operation GOSUB with operand addr:calcular_factorial
+        realizar operación GOSUB con operando dir:calcular_factorial
 ----------------------------------------------------------------------
 26: (ERA, calcular_factorial, None, None)
-      perform operation ERA with operand addr:calcular_factorial
+        realizar operación ERA con operando dir:calcular_factorial
 ----------------------------------------------------------------------
 27: (parámetro, 20002, par1, None)
-      perform operation parámetro with operands constant(4), addr:par1, result in None
+        realizar operación parámetro con operandos constante(4), dir:par1, resultado en None
 ----------------------------------------------------------------------
 28: (GOSUB, calcular_factorial, None, None)
-      perform operation GOSUB with operand addr:calcular_factorial
+        realizar operación GOSUB con operando dir:calcular_factorial
 ----------------------------------------------------------------------
 29: (ERA, calcular_factorial, None, None)
-      perform operation ERA with operand addr:calcular_factorial
+        realizar operación ERA con operando dir:calcular_factorial
 ----------------------------------------------------------------------
 30: (parámetro, 20003, par1, None)
-      perform operation parámetro with operands constant(6), addr:par1, result in None
+        realizar operación parámetro con operandos constante(6), dir:par1, resultado en None
 ----------------------------------------------------------------------
 31: (GOSUB, calcular_factorial, None, None)
-      perform operation GOSUB with operand addr:calcular_factorial
+        realizar operación GOSUB con operando dir:calcular_factorial
 ----------------------------------------------------------------------
 32: (END, None, None, None)
-      perform operation END with operand None
+        realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 22)
@@ -2174,221 +2174,221 @@ Función main declarada, ámbito cambiado a main
 Programa fibonacci_funcion iniciado, ámbito reiniciado a global
 Programa fibonacci_funcion completado
 
-===== QUADRUPLES WITH MEMORY ADDRESSES =====
-INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
-      EXPLANATION
+===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====
+ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)
+        EXPLICACIÓN
 ----------------------------------------------------------------------
 
-===== FUNCTION DIRECTORY =====
-Function: generar_fibonacci - Start Address: 1
-Function: mostrar_fibonacci_hasta - Start Address: 33
-Function: main - Start Address: 56
+===== DIRECTORIO DE FUNCIONES =====
+Función: generar_fibonacci - Dirección de Inicio: 1
+Función: mostrar_fibonacci_hasta - Dirección de Inicio: 33
+Función: main - Dirección de Inicio: 56
 ----------------------------------------------------------------------
 0: (goto, None, None, 56)
-      jump to quadruple 56
+        saltar al cuádruplo 56
 ----------------------------------------------------------------------
 
-==================== FUNCTION: generar_fibonacci ====================
-Starting at quadruple 1
+==================== FUNCIÓN: generar_fibonacci ====================
+Inicia en el cuádruplo 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 11002)
-      assign value of constant(0) to addr:11002
+        asignar valor de constante(0) a dir:11002
 ----------------------------------------------------------------------
 2: (=, 20001, None, 11003)
-      assign value of constant(1) to addr:11003
+        asignar valor de constante(1) a dir:11003
 ----------------------------------------------------------------------
 3: (print, Serie de Fibonacci de , None, None)
-      print value addr:Serie de Fibonacci de 
+        imprimir valor dir:Serie de Fibonacci de 
 ----------------------------------------------------------------------
 4: (print, 11000, None, None)
-      print value addr:11000
+        imprimir valor dir:11000
 ----------------------------------------------------------------------
 5: (print,  términos:, None, None)
-      print value addr: términos:
+        imprimir valor dir: términos:
 ----------------------------------------------------------------------
 6: (>, 11000, 20002, 19000)
-      compare if addr:11000 is greater than constant(2), store boolean result in addr:19000
+        comparar si dir:11000 es mayor que constante(2), guardar resultado booleano en dir:19000
 ----------------------------------------------------------------------
 7: (gotof, 19000, None, 11)
-      if addr:19000 is false, jump to quadruple 11
+        si dir:19000 es falso, saltar al cuádruplo 11
 ----------------------------------------------------------------------
 8: (print, F(1) = , None, None)
-      print value addr:F(1) = 
+        imprimir valor dir:F(1) = 
 ----------------------------------------------------------------------
 9: (print, 11002, None, None)
-      print value addr:11002
+        imprimir valor dir:11002
 ----------------------------------------------------------------------
 10: (goto, None, None, 11)
-      jump to quadruple 11
+        saltar al cuádruplo 11
 ----------------------------------------------------------------------
 11: (>, 11000, 20003, 19001)
-      compare if addr:11000 is greater than constant(3), store boolean result in addr:19001
+        comparar si dir:11000 es mayor que constante(3), guardar resultado booleano en dir:19001
 ----------------------------------------------------------------------
 12: (gotof, 19001, None, 16)
-      if addr:19001 is false, jump to quadruple 16
+        si dir:19001 es falso, saltar al cuádruplo 16
 ----------------------------------------------------------------------
 13: (print, F(2) = , None, None)
-      print value addr:F(2) = 
+        imprimir valor dir:F(2) = 
 ----------------------------------------------------------------------
 14: (print, 11003, None, None)
-      print value addr:11003
+        imprimir valor dir:11003
 ----------------------------------------------------------------------
 15: (goto, None, None, 16)
-      jump to quadruple 16
+        saltar al cuádruplo 16
 ----------------------------------------------------------------------
 16: (=, 20003, None, 11001)
-      assign value of constant(3) to addr:11001
+        asignar valor de constante(3) a dir:11001
 ----------------------------------------------------------------------
 17: (+, 11000, 20001, 15000)
-      add addr:11000 and constant(1), store result in addr:15000
+        sumar dir:11000 y constante(1), guardar resultado en dir:15000
 ----------------------------------------------------------------------
 18: (<, 11001, 15000, 19002)
-      compare if addr:11001 is less than addr:15000, store boolean result in addr:19002
+        comparar si dir:11001 es menor que dir:15000, guardar resultado booleano en dir:19002
 ----------------------------------------------------------------------
 19: (gotof, 19002, None, 31)
-      if addr:19002 is false, jump to quadruple 31
+        si dir:19002 es falso, saltar al cuádruplo 31
 ----------------------------------------------------------------------
 20: (+, 11002, 11003, 15001)
-      add addr:11002 and addr:11003, store result in addr:15001
+        sumar dir:11002 y dir:11003, guardar resultado en dir:15001
 ----------------------------------------------------------------------
 21: (=, 15001, None, 11004)
-      assign value of addr:15001 to addr:11004
+        asignar valor de dir:15001 a dir:11004
 ----------------------------------------------------------------------
 22: (print, F(, None, None)
-      print value addr:F(
+        imprimir valor dir:F(
 ----------------------------------------------------------------------
 23: (print, 11001, None, None)
-      print value addr:11001
+        imprimir valor dir:11001
 ----------------------------------------------------------------------
 24: (print, ) = , None, None)
-      print value addr:) = 
+        imprimir valor dir:) = 
 ----------------------------------------------------------------------
 25: (print, 11004, None, None)
-      print value addr:11004
+        imprimir valor dir:11004
 ----------------------------------------------------------------------
 26: (=, 11003, None, 11002)
-      assign value of addr:11003 to addr:11002
+        asignar valor de dir:11003 a dir:11002
 ----------------------------------------------------------------------
 27: (=, 11004, None, 11003)
-      assign value of addr:11004 to addr:11003
+        asignar valor de dir:11004 a dir:11003
 ----------------------------------------------------------------------
 28: (+, 11001, 20001, 15002)
-      add addr:11001 and constant(1), store result in addr:15002
+        sumar dir:11001 y constante(1), guardar resultado en dir:15002
 ----------------------------------------------------------------------
 29: (=, 15002, None, 11001)
-      assign value of addr:15002 to addr:11001
+        asignar valor de dir:15002 a dir:11001
 ----------------------------------------------------------------------
 30: (goto, None, None, 17)
-      jump to quadruple 17
+        saltar al cuádruplo 17
 ----------------------------------------------------------------------
 31: (print, Serie completada, None, None)
-      print value addr:Serie completada
+        imprimir valor dir:Serie completada
 ----------------------------------------------------------------------
 32: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF generar_fibonacci ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE generar_fibonacci ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: mostrar_fibonacci_hasta ====================
-Starting at quadruple 33
+==================== FUNCIÓN: mostrar_fibonacci_hasta ====================
+Inicia en el cuádruplo 33
 ----------------------------------------------------------------------
 33: (=, 20000, None, 11006)
-      assign value of constant(0) to addr:11006
+        asignar valor de constante(0) a dir:11006
 ----------------------------------------------------------------------
 34: (=, 20001, None, 11007)
-      assign value of constant(1) to addr:11007
+        asignar valor de constante(1) a dir:11007
 ----------------------------------------------------------------------
 35: (print, Fibonacci hasta , None, None)
-      print value addr:Fibonacci hasta 
+        imprimir valor dir:Fibonacci hasta 
 ----------------------------------------------------------------------
 36: (print, 11005, None, None)
-      print value addr:11005
+        imprimir valor dir:11005
 ----------------------------------------------------------------------
 37: (print, :, None, None)
-      print value addr::
+        imprimir valor dir::
 ----------------------------------------------------------------------
 38: (print, 11006, None, None)
-      print value addr:11006
+        imprimir valor dir:11006
 ----------------------------------------------------------------------
 39: (+, 11005, 20001, 15003)
-      add addr:11005 and constant(1), store result in addr:15003
+        sumar dir:11005 y constante(1), guardar resultado en dir:15003
 ----------------------------------------------------------------------
 40: (<, 11007, 15003, 19003)
-      compare if addr:11007 is less than addr:15003, store boolean result in addr:19003
+        comparar si dir:11007 es menor que dir:15003, guardar resultado booleano en dir:19003
 ----------------------------------------------------------------------
 41: (gotof, 19003, None, 44)
-      if addr:19003 is false, jump to quadruple 44
+        si dir:19003 es falso, saltar al cuádruplo 44
 ----------------------------------------------------------------------
 42: (print, 11007, None, None)
-      print value addr:11007
+        imprimir valor dir:11007
 ----------------------------------------------------------------------
 43: (goto, None, None, 44)
-      jump to quadruple 44
+        saltar al cuádruplo 44
 ----------------------------------------------------------------------
 44: (+, 11006, 11007, 15004)
-      add addr:11006 and addr:11007, store result in addr:15004
+        sumar dir:11006 y dir:11007, guardar resultado en dir:15004
 ----------------------------------------------------------------------
 45: (=, 15004, None, 11008)
-      assign value of addr:15004 to addr:11008
+        asignar valor de dir:15004 a dir:11008
 ----------------------------------------------------------------------
 46: (+, 11005, 20001, 15005)
-      add addr:11005 and constant(1), store result in addr:15005
+        sumar dir:11005 y constante(1), guardar resultado en dir:15005
 ----------------------------------------------------------------------
 47: (<, 11008, 15005, 19004)
-      compare if addr:11008 is less than addr:15005, store boolean result in addr:19004
+        comparar si dir:11008 es menor que dir:15005, guardar resultado booleano en dir:19004
 ----------------------------------------------------------------------
 48: (gotof, 19004, None, 55)
-      if addr:19004 is false, jump to quadruple 55
+        si dir:19004 es falso, saltar al cuádruplo 55
 ----------------------------------------------------------------------
 49: (print, 11008, None, None)
-      print value addr:11008
+        imprimir valor dir:11008
 ----------------------------------------------------------------------
 50: (=, 11007, None, 11006)
-      assign value of addr:11007 to addr:11006
+        asignar valor de dir:11007 a dir:11006
 ----------------------------------------------------------------------
 51: (=, 11008, None, 11007)
-      assign value of addr:11008 to addr:11007
+        asignar valor de dir:11008 a dir:11007
 ----------------------------------------------------------------------
 52: (+, 11006, 11007, 15006)
-      add addr:11006 and addr:11007, store result in addr:15006
+        sumar dir:11006 y dir:11007, guardar resultado en dir:15006
 ----------------------------------------------------------------------
 53: (=, 15006, None, 11008)
-      assign value of addr:15006 to addr:11008
+        asignar valor de dir:15006 a dir:11008
 ----------------------------------------------------------------------
 54: (goto, None, None, 46)
-      jump to quadruple 46
+        saltar al cuádruplo 46
 ----------------------------------------------------------------------
 55: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF mostrar_fibonacci_hasta ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE mostrar_fibonacci_hasta ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: main ====================
-Starting at quadruple 56
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 56
 ----------------------------------------------------------------------
 56: (=, 20004, None, 5000)
-      assign value of constant(7) to cantidad (global)
+        asignar valor de constante(7) a cantidad (global)
 ----------------------------------------------------------------------
 57: (ERA, generar_fibonacci, None, None)
-      perform operation ERA with operand addr:generar_fibonacci
+        realizar operación ERA con operando dir:generar_fibonacci
 ----------------------------------------------------------------------
 58: (parámetro, 5000, par1, None)
-      perform operation parámetro with operands cantidad (global), addr:par1, result in None
+        realizar operación parámetro con operandos cantidad (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 59: (GOSUB, generar_fibonacci, None, None)
-      perform operation GOSUB with operand addr:generar_fibonacci
+        realizar operación GOSUB con operando dir:generar_fibonacci
 ----------------------------------------------------------------------
 60: (ERA, mostrar_fibonacci_hasta, None, None)
-      perform operation ERA with operand addr:mostrar_fibonacci_hasta
+        realizar operación ERA con operando dir:mostrar_fibonacci_hasta
 ----------------------------------------------------------------------
 61: (parámetro, 20005, par1, None)
-      perform operation parámetro with operands constant(20), addr:par1, result in None
+        realizar operación parámetro con operandos constante(20), dir:par1, resultado en None
 ----------------------------------------------------------------------
 62: (GOSUB, mostrar_fibonacci_hasta, None, None)
-      perform operation GOSUB with operand addr:mostrar_fibonacci_hasta
+        realizar operación GOSUB con operando dir:mostrar_fibonacci_hasta
 ----------------------------------------------------------------------
 63: (END, None, None, None)
-      perform operation END with operand None
+        realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 56)
@@ -2933,233 +2933,233 @@ Función main declarada, ámbito cambiado a main
 Programa funciones_matematicas iniciado, ámbito reiniciado a global
 Programa funciones_matematicas completado
 
-===== QUADRUPLES WITH MEMORY ADDRESSES =====
-INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
-      EXPLANATION
+===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====
+ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)
+        EXPLICACIÓN
 ----------------------------------------------------------------------
 
-===== FUNCTION DIRECTORY =====
-Function: potencia - Start Address: 1
-Function: tabla_multiplicar - Start Address: 17
-Function: mcd - Start Address: 34
-Function: main - Start Address: 50
+===== DIRECTORIO DE FUNCIONES =====
+Función: potencia - Dirección de Inicio: 1
+Función: tabla_multiplicar - Dirección de Inicio: 17
+Función: mcd - Dirección de Inicio: 34
+Función: main - Dirección de Inicio: 50
 ----------------------------------------------------------------------
 0: (goto, None, None, 50)
-      jump to quadruple 50
+        saltar al cuádruplo 50
 ----------------------------------------------------------------------
 
-==================== FUNCTION: potencia ====================
-Starting at quadruple 1
+==================== FUNCIÓN: potencia ====================
+Inicia en el cuádruplo 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 11002)
-      assign value of constant(1) to addr:11002
+        asignar valor de constante(1) a dir:11002
 ----------------------------------------------------------------------
 2: (=, 20000, None, 11003)
-      assign value of constant(1) to addr:11003
+        asignar valor de constante(1) a dir:11003
 ----------------------------------------------------------------------
 3: (+, 11001, 20000, 15000)
-      add addr:11001 and constant(1), store result in addr:15000
+        sumar dir:11001 y constante(1), guardar resultado en dir:15000
 ----------------------------------------------------------------------
 4: (<, 11003, 15000, 19000)
-      compare if addr:11003 is less than addr:15000, store boolean result in addr:19000
+        comparar si dir:11003 es menor que dir:15000, guardar resultado booleano en dir:19000
 ----------------------------------------------------------------------
 5: (gotof, 19000, None, 11)
-      if addr:19000 is false, jump to quadruple 11
+        si dir:19000 es falso, saltar al cuádruplo 11
 ----------------------------------------------------------------------
 6: (*, 11002, 11000, 15001)
-      multiply addr:11002 and addr:11000, store result in addr:15001
+        multiplicar dir:11002 y dir:11000, guardar resultado en dir:15001
 ----------------------------------------------------------------------
 7: (=, 15001, None, 11002)
-      assign value of addr:15001 to addr:11002
+        asignar valor de dir:15001 a dir:11002
 ----------------------------------------------------------------------
 8: (+, 11003, 20000, 15002)
-      add addr:11003 and constant(1), store result in addr:15002
+        sumar dir:11003 y constante(1), guardar resultado en dir:15002
 ----------------------------------------------------------------------
 9: (=, 15002, None, 11003)
-      assign value of addr:15002 to addr:11003
+        asignar valor de dir:15002 a dir:11003
 ----------------------------------------------------------------------
 10: (goto, None, None, 3)
-      jump to quadruple 3
+        saltar al cuádruplo 3
 ----------------------------------------------------------------------
 11: (print, 11000, None, None)
-      print value addr:11000
+        imprimir valor dir:11000
 ----------------------------------------------------------------------
 12: (print,  elevado a , None, None)
-      print value addr: elevado a 
+        imprimir valor dir: elevado a 
 ----------------------------------------------------------------------
 13: (print, 11001, None, None)
-      print value addr:11001
+        imprimir valor dir:11001
 ----------------------------------------------------------------------
 14: (print,  = , None, None)
-      print value addr: = 
+        imprimir valor dir: = 
 ----------------------------------------------------------------------
 15: (print, 11002, None, None)
-      print value addr:11002
+        imprimir valor dir:11002
 ----------------------------------------------------------------------
 16: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF potencia ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE potencia ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: tabla_multiplicar ====================
-Starting at quadruple 17
+==================== FUNCIÓN: tabla_multiplicar ====================
+Inicia en el cuádruplo 17
 ----------------------------------------------------------------------
 17: (print, Tabla del , None, None)
-      print value addr:Tabla del 
+        imprimir valor dir:Tabla del 
 ----------------------------------------------------------------------
 18: (print, 11004, None, None)
-      print value addr:11004
+        imprimir valor dir:11004
 ----------------------------------------------------------------------
 19: (print, :, None, None)
-      print value addr::
+        imprimir valor dir::
 ----------------------------------------------------------------------
 20: (=, 20000, None, 11005)
-      assign value of constant(1) to addr:11005
+        asignar valor de constante(1) a dir:11005
 ----------------------------------------------------------------------
 21: (<, 11005, 20001, 19001)
-      compare if addr:11005 is less than constant(11), store boolean result in addr:19001
+        comparar si dir:11005 es menor que constante(11), guardar resultado booleano en dir:19001
 ----------------------------------------------------------------------
 22: (gotof, 19001, None, 33)
-      if addr:19001 is false, jump to quadruple 33
+        si dir:19001 es falso, saltar al cuádruplo 33
 ----------------------------------------------------------------------
 23: (*, 11004, 11005, 15003)
-      multiply addr:11004 and addr:11005, store result in addr:15003
+        multiplicar dir:11004 y dir:11005, guardar resultado en dir:15003
 ----------------------------------------------------------------------
 24: (=, 15003, None, 11006)
-      assign value of addr:15003 to addr:11006
+        asignar valor de dir:15003 a dir:11006
 ----------------------------------------------------------------------
 25: (print, 11004, None, None)
-      print value addr:11004
+        imprimir valor dir:11004
 ----------------------------------------------------------------------
 26: (print,  x , None, None)
-      print value addr: x 
+        imprimir valor dir: x 
 ----------------------------------------------------------------------
 27: (print, 11005, None, None)
-      print value addr:11005
+        imprimir valor dir:11005
 ----------------------------------------------------------------------
 28: (print,  = , None, None)
-      print value addr: = 
+        imprimir valor dir: = 
 ----------------------------------------------------------------------
 29: (print, 11006, None, None)
-      print value addr:11006
+        imprimir valor dir:11006
 ----------------------------------------------------------------------
 30: (+, 11005, 20000, 15004)
-      add addr:11005 and constant(1), store result in addr:15004
+        sumar dir:11005 y constante(1), guardar resultado en dir:15004
 ----------------------------------------------------------------------
 31: (=, 15004, None, 11005)
-      assign value of addr:15004 to addr:11005
+        asignar valor de dir:15004 a dir:11005
 ----------------------------------------------------------------------
 32: (goto, None, None, 21)
-      jump to quadruple 21
+        saltar al cuádruplo 21
 ----------------------------------------------------------------------
 33: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF tabla_multiplicar ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE tabla_multiplicar ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: mcd ====================
-Starting at quadruple 34
+==================== FUNCIÓN: mcd ====================
+Inicia en el cuádruplo 34
 ----------------------------------------------------------------------
 34: (print, Calculando MCD de , None, None)
-      print value addr:Calculando MCD de 
+        imprimir valor dir:Calculando MCD de 
 ----------------------------------------------------------------------
 35: (print, 13000, None, None)
-      print value addr:13000
+        imprimir valor dir:13000
 ----------------------------------------------------------------------
 36: (print,  y , None, None)
-      print value addr: y 
+        imprimir valor dir: y 
 ----------------------------------------------------------------------
 37: (print, 13001, None, None)
-      print value addr:13001
+        imprimir valor dir:13001
 ----------------------------------------------------------------------
 38: (!=, 13001, 20002, 19002)
-      compare if addr:13001 is not equal to constant(0), store boolean result in addr:19002
+        comparar si dir:13001 es diferente de constante(0), guardar resultado booleano en dir:19002
 ----------------------------------------------------------------------
 39: (gotof, 19002, None, 47)
-      if addr:19002 is false, jump to quadruple 47
+        si dir:19002 es falso, saltar al cuádruplo 47
 ----------------------------------------------------------------------
 40: (=, 13001, None, 13002)
-      assign value of addr:13001 to addr:13002
+        asignar valor de dir:13001 a dir:13002
 ----------------------------------------------------------------------
 41: (/, 13000, 13001, 17000)
-      divide addr:13000 and addr:13001, store result in addr:17000
+        dividir dir:13000 y dir:13001, guardar resultado en dir:17000
 ----------------------------------------------------------------------
 42: (*, 17000, 13001, 17001)
-      multiply addr:17000 and addr:13001, store result in addr:17001
+        multiplicar dir:17000 y dir:13001, guardar resultado en dir:17001
 ----------------------------------------------------------------------
 43: (-, 13000, 17001, 17002)
-      subtract addr:13000 and addr:17001, store result in addr:17002
+        restar dir:13000 y dir:17001, guardar resultado en dir:17002
 ----------------------------------------------------------------------
 44: (=, 17002, None, 13001)
-      assign value of addr:17002 to addr:13001
+        asignar valor de dir:17002 a dir:13001
 ----------------------------------------------------------------------
 45: (=, 13002, None, 13000)
-      assign value of addr:13002 to addr:13000
+        asignar valor de dir:13002 a dir:13000
 ----------------------------------------------------------------------
 46: (goto, None, None, 38)
-      jump to quadruple 38
+        saltar al cuádruplo 38
 ----------------------------------------------------------------------
 47: (print, MCD = , None, None)
-      print value addr:MCD = 
+        imprimir valor dir:MCD = 
 ----------------------------------------------------------------------
 48: (print, 13000, None, None)
-      print value addr:13000
+        imprimir valor dir:13000
 ----------------------------------------------------------------------
 49: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF mcd ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE mcd ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: main ====================
-Starting at quadruple 50
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 50
 ----------------------------------------------------------------------
 50: (ERA, potencia, None, None)
-      perform operation ERA with operand addr:potencia
+        realizar operación ERA con operando dir:potencia
 ----------------------------------------------------------------------
 51: (parámetro, 20003, par1, None)
-      perform operation parámetro with operands constant(2), addr:par1, result in None
+        realizar operación parámetro con operandos constante(2), dir:par1, resultado en None
 ----------------------------------------------------------------------
 52: (parámetro, 20004, par2, None)
-      perform operation parámetro with operands constant(5), addr:par2, result in None
+        realizar operación parámetro con operandos constante(5), dir:par2, resultado en None
 ----------------------------------------------------------------------
 53: (GOSUB, potencia, None, None)
-      perform operation GOSUB with operand addr:potencia
+        realizar operación GOSUB con operando dir:potencia
 ----------------------------------------------------------------------
 54: (ERA, potencia, None, None)
-      perform operation ERA with operand addr:potencia
+        realizar operación ERA con operando dir:potencia
 ----------------------------------------------------------------------
 55: (parámetro, 20005, par1, None)
-      perform operation parámetro with operands constant(3), addr:par1, result in None
+        realizar operación parámetro con operandos constante(3), dir:par1, resultado en None
 ----------------------------------------------------------------------
 56: (parámetro, 20006, par2, None)
-      perform operation parámetro with operands constant(4), addr:par2, result in None
+        realizar operación parámetro con operandos constante(4), dir:par2, resultado en None
 ----------------------------------------------------------------------
 57: (GOSUB, potencia, None, None)
-      perform operation GOSUB with operand addr:potencia
+        realizar operación GOSUB con operando dir:potencia
 ----------------------------------------------------------------------
 58: (ERA, tabla_multiplicar, None, None)
-      perform operation ERA with operand temp tabla_multiplicar
+        realizar operación ERA con operando temp tabla_multiplicar
 ----------------------------------------------------------------------
 59: (parámetro, 20007, par1, None)
-      perform operation parámetro with operands constant(7), addr:par1, result in None
+        realizar operación parámetro con operandos constante(7), dir:par1, resultado en None
 ----------------------------------------------------------------------
 60: (GOSUB, tabla_multiplicar, None, None)
-      perform operation GOSUB with operand temp tabla_multiplicar
+        realizar operación GOSUB con operando temp tabla_multiplicar
 ----------------------------------------------------------------------
 61: (ERA, mcd, None, None)
-      perform operation ERA with operand addr:mcd
+        realizar operación ERA con operando dir:mcd
 ----------------------------------------------------------------------
 62: (parámetro, 20008, par1, None)
-      perform operation parámetro with operands constant(48), addr:par1, result in None
+        realizar operación parámetro con operandos constante(48), dir:par1, resultado en None
 ----------------------------------------------------------------------
 63: (parámetro, 20009, par2, None)
-      perform operation parámetro with operands constant(18), addr:par2, result in None
+        realizar operación parámetro con operandos constante(18), dir:par2, resultado en None
 ----------------------------------------------------------------------
 64: (GOSUB, mcd, None, None)
-      perform operation GOSUB with operand addr:mcd
+        realizar operación GOSUB con operando dir:mcd
 ----------------------------------------------------------------------
 65: (END, None, None, None)
-      perform operation END with operand None
+        realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 50)
@@ -3859,296 +3859,296 @@ Función main declarada, ámbito cambiado a main
 Programa funciones_parametros iniciado, ámbito reiniciado a global
 Programa funciones_parametros completado
 
-===== QUADRUPLES WITH MEMORY ADDRESSES =====
-INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
-      EXPLANATION
+===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====
+ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)
+        EXPLICACIÓN
 ----------------------------------------------------------------------
 
-===== FUNCTION DIRECTORY =====
-Function: operaciones_basicas - Start Address: 1
-Function: comparar_numeros - Start Address: 22
-Function: serie_aritmetica - Start Address: 42
-Function: main - Start Address: 64
+===== DIRECTORIO DE FUNCIONES =====
+Función: operaciones_basicas - Dirección de Inicio: 1
+Función: comparar_numeros - Dirección de Inicio: 22
+Función: serie_aritmetica - Dirección de Inicio: 42
+Función: main - Dirección de Inicio: 64
 ----------------------------------------------------------------------
 0: (goto, None, None, 64)
-      jump to quadruple 64
+        saltar al cuádruplo 64
 ----------------------------------------------------------------------
 
-==================== FUNCTION: operaciones_basicas ====================
-Starting at quadruple 1
+==================== FUNCIÓN: operaciones_basicas ====================
+Inicia en el cuádruplo 1
 ----------------------------------------------------------------------
 1: (+, 11000, 11001, 15000)
-      add addr:11000 and addr:11001, store result in addr:15000
+        sumar dir:11000 y dir:11001, guardar resultado en dir:15000
 ----------------------------------------------------------------------
 2: (+, 15000, 11002, 15001)
-      add addr:15000 and addr:11002, store result in addr:15001
+        sumar dir:15000 y dir:11002, guardar resultado en dir:15001
 ----------------------------------------------------------------------
 3: (=, 15001, None, 11003)
-      assign value of addr:15001 to addr:11003
+        asignar valor de dir:15001 a dir:11003
 ----------------------------------------------------------------------
 4: (*, 11000, 11001, 15002)
-      multiply addr:11000 and addr:11001, store result in addr:15002
+        multiplicar dir:11000 y dir:11001, guardar resultado en dir:15002
 ----------------------------------------------------------------------
 5: (*, 15002, 11002, 15003)
-      multiply addr:15002 and addr:11002, store result in addr:15003
+        multiplicar dir:15002 y dir:11002, guardar resultado en dir:15003
 ----------------------------------------------------------------------
 6: (=, 15003, None, 11004)
-      assign value of addr:15003 to addr:11004
+        asignar valor de dir:15003 a dir:11004
 ----------------------------------------------------------------------
 7: (/, 11003, 20000, 17000)
-      divide addr:11003 and constant(3), store result in addr:17000
+        dividir dir:11003 y constante(3), guardar resultado en dir:17000
 ----------------------------------------------------------------------
 8: (=, 17000, None, 11005)
-      assign value of addr:17000 to addr:11005
+        asignar valor de dir:17000 a dir:11005
 ----------------------------------------------------------------------
 9: (print, Números: , None, None)
-      print value addr:Números: 
+        imprimir valor dir:Números: 
 ----------------------------------------------------------------------
 10: (print, 11000, None, None)
-      print value addr:11000
+        imprimir valor dir:11000
 ----------------------------------------------------------------------
 11: (print, , , None, None)
-      print value addr:, 
+        imprimir valor dir:, 
 ----------------------------------------------------------------------
 12: (print, 11001, None, None)
-      print value addr:11001
+        imprimir valor dir:11001
 ----------------------------------------------------------------------
 13: (print, , , None, None)
-      print value addr:, 
+        imprimir valor dir:, 
 ----------------------------------------------------------------------
 14: (print, 11002, None, None)
-      print value addr:11002
+        imprimir valor dir:11002
 ----------------------------------------------------------------------
 15: (print, Suma: , None, None)
-      print value addr:Suma: 
+        imprimir valor dir:Suma: 
 ----------------------------------------------------------------------
 16: (print, 11003, None, None)
-      print value addr:11003
+        imprimir valor dir:11003
 ----------------------------------------------------------------------
 17: (print, Producto: , None, None)
-      print value addr:Producto: 
+        imprimir valor dir:Producto: 
 ----------------------------------------------------------------------
 18: (print, 11004, None, None)
-      print value addr:11004
+        imprimir valor dir:11004
 ----------------------------------------------------------------------
 19: (print, Promedio: , None, None)
-      print value addr:Promedio: 
+        imprimir valor dir:Promedio: 
 ----------------------------------------------------------------------
 20: (print, 11005, None, None)
-      print value addr:11005
+        imprimir valor dir:11005
 ----------------------------------------------------------------------
 21: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF operaciones_basicas ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE operaciones_basicas ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: comparar_numeros ====================
-Starting at quadruple 22
+==================== FUNCIÓN: comparar_numeros ====================
+Inicia en el cuádruplo 22
 ----------------------------------------------------------------------
 22: (print, Comparando , None, None)
-      print value addr:Comparando 
+        imprimir valor dir:Comparando 
 ----------------------------------------------------------------------
 23: (print, 11006, None, None)
-      print value addr:11006
+        imprimir valor dir:11006
 ----------------------------------------------------------------------
 24: (print,  y , None, None)
-      print value addr: y 
+        imprimir valor dir: y 
 ----------------------------------------------------------------------
 25: (print, 11007, None, None)
-      print value addr:11007
+        imprimir valor dir:11007
 ----------------------------------------------------------------------
 26: (>, 11006, 11007, 19000)
-      compare if addr:11006 is greater than addr:11007, store boolean result in addr:19000
+        comparar si dir:11006 es mayor que dir:11007, guardar resultado booleano en dir:19000
 ----------------------------------------------------------------------
 27: (gotof, 19000, None, 32)
-      if addr:19000 is false, jump to quadruple 32
+        si dir:19000 es falso, saltar al cuádruplo 32
 ----------------------------------------------------------------------
 28: (print, 11006, None, None)
-      print value addr:11006
+        imprimir valor dir:11006
 ----------------------------------------------------------------------
 29: (print,  es mayor que , None, None)
-      print value addr: es mayor que 
+        imprimir valor dir: es mayor que 
 ----------------------------------------------------------------------
 30: (print, 11007, None, None)
-      print value addr:11007
+        imprimir valor dir:11007
 ----------------------------------------------------------------------
 31: (goto, None, None, 41)
-      jump to quadruple 41
+        saltar al cuádruplo 41
 ----------------------------------------------------------------------
 32: (<, 11006, 11007, 19001)
-      compare if addr:11006 is less than addr:11007, store boolean result in addr:19001
+        comparar si dir:11006 es menor que dir:11007, guardar resultado booleano en dir:19001
 ----------------------------------------------------------------------
 33: (gotof, 19001, None, 38)
-      if addr:19001 is false, jump to quadruple 38
+        si dir:19001 es falso, saltar al cuádruplo 38
 ----------------------------------------------------------------------
 34: (print, 11006, None, None)
-      print value addr:11006
+        imprimir valor dir:11006
 ----------------------------------------------------------------------
 35: (print,  es menor que , None, None)
-      print value addr: es menor que 
+        imprimir valor dir: es menor que 
 ----------------------------------------------------------------------
 36: (print, 11007, None, None)
-      print value addr:11007
+        imprimir valor dir:11007
 ----------------------------------------------------------------------
 37: (goto, None, None, 41)
-      jump to quadruple 41
+        saltar al cuádruplo 41
 ----------------------------------------------------------------------
 38: (print, 11006, None, None)
-      print value addr:11006
+        imprimir valor dir:11006
 ----------------------------------------------------------------------
 39: (print,  es igual a , None, None)
-      print value addr: es igual a 
+        imprimir valor dir: es igual a 
 ----------------------------------------------------------------------
 40: (print, 11007, None, None)
-      print value addr:11007
+        imprimir valor dir:11007
 ----------------------------------------------------------------------
 41: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF comparar_numeros ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE comparar_numeros ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: serie_aritmetica ====================
-Starting at quadruple 42
+==================== FUNCIÓN: serie_aritmetica ====================
+Inicia en el cuádruplo 42
 ----------------------------------------------------------------------
 42: (print, Serie aritmética:, None, None)
-      print value addr:Serie aritmética:
+        imprimir valor dir:Serie aritmética:
 ----------------------------------------------------------------------
 43: (print, Inicio: , None, None)
-      print value addr:Inicio: 
+        imprimir valor dir:Inicio: 
 ----------------------------------------------------------------------
 44: (print, 11008, None, None)
-      print value addr:11008
+        imprimir valor dir:11008
 ----------------------------------------------------------------------
 45: (print, , Diferencia: , None, None)
-      print value addr:, Diferencia: 
+        imprimir valor dir:, Diferencia: 
 ----------------------------------------------------------------------
 46: (print, 11009, None, None)
-      print value addr:11009
+        imprimir valor dir:11009
 ----------------------------------------------------------------------
 47: (print, , Términos: , None, None)
-      print value addr:, Términos: 
+        imprimir valor dir:, Términos: 
 ----------------------------------------------------------------------
 48: (print, 11010, None, None)
-      print value addr:11010
+        imprimir valor dir:11010
 ----------------------------------------------------------------------
 49: (=, 20001, None, 11011)
-      assign value of constant(0) to addr:11011
+        asignar valor de constante(0) a dir:11011
 ----------------------------------------------------------------------
 50: (=, 11008, None, 11012)
-      assign value of addr:11008 to addr:11012
+        asignar valor de dir:11008 a dir:11012
 ----------------------------------------------------------------------
 51: (<, 11011, 11010, 19002)
-      compare if addr:11011 is less than addr:11010, store boolean result in addr:19002
+        comparar si dir:11011 es menor que dir:11010, guardar resultado booleano en dir:19002
 ----------------------------------------------------------------------
 52: (gotof, 19002, None, 63)
-      if addr:19002 is false, jump to quadruple 63
+        si dir:19002 es falso, saltar al cuádruplo 63
 ----------------------------------------------------------------------
 53: (+, 11011, 20002, 15004)
-      add addr:11011 and constant(1), store result in addr:15004
+        sumar dir:11011 y constante(1), guardar resultado en dir:15004
 ----------------------------------------------------------------------
 54: (print, Término , None, None)
-      print value addr:Término 
+        imprimir valor dir:Término 
 ----------------------------------------------------------------------
 55: (print, 15004, None, None)
-      print value addr:15004
+        imprimir valor dir:15004
 ----------------------------------------------------------------------
 56: (print, : , None, None)
-      print value addr:: 
+        imprimir valor dir:: 
 ----------------------------------------------------------------------
 57: (print, 11012, None, None)
-      print value addr:11012
+        imprimir valor dir:11012
 ----------------------------------------------------------------------
 58: (+, 11012, 11009, 15005)
-      add addr:11012 and addr:11009, store result in addr:15005
+        sumar dir:11012 y dir:11009, guardar resultado en dir:15005
 ----------------------------------------------------------------------
 59: (=, 15005, None, 11012)
-      assign value of addr:15005 to addr:11012
+        asignar valor de dir:15005 a dir:11012
 ----------------------------------------------------------------------
 60: (+, 11011, 20002, 15006)
-      add addr:11011 and constant(1), store result in addr:15006
+        sumar dir:11011 y constante(1), guardar resultado en dir:15006
 ----------------------------------------------------------------------
 61: (=, 15006, None, 11011)
-      assign value of addr:15006 to addr:11011
+        asignar valor de dir:15006 a dir:11011
 ----------------------------------------------------------------------
 62: (goto, None, None, 51)
-      jump to quadruple 51
+        saltar al cuádruplo 51
 ----------------------------------------------------------------------
 63: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF serie_aritmetica ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE serie_aritmetica ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: main ====================
-Starting at quadruple 64
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 64
 ----------------------------------------------------------------------
 64: (ERA, operaciones_basicas, None, None)
-      perform operation ERA with operand addr:operaciones_basicas
+        realizar operación ERA con operando dir:operaciones_basicas
 ----------------------------------------------------------------------
 65: (parámetro, 20003, par1, None)
-      perform operation parámetro with operands constant(4), addr:par1, result in None
+        realizar operación parámetro con operandos constante(4), dir:par1, resultado en None
 ----------------------------------------------------------------------
 66: (parámetro, 20004, par2, None)
-      perform operation parámetro with operands constant(7), addr:par2, result in None
+        realizar operación parámetro con operandos constante(7), dir:par2, resultado en None
 ----------------------------------------------------------------------
 67: (parámetro, 20005, par3, None)
-      perform operation parámetro with operands constant(2), addr:par3, result in None
+        realizar operación parámetro con operandos constante(2), dir:par3, resultado en None
 ----------------------------------------------------------------------
 68: (GOSUB, operaciones_basicas, None, None)
-      perform operation GOSUB with operand addr:operaciones_basicas
+        realizar operación GOSUB con operando dir:operaciones_basicas
 ----------------------------------------------------------------------
 69: (ERA, comparar_numeros, None, None)
-      perform operation ERA with operand addr:comparar_numeros
+        realizar operación ERA con operando dir:comparar_numeros
 ----------------------------------------------------------------------
 70: (parámetro, 20006, par1, None)
-      perform operation parámetro with operands constant(15), addr:par1, result in None
+        realizar operación parámetro con operandos constante(15), dir:par1, resultado en None
 ----------------------------------------------------------------------
 71: (parámetro, 20007, par2, None)
-      perform operation parámetro with operands constant(8), addr:par2, result in None
+        realizar operación parámetro con operandos constante(8), dir:par2, resultado en None
 ----------------------------------------------------------------------
 72: (GOSUB, comparar_numeros, None, None)
-      perform operation GOSUB with operand addr:comparar_numeros
+        realizar operación GOSUB con operando dir:comparar_numeros
 ----------------------------------------------------------------------
 73: (ERA, comparar_numeros, None, None)
-      perform operation ERA with operand addr:comparar_numeros
+        realizar operación ERA con operando dir:comparar_numeros
 ----------------------------------------------------------------------
 74: (parámetro, 20008, par1, None)
-      perform operation parámetro with operands constant(5), addr:par1, result in None
+        realizar operación parámetro con operandos constante(5), dir:par1, resultado en None
 ----------------------------------------------------------------------
 75: (parámetro, 20009, par2, None)
-      perform operation parámetro with operands constant(12), addr:par2, result in None
+        realizar operación parámetro con operandos constante(12), dir:par2, resultado en None
 ----------------------------------------------------------------------
 76: (GOSUB, comparar_numeros, None, None)
-      perform operation GOSUB with operand addr:comparar_numeros
+        realizar operación GOSUB con operando dir:comparar_numeros
 ----------------------------------------------------------------------
 77: (ERA, comparar_numeros, None, None)
-      perform operation ERA with operand addr:comparar_numeros
+        realizar operación ERA con operando dir:comparar_numeros
 ----------------------------------------------------------------------
 78: (parámetro, 20010, par1, None)
-      perform operation parámetro with operands constant(9), addr:par1, result in None
+        realizar operación parámetro con operandos constante(9), dir:par1, resultado en None
 ----------------------------------------------------------------------
 79: (parámetro, 20010, par2, None)
-      perform operation parámetro with operands constant(9), addr:par2, result in None
+        realizar operación parámetro con operandos constante(9), dir:par2, resultado en None
 ----------------------------------------------------------------------
 80: (GOSUB, comparar_numeros, None, None)
-      perform operation GOSUB with operand addr:comparar_numeros
+        realizar operación GOSUB con operando dir:comparar_numeros
 ----------------------------------------------------------------------
 81: (ERA, serie_aritmetica, None, None)
-      perform operation ERA with operand addr:serie_aritmetica
+        realizar operación ERA con operando dir:serie_aritmetica
 ----------------------------------------------------------------------
 82: (parámetro, 20008, par1, None)
-      perform operation parámetro with operands constant(5), addr:par1, result in None
+        realizar operación parámetro con operandos constante(5), dir:par1, resultado en None
 ----------------------------------------------------------------------
 83: (parámetro, 20000, par2, None)
-      perform operation parámetro with operands constant(3), addr:par2, result in None
+        realizar operación parámetro con operandos constante(3), dir:par2, resultado en None
 ----------------------------------------------------------------------
 84: (parámetro, 20011, par3, None)
-      perform operation parámetro with operands constant(6), addr:par3, result in None
+        realizar operación parámetro con operandos constante(6), dir:par3, resultado en None
 ----------------------------------------------------------------------
 85: (GOSUB, serie_aritmetica, None, None)
-      perform operation GOSUB with operand addr:serie_aritmetica
+        realizar operación GOSUB con operando dir:serie_aritmetica
 ----------------------------------------------------------------------
 86: (END, None, None, None)
-      perform operation END with operand None
+        realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 64)
@@ -4674,215 +4674,215 @@ Función main declarada, ámbito cambiado a main
 Programa for_con_funcion iniciado, ámbito reiniciado a global
 Programa for_con_funcion completado
 
-===== QUADRUPLES WITH MEMORY ADDRESSES =====
-INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
-      EXPLANATION
+===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====
+ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)
+        EXPLICACIÓN
 ----------------------------------------------------------------------
 
-===== FUNCTION DIRECTORY =====
-Function: contar_hasta - Start Address: 1
-Function: tabla_cuadrados - Start Address: 23
-Function: main - Start Address: 40
+===== DIRECTORIO DE FUNCIONES =====
+Función: contar_hasta - Dirección de Inicio: 1
+Función: tabla_cuadrados - Dirección de Inicio: 23
+Función: main - Dirección de Inicio: 40
 ----------------------------------------------------------------------
 0: (goto, None, None, 40)
-      jump to quadruple 40
+        saltar al cuádruplo 40
 ----------------------------------------------------------------------
 
-==================== FUNCTION: contar_hasta ====================
-Starting at quadruple 1
+==================== FUNCIÓN: contar_hasta ====================
+Inicia en el cuádruplo 1
 ----------------------------------------------------------------------
 1: (print, Contando hasta , None, None)
-      print value addr:Contando hasta 
+        imprimir valor dir:Contando hasta 
 ----------------------------------------------------------------------
 2: (print, 11000, None, None)
-      print value addr:11000
+        imprimir valor dir:11000
 ----------------------------------------------------------------------
 3: (print, :, None, None)
-      print value addr::
+        imprimir valor dir::
 ----------------------------------------------------------------------
 4: (=, 20000, None, 11002)
-      assign value of constant(0) to addr:11002
+        asignar valor de constante(0) a dir:11002
 ----------------------------------------------------------------------
 5: (=, 20001, None, 11001)
-      assign value of constant(1) to addr:11001
+        asignar valor de constante(1) a dir:11001
 ----------------------------------------------------------------------
 6: (+, 11000, 20001, 15000)
-      add addr:11000 and constant(1), store result in addr:15000
+        sumar dir:11000 y constante(1), guardar resultado en dir:15000
 ----------------------------------------------------------------------
 7: (<, 11001, 15000, 19000)
-      compare if addr:11001 is less than addr:15000, store boolean result in addr:19000
+        comparar si dir:11001 es menor que dir:15000, guardar resultado booleano en dir:19000
 ----------------------------------------------------------------------
 8: (gotof, 19000, None, 20)
-      if addr:19000 is false, jump to quadruple 20
+        si dir:19000 es falso, saltar al cuádruplo 20
 ----------------------------------------------------------------------
 9: (+, 11001, 20001, 15001)
-      add addr:11001 and constant(1), store result in addr:15001
+        sumar dir:11001 y constante(1), guardar resultado en dir:15001
 ----------------------------------------------------------------------
 10: (=, 15001, None, 11001)
-      assign value of addr:15001 to addr:11001
+        asignar valor de dir:15001 a dir:11001
 ----------------------------------------------------------------------
 11: (+, 11002, 20001, 15002)
-      add addr:11002 and constant(1), store result in addr:15002
+        sumar dir:11002 y constante(1), guardar resultado en dir:15002
 ----------------------------------------------------------------------
 12: (=, 15002, None, 11002)
-      assign value of addr:15002 to addr:11002
+        asignar valor de dir:15002 a dir:11002
 ----------------------------------------------------------------------
 13: (print, Contador: , None, None)
-      print value addr:Contador: 
+        imprimir valor dir:Contador: 
 ----------------------------------------------------------------------
 14: (print, 11002, None, None)
-      print value addr:11002
+        imprimir valor dir:11002
 ----------------------------------------------------------------------
 15: (print,  (i = , None, None)
-      print value addr: (i = 
+        imprimir valor dir: (i = 
 ----------------------------------------------------------------------
 16: (print, 11001, None, None)
-      print value addr:11001
+        imprimir valor dir:11001
 ----------------------------------------------------------------------
 17: (print, ), None, None)
-      print value addr:)
+        imprimir valor dir:)
 ----------------------------------------------------------------------
 18: (=, 15001, None, 11001)
-      assign value of addr:15001 to addr:11001
+        asignar valor de dir:15001 a dir:11001
 ----------------------------------------------------------------------
 19: (goto, None, None, 6)
-      jump to quadruple 6
+        saltar al cuádruplo 6
 ----------------------------------------------------------------------
 20: (print, Terminé de contar hasta , None, None)
-      print value addr:Terminé de contar hasta 
+        imprimir valor dir:Terminé de contar hasta 
 ----------------------------------------------------------------------
 21: (print, 11000, None, None)
-      print value addr:11000
+        imprimir valor dir:11000
 ----------------------------------------------------------------------
 22: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF contar_hasta ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE contar_hasta ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: tabla_cuadrados ====================
-Starting at quadruple 23
+==================== FUNCIÓN: tabla_cuadrados ====================
+Inicia en el cuádruplo 23
 ----------------------------------------------------------------------
 23: (print, Tabla de cuadrados hasta , None, None)
-      print value addr:Tabla de cuadrados hasta 
+        imprimir valor dir:Tabla de cuadrados hasta 
 ----------------------------------------------------------------------
 24: (print, 11003, None, None)
-      print value addr:11003
+        imprimir valor dir:11003
 ----------------------------------------------------------------------
 25: (print, :, None, None)
-      print value addr::
+        imprimir valor dir::
 ----------------------------------------------------------------------
 26: (=, 20001, None, 11004)
-      assign value of constant(1) to addr:11004
+        asignar valor de constante(1) a dir:11004
 ----------------------------------------------------------------------
 27: (+, 11003, 20001, 15003)
-      add addr:11003 and constant(1), store result in addr:15003
+        sumar dir:11003 y constante(1), guardar resultado en dir:15003
 ----------------------------------------------------------------------
 28: (<, 11004, 15003, 19001)
-      compare if addr:11004 is less than addr:15003, store boolean result in addr:19001
+        comparar si dir:11004 es menor que dir:15003, guardar resultado booleano en dir:19001
 ----------------------------------------------------------------------
 29: (gotof, 19001, None, 39)
-      if addr:19001 is false, jump to quadruple 39
+        si dir:19001 es falso, saltar al cuádruplo 39
 ----------------------------------------------------------------------
 30: (+, 11004, 20001, 15004)
-      add addr:11004 and constant(1), store result in addr:15004
+        sumar dir:11004 y constante(1), guardar resultado en dir:15004
 ----------------------------------------------------------------------
 31: (=, 15004, None, 11004)
-      assign value of addr:15004 to addr:11004
+        asignar valor de dir:15004 a dir:11004
 ----------------------------------------------------------------------
 32: (*, 11004, 11004, 15005)
-      multiply addr:11004 and addr:11004, store result in addr:15005
+        multiplicar dir:11004 y dir:11004, guardar resultado en dir:15005
 ----------------------------------------------------------------------
 33: (=, 15005, None, 11005)
-      assign value of addr:15005 to addr:11005
+        asignar valor de dir:15005 a dir:11005
 ----------------------------------------------------------------------
 34: (print, 11004, None, None)
-      print value addr:11004
+        imprimir valor dir:11004
 ----------------------------------------------------------------------
 35: (print,  al cuadrado = , None, None)
-      print value addr: al cuadrado = 
+        imprimir valor dir: al cuadrado = 
 ----------------------------------------------------------------------
 36: (print, 11005, None, None)
-      print value addr:11005
+        imprimir valor dir:11005
 ----------------------------------------------------------------------
 37: (=, 15004, None, 11004)
-      assign value of addr:15004 to addr:11004
+        asignar valor de dir:15004 a dir:11004
 ----------------------------------------------------------------------
 38: (goto, None, None, 27)
-      jump to quadruple 27
+        saltar al cuádruplo 27
 ----------------------------------------------------------------------
 39: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF tabla_cuadrados ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE tabla_cuadrados ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: main ====================
-Starting at quadruple 40
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 40
 ----------------------------------------------------------------------
 40: (=, 20002, None, 5000)
-      assign value of constant(5) to limite (global)
+        asignar valor de constante(5) a limite (global)
 ----------------------------------------------------------------------
 41: (ERA, contar_hasta, None, None)
-      perform operation ERA with operand addr:contar_hasta
+        realizar operación ERA con operando dir:contar_hasta
 ----------------------------------------------------------------------
 42: (parámetro, 5000, par1, None)
-      perform operation parámetro with operands limite (global), addr:par1, result in None
+        realizar operación parámetro con operandos limite (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 43: (GOSUB, contar_hasta, None, None)
-      perform operation GOSUB with operand addr:contar_hasta
+        realizar operación GOSUB con operando dir:contar_hasta
 ----------------------------------------------------------------------
 44: (ERA, tabla_cuadrados, None, None)
-      perform operation ERA with operand temp tabla_cuadrados
+        realizar operación ERA con operando temp tabla_cuadrados
 ----------------------------------------------------------------------
 45: (parámetro, 20003, par1, None)
-      perform operation parámetro with operands constant(4), addr:par1, result in None
+        realizar operación parámetro con operandos constante(4), dir:par1, resultado en None
 ----------------------------------------------------------------------
 46: (GOSUB, tabla_cuadrados, None, None)
-      perform operation GOSUB with operand temp tabla_cuadrados
+        realizar operación GOSUB con operando temp tabla_cuadrados
 ----------------------------------------------------------------------
 47: (print, FOR anidado:, None, None)
-      print value addr:FOR anidado:
+        imprimir valor dir:FOR anidado:
 ----------------------------------------------------------------------
 48: (=, 20001, None, 5000)
-      assign value of constant(1) to limite (global)
+        asignar valor de constante(1) a limite (global)
 ----------------------------------------------------------------------
 49: (<, 5000, 20003, 19002)
-      compare if limite (global) is less than constant(4), store boolean result in addr:19002
+        comparar si limite (global) es menor que constante(4), guardar resultado booleano en dir:19002
 ----------------------------------------------------------------------
 50: (gotof, 19002, None, 61)
-      if addr:19002 is false, jump to quadruple 61
+        si dir:19002 es falso, saltar al cuádruplo 61
 ----------------------------------------------------------------------
 51: (+, 5000, 20001, 15006)
-      add limite (global) and constant(1), store result in addr:15006
+        sumar limite (global) y constante(1), guardar resultado en dir:15006
 ----------------------------------------------------------------------
 52: (=, 15006, None, 5000)
-      assign value of addr:15006 to limite (global)
+        asignar valor de dir:15006 a limite (global)
 ----------------------------------------------------------------------
 53: (print, Tabla del , None, None)
-      print value addr:Tabla del 
+        imprimir valor dir:Tabla del 
 ----------------------------------------------------------------------
 54: (print, 5000, None, None)
-      print value limite (global)
+        imprimir valor limite (global)
 ----------------------------------------------------------------------
 55: (print, :, None, None)
-      print value addr::
+        imprimir valor dir::
 ----------------------------------------------------------------------
 56: (ERA, contar_hasta, None, None)
-      perform operation ERA with operand addr:contar_hasta
+        realizar operación ERA con operando dir:contar_hasta
 ----------------------------------------------------------------------
 57: (parámetro, 5000, par1, None)
-      perform operation parámetro with operands limite (global), addr:par1, result in None
+        realizar operación parámetro con operandos limite (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 58: (GOSUB, contar_hasta, None, None)
-      perform operation GOSUB with operand addr:contar_hasta
+        realizar operación GOSUB con operando dir:contar_hasta
 ----------------------------------------------------------------------
 59: (=, 15006, None, 5000)
-      assign value of addr:15006 to limite (global)
+        asignar valor de dir:15006 a limite (global)
 ----------------------------------------------------------------------
 60: (goto, None, None, 49)
-      jump to quadruple 49
+        saltar al cuádruplo 49
 ----------------------------------------------------------------------
 61: (END, None, None, None)
-      perform operation END with operand None
+        realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 40)
@@ -5974,695 +5974,695 @@ Función main declarada, ámbito cambiado a main
 Programa calculadora_avanzada iniciado, ámbito reiniciado a global
 Programa calculadora_avanzada completado
 
-===== QUADRUPLES WITH MEMORY ADDRESSES =====
-INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
-      EXPLANATION
+===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====
+ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)
+        EXPLICACIÓN
 ----------------------------------------------------------------------
 
-===== FUNCTION DIRECTORY =====
-Function: calcular_factorial - Start Address: 1
-Function: potencia - Start Address: 13
-Function: maximo_de_tres - Start Address: 25
-Function: mostrar_tabla_multiplicar - Start Address: 36
-Function: analizar_numero - Start Address: 54
-Function: mostrar_operaciones_basicas - Start Address: 71
-Function: calcular_promedio - Start Address: 97
-Function: mostrar_estadisticas - Start Address: 104
-Function: main - Start Address: 143
+===== DIRECTORIO DE FUNCIONES =====
+Función: calcular_factorial - Dirección de Inicio: 1
+Función: potencia - Dirección de Inicio: 13
+Función: maximo_de_tres - Dirección de Inicio: 25
+Función: mostrar_tabla_multiplicar - Dirección de Inicio: 36
+Función: analizar_numero - Dirección de Inicio: 54
+Función: mostrar_operaciones_basicas - Dirección de Inicio: 71
+Función: calcular_promedio - Dirección de Inicio: 97
+Función: mostrar_estadisticas - Dirección de Inicio: 104
+Función: main - Dirección de Inicio: 143
 ----------------------------------------------------------------------
 0: (goto, None, None, 143)
-      jump to quadruple 143
+        saltar al cuádruplo 143
 ----------------------------------------------------------------------
 
-==================== FUNCTION: calcular_factorial ====================
-Starting at quadruple 1
+==================== FUNCIÓN: calcular_factorial ====================
+Inicia en el cuádruplo 1
 ----------------------------------------------------------------------
 1: (=, 20000, None, 11002)
-      assign value of constant(1) to addr:11002
+        asignar valor de constante(1) a dir:11002
 ----------------------------------------------------------------------
 2: (=, 20000, None, 11001)
-      assign value of constant(1) to addr:11001
+        asignar valor de constante(1) a dir:11001
 ----------------------------------------------------------------------
 3: (+, 11000, 20000, 15000)
-      add addr:11000 and constant(1), store result in addr:15000
+        sumar dir:11000 y constante(1), guardar resultado en dir:15000
 ----------------------------------------------------------------------
 4: (<, 11001, 15000, 19000)
-      compare if addr:11001 is less than addr:15000, store boolean result in addr:19000
+        comparar si dir:11001 es menor que dir:15000, guardar resultado booleano en dir:19000
 ----------------------------------------------------------------------
 5: (gotof, 19000, None, 11)
-      if addr:19000 is false, jump to quadruple 11
+        si dir:19000 es falso, saltar al cuádruplo 11
 ----------------------------------------------------------------------
 6: (*, 11002, 11001, 15001)
-      multiply addr:11002 and addr:11001, store result in addr:15001
+        multiplicar dir:11002 y dir:11001, guardar resultado en dir:15001
 ----------------------------------------------------------------------
 7: (=, 15001, None, 11002)
-      assign value of addr:15001 to addr:11002
+        asignar valor de dir:15001 a dir:11002
 ----------------------------------------------------------------------
 8: (+, 11001, 20000, 15002)
-      add addr:11001 and constant(1), store result in addr:15002
+        sumar dir:11001 y constante(1), guardar resultado en dir:15002
 ----------------------------------------------------------------------
 9: (=, 15002, None, 11001)
-      assign value of addr:15002 to addr:11001
+        asignar valor de dir:15002 a dir:11001
 ----------------------------------------------------------------------
 10: (goto, None, None, 3)
-      jump to quadruple 3
+        saltar al cuádruplo 3
 ----------------------------------------------------------------------
 11: (RETURN, 11002, None, None)
-      perform operation RETURN with operand addr:11002
+        realizar operación RETURN con operando dir:11002
 ----------------------------------------------------------------------
 12: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF calcular_factorial ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE calcular_factorial ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: potencia ====================
-Starting at quadruple 13
+==================== FUNCIÓN: potencia ====================
+Inicia en el cuádruplo 13
 ----------------------------------------------------------------------
 13: (=, 20000, None, 11006)
-      assign value of constant(1) to addr:11006
+        asignar valor de constante(1) a dir:11006
 ----------------------------------------------------------------------
 14: (=, 20000, None, 11005)
-      assign value of constant(1) to addr:11005
+        asignar valor de constante(1) a dir:11005
 ----------------------------------------------------------------------
 15: (+, 11004, 20000, 15003)
-      add addr:11004 and constant(1), store result in addr:15003
+        sumar dir:11004 y constante(1), guardar resultado en dir:15003
 ----------------------------------------------------------------------
 16: (<, 11005, 15003, 19001)
-      compare if addr:11005 is less than addr:15003, store boolean result in addr:19001
+        comparar si dir:11005 es menor que dir:15003, guardar resultado booleano en dir:19001
 ----------------------------------------------------------------------
 17: (gotof, 19001, None, 23)
-      if addr:19001 is false, jump to quadruple 23
+        si dir:19001 es falso, saltar al cuádruplo 23
 ----------------------------------------------------------------------
 18: (*, 11006, 11003, 15004)
-      multiply addr:11006 and addr:11003, store result in addr:15004
+        multiplicar dir:11006 y dir:11003, guardar resultado en dir:15004
 ----------------------------------------------------------------------
 19: (=, 15004, None, 11006)
-      assign value of addr:15004 to addr:11006
+        asignar valor de dir:15004 a dir:11006
 ----------------------------------------------------------------------
 20: (+, 11005, 20000, 15005)
-      add addr:11005 and constant(1), store result in addr:15005
+        sumar dir:11005 y constante(1), guardar resultado en dir:15005
 ----------------------------------------------------------------------
 21: (=, 15005, None, 11005)
-      assign value of addr:15005 to addr:11005
+        asignar valor de dir:15005 a dir:11005
 ----------------------------------------------------------------------
 22: (goto, None, None, 15)
-      jump to quadruple 15
+        saltar al cuádruplo 15
 ----------------------------------------------------------------------
 23: (RETURN, 11006, None, None)
-      perform operation RETURN with operand addr:11006
+        realizar operación RETURN con operando dir:11006
 ----------------------------------------------------------------------
 24: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF potencia ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE potencia ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: maximo_de_tres ====================
-Starting at quadruple 25
+==================== FUNCIÓN: maximo_de_tres ====================
+Inicia en el cuádruplo 25
 ----------------------------------------------------------------------
 25: (=, 11007, None, 11010)
-      assign value of addr:11007 to addr:11010
+        asignar valor de dir:11007 a dir:11010
 ----------------------------------------------------------------------
 26: (>, 11008, 11010, 19002)
-      compare if addr:11008 is greater than addr:11010, store boolean result in addr:19002
+        comparar si dir:11008 es mayor que dir:11010, guardar resultado booleano en dir:19002
 ----------------------------------------------------------------------
 27: (gotof, 19002, None, 30)
-      if addr:19002 is false, jump to quadruple 30
+        si dir:19002 es falso, saltar al cuádruplo 30
 ----------------------------------------------------------------------
 28: (=, 11008, None, 11010)
-      assign value of addr:11008 to addr:11010
+        asignar valor de dir:11008 a dir:11010
 ----------------------------------------------------------------------
 29: (goto, None, None, 30)
-      jump to quadruple 30
+        saltar al cuádruplo 30
 ----------------------------------------------------------------------
 30: (>, 11009, 11010, 19003)
-      compare if addr:11009 is greater than addr:11010, store boolean result in addr:19003
+        comparar si dir:11009 es mayor que dir:11010, guardar resultado booleano en dir:19003
 ----------------------------------------------------------------------
 31: (gotof, 19003, None, 34)
-      if addr:19003 is false, jump to quadruple 34
+        si dir:19003 es falso, saltar al cuádruplo 34
 ----------------------------------------------------------------------
 32: (=, 11009, None, 11010)
-      assign value of addr:11009 to addr:11010
+        asignar valor de dir:11009 a dir:11010
 ----------------------------------------------------------------------
 33: (goto, None, None, 34)
-      jump to quadruple 34
+        saltar al cuádruplo 34
 ----------------------------------------------------------------------
 34: (RETURN, 11010, None, None)
-      perform operation RETURN with operand addr:11010
+        realizar operación RETURN con operando dir:11010
 ----------------------------------------------------------------------
 35: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF maximo_de_tres ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE maximo_de_tres ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: mostrar_tabla_multiplicar ====================
-Starting at quadruple 36
+==================== FUNCIÓN: mostrar_tabla_multiplicar ====================
+Inicia en el cuádruplo 36
 ----------------------------------------------------------------------
 36: (print, Tabla de multiplicar del , None, None)
-      print value addr:Tabla de multiplicar del 
+        imprimir valor dir:Tabla de multiplicar del 
 ----------------------------------------------------------------------
 37: (print, 11011, None, None)
-      print value addr:11011
+        imprimir valor dir:11011
 ----------------------------------------------------------------------
 38: (print, :, None, None)
-      print value addr::
+        imprimir valor dir::
 ----------------------------------------------------------------------
 39: (=, 20000, None, 11013)
-      assign value of constant(1) to addr:11013
+        asignar valor de constante(1) a dir:11013
 ----------------------------------------------------------------------
 40: (+, 11012, 20000, 15006)
-      add addr:11012 and constant(1), store result in addr:15006
+        sumar dir:11012 y constante(1), guardar resultado en dir:15006
 ----------------------------------------------------------------------
 41: (<, 11013, 15006, 19004)
-      compare if addr:11013 is less than addr:15006, store boolean result in addr:19004
+        comparar si dir:11013 es menor que dir:15006, guardar resultado booleano en dir:19004
 ----------------------------------------------------------------------
 42: (gotof, 19004, None, 53)
-      if addr:19004 is false, jump to quadruple 53
+        si dir:19004 es falso, saltar al cuádruplo 53
 ----------------------------------------------------------------------
 43: (*, 11011, 11013, 15007)
-      multiply addr:11011 and addr:11013, store result in addr:15007
+        multiplicar dir:11011 y dir:11013, guardar resultado en dir:15007
 ----------------------------------------------------------------------
 44: (=, 15007, None, 11014)
-      assign value of addr:15007 to addr:11014
+        asignar valor de dir:15007 a dir:11014
 ----------------------------------------------------------------------
 45: (print, 11011, None, None)
-      print value addr:11011
+        imprimir valor dir:11011
 ----------------------------------------------------------------------
 46: (print,  x , None, None)
-      print value addr: x 
+        imprimir valor dir: x 
 ----------------------------------------------------------------------
 47: (print, 11013, None, None)
-      print value addr:11013
+        imprimir valor dir:11013
 ----------------------------------------------------------------------
 48: (print,  = , None, None)
-      print value addr: = 
+        imprimir valor dir: = 
 ----------------------------------------------------------------------
 49: (print, 11014, None, None)
-      print value addr:11014
+        imprimir valor dir:11014
 ----------------------------------------------------------------------
 50: (+, 11013, 20000, 15008)
-      add addr:11013 and constant(1), store result in addr:15008
+        sumar dir:11013 y constante(1), guardar resultado en dir:15008
 ----------------------------------------------------------------------
 51: (=, 15008, None, 11013)
-      assign value of addr:15008 to addr:11013
+        asignar valor de dir:15008 a dir:11013
 ----------------------------------------------------------------------
 52: (goto, None, None, 40)
-      jump to quadruple 40
+        saltar al cuádruplo 40
 ----------------------------------------------------------------------
 53: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF mostrar_tabla_multiplicar ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE mostrar_tabla_multiplicar ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: analizar_numero ====================
-Starting at quadruple 54
+==================== FUNCIÓN: analizar_numero ====================
+Inicia en el cuádruplo 54
 ----------------------------------------------------------------------
 54: (print, Analizando el número: , None, None)
-      print value addr:Analizando el número: 
+        imprimir valor dir:Analizando el número: 
 ----------------------------------------------------------------------
 55: (print, 11015, None, None)
-      print value addr:11015
+        imprimir valor dir:11015
 ----------------------------------------------------------------------
 56: (>, 11015, 20001, 19005)
-      compare if addr:11015 is greater than constant(0), store boolean result in addr:19005
+        comparar si dir:11015 es mayor que constante(0), guardar resultado booleano en dir:19005
 ----------------------------------------------------------------------
 57: (gotof, 19005, None, 60)
-      if addr:19005 is false, jump to quadruple 60
+        si dir:19005 es falso, saltar al cuádruplo 60
 ----------------------------------------------------------------------
 58: (print, El número es positivo, None, None)
-      print value addr:El número es positivo
+        imprimir valor dir:El número es positivo
 ----------------------------------------------------------------------
 59: (goto, None, None, 65)
-      jump to quadruple 65
+        saltar al cuádruplo 65
 ----------------------------------------------------------------------
 60: (<, 11015, 20001, 19006)
-      compare if addr:11015 is less than constant(0), store boolean result in addr:19006
+        comparar si dir:11015 es menor que constante(0), guardar resultado booleano en dir:19006
 ----------------------------------------------------------------------
 61: (gotof, 19006, None, 64)
-      if addr:19006 is false, jump to quadruple 64
+        si dir:19006 es falso, saltar al cuádruplo 64
 ----------------------------------------------------------------------
 62: (print, El número es negativo, None, None)
-      print value addr:El número es negativo
+        imprimir valor dir:El número es negativo
 ----------------------------------------------------------------------
 63: (goto, None, None, 65)
-      jump to quadruple 65
+        saltar al cuádruplo 65
 ----------------------------------------------------------------------
 64: (print, El número es cero, None, None)
-      print value addr:El número es cero
+        imprimir valor dir:El número es cero
 ----------------------------------------------------------------------
 65: (>, 11015, 20001, 19007)
-      compare if addr:11015 is greater than constant(0), store boolean result in addr:19007
+        comparar si dir:11015 es mayor que constante(0), guardar resultado booleano en dir:19007
 ----------------------------------------------------------------------
 66: (gotof, 19007, None, 69)
-      if addr:19007 is false, jump to quadruple 69
+        si dir:19007 es falso, saltar al cuádruplo 69
 ----------------------------------------------------------------------
 67: (print, El número es par, None, None)
-      print value addr:El número es par
+        imprimir valor dir:El número es par
 ----------------------------------------------------------------------
 68: (goto, None, None, 70)
-      jump to quadruple 70
+        saltar al cuádruplo 70
 ----------------------------------------------------------------------
 69: (print, El número es impar, None, None)
-      print value addr:El número es impar
+        imprimir valor dir:El número es impar
 ----------------------------------------------------------------------
 70: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF analizar_numero ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE analizar_numero ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: mostrar_operaciones_basicas ====================
-Starting at quadruple 71
+==================== FUNCIÓN: mostrar_operaciones_basicas ====================
+Inicia en el cuádruplo 71
 ----------------------------------------------------------------------
 71: (+, 11016, 11017, 15009)
-      add addr:11016 and addr:11017, store result in addr:15009
+        sumar dir:11016 y dir:11017, guardar resultado en dir:15009
 ----------------------------------------------------------------------
 72: (=, 15009, None, 11018)
-      assign value of addr:15009 to addr:11018
+        asignar valor de dir:15009 a dir:11018
 ----------------------------------------------------------------------
 73: (-, 11016, 11017, 15010)
-      subtract addr:11016 and addr:11017, store result in addr:15010
+        restar dir:11016 y dir:11017, guardar resultado en dir:15010
 ----------------------------------------------------------------------
 74: (=, 15010, None, 11019)
-      assign value of addr:15010 to addr:11019
+        asignar valor de dir:15010 a dir:11019
 ----------------------------------------------------------------------
 75: (*, 11016, 11017, 15011)
-      multiply addr:11016 and addr:11017, store result in addr:15011
+        multiplicar dir:11016 y dir:11017, guardar resultado en dir:15011
 ----------------------------------------------------------------------
 76: (=, 15011, None, 11020)
-      assign value of addr:15011 to addr:11020
+        asignar valor de dir:15011 a dir:11020
 ----------------------------------------------------------------------
 77: (print, Operaciones básicas entre , None, None)
-      print value addr:Operaciones básicas entre 
+        imprimir valor dir:Operaciones básicas entre 
 ----------------------------------------------------------------------
 78: (print, 11016, None, None)
-      print value addr:11016
+        imprimir valor dir:11016
 ----------------------------------------------------------------------
 79: (print,  y , None, None)
-      print value addr: y 
+        imprimir valor dir: y 
 ----------------------------------------------------------------------
 80: (print, 11017, None, None)
-      print value addr:11017
+        imprimir valor dir:11017
 ----------------------------------------------------------------------
 81: (print, :, None, None)
-      print value addr::
+        imprimir valor dir::
 ----------------------------------------------------------------------
 82: (print, Suma: , None, None)
-      print value addr:Suma: 
+        imprimir valor dir:Suma: 
 ----------------------------------------------------------------------
 83: (print, 11018, None, None)
-      print value addr:11018
+        imprimir valor dir:11018
 ----------------------------------------------------------------------
 84: (print, Resta: , None, None)
-      print value addr:Resta: 
+        imprimir valor dir:Resta: 
 ----------------------------------------------------------------------
 85: (print, 11019, None, None)
-      print value addr:11019
+        imprimir valor dir:11019
 ----------------------------------------------------------------------
 86: (print, Multiplicación: , None, None)
-      print value addr:Multiplicación: 
+        imprimir valor dir:Multiplicación: 
 ----------------------------------------------------------------------
 87: (print, 11020, None, None)
-      print value addr:11020
+        imprimir valor dir:11020
 ----------------------------------------------------------------------
 88: (>, 11017, 20001, 19008)
-      compare if addr:11017 is greater than constant(0), store boolean result in addr:19008
+        comparar si dir:11017 es mayor que constante(0), guardar resultado booleano en dir:19008
 ----------------------------------------------------------------------
 89: (gotof, 19008, None, 95)
-      if addr:19008 is false, jump to quadruple 95
+        si dir:19008 es falso, saltar al cuádruplo 95
 ----------------------------------------------------------------------
 90: (/, 11016, 11017, 17000)
-      divide addr:11016 and addr:11017, store result in addr:17000
+        dividir dir:11016 y dir:11017, guardar resultado en dir:17000
 ----------------------------------------------------------------------
 91: (=, 17000, None, 11021)
-      assign value of addr:17000 to addr:11021
+        asignar valor de dir:17000 a dir:11021
 ----------------------------------------------------------------------
 92: (print, División: , None, None)
-      print value addr:División: 
+        imprimir valor dir:División: 
 ----------------------------------------------------------------------
 93: (print, 11021, None, None)
-      print value addr:11021
+        imprimir valor dir:11021
 ----------------------------------------------------------------------
 94: (goto, None, None, 96)
-      jump to quadruple 96
+        saltar al cuádruplo 96
 ----------------------------------------------------------------------
 95: (print, No se puede dividir entre cero, None, None)
-      print value addr:No se puede dividir entre cero
+        imprimir valor dir:No se puede dividir entre cero
 ----------------------------------------------------------------------
 96: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF mostrar_operaciones_basicas ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE mostrar_operaciones_basicas ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: calcular_promedio ====================
-Starting at quadruple 97
+==================== FUNCIÓN: calcular_promedio ====================
+Inicia en el cuádruplo 97
 ----------------------------------------------------------------------
 97: (+, 11022, 11023, 15012)
-      add addr:11022 and addr:11023, store result in addr:15012
+        sumar dir:11022 y dir:11023, guardar resultado en dir:15012
 ----------------------------------------------------------------------
 98: (+, 15012, 11024, 15013)
-      add addr:15012 and addr:11024, store result in addr:15013
+        sumar dir:15012 y dir:11024, guardar resultado en dir:15013
 ----------------------------------------------------------------------
 99: (=, 15013, None, 11025)
-      assign value of addr:15013 to addr:11025
+        asignar valor de dir:15013 a dir:11025
 ----------------------------------------------------------------------
 100: (/, 11025, 20002, 17001)
-      divide addr:11025 and constant(3), store result in addr:17001
+        dividir dir:11025 y constante(3), guardar resultado en dir:17001
 ----------------------------------------------------------------------
 101: (=, 17001, None, 11026)
-      assign value of addr:17001 to addr:11026
+        asignar valor de dir:17001 a dir:11026
 ----------------------------------------------------------------------
 102: (RETURN, 11026, None, None)
-      perform operation RETURN with operand addr:11026
+        realizar operación RETURN con operando dir:11026
 ----------------------------------------------------------------------
 103: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF calcular_promedio ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE calcular_promedio ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: mostrar_estadisticas ====================
-Starting at quadruple 104
+==================== FUNCIÓN: mostrar_estadisticas ====================
+Inicia en el cuádruplo 104
 ----------------------------------------------------------------------
 104: (+, 11027, 11028, 15014)
-      add addr:11027 and addr:11028, store result in addr:15014
+        sumar dir:11027 y dir:11028, guardar resultado en dir:15014
 ----------------------------------------------------------------------
 105: (+, 15014, 11029, 15015)
-      add addr:15014 and addr:11029, store result in addr:15015
+        sumar dir:15014 y dir:11029, guardar resultado en dir:15015
 ----------------------------------------------------------------------
 106: (=, 15015, None, 11030)
-      assign value of addr:15015 to addr:11030
+        asignar valor de dir:15015 a dir:11030
 ----------------------------------------------------------------------
 107: (ERA, maximo_de_tres, None, None)
-      perform operation ERA with operand addr:maximo_de_tres
+        realizar operación ERA con operando dir:maximo_de_tres
 ----------------------------------------------------------------------
 108: (parámetro, 11027, par1, None)
-      perform operation parámetro with operands addr:11027, addr:par1, result in None
+        realizar operación parámetro con operandos dir:11027, dir:par1, resultado en None
 ----------------------------------------------------------------------
 109: (parámetro, 11028, par2, None)
-      perform operation parámetro with operands addr:11028, addr:par2, result in None
+        realizar operación parámetro con operandos dir:11028, dir:par2, resultado en None
 ----------------------------------------------------------------------
 110: (parámetro, 11029, par3, None)
-      perform operation parámetro with operands addr:11029, addr:par3, result in None
+        realizar operación parámetro con operandos dir:11029, dir:par3, resultado en None
 ----------------------------------------------------------------------
 111: (GOSUB, maximo_de_tres, None, None)
-      perform operation GOSUB with operand addr:maximo_de_tres
+        realizar operación GOSUB con operando dir:maximo_de_tres
 ----------------------------------------------------------------------
 112: (=, 15016, None, 11031)
-      assign value of addr:15016 to addr:11031
+        asignar valor de dir:15016 a dir:11031
 ----------------------------------------------------------------------
 113: (=, 11027, None, 11032)
-      assign value of addr:11027 to addr:11032
+        asignar valor de dir:11027 a dir:11032
 ----------------------------------------------------------------------
 114: (<, 11028, 11032, 19009)
-      compare if addr:11028 is less than addr:11032, store boolean result in addr:19009
+        comparar si dir:11028 es menor que dir:11032, guardar resultado booleano en dir:19009
 ----------------------------------------------------------------------
 115: (gotof, 19009, None, 118)
-      if addr:19009 is false, jump to quadruple 118
+        si dir:19009 es falso, saltar al cuádruplo 118
 ----------------------------------------------------------------------
 116: (=, 11028, None, 11032)
-      assign value of addr:11028 to addr:11032
+        asignar valor de dir:11028 a dir:11032
 ----------------------------------------------------------------------
 117: (goto, None, None, 118)
-      jump to quadruple 118
+        saltar al cuádruplo 118
 ----------------------------------------------------------------------
 118: (<, 11029, 11032, 19010)
-      compare if addr:11029 is less than addr:11032, store boolean result in addr:19010
+        comparar si dir:11029 es menor que dir:11032, guardar resultado booleano en dir:19010
 ----------------------------------------------------------------------
 119: (gotof, 19010, None, 122)
-      if addr:19010 is false, jump to quadruple 122
+        si dir:19010 es falso, saltar al cuádruplo 122
 ----------------------------------------------------------------------
 120: (=, 11029, None, 11032)
-      assign value of addr:11029 to addr:11032
+        asignar valor de dir:11029 a dir:11032
 ----------------------------------------------------------------------
 121: (goto, None, None, 122)
-      jump to quadruple 122
+        saltar al cuádruplo 122
 ----------------------------------------------------------------------
 122: (print, === ESTADÍSTICAS ===, None, None)
-      print value addr:=== ESTADÍSTICAS ===
+        imprimir valor dir:=== ESTADÍSTICAS ===
 ----------------------------------------------------------------------
 123: (print, Números: , None, None)
-      print value addr:Números: 
+        imprimir valor dir:Números: 
 ----------------------------------------------------------------------
 124: (print, 11027, None, None)
-      print value addr:11027
+        imprimir valor dir:11027
 ----------------------------------------------------------------------
 125: (print, , , None, None)
-      print value addr:, 
+        imprimir valor dir:, 
 ----------------------------------------------------------------------
 126: (print, 11028, None, None)
-      print value addr:11028
+        imprimir valor dir:11028
 ----------------------------------------------------------------------
 127: (print, , , None, None)
-      print value addr:, 
+        imprimir valor dir:, 
 ----------------------------------------------------------------------
 128: (print, 11029, None, None)
-      print value addr:11029
+        imprimir valor dir:11029
 ----------------------------------------------------------------------
 129: (print, Suma total: , None, None)
-      print value addr:Suma total: 
+        imprimir valor dir:Suma total: 
 ----------------------------------------------------------------------
 130: (print, 11030, None, None)
-      print value addr:11030
+        imprimir valor dir:11030
 ----------------------------------------------------------------------
 131: (print, Número mayor: , None, None)
-      print value addr:Número mayor: 
+        imprimir valor dir:Número mayor: 
 ----------------------------------------------------------------------
 132: (print, 11031, None, None)
-      print value addr:11031
+        imprimir valor dir:11031
 ----------------------------------------------------------------------
 133: (print, Número menor: , None, None)
-      print value addr:Número menor: 
+        imprimir valor dir:Número menor: 
 ----------------------------------------------------------------------
 134: (print, 11032, None, None)
-      print value addr:11032
+        imprimir valor dir:11032
 ----------------------------------------------------------------------
 135: (ERA, calcular_promedio, None, None)
-      perform operation ERA with operand addr:calcular_promedio
+        realizar operación ERA con operando dir:calcular_promedio
 ----------------------------------------------------------------------
 136: (parámetro, 11027, par1, None)
-      perform operation parámetro with operands addr:11027, addr:par1, result in None
+        realizar operación parámetro con operandos dir:11027, dir:par1, resultado en None
 ----------------------------------------------------------------------
 137: (parámetro, 11028, par2, None)
-      perform operation parámetro with operands addr:11028, addr:par2, result in None
+        realizar operación parámetro con operandos dir:11028, dir:par2, resultado en None
 ----------------------------------------------------------------------
 138: (parámetro, 11029, par3, None)
-      perform operation parámetro with operands addr:11029, addr:par3, result in None
+        realizar operación parámetro con operandos dir:11029, dir:par3, resultado en None
 ----------------------------------------------------------------------
 139: (GOSUB, calcular_promedio, None, None)
-      perform operation GOSUB with operand addr:calcular_promedio
+        realizar operación GOSUB con operando dir:calcular_promedio
 ----------------------------------------------------------------------
 140: (print, Promedio: , None, None)
-      print value addr:Promedio: 
+        imprimir valor dir:Promedio: 
 ----------------------------------------------------------------------
 141: (print, 15017, None, None)
-      print value addr:15017
+        imprimir valor dir:15017
 ----------------------------------------------------------------------
 142: (ENDFUNC, None, None, None)
-      perform operation ENDFUNC with operand None
-==================== END OF mostrar_estadisticas ====================
+        realizar operación ENDFUNC con operando None
+==================== FIN DE mostrar_estadisticas ====================
 ----------------------------------------------------------------------
 
-==================== FUNCTION: main ====================
-Starting at quadruple 143
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 143
 ----------------------------------------------------------------------
 143: (print, === CALCULADORA AVANZADA ===, None, None)
-      print value addr:=== CALCULADORA AVANZADA ===
+        imprimir valor dir:=== CALCULADORA AVANZADA ===
 ----------------------------------------------------------------------
 144: (=, 20003, None, 5000)
-      assign value of constant(12) to num1 (global)
+        asignar valor de constante(12) a num1 (global)
 ----------------------------------------------------------------------
 145: (=, 20004, None, 5001)
-      assign value of constant(8) to num2 (global)
+        asignar valor de constante(8) a num2 (global)
 ----------------------------------------------------------------------
 146: (=, 20005, None, 5002)
-      assign value of constant(15) to num3 (global)
+        asignar valor de constante(15) a num3 (global)
 ----------------------------------------------------------------------
 147: (print, Números de trabajo: , None, None)
-      print value addr:Números de trabajo: 
+        imprimir valor dir:Números de trabajo: 
 ----------------------------------------------------------------------
 148: (print, 5000, None, None)
-      print value num1 (global)
+        imprimir valor num1 (global)
 ----------------------------------------------------------------------
 149: (print, , , None, None)
-      print value addr:, 
+        imprimir valor dir:, 
 ----------------------------------------------------------------------
 150: (print, 5001, None, None)
-      print value num2 (global)
+        imprimir valor num2 (global)
 ----------------------------------------------------------------------
 151: (print, , , None, None)
-      print value addr:, 
+        imprimir valor dir:, 
 ----------------------------------------------------------------------
 152: (print, 5002, None, None)
-      print value num3 (global)
+        imprimir valor num3 (global)
 ----------------------------------------------------------------------
 153: (print, , None, None)
-      print value addr:
+        imprimir valor dir:
 ----------------------------------------------------------------------
 154: (ERA, mostrar_operaciones_basicas, None, None)
-      perform operation ERA with operand addr:mostrar_operaciones_basicas
+        realizar operación ERA con operando dir:mostrar_operaciones_basicas
 ----------------------------------------------------------------------
 155: (parámetro, 5000, par1, None)
-      perform operation parámetro with operands num1 (global), addr:par1, result in None
+        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 156: (parámetro, 5001, par2, None)
-      perform operation parámetro with operands num2 (global), addr:par2, result in None
+        realizar operación parámetro con operandos num2 (global), dir:par2, resultado en None
 ----------------------------------------------------------------------
 157: (GOSUB, mostrar_operaciones_basicas, None, None)
-      perform operation GOSUB with operand addr:mostrar_operaciones_basicas
+        realizar operación GOSUB con operando dir:mostrar_operaciones_basicas
 ----------------------------------------------------------------------
 158: (print, , None, None)
-      print value addr:
+        imprimir valor dir:
 ----------------------------------------------------------------------
 159: (ERA, analizar_numero, None, None)
-      perform operation ERA with operand addr:analizar_numero
+        realizar operación ERA con operando dir:analizar_numero
 ----------------------------------------------------------------------
 160: (parámetro, 5000, par1, None)
-      perform operation parámetro with operands num1 (global), addr:par1, result in None
+        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 161: (GOSUB, analizar_numero, None, None)
-      perform operation GOSUB with operand addr:analizar_numero
+        realizar operación GOSUB con operando dir:analizar_numero
 ----------------------------------------------------------------------
 162: (print, , None, None)
-      print value addr:
+        imprimir valor dir:
 ----------------------------------------------------------------------
 163: (ERA, mostrar_tabla_multiplicar, None, None)
-      perform operation ERA with operand addr:mostrar_tabla_multiplicar
+        realizar operación ERA con operando dir:mostrar_tabla_multiplicar
 ----------------------------------------------------------------------
 164: (parámetro, 5001, par1, None)
-      perform operation parámetro with operands num2 (global), addr:par1, result in None
+        realizar operación parámetro con operandos num2 (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 165: (parámetro, 20006, par2, None)
-      perform operation parámetro with operands constant(5), addr:par2, result in None
+        realizar operación parámetro con operandos constante(5), dir:par2, resultado en None
 ----------------------------------------------------------------------
 166: (GOSUB, mostrar_tabla_multiplicar, None, None)
-      perform operation GOSUB with operand addr:mostrar_tabla_multiplicar
+        realizar operación GOSUB con operando dir:mostrar_tabla_multiplicar
 ----------------------------------------------------------------------
 167: (print, , None, None)
-      print value addr:
+        imprimir valor dir:
 ----------------------------------------------------------------------
 168: (=, 20006, None, 5004)
-      assign value of constant(5) to factorial_num (global)
+        asignar valor de constante(5) a factorial_num (global)
 ----------------------------------------------------------------------
 169: (ERA, calcular_factorial, None, None)
-      perform operation ERA with operand addr:calcular_factorial
+        realizar operación ERA con operando dir:calcular_factorial
 ----------------------------------------------------------------------
 170: (parámetro, 5004, par1, None)
-      perform operation parámetro with operands factorial_num (global), addr:par1, result in None
+        realizar operación parámetro con operandos factorial_num (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 171: (GOSUB, calcular_factorial, None, None)
-      perform operation GOSUB with operand addr:calcular_factorial
+        realizar operación GOSUB con operando dir:calcular_factorial
 ----------------------------------------------------------------------
 172: (=, 15018, None, 5003)
-      assign value of addr:15018 to resultado (global)
+        asignar valor de dir:15018 a resultado (global)
 ----------------------------------------------------------------------
 173: (print, Factorial de , None, None)
-      print value addr:Factorial de 
+        imprimir valor dir:Factorial de 
 ----------------------------------------------------------------------
 174: (print, 5004, None, None)
-      print value factorial_num (global)
+        imprimir valor factorial_num (global)
 ----------------------------------------------------------------------
 175: (print,  es: , None, None)
-      print value addr: es: 
+        imprimir valor dir: es: 
 ----------------------------------------------------------------------
 176: (print, 5003, None, None)
-      print value resultado (global)
+        imprimir valor resultado (global)
 ----------------------------------------------------------------------
 177: (ERA, potencia, None, None)
-      perform operation ERA with operand addr:potencia
+        realizar operación ERA con operando dir:potencia
 ----------------------------------------------------------------------
 178: (parámetro, 5001, par1, None)
-      perform operation parámetro with operands num2 (global), addr:par1, result in None
+        realizar operación parámetro con operandos num2 (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 179: (parámetro, 20002, par2, None)
-      perform operation parámetro with operands constant(3), addr:par2, result in None
+        realizar operación parámetro con operandos constante(3), dir:par2, resultado en None
 ----------------------------------------------------------------------
 180: (GOSUB, potencia, None, None)
-      perform operation GOSUB with operand addr:potencia
+        realizar operación GOSUB con operando dir:potencia
 ----------------------------------------------------------------------
 181: (=, 15019, None, 5003)
-      assign value of addr:15019 to resultado (global)
+        asignar valor de dir:15019 a resultado (global)
 ----------------------------------------------------------------------
 182: (print, 5001, None, None)
-      print value num2 (global)
+        imprimir valor num2 (global)
 ----------------------------------------------------------------------
 183: (print,  elevado a la 3 es: , None, None)
-      print value addr: elevado a la 3 es: 
+        imprimir valor dir: elevado a la 3 es: 
 ----------------------------------------------------------------------
 184: (print, 5003, None, None)
-      print value resultado (global)
+        imprimir valor resultado (global)
 ----------------------------------------------------------------------
 185: (ERA, maximo_de_tres, None, None)
-      perform operation ERA with operand addr:maximo_de_tres
+        realizar operación ERA con operando dir:maximo_de_tres
 ----------------------------------------------------------------------
 186: (parámetro, 5000, par1, None)
-      perform operation parámetro with operands num1 (global), addr:par1, result in None
+        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 187: (parámetro, 5001, par2, None)
-      perform operation parámetro with operands num2 (global), addr:par2, result in None
+        realizar operación parámetro con operandos num2 (global), dir:par2, resultado en None
 ----------------------------------------------------------------------
 188: (parámetro, 5002, par3, None)
-      perform operation parámetro with operands num3 (global), addr:par3, result in None
+        realizar operación parámetro con operandos num3 (global), dir:par3, resultado en None
 ----------------------------------------------------------------------
 189: (GOSUB, maximo_de_tres, None, None)
-      perform operation GOSUB with operand addr:maximo_de_tres
+        realizar operación GOSUB con operando dir:maximo_de_tres
 ----------------------------------------------------------------------
 190: (=, 15020, None, 5003)
-      assign value of addr:15020 to resultado (global)
+        asignar valor de dir:15020 a resultado (global)
 ----------------------------------------------------------------------
 191: (print, El mayor de los tres números es: , None, None)
-      print value addr:El mayor de los tres números es: 
+        imprimir valor dir:El mayor de los tres números es: 
 ----------------------------------------------------------------------
 192: (print, 5003, None, None)
-      print value resultado (global)
+        imprimir valor resultado (global)
 ----------------------------------------------------------------------
 193: (ERA, calcular_promedio, None, None)
-      perform operation ERA with operand addr:calcular_promedio
+        realizar operación ERA con operando dir:calcular_promedio
 ----------------------------------------------------------------------
 194: (parámetro, 5000, par1, None)
-      perform operation parámetro with operands num1 (global), addr:par1, result in None
+        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 195: (parámetro, 5001, par2, None)
-      perform operation parámetro with operands num2 (global), addr:par2, result in None
+        realizar operación parámetro con operandos num2 (global), dir:par2, resultado en None
 ----------------------------------------------------------------------
 196: (parámetro, 5002, par3, None)
-      perform operation parámetro with operands num3 (global), addr:par3, result in None
+        realizar operación parámetro con operandos num3 (global), dir:par3, resultado en None
 ----------------------------------------------------------------------
 197: (GOSUB, calcular_promedio, None, None)
-      perform operation GOSUB with operand addr:calcular_promedio
+        realizar operación GOSUB con operando dir:calcular_promedio
 ----------------------------------------------------------------------
 198: (=, 15021, None, 5005)
-      assign value of addr:15021 to promedio_val (global)
+        asignar valor de dir:15021 a promedio_val (global)
 ----------------------------------------------------------------------
 199: (print, El promedio de los tres números es: , None, None)
-      print value addr:El promedio de los tres números es: 
+        imprimir valor dir:El promedio de los tres números es: 
 ----------------------------------------------------------------------
 200: (print, 5005, None, None)
-      print value promedio_val (global)
+        imprimir valor promedio_val (global)
 ----------------------------------------------------------------------
 201: (print, , None, None)
-      print value addr:
+        imprimir valor dir:
 ----------------------------------------------------------------------
 202: (ERA, mostrar_estadisticas, None, None)
-      perform operation ERA with operand addr:mostrar_estadisticas
+        realizar operación ERA con operando dir:mostrar_estadisticas
 ----------------------------------------------------------------------
 203: (parámetro, 5000, par1, None)
-      perform operation parámetro with operands num1 (global), addr:par1, result in None
+        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
 204: (parámetro, 5001, par2, None)
-      perform operation parámetro with operands num2 (global), addr:par2, result in None
+        realizar operación parámetro con operandos num2 (global), dir:par2, resultado en None
 ----------------------------------------------------------------------
 205: (parámetro, 5002, par3, None)
-      perform operation parámetro with operands num3 (global), addr:par3, result in None
+        realizar operación parámetro con operandos num3 (global), dir:par3, resultado en None
 ----------------------------------------------------------------------
 206: (GOSUB, mostrar_estadisticas, None, None)
-      perform operation GOSUB with operand addr:mostrar_estadisticas
+        realizar operación GOSUB con operando dir:mostrar_estadisticas
 ----------------------------------------------------------------------
 207: (print, , None, None)
-      print value addr:
+        imprimir valor dir:
 ----------------------------------------------------------------------
 208: (print, === FIN DEL PROGRAMA ===, None, None)
-      print value addr:=== FIN DEL PROGRAMA ===
+        imprimir valor dir:=== FIN DEL PROGRAMA ===
 ----------------------------------------------------------------------
 209: (END, None, None, None)
-      perform operation END with operand None
+        realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
 IP: 0 -> Ejecutando: (goto, None, None, 143)

@@ -80,15 +80,6 @@ semantic_cube = {
 }
 
 def get_result_type(left_type, right_type, operation):
-    """
-    Determina el tipo resultante de una operación entre dos tipos
-    Args:
-        left_type: El tipo del operando izquierdo
-        right_type: El tipo del operando derecho
-        operation: La operación a realizar  
-    Returns:
-        El tipo resultante o Type.ERROR si la operación no es válida
-    """
     try:
         return semantic_cube[left_type][right_type][operation]
     except KeyError:

@@ -62,7 +62,7 @@ class QuadrupleGenerator:
                 self.PTypes.append(result_type)
                 return True
             else:
-                self.semantic.add_error(f"Type mismatch: {left_type} {operator} {right_type}")
+                self.semantic.add_error(f"Error de tipos: {left_type} {operator} {right_type}")
                 return False
             
     def get_operand_address(self, operand):
@@ -156,14 +156,14 @@ class QuadrupleGenerator:
         if self.semantic.current_scope != "global":
             for var_name, var in self.semantic.function_directory[self.semantic.current_scope].local_vars.items():
                 if var.address == address:
-                    return f"{var_name} (local in {self.semantic.current_scope})"
+                    return f"{var_name} (local en {self.semantic.current_scope})"
         for value, addr in self.constants_table.items():
             if addr == address:
-                return f"constant({value})"
+                return f"constante({value})"
         if isinstance(address, str) and address.startswith('t'):
             return f"temp {address}"
         
-        return f"addr:{address}"
+        return f"dir:{address}"
     
     def _get_quad_explanation(self, quad):
         op = quad.operator
@@ -174,37 +174,37 @@ class QuadrupleGenerator:
         right_name = self.get_address_content(right) if right is not None else None
         result_name = self.get_address_content(result) if result is not None else None
         if op in ['+', '-', '*', '/']:
-            op_map = {'+': 'add', '-': 'subtract', '*': 'multiply', '/': 'divide'}
-            return f"{op_map[op]} {left_name} and {right_name}, store result in {result_name}"
+            op_map = {'+': 'sumar', '-': 'restar', '*': 'multiplicar', '/': 'dividir'}
+            return f"{op_map[op]} {left_name} y {right_name}, guardar resultado en {result_name}"
         elif op == '=':
-            return f"assign value of {left_name} to {result_name}"
+            return f"asignar valor de {left_name} a {result_name}"
         elif op in ['>', '<', '!=']:
-            op_map = {'>': 'greater than', '<': 'less than', '!=': 'not equal to'}
-            return f"compare if {left_name} is {op_map[op]} {right_name}, store boolean result in {result_name}"
+            op_map = {'>': 'mayor que', '<': 'menor que', '!=': 'diferente de'}
+            return f"comparar si {left_name} es {op_map[op]} {right_name}, guardar resultado booleano en {result_name}"
         elif op == 'goto':
-            return f"jump to quadruple {result}"
+            return f"saltar al cuádruplo {result}"
         elif op == 'gotof':
-            return f"if {left_name} is false, jump to quadruple {result}"
+            return f"si {left_name} es falso, saltar al cuádruplo {result}"
         elif op == 'call':
-            return f"call function {left}"
+            return f"llamar función {left}"
         elif op == 'param':
-            return f"pass parameter {left_name}"
+            return f"pasar parámetro {left_name}"
         elif op == 'return':
-            return f"return value {left_name}"
+            return f"retornar valor {left_name}"
         elif op == 'print':
-            return f"print value {left_name}"
+            return f"imprimir valor {left_name}"
         else:
             if right is None and result is None:
-                return f"perform operation {op} with operand {left_name}"
+                return f"realizar operación {op} con operando {left_name}"
             elif right is None:
-                return f"perform operation {op} with operand {left_name}, result in {result_name}"
+                return f"realizar operación {op} con operando {left_name}, resultado en {result_name}"
             else:
-                return f"perform operation {op} with operands {left_name}, {right_name}, result in {result_name}"
+                return f"realizar operación {op} con operandos {left_name}, {right_name}, resultado en {result_name}"
                 
     def print_quads(self):
-        print("\n===== QUADRUPLES WITH MEMORY ADDRESSES =====")
-        print("INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)")
-        print("      EXPLANATION")
+        print("\n===== CUÁDRUPLOS CON DIRECCIONES DE MEMORIA =====")
+        print("ÍNDICE: (OPERADOR, OPERANDO_IZQ, OPERANDO_DER, RESULTADO)")
+        print("        EXPLICACIÓN")
         print("-" * 70)
         self._print_function_info()
         current_function = None
@@ -212,23 +212,23 @@ class QuadrupleGenerator:
             function_name = self._get_function_at_quad(i)
             if function_name and function_name != current_function:
                 current_function = function_name
-                print(f"\n{'='*20} FUNCTION: {function_name} {'='*20}")
-                print(f"Starting at quadruple {i}")
+                print(f"\n{'='*20} FUNCIÓN: {function_name} {'='*20}")
+                print(f"Inicia en el cuádruplo {i}")
                 print("-" * 70)
             print(f"{i}: {quad}")
             explanation = self._get_quad_explanation(quad)
-            print(f"      {explanation}")
+            print(f"        {explanation}")
             if quad.operator == 'ENDFUNC':
-                print(f"{'='*20} END OF {current_function} {'='*20}")
+                print(f"{'='*20} FIN DE {current_function} {'='*20}")
                 current_function = None 
             print("-" * 70)
         
     def _print_function_info(self):
         """Imprime información sobre las funciones y sus direcciones de inicio"""
-        print("\n===== FUNCTION DIRECTORY =====")
+        print("\n===== DIRECTORIO DE FUNCIONES =====")
         for func_name, func_info in self.semantic.function_directory.items():
-            start_addr = getattr(func_info, 'start_address', 'Not set')
-            print(f"Function: {func_name} - Start Address: {start_addr}")
+            start_addr = getattr(func_info, 'start_address', 'No establecida')
+            print(f"Función: {func_name} - Dirección de Inicio: {start_addr}")
         print("-" * 70)
     
     def _get_function_at_quad(self, quad_index):
