@@ -1,6 +1,6 @@
 
 ================================================================================
-SESIÓN DE PRUEBAS - 2025-05-30 17:11:58
+SESIÓN DE PRUEBAS - 2025-05-31 17:43:15
 ================================================================================
 
 
@@ -41,33 +41,33 @@ CÓDIGO:
 32: end
 
 SALIDA OBTENIDA:
-Adding ID 'a' to temp list in scope: global
-Added 'a' to temporary variable list in scope: global
-Adding ID 'b' to temp list in scope: global
-Added 'b' to temporary variable list in scope: global
-Adding ID 'c' to temp list in scope: global
-Added 'c' to temporary variable list in scope: global
-Adding ID 'resultado' to temp list in scope: global
-Added 'resultado' to temporary variable list in scope: global
-Adding ID 'resultado2' to temp list in scope: global
-Added 'resultado2' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'a' of type Type.INT at address 5000
-Added global variable 'b' of type Type.INT at address 5001
-Added global variable 'c' of type Type.INT at address 5002
-Added global variable 'resultado' of type Type.INT at address 5003
-Added global variable 'resultado2' of type Type.INT at address 5004
-Adding ID 'resultado3' to temp list in scope: global
-Added 'resultado3' to temporary variable list in scope: global
-Set current type to Type.FLOAT
-Adding variables to table in scope: global
-Added global variable 'resultado3' of type Type.FLOAT at address 8000
-Starting variable declaration in scope 'global'
-Pushed scope: main, current scope stack: ['global', 'main']
-Main function declared, scope changed to main
-Program operaciones_basicas started, scope reset to global
-Program operaciones_basicas completed
+Agregando ID 'a' a lista temporal en ámbito: global
+'a' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'b' a lista temporal en ámbito: global
+'b' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'c' a lista temporal en ámbito: global
+'c' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'resultado' a lista temporal en ámbito: global
+'resultado' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'resultado2' a lista temporal en ámbito: global
+'resultado2' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'a' agregada de tipo Type.INT en dirección 5000
+Variable global 'b' agregada de tipo Type.INT en dirección 5001
+Variable global 'c' agregada de tipo Type.INT en dirección 5002
+Variable global 'resultado' agregada de tipo Type.INT en dirección 5003
+Variable global 'resultado2' agregada de tipo Type.INT en dirección 5004
+Agregando ID 'resultado3' a lista temporal en ámbito: global
+'resultado3' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.FLOAT
+Agregando variables a tabla en ámbito: global
+Variable global 'resultado3' agregada de tipo Type.FLOAT en dirección 8000
+Iniciando declaración de variables en ámbito 'global'
+Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
+Función main declarada, ámbito cambiado a main
+Programa operaciones_basicas iniciado, ámbito reiniciado a global
+Programa operaciones_basicas completado
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
@@ -383,22 +383,22 @@ CÓDIGO:
 22: end
 
 SALIDA OBTENIDA:
-Adding ID 'x' to temp list in scope: global
-Added 'x' to temporary variable list in scope: global
-Adding ID 'y' to temp list in scope: global
-Added 'y' to temporary variable list in scope: global
-Adding ID 'max' to temp list in scope: global
-Added 'max' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'x' of type Type.INT at address 5000
-Added global variable 'y' of type Type.INT at address 5001
-Added global variable 'max' of type Type.INT at address 5002
-Starting variable declaration in scope 'global'
-Pushed scope: main, current scope stack: ['global', 'main']
-Main function declared, scope changed to main
-Program control_if started, scope reset to global
-Program control_if completed
+Agregando ID 'x' a lista temporal en ámbito: global
+'x' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'y' a lista temporal en ámbito: global
+'y' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'max' a lista temporal en ámbito: global
+'max' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'x' agregada de tipo Type.INT en dirección 5000
+Variable global 'y' agregada de tipo Type.INT en dirección 5001
+Variable global 'max' agregada de tipo Type.INT en dirección 5002
+Iniciando declaración de variables en ámbito 'global'
+Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
+Función main declarada, ámbito cambiado a main
+Programa control_if iniciado, ámbito reiniciado a global
+Programa control_if completado
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
@@ -544,19 +544,19 @@ CÓDIGO:
 16: end
 
 SALIDA OBTENIDA:
-Adding ID 'contador' to temp list in scope: global
-Added 'contador' to temporary variable list in scope: global
-Adding ID 'suma' to temp list in scope: global
-Added 'suma' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'contador' of type Type.INT at address 5000
-Added global variable 'suma' of type Type.INT at address 5001
-Starting variable declaration in scope 'global'
-Pushed scope: main, current scope stack: ['global', 'main']
-Main function declared, scope changed to main
-Program ciclo_while started, scope reset to global
-Program ciclo_while completed
+Agregando ID 'contador' a lista temporal en ámbito: global
+'contador' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'suma' a lista temporal en ámbito: global
+'suma' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'contador' agregada de tipo Type.INT en dirección 5000
+Variable global 'suma' agregada de tipo Type.INT en dirección 5001
+Iniciando declaración de variables en ámbito 'global'
+Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
+Función main declarada, ámbito cambiado a main
+Programa ciclo_while iniciado, ámbito reiniciado a global
+Programa ciclo_while completado
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
@@ -809,46 +809,46 @@ CÓDIGO:
 33: end
 
 SALIDA OBTENIDA:
-Adding ID 'resultado' to temp list in scope: global
-Added 'resultado' to temporary variable list in scope: global
-Adding ID 'num1' to temp list in scope: global
-Added 'num1' to temporary variable list in scope: global
-Adding ID 'num2' to temp list in scope: global
-Added 'num2' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'resultado' of type Type.INT at address 5000
-Added global variable 'num1' of type Type.INT at address 5001
-Added global variable 'num2' of type Type.INT at address 5002
-Starting variable declaration in scope 'global'
-Pushed scope: sumar, current scope stack: ['global', 'sumar']
-Declared function 'sumar' with return type Type.VOID, scope changed to: sumar
-Added parameter 'a' of type Type.INT at address 11000 to function 'sumar'
-Added parameter 'b' of type Type.INT at address 11001 to function 'sumar'
-Adding ID 'res' to temp list in scope: sumar
-Added 'res' to temporary variable list in scope: sumar
-Set current type to Type.INT
-Adding variables to table in scope: sumar
-Added local variable 'res' of type Type.INT at address 11002 to function 'sumar'
-Starting variable declaration in scope 'sumar'
-Popped scope: sumar, current scope is now: global
-Ended function 'sumar' declaration, returned to scope: global
-Pushed scope: multiplicar, current scope stack: ['global', 'multiplicar']
-Declared function 'multiplicar' with return type Type.VOID, scope changed to: multiplicar
-Added parameter 'c' of type Type.INT at address 11003 to function 'multiplicar'
-Added parameter 'd' of type Type.INT at address 11004 to function 'multiplicar'
-Adding ID 'res' to temp list in scope: multiplicar
-Added 'res' to temporary variable list in scope: multiplicar
-Set current type to Type.INT
-Adding variables to table in scope: multiplicar
-Added local variable 'res' of type Type.INT at address 11005 to function 'multiplicar'
-Starting variable declaration in scope 'multiplicar'
-Popped scope: multiplicar, current scope is now: global
-Ended function 'multiplicar' declaration, returned to scope: global
-Pushed scope: main, current scope stack: ['global', 'main']
-Main function declared, scope changed to main
-Program funciones started, scope reset to global
-Program funciones completed
+Agregando ID 'resultado' a lista temporal en ámbito: global
+'resultado' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'num1' a lista temporal en ámbito: global
+'num1' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'num2' a lista temporal en ámbito: global
+'num2' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'resultado' agregada de tipo Type.INT en dirección 5000
+Variable global 'num1' agregada de tipo Type.INT en dirección 5001
+Variable global 'num2' agregada de tipo Type.INT en dirección 5002
+Iniciando declaración de variables en ámbito 'global'
+Ámbito agregado: sumar, pila de ámbitos actual: ['global', 'sumar']
+Función 'sumar' declarada con tipo de retorno Type.VOID, ámbito cambiado a: sumar
+Parámetro 'a' agregado de tipo Type.INT en dirección 11000 a función 'sumar'
+Parámetro 'b' agregado de tipo Type.INT en dirección 11001 a función 'sumar'
+Agregando ID 'res' a lista temporal en ámbito: sumar
+'res' agregado a lista temporal de variables en ámbito: sumar
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: sumar
+Variable local 'res' agregada de tipo Type.INT en dirección 11002 a función 'sumar'
+Iniciando declaración de variables en ámbito 'sumar'
+Ámbito removido: sumar, ámbito actual es ahora: global
+Declaración de función 'sumar' terminada, regresado al ámbito: global
+Ámbito agregado: multiplicar, pila de ámbitos actual: ['global', 'multiplicar']
+Función 'multiplicar' declarada con tipo de retorno Type.VOID, ámbito cambiado a: multiplicar
+Parámetro 'c' agregado de tipo Type.INT en dirección 11003 a función 'multiplicar'
+Parámetro 'd' agregado de tipo Type.INT en dirección 11004 a función 'multiplicar'
+Agregando ID 'res' a lista temporal en ámbito: multiplicar
+'res' agregado a lista temporal de variables en ámbito: multiplicar
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: multiplicar
+Variable local 'res' agregada de tipo Type.INT en dirección 11005 a función 'multiplicar'
+Iniciando declaración de variables en ámbito 'multiplicar'
+Ámbito removido: multiplicar, ámbito actual es ahora: global
+Declaración de función 'multiplicar' terminada, regresado al ámbito: global
+Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
+Función main declarada, ámbito cambiado a main
+Programa funciones iniciado, ámbito reiniciado a global
+Programa funciones completado
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
@@ -1120,26 +1120,26 @@ CÓDIGO:
 14: end
 
 SALIDA OBTENIDA:
-Adding ID 'x' to temp list in scope: global
-Added 'x' to temporary variable list in scope: global
-Set current type to Type.FLOAT
-Adding variables to table in scope: global
-Added global variable 'x' of type Type.FLOAT at address 8000
-Adding ID 'y' to temp list in scope: global
-Added 'y' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'y' of type Type.INT at address 5000
-Adding ID 'z' to temp list in scope: global
-Added 'z' to temporary variable list in scope: global
-Set current type to Type.FLOAT
-Adding variables to table in scope: global
-Added global variable 'z' of type Type.FLOAT at address 8001
-Starting variable declaration in scope 'global'
-Pushed scope: main, current scope stack: ['global', 'main']
-Main function declared, scope changed to main
-Program operaciones_flotantes started, scope reset to global
-Program operaciones_flotantes completed
+Agregando ID 'x' a lista temporal en ámbito: global
+'x' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.FLOAT
+Agregando variables a tabla en ámbito: global
+Variable global 'x' agregada de tipo Type.FLOAT en dirección 8000
+Agregando ID 'y' a lista temporal en ámbito: global
+'y' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'y' agregada de tipo Type.INT en dirección 5000
+Agregando ID 'z' a lista temporal en ámbito: global
+'z' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.FLOAT
+Agregando variables a tabla en ámbito: global
+Variable global 'z' agregada de tipo Type.FLOAT en dirección 8001
+Iniciando declaración de variables en ámbito 'global'
+Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
+Función main declarada, ámbito cambiado a main
+Programa operaciones_flotantes iniciado, ámbito reiniciado a global
+Programa operaciones_flotantes completado
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
@@ -1244,24 +1244,24 @@ CÓDIGO:
 12: end
 
 SALIDA OBTENIDA:
-Adding ID 'a' to temp list in scope: global
-Added 'a' to temporary variable list in scope: global
-Adding ID 'b' to temp list in scope: global
-Added 'b' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'a' of type Type.INT at address 5000
-Added global variable 'b' of type Type.INT at address 5001
-Adding ID 'resultado' to temp list in scope: global
-Added 'resultado' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'resultado' of type Type.INT at address 5002
-Starting variable declaration in scope 'global'
-Pushed scope: main, current scope stack: ['global', 'main']
-Main function declared, scope changed to main
-Program negativos started, scope reset to global
-Program negativos completed
+Agregando ID 'a' a lista temporal en ámbito: global
+'a' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'b' a lista temporal en ámbito: global
+'b' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'a' agregada de tipo Type.INT en dirección 5000
+Variable global 'b' agregada de tipo Type.INT en dirección 5001
+Agregando ID 'resultado' a lista temporal en ámbito: global
+'resultado' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'resultado' agregada de tipo Type.INT en dirección 5002
+Iniciando declaración de variables en ámbito 'global'
+Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
+Función main declarada, ámbito cambiado a main
+Programa negativos iniciado, ámbito reiniciado a global
+Programa negativos completado
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
@@ -1385,33 +1385,33 @@ CÓDIGO:
 31: end
 
 SALIDA OBTENIDA:
-Adding ID 'numero' to temp list in scope: global
-Added 'numero' to temporary variable list in scope: global
-Adding ID 'resultado' to temp list in scope: global
-Added 'resultado' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'numero' of type Type.INT at address 5000
-Added global variable 'resultado' of type Type.INT at address 5001
-Starting variable declaration in scope 'global'
-Pushed scope: calcular_factorial, current scope stack: ['global', 'calcular_factorial']
-Declared function 'calcular_factorial' with return type Type.VOID, scope changed to: calcular_factorial
-Added parameter 'n' of type Type.INT at address 11000 to function 'calcular_factorial'
-Adding ID 'factorial' to temp list in scope: calcular_factorial
-Added 'factorial' to temporary variable list in scope: calcular_factorial
-Adding ID 'i' to temp list in scope: calcular_factorial
-Added 'i' to temporary variable list in scope: calcular_factorial
-Set current type to Type.INT
-Adding variables to table in scope: calcular_factorial
-Added local variable 'factorial' of type Type.INT at address 11001 to function 'calcular_factorial'
-Added local variable 'i' of type Type.INT at address 11002 to function 'calcular_factorial'
-Starting variable declaration in scope 'calcular_factorial'
-Popped scope: calcular_factorial, current scope is now: global
-Ended function 'calcular_factorial' declaration, returned to scope: global
-Pushed scope: main, current scope stack: ['global', 'main']
-Main function declared, scope changed to main
-Program factorial_funcion started, scope reset to global
-Program factorial_funcion completed
+Agregando ID 'numero' a lista temporal en ámbito: global
+'numero' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'resultado' a lista temporal en ámbito: global
+'resultado' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'numero' agregada de tipo Type.INT en dirección 5000
+Variable global 'resultado' agregada de tipo Type.INT en dirección 5001
+Iniciando declaración de variables en ámbito 'global'
+Ámbito agregado: calcular_factorial, pila de ámbitos actual: ['global', 'calcular_factorial']
+Función 'calcular_factorial' declarada con tipo de retorno Type.VOID, ámbito cambiado a: calcular_factorial
+Parámetro 'n' agregado de tipo Type.INT en dirección 11000 a función 'calcular_factorial'
+Agregando ID 'factorial' a lista temporal en ámbito: calcular_factorial
+'factorial' agregado a lista temporal de variables en ámbito: calcular_factorial
+Agregando ID 'i' a lista temporal en ámbito: calcular_factorial
+'i' agregado a lista temporal de variables en ámbito: calcular_factorial
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: calcular_factorial
+Variable local 'factorial' agregada de tipo Type.INT en dirección 11001 a función 'calcular_factorial'
+Variable local 'i' agregada de tipo Type.INT en dirección 11002 a función 'calcular_factorial'
+Iniciando declaración de variables en ámbito 'calcular_factorial'
+Ámbito removido: calcular_factorial, ámbito actual es ahora: global
+Declaración de función 'calcular_factorial' terminada, regresado al ámbito: global
+Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
+Función main declarada, ámbito cambiado a main
+Programa factorial_funcion iniciado, ámbito reiniciado a global
+Programa factorial_funcion completado
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
@@ -2126,53 +2126,53 @@ CÓDIGO:
 65: end
 
 SALIDA OBTENIDA:
-Adding ID 'cantidad' to temp list in scope: global
-Added 'cantidad' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'cantidad' of type Type.INT at address 5000
-Starting variable declaration in scope 'global'
-Pushed scope: generar_fibonacci, current scope stack: ['global', 'generar_fibonacci']
-Declared function 'generar_fibonacci' with return type Type.VOID, scope changed to: generar_fibonacci
-Added parameter 'n' of type Type.INT at address 11000 to function 'generar_fibonacci'
-Adding ID 'i' to temp list in scope: generar_fibonacci
-Added 'i' to temporary variable list in scope: generar_fibonacci
-Adding ID 'fib1' to temp list in scope: generar_fibonacci
-Added 'fib1' to temporary variable list in scope: generar_fibonacci
-Adding ID 'fib2' to temp list in scope: generar_fibonacci
-Added 'fib2' to temporary variable list in scope: generar_fibonacci
-Adding ID 'siguiente' to temp list in scope: generar_fibonacci
-Added 'siguiente' to temporary variable list in scope: generar_fibonacci
-Set current type to Type.INT
-Adding variables to table in scope: generar_fibonacci
-Added local variable 'i' of type Type.INT at address 11001 to function 'generar_fibonacci'
-Added local variable 'fib1' of type Type.INT at address 11002 to function 'generar_fibonacci'
-Added local variable 'fib2' of type Type.INT at address 11003 to function 'generar_fibonacci'
-Added local variable 'siguiente' of type Type.INT at address 11004 to function 'generar_fibonacci'
-Starting variable declaration in scope 'generar_fibonacci'
-Popped scope: generar_fibonacci, current scope is now: global
-Ended function 'generar_fibonacci' declaration, returned to scope: global
-Pushed scope: mostrar_fibonacci_hasta, current scope stack: ['global', 'mostrar_fibonacci_hasta']
-Declared function 'mostrar_fibonacci_hasta' with return type Type.VOID, scope changed to: mostrar_fibonacci_hasta
-Added parameter 'limite' of type Type.INT at address 11005 to function 'mostrar_fibonacci_hasta'
-Adding ID 'fib1' to temp list in scope: mostrar_fibonacci_hasta
-Added 'fib1' to temporary variable list in scope: mostrar_fibonacci_hasta
-Adding ID 'fib2' to temp list in scope: mostrar_fibonacci_hasta
-Added 'fib2' to temporary variable list in scope: mostrar_fibonacci_hasta
-Adding ID 'siguiente' to temp list in scope: mostrar_fibonacci_hasta
-Added 'siguiente' to temporary variable list in scope: mostrar_fibonacci_hasta
-Set current type to Type.INT
-Adding variables to table in scope: mostrar_fibonacci_hasta
-Added local variable 'fib1' of type Type.INT at address 11006 to function 'mostrar_fibonacci_hasta'
-Added local variable 'fib2' of type Type.INT at address 11007 to function 'mostrar_fibonacci_hasta'
-Added local variable 'siguiente' of type Type.INT at address 11008 to function 'mostrar_fibonacci_hasta'
-Starting variable declaration in scope 'mostrar_fibonacci_hasta'
-Popped scope: mostrar_fibonacci_hasta, current scope is now: global
-Ended function 'mostrar_fibonacci_hasta' declaration, returned to scope: global
-Pushed scope: main, current scope stack: ['global', 'main']
-Main function declared, scope changed to main
-Program fibonacci_funcion started, scope reset to global
-Program fibonacci_funcion completed
+Agregando ID 'cantidad' a lista temporal en ámbito: global
+'cantidad' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'cantidad' agregada de tipo Type.INT en dirección 5000
+Iniciando declaración de variables en ámbito 'global'
+Ámbito agregado: generar_fibonacci, pila de ámbitos actual: ['global', 'generar_fibonacci']
+Función 'generar_fibonacci' declarada con tipo de retorno Type.VOID, ámbito cambiado a: generar_fibonacci
+Parámetro 'n' agregado de tipo Type.INT en dirección 11000 a función 'generar_fibonacci'
+Agregando ID 'i' a lista temporal en ámbito: generar_fibonacci
+'i' agregado a lista temporal de variables en ámbito: generar_fibonacci
+Agregando ID 'fib1' a lista temporal en ámbito: generar_fibonacci
+'fib1' agregado a lista temporal de variables en ámbito: generar_fibonacci
+Agregando ID 'fib2' a lista temporal en ámbito: generar_fibonacci
+'fib2' agregado a lista temporal de variables en ámbito: generar_fibonacci
+Agregando ID 'siguiente' a lista temporal en ámbito: generar_fibonacci
+'siguiente' agregado a lista temporal de variables en ámbito: generar_fibonacci
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: generar_fibonacci
+Variable local 'i' agregada de tipo Type.INT en dirección 11001 a función 'generar_fibonacci'
+Variable local 'fib1' agregada de tipo Type.INT en dirección 11002 a función 'generar_fibonacci'
+Variable local 'fib2' agregada de tipo Type.INT en dirección 11003 a función 'generar_fibonacci'
+Variable local 'siguiente' agregada de tipo Type.INT en dirección 11004 a función 'generar_fibonacci'
+Iniciando declaración de variables en ámbito 'generar_fibonacci'
+Ámbito removido: generar_fibonacci, ámbito actual es ahora: global
+Declaración de función 'generar_fibonacci' terminada, regresado al ámbito: global
+Ámbito agregado: mostrar_fibonacci_hasta, pila de ámbitos actual: ['global', 'mostrar_fibonacci_hasta']
+Función 'mostrar_fibonacci_hasta' declarada con tipo de retorno Type.VOID, ámbito cambiado a: mostrar_fibonacci_hasta
+Parámetro 'limite' agregado de tipo Type.INT en dirección 11005 a función 'mostrar_fibonacci_hasta'
+Agregando ID 'fib1' a lista temporal en ámbito: mostrar_fibonacci_hasta
+'fib1' agregado a lista temporal de variables en ámbito: mostrar_fibonacci_hasta
+Agregando ID 'fib2' a lista temporal en ámbito: mostrar_fibonacci_hasta
+'fib2' agregado a lista temporal de variables en ámbito: mostrar_fibonacci_hasta
+Agregando ID 'siguiente' a lista temporal en ámbito: mostrar_fibonacci_hasta
+'siguiente' agregado a lista temporal de variables en ámbito: mostrar_fibonacci_hasta
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: mostrar_fibonacci_hasta
+Variable local 'fib1' agregada de tipo Type.INT en dirección 11006 a función 'mostrar_fibonacci_hasta'
+Variable local 'fib2' agregada de tipo Type.INT en dirección 11007 a función 'mostrar_fibonacci_hasta'
+Variable local 'siguiente' agregada de tipo Type.INT en dirección 11008 a función 'mostrar_fibonacci_hasta'
+Iniciando declaración de variables en ámbito 'mostrar_fibonacci_hasta'
+Ámbito removido: mostrar_fibonacci_hasta, ámbito actual es ahora: global
+Declaración de función 'mostrar_fibonacci_hasta' terminada, regresado al ámbito: global
+Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
+Función main declarada, ámbito cambiado a main
+Programa fibonacci_funcion iniciado, ámbito reiniciado a global
+Programa fibonacci_funcion completado
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
@@ -2875,63 +2875,63 @@ CÓDIGO:
 59: end
 
 SALIDA OBTENIDA:
-Adding ID 'num1' to temp list in scope: global
-Added 'num1' to temporary variable list in scope: global
-Adding ID 'num2' to temp list in scope: global
-Added 'num2' to temporary variable list in scope: global
-Adding ID 'resultado' to temp list in scope: global
-Added 'resultado' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'num1' of type Type.INT at address 5000
-Added global variable 'num2' of type Type.INT at address 5001
-Added global variable 'resultado' of type Type.INT at address 5002
-Starting variable declaration in scope 'global'
-Pushed scope: potencia, current scope stack: ['global', 'potencia']
-Declared function 'potencia' with return type Type.VOID, scope changed to: potencia
-Added parameter 'base' of type Type.INT at address 11000 to function 'potencia'
-Added parameter 'exponente' of type Type.INT at address 11001 to function 'potencia'
-Adding ID 'resultado' to temp list in scope: potencia
-Added 'resultado' to temporary variable list in scope: potencia
-Adding ID 'i' to temp list in scope: potencia
-Added 'i' to temporary variable list in scope: potencia
-Set current type to Type.INT
-Adding variables to table in scope: potencia
-Added local variable 'resultado' of type Type.INT at address 11002 to function 'potencia'
-Added local variable 'i' of type Type.INT at address 11003 to function 'potencia'
-Starting variable declaration in scope 'potencia'
-Popped scope: potencia, current scope is now: global
-Ended function 'potencia' declaration, returned to scope: global
-Pushed scope: tabla_multiplicar, current scope stack: ['global', 'tabla_multiplicar']
-Declared function 'tabla_multiplicar' with return type Type.VOID, scope changed to: tabla_multiplicar
-Added parameter 'numero' of type Type.INT at address 11004 to function 'tabla_multiplicar'
-Adding ID 'i' to temp list in scope: tabla_multiplicar
-Added 'i' to temporary variable list in scope: tabla_multiplicar
-Adding ID 'producto' to temp list in scope: tabla_multiplicar
-Added 'producto' to temporary variable list in scope: tabla_multiplicar
-Set current type to Type.INT
-Adding variables to table in scope: tabla_multiplicar
-Added local variable 'i' of type Type.INT at address 11005 to function 'tabla_multiplicar'
-Added local variable 'producto' of type Type.INT at address 11006 to function 'tabla_multiplicar'
-Starting variable declaration in scope 'tabla_multiplicar'
-Popped scope: tabla_multiplicar, current scope is now: global
-Ended function 'tabla_multiplicar' declaration, returned to scope: global
-Pushed scope: mcd, current scope stack: ['global', 'mcd']
-Declared function 'mcd' with return type Type.VOID, scope changed to: mcd
-Added parameter 'a' of type Type.FLOAT at address 13000 to function 'mcd'
-Added parameter 'b' of type Type.FLOAT at address 13001 to function 'mcd'
-Adding ID 'temp' to temp list in scope: mcd
-Added 'temp' to temporary variable list in scope: mcd
-Set current type to Type.FLOAT
-Adding variables to table in scope: mcd
-Added local variable 'temp' of type Type.FLOAT at address 13002 to function 'mcd'
-Starting variable declaration in scope 'mcd'
-Popped scope: mcd, current scope is now: global
-Ended function 'mcd' declaration, returned to scope: global
-Pushed scope: main, current scope stack: ['global', 'main']
-Main function declared, scope changed to main
-Program funciones_matematicas started, scope reset to global
-Program funciones_matematicas completed
+Agregando ID 'num1' a lista temporal en ámbito: global
+'num1' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'num2' a lista temporal en ámbito: global
+'num2' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'resultado' a lista temporal en ámbito: global
+'resultado' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'num1' agregada de tipo Type.INT en dirección 5000
+Variable global 'num2' agregada de tipo Type.INT en dirección 5001
+Variable global 'resultado' agregada de tipo Type.INT en dirección 5002
+Iniciando declaración de variables en ámbito 'global'
+Ámbito agregado: potencia, pila de ámbitos actual: ['global', 'potencia']
+Función 'potencia' declarada con tipo de retorno Type.VOID, ámbito cambiado a: potencia
+Parámetro 'base' agregado de tipo Type.INT en dirección 11000 a función 'potencia'
+Parámetro 'exponente' agregado de tipo Type.INT en dirección 11001 a función 'potencia'
+Agregando ID 'resultado' a lista temporal en ámbito: potencia
+'resultado' agregado a lista temporal de variables en ámbito: potencia
+Agregando ID 'i' a lista temporal en ámbito: potencia
+'i' agregado a lista temporal de variables en ámbito: potencia
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: potencia
+Variable local 'resultado' agregada de tipo Type.INT en dirección 11002 a función 'potencia'
+Variable local 'i' agregada de tipo Type.INT en dirección 11003 a función 'potencia'
+Iniciando declaración de variables en ámbito 'potencia'
+Ámbito removido: potencia, ámbito actual es ahora: global
+Declaración de función 'potencia' terminada, regresado al ámbito: global
+Ámbito agregado: tabla_multiplicar, pila de ámbitos actual: ['global', 'tabla_multiplicar']
+Función 'tabla_multiplicar' declarada con tipo de retorno Type.VOID, ámbito cambiado a: tabla_multiplicar
+Parámetro 'numero' agregado de tipo Type.INT en dirección 11004 a función 'tabla_multiplicar'
+Agregando ID 'i' a lista temporal en ámbito: tabla_multiplicar
+'i' agregado a lista temporal de variables en ámbito: tabla_multiplicar
+Agregando ID 'producto' a lista temporal en ámbito: tabla_multiplicar
+'producto' agregado a lista temporal de variables en ámbito: tabla_multiplicar
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: tabla_multiplicar
+Variable local 'i' agregada de tipo Type.INT en dirección 11005 a función 'tabla_multiplicar'
+Variable local 'producto' agregada de tipo Type.INT en dirección 11006 a función 'tabla_multiplicar'
+Iniciando declaración de variables en ámbito 'tabla_multiplicar'
+Ámbito removido: tabla_multiplicar, ámbito actual es ahora: global
+Declaración de función 'tabla_multiplicar' terminada, regresado al ámbito: global
+Ámbito agregado: mcd, pila de ámbitos actual: ['global', 'mcd']
+Función 'mcd' declarada con tipo de retorno Type.VOID, ámbito cambiado a: mcd
+Parámetro 'a' agregado de tipo Type.FLOAT en dirección 13000 a función 'mcd'
+Parámetro 'b' agregado de tipo Type.FLOAT en dirección 13001 a función 'mcd'
+Agregando ID 'temp' a lista temporal en ámbito: mcd
+'temp' agregado a lista temporal de variables en ámbito: mcd
+Tipo actual establecido a Type.FLOAT
+Agregando variables a tabla en ámbito: mcd
+Variable local 'temp' agregada de tipo Type.FLOAT en dirección 13002 a función 'mcd'
+Iniciando declaración de variables en ámbito 'mcd'
+Ámbito removido: mcd, ámbito actual es ahora: global
+Declaración de función 'mcd' terminada, regresado al ámbito: global
+Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
+Función main declarada, ámbito cambiado a main
+Programa funciones_matematicas iniciado, ámbito reiniciado a global
+Programa funciones_matematicas completado
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
@@ -3796,68 +3796,68 @@ CÓDIGO:
 64: end
 
 SALIDA OBTENIDA:
-Adding ID 'a' to temp list in scope: global
-Added 'a' to temporary variable list in scope: global
-Adding ID 'b' to temp list in scope: global
-Added 'b' to temporary variable list in scope: global
-Adding ID 'c' to temp list in scope: global
-Added 'c' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'a' of type Type.INT at address 5000
-Added global variable 'b' of type Type.INT at address 5001
-Added global variable 'c' of type Type.INT at address 5002
-Adding ID 'resultado' to temp list in scope: global
-Added 'resultado' to temporary variable list in scope: global
-Set current type to Type.FLOAT
-Adding variables to table in scope: global
-Added global variable 'resultado' of type Type.FLOAT at address 8000
-Starting variable declaration in scope 'global'
-Pushed scope: operaciones_basicas, current scope stack: ['global', 'operaciones_basicas']
-Declared function 'operaciones_basicas' with return type Type.VOID, scope changed to: operaciones_basicas
-Added parameter 'x' of type Type.INT at address 11000 to function 'operaciones_basicas'
-Added parameter 'y' of type Type.INT at address 11001 to function 'operaciones_basicas'
-Added parameter 'z' of type Type.INT at address 11002 to function 'operaciones_basicas'
-Adding ID 'suma' to temp list in scope: operaciones_basicas
-Added 'suma' to temporary variable list in scope: operaciones_basicas
-Adding ID 'producto' to temp list in scope: operaciones_basicas
-Added 'producto' to temporary variable list in scope: operaciones_basicas
-Adding ID 'promedio' to temp list in scope: operaciones_basicas
-Added 'promedio' to temporary variable list in scope: operaciones_basicas
-Set current type to Type.INT
-Adding variables to table in scope: operaciones_basicas
-Added local variable 'suma' of type Type.INT at address 11003 to function 'operaciones_basicas'
-Added local variable 'producto' of type Type.INT at address 11004 to function 'operaciones_basicas'
-Added local variable 'promedio' of type Type.INT at address 11005 to function 'operaciones_basicas'
-Starting variable declaration in scope 'operaciones_basicas'
-Popped scope: operaciones_basicas, current scope is now: global
-Ended function 'operaciones_basicas' declaration, returned to scope: global
-Pushed scope: comparar_numeros, current scope stack: ['global', 'comparar_numeros']
-Declared function 'comparar_numeros' with return type Type.VOID, scope changed to: comparar_numeros
-Added parameter 'num1' of type Type.INT at address 11006 to function 'comparar_numeros'
-Added parameter 'num2' of type Type.INT at address 11007 to function 'comparar_numeros'
-Popped scope: comparar_numeros, current scope is now: global
-Ended function 'comparar_numeros' declaration, returned to scope: global
-Pushed scope: serie_aritmetica, current scope stack: ['global', 'serie_aritmetica']
-Declared function 'serie_aritmetica' with return type Type.VOID, scope changed to: serie_aritmetica
-Added parameter 'inicio' of type Type.INT at address 11008 to function 'serie_aritmetica'
-Added parameter 'diferencia' of type Type.INT at address 11009 to function 'serie_aritmetica'
-Added parameter 'terminos' of type Type.INT at address 11010 to function 'serie_aritmetica'
-Adding ID 'i' to temp list in scope: serie_aritmetica
-Added 'i' to temporary variable list in scope: serie_aritmetica
-Adding ID 'valor' to temp list in scope: serie_aritmetica
-Added 'valor' to temporary variable list in scope: serie_aritmetica
-Set current type to Type.INT
-Adding variables to table in scope: serie_aritmetica
-Added local variable 'i' of type Type.INT at address 11011 to function 'serie_aritmetica'
-Added local variable 'valor' of type Type.INT at address 11012 to function 'serie_aritmetica'
-Starting variable declaration in scope 'serie_aritmetica'
-Popped scope: serie_aritmetica, current scope is now: global
-Ended function 'serie_aritmetica' declaration, returned to scope: global
-Pushed scope: main, current scope stack: ['global', 'main']
-Main function declared, scope changed to main
-Program funciones_parametros started, scope reset to global
-Program funciones_parametros completed
+Agregando ID 'a' a lista temporal en ámbito: global
+'a' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'b' a lista temporal en ámbito: global
+'b' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'c' a lista temporal en ámbito: global
+'c' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'a' agregada de tipo Type.INT en dirección 5000
+Variable global 'b' agregada de tipo Type.INT en dirección 5001
+Variable global 'c' agregada de tipo Type.INT en dirección 5002
+Agregando ID 'resultado' a lista temporal en ámbito: global
+'resultado' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.FLOAT
+Agregando variables a tabla en ámbito: global
+Variable global 'resultado' agregada de tipo Type.FLOAT en dirección 8000
+Iniciando declaración de variables en ámbito 'global'
+Ámbito agregado: operaciones_basicas, pila de ámbitos actual: ['global', 'operaciones_basicas']
+Función 'operaciones_basicas' declarada con tipo de retorno Type.VOID, ámbito cambiado a: operaciones_basicas
+Parámetro 'x' agregado de tipo Type.INT en dirección 11000 a función 'operaciones_basicas'
+Parámetro 'y' agregado de tipo Type.INT en dirección 11001 a función 'operaciones_basicas'
+Parámetro 'z' agregado de tipo Type.INT en dirección 11002 a función 'operaciones_basicas'
+Agregando ID 'suma' a lista temporal en ámbito: operaciones_basicas
+'suma' agregado a lista temporal de variables en ámbito: operaciones_basicas
+Agregando ID 'producto' a lista temporal en ámbito: operaciones_basicas
+'producto' agregado a lista temporal de variables en ámbito: operaciones_basicas
+Agregando ID 'promedio' a lista temporal en ámbito: operaciones_basicas
+'promedio' agregado a lista temporal de variables en ámbito: operaciones_basicas
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: operaciones_basicas
+Variable local 'suma' agregada de tipo Type.INT en dirección 11003 a función 'operaciones_basicas'
+Variable local 'producto' agregada de tipo Type.INT en dirección 11004 a función 'operaciones_basicas'
+Variable local 'promedio' agregada de tipo Type.INT en dirección 11005 a función 'operaciones_basicas'
+Iniciando declaración de variables en ámbito 'operaciones_basicas'
+Ámbito removido: operaciones_basicas, ámbito actual es ahora: global
+Declaración de función 'operaciones_basicas' terminada, regresado al ámbito: global
+Ámbito agregado: comparar_numeros, pila de ámbitos actual: ['global', 'comparar_numeros']
+Función 'comparar_numeros' declarada con tipo de retorno Type.VOID, ámbito cambiado a: comparar_numeros
+Parámetro 'num1' agregado de tipo Type.INT en dirección 11006 a función 'comparar_numeros'
+Parámetro 'num2' agregado de tipo Type.INT en dirección 11007 a función 'comparar_numeros'
+Ámbito removido: comparar_numeros, ámbito actual es ahora: global
+Declaración de función 'comparar_numeros' terminada, regresado al ámbito: global
+Ámbito agregado: serie_aritmetica, pila de ámbitos actual: ['global', 'serie_aritmetica']
+Función 'serie_aritmetica' declarada con tipo de retorno Type.VOID, ámbito cambiado a: serie_aritmetica
+Parámetro 'inicio' agregado de tipo Type.INT en dirección 11008 a función 'serie_aritmetica'
+Parámetro 'diferencia' agregado de tipo Type.INT en dirección 11009 a función 'serie_aritmetica'
+Parámetro 'terminos' agregado de tipo Type.INT en dirección 11010 a función 'serie_aritmetica'
+Agregando ID 'i' a lista temporal en ámbito: serie_aritmetica
+'i' agregado a lista temporal de variables en ámbito: serie_aritmetica
+Agregando ID 'valor' a lista temporal en ámbito: serie_aritmetica
+'valor' agregado a lista temporal de variables en ámbito: serie_aritmetica
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: serie_aritmetica
+Variable local 'i' agregada de tipo Type.INT en dirección 11011 a función 'serie_aritmetica'
+Variable local 'valor' agregada de tipo Type.INT en dirección 11012 a función 'serie_aritmetica'
+Iniciando declaración de variables en ámbito 'serie_aritmetica'
+Ámbito removido: serie_aritmetica, ámbito actual es ahora: global
+Declaración de función 'serie_aritmetica' terminada, regresado al ámbito: global
+Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
+Función main declarada, ámbito cambiado a main
+Programa funciones_parametros iniciado, ámbito reiniciado a global
+Programa funciones_parametros completado
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
@@ -4635,44 +4635,44 @@ CÓDIGO:
 47: end
 
 SALIDA OBTENIDA:
-Adding ID 'limite' to temp list in scope: global
-Added 'limite' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'limite' of type Type.INT at address 5000
-Starting variable declaration in scope 'global'
-Pushed scope: contar_hasta, current scope stack: ['global', 'contar_hasta']
-Declared function 'contar_hasta' with return type Type.VOID, scope changed to: contar_hasta
-Added parameter 'n' of type Type.INT at address 11000 to function 'contar_hasta'
-Adding ID 'i' to temp list in scope: contar_hasta
-Added 'i' to temporary variable list in scope: contar_hasta
-Adding ID 'contador' to temp list in scope: contar_hasta
-Added 'contador' to temporary variable list in scope: contar_hasta
-Set current type to Type.INT
-Adding variables to table in scope: contar_hasta
-Added local variable 'i' of type Type.INT at address 11001 to function 'contar_hasta'
-Added local variable 'contador' of type Type.INT at address 11002 to function 'contar_hasta'
-Starting variable declaration in scope 'contar_hasta'
-Popped scope: contar_hasta, current scope is now: global
-Ended function 'contar_hasta' declaration, returned to scope: global
-Pushed scope: tabla_cuadrados, current scope stack: ['global', 'tabla_cuadrados']
-Declared function 'tabla_cuadrados' with return type Type.VOID, scope changed to: tabla_cuadrados
-Added parameter 'hasta' of type Type.INT at address 11003 to function 'tabla_cuadrados'
-Adding ID 'i' to temp list in scope: tabla_cuadrados
-Added 'i' to temporary variable list in scope: tabla_cuadrados
-Adding ID 'cuadrado' to temp list in scope: tabla_cuadrados
-Added 'cuadrado' to temporary variable list in scope: tabla_cuadrados
-Set current type to Type.INT
-Adding variables to table in scope: tabla_cuadrados
-Added local variable 'i' of type Type.INT at address 11004 to function 'tabla_cuadrados'
-Added local variable 'cuadrado' of type Type.INT at address 11005 to function 'tabla_cuadrados'
-Starting variable declaration in scope 'tabla_cuadrados'
-Popped scope: tabla_cuadrados, current scope is now: global
-Ended function 'tabla_cuadrados' declaration, returned to scope: global
-Pushed scope: main, current scope stack: ['global', 'main']
-Main function declared, scope changed to main
-Program for_con_funcion started, scope reset to global
-Program for_con_funcion completed
+Agregando ID 'limite' a lista temporal en ámbito: global
+'limite' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'limite' agregada de tipo Type.INT en dirección 5000
+Iniciando declaración de variables en ámbito 'global'
+Ámbito agregado: contar_hasta, pila de ámbitos actual: ['global', 'contar_hasta']
+Función 'contar_hasta' declarada con tipo de retorno Type.VOID, ámbito cambiado a: contar_hasta
+Parámetro 'n' agregado de tipo Type.INT en dirección 11000 a función 'contar_hasta'
+Agregando ID 'i' a lista temporal en ámbito: contar_hasta
+'i' agregado a lista temporal de variables en ámbito: contar_hasta
+Agregando ID 'contador' a lista temporal en ámbito: contar_hasta
+'contador' agregado a lista temporal de variables en ámbito: contar_hasta
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: contar_hasta
+Variable local 'i' agregada de tipo Type.INT en dirección 11001 a función 'contar_hasta'
+Variable local 'contador' agregada de tipo Type.INT en dirección 11002 a función 'contar_hasta'
+Iniciando declaración de variables en ámbito 'contar_hasta'
+Ámbito removido: contar_hasta, ámbito actual es ahora: global
+Declaración de función 'contar_hasta' terminada, regresado al ámbito: global
+Ámbito agregado: tabla_cuadrados, pila de ámbitos actual: ['global', 'tabla_cuadrados']
+Función 'tabla_cuadrados' declarada con tipo de retorno Type.VOID, ámbito cambiado a: tabla_cuadrados
+Parámetro 'hasta' agregado de tipo Type.INT en dirección 11003 a función 'tabla_cuadrados'
+Agregando ID 'i' a lista temporal en ámbito: tabla_cuadrados
+'i' agregado a lista temporal de variables en ámbito: tabla_cuadrados
+Agregando ID 'cuadrado' a lista temporal en ámbito: tabla_cuadrados
+'cuadrado' agregado a lista temporal de variables en ámbito: tabla_cuadrados
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: tabla_cuadrados
+Variable local 'i' agregada de tipo Type.INT en dirección 11004 a función 'tabla_cuadrados'
+Variable local 'cuadrado' agregada de tipo Type.INT en dirección 11005 a función 'tabla_cuadrados'
+Iniciando declaración de variables en ámbito 'tabla_cuadrados'
+Ámbito removido: tabla_cuadrados, ámbito actual es ahora: global
+Declaración de función 'tabla_cuadrados' terminada, regresado al ámbito: global
+Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
+Función main declarada, ámbito cambiado a main
+Programa for_con_funcion iniciado, ámbito reiniciado a global
+Programa for_con_funcion completado
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
@@ -5828,151 +5828,151 @@ CÓDIGO:
 180: end
 
 SALIDA OBTENIDA:
-Adding ID 'num1' to temp list in scope: global
-Added 'num1' to temporary variable list in scope: global
-Adding ID 'num2' to temp list in scope: global
-Added 'num2' to temporary variable list in scope: global
-Adding ID 'num3' to temp list in scope: global
-Added 'num3' to temporary variable list in scope: global
-Adding ID 'resultado' to temp list in scope: global
-Added 'resultado' to temporary variable list in scope: global
-Adding ID 'factorial_num' to temp list in scope: global
-Added 'factorial_num' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'num1' of type Type.INT at address 5000
-Added global variable 'num2' of type Type.INT at address 5001
-Added global variable 'num3' of type Type.INT at address 5002
-Added global variable 'resultado' of type Type.INT at address 5003
-Added global variable 'factorial_num' of type Type.INT at address 5004
-Adding ID 'promedio_val' to temp list in scope: global
-Added 'promedio_val' to temporary variable list in scope: global
-Set current type to Type.INT
-Adding variables to table in scope: global
-Added global variable 'promedio_val' of type Type.INT at address 5005
-Starting variable declaration in scope 'global'
-Pushed scope: calcular_factorial, current scope stack: ['global', 'calcular_factorial']
-Declared function 'calcular_factorial' with return type Type.INT, scope changed to: calcular_factorial
-Added parameter 'n' of type Type.INT at address 11000 to function 'calcular_factorial'
-Adding ID 'i' to temp list in scope: calcular_factorial
-Added 'i' to temporary variable list in scope: calcular_factorial
-Adding ID 'fact' to temp list in scope: calcular_factorial
-Added 'fact' to temporary variable list in scope: calcular_factorial
-Set current type to Type.INT
-Adding variables to table in scope: calcular_factorial
-Added local variable 'i' of type Type.INT at address 11001 to function 'calcular_factorial'
-Added local variable 'fact' of type Type.INT at address 11002 to function 'calcular_factorial'
-Starting variable declaration in scope 'calcular_factorial'
-Popped scope: calcular_factorial, current scope is now: global
-Ended function 'calcular_factorial' declaration, returned to scope: global
-Pushed scope: potencia, current scope stack: ['global', 'potencia']
-Declared function 'potencia' with return type Type.INT, scope changed to: potencia
-Added parameter 'base' of type Type.INT at address 11003 to function 'potencia'
-Added parameter 'exponente' of type Type.INT at address 11004 to function 'potencia'
-Adding ID 'i' to temp list in scope: potencia
-Added 'i' to temporary variable list in scope: potencia
-Adding ID 'resultado' to temp list in scope: potencia
-Added 'resultado' to temporary variable list in scope: potencia
-Set current type to Type.INT
-Adding variables to table in scope: potencia
-Added local variable 'i' of type Type.INT at address 11005 to function 'potencia'
-Added local variable 'resultado' of type Type.INT at address 11006 to function 'potencia'
-Starting variable declaration in scope 'potencia'
-Popped scope: potencia, current scope is now: global
-Ended function 'potencia' declaration, returned to scope: global
-Pushed scope: maximo_de_tres, current scope stack: ['global', 'maximo_de_tres']
-Declared function 'maximo_de_tres' with return type Type.INT, scope changed to: maximo_de_tres
-Added parameter 'a' of type Type.INT at address 11007 to function 'maximo_de_tres'
-Added parameter 'b' of type Type.INT at address 11008 to function 'maximo_de_tres'
-Added parameter 'c' of type Type.INT at address 11009 to function 'maximo_de_tres'
-Adding ID 'max' to temp list in scope: maximo_de_tres
-Added 'max' to temporary variable list in scope: maximo_de_tres
-Set current type to Type.INT
-Adding variables to table in scope: maximo_de_tres
-Added local variable 'max' of type Type.INT at address 11010 to function 'maximo_de_tres'
-Starting variable declaration in scope 'maximo_de_tres'
-Popped scope: maximo_de_tres, current scope is now: global
-Ended function 'maximo_de_tres' declaration, returned to scope: global
-Pushed scope: mostrar_tabla_multiplicar, current scope stack: ['global', 'mostrar_tabla_multiplicar']
-Declared function 'mostrar_tabla_multiplicar' with return type Type.VOID, scope changed to: mostrar_tabla_multiplicar
-Added parameter 'numero' of type Type.INT at address 11011 to function 'mostrar_tabla_multiplicar'
-Added parameter 'limite' of type Type.INT at address 11012 to function 'mostrar_tabla_multiplicar'
-Adding ID 'i' to temp list in scope: mostrar_tabla_multiplicar
-Added 'i' to temporary variable list in scope: mostrar_tabla_multiplicar
-Adding ID 'producto' to temp list in scope: mostrar_tabla_multiplicar
-Added 'producto' to temporary variable list in scope: mostrar_tabla_multiplicar
-Set current type to Type.INT
-Adding variables to table in scope: mostrar_tabla_multiplicar
-Added local variable 'i' of type Type.INT at address 11013 to function 'mostrar_tabla_multiplicar'
-Added local variable 'producto' of type Type.INT at address 11014 to function 'mostrar_tabla_multiplicar'
-Starting variable declaration in scope 'mostrar_tabla_multiplicar'
-Popped scope: mostrar_tabla_multiplicar, current scope is now: global
-Ended function 'mostrar_tabla_multiplicar' declaration, returned to scope: global
-Pushed scope: analizar_numero, current scope stack: ['global', 'analizar_numero']
-Declared function 'analizar_numero' with return type Type.VOID, scope changed to: analizar_numero
-Added parameter 'num' of type Type.INT at address 11015 to function 'analizar_numero'
-Popped scope: analizar_numero, current scope is now: global
-Ended function 'analizar_numero' declaration, returned to scope: global
-Pushed scope: mostrar_operaciones_basicas, current scope stack: ['global', 'mostrar_operaciones_basicas']
-Declared function 'mostrar_operaciones_basicas' with return type Type.VOID, scope changed to: mostrar_operaciones_basicas
-Added parameter 'a' of type Type.INT at address 11016 to function 'mostrar_operaciones_basicas'
-Added parameter 'b' of type Type.INT at address 11017 to function 'mostrar_operaciones_basicas'
-Adding ID 'suma' to temp list in scope: mostrar_operaciones_basicas
-Added 'suma' to temporary variable list in scope: mostrar_operaciones_basicas
-Adding ID 'resta' to temp list in scope: mostrar_operaciones_basicas
-Added 'resta' to temporary variable list in scope: mostrar_operaciones_basicas
-Adding ID 'multiplicacion' to temp list in scope: mostrar_operaciones_basicas
-Added 'multiplicacion' to temporary variable list in scope: mostrar_operaciones_basicas
-Adding ID 'division' to temp list in scope: mostrar_operaciones_basicas
-Added 'division' to temporary variable list in scope: mostrar_operaciones_basicas
-Set current type to Type.INT
-Adding variables to table in scope: mostrar_operaciones_basicas
-Added local variable 'suma' of type Type.INT at address 11018 to function 'mostrar_operaciones_basicas'
-Added local variable 'resta' of type Type.INT at address 11019 to function 'mostrar_operaciones_basicas'
-Added local variable 'multiplicacion' of type Type.INT at address 11020 to function 'mostrar_operaciones_basicas'
-Added local variable 'division' of type Type.INT at address 11021 to function 'mostrar_operaciones_basicas'
-Starting variable declaration in scope 'mostrar_operaciones_basicas'
-Popped scope: mostrar_operaciones_basicas, current scope is now: global
-Ended function 'mostrar_operaciones_basicas' declaration, returned to scope: global
-Pushed scope: calcular_promedio, current scope stack: ['global', 'calcular_promedio']
-Declared function 'calcular_promedio' with return type Type.INT, scope changed to: calcular_promedio
-Added parameter 'a' of type Type.INT at address 11022 to function 'calcular_promedio'
-Added parameter 'b' of type Type.INT at address 11023 to function 'calcular_promedio'
-Added parameter 'c' of type Type.INT at address 11024 to function 'calcular_promedio'
-Adding ID 'suma' to temp list in scope: calcular_promedio
-Added 'suma' to temporary variable list in scope: calcular_promedio
-Adding ID 'promedio' to temp list in scope: calcular_promedio
-Added 'promedio' to temporary variable list in scope: calcular_promedio
-Set current type to Type.INT
-Adding variables to table in scope: calcular_promedio
-Added local variable 'suma' of type Type.INT at address 11025 to function 'calcular_promedio'
-Added local variable 'promedio' of type Type.INT at address 11026 to function 'calcular_promedio'
-Starting variable declaration in scope 'calcular_promedio'
-Popped scope: calcular_promedio, current scope is now: global
-Ended function 'calcular_promedio' declaration, returned to scope: global
-Pushed scope: mostrar_estadisticas, current scope stack: ['global', 'mostrar_estadisticas']
-Declared function 'mostrar_estadisticas' with return type Type.VOID, scope changed to: mostrar_estadisticas
-Added parameter 'a' of type Type.INT at address 11027 to function 'mostrar_estadisticas'
-Added parameter 'b' of type Type.INT at address 11028 to function 'mostrar_estadisticas'
-Added parameter 'c' of type Type.INT at address 11029 to function 'mostrar_estadisticas'
-Adding ID 'suma' to temp list in scope: mostrar_estadisticas
-Added 'suma' to temporary variable list in scope: mostrar_estadisticas
-Adding ID 'mayor' to temp list in scope: mostrar_estadisticas
-Added 'mayor' to temporary variable list in scope: mostrar_estadisticas
-Adding ID 'menor' to temp list in scope: mostrar_estadisticas
-Added 'menor' to temporary variable list in scope: mostrar_estadisticas
-Set current type to Type.INT
-Adding variables to table in scope: mostrar_estadisticas
-Added local variable 'suma' of type Type.INT at address 11030 to function 'mostrar_estadisticas'
-Added local variable 'mayor' of type Type.INT at address 11031 to function 'mostrar_estadisticas'
-Added local variable 'menor' of type Type.INT at address 11032 to function 'mostrar_estadisticas'
-Starting variable declaration in scope 'mostrar_estadisticas'
-Popped scope: mostrar_estadisticas, current scope is now: global
-Ended function 'mostrar_estadisticas' declaration, returned to scope: global
-Pushed scope: main, current scope stack: ['global', 'main']
-Main function declared, scope changed to main
-Program calculadora_avanzada started, scope reset to global
-Program calculadora_avanzada completed
+Agregando ID 'num1' a lista temporal en ámbito: global
+'num1' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'num2' a lista temporal en ámbito: global
+'num2' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'num3' a lista temporal en ámbito: global
+'num3' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'resultado' a lista temporal en ámbito: global
+'resultado' agregado a lista temporal de variables en ámbito: global
+Agregando ID 'factorial_num' a lista temporal en ámbito: global
+'factorial_num' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'num1' agregada de tipo Type.INT en dirección 5000
+Variable global 'num2' agregada de tipo Type.INT en dirección 5001
+Variable global 'num3' agregada de tipo Type.INT en dirección 5002
+Variable global 'resultado' agregada de tipo Type.INT en dirección 5003
+Variable global 'factorial_num' agregada de tipo Type.INT en dirección 5004
+Agregando ID 'promedio_val' a lista temporal en ámbito: global
+'promedio_val' agregado a lista temporal de variables en ámbito: global
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: global
+Variable global 'promedio_val' agregada de tipo Type.INT en dirección 5005
+Iniciando declaración de variables en ámbito 'global'
+Ámbito agregado: calcular_factorial, pila de ámbitos actual: ['global', 'calcular_factorial']
+Función 'calcular_factorial' declarada con tipo de retorno Type.INT, ámbito cambiado a: calcular_factorial
+Parámetro 'n' agregado de tipo Type.INT en dirección 11000 a función 'calcular_factorial'
+Agregando ID 'i' a lista temporal en ámbito: calcular_factorial
+'i' agregado a lista temporal de variables en ámbito: calcular_factorial
+Agregando ID 'fact' a lista temporal en ámbito: calcular_factorial
+'fact' agregado a lista temporal de variables en ámbito: calcular_factorial
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: calcular_factorial
+Variable local 'i' agregada de tipo Type.INT en dirección 11001 a función 'calcular_factorial'
+Variable local 'fact' agregada de tipo Type.INT en dirección 11002 a función 'calcular_factorial'
+Iniciando declaración de variables en ámbito 'calcular_factorial'
+Ámbito removido: calcular_factorial, ámbito actual es ahora: global
+Declaración de función 'calcular_factorial' terminada, regresado al ámbito: global
+Ámbito agregado: potencia, pila de ámbitos actual: ['global', 'potencia']
+Función 'potencia' declarada con tipo de retorno Type.INT, ámbito cambiado a: potencia
+Parámetro 'base' agregado de tipo Type.INT en dirección 11003 a función 'potencia'
+Parámetro 'exponente' agregado de tipo Type.INT en dirección 11004 a función 'potencia'
+Agregando ID 'i' a lista temporal en ámbito: potencia
+'i' agregado a lista temporal de variables en ámbito: potencia
+Agregando ID 'resultado' a lista temporal en ámbito: potencia
+'resultado' agregado a lista temporal de variables en ámbito: potencia
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: potencia
+Variable local 'i' agregada de tipo Type.INT en dirección 11005 a función 'potencia'
+Variable local 'resultado' agregada de tipo Type.INT en dirección 11006 a función 'potencia'
+Iniciando declaración de variables en ámbito 'potencia'
+Ámbito removido: potencia, ámbito actual es ahora: global
+Declaración de función 'potencia' terminada, regresado al ámbito: global
+Ámbito agregado: maximo_de_tres, pila de ámbitos actual: ['global', 'maximo_de_tres']
+Función 'maximo_de_tres' declarada con tipo de retorno Type.INT, ámbito cambiado a: maximo_de_tres
+Parámetro 'a' agregado de tipo Type.INT en dirección 11007 a función 'maximo_de_tres'
+Parámetro 'b' agregado de tipo Type.INT en dirección 11008 a función 'maximo_de_tres'
+Parámetro 'c' agregado de tipo Type.INT en dirección 11009 a función 'maximo_de_tres'
+Agregando ID 'max' a lista temporal en ámbito: maximo_de_tres
+'max' agregado a lista temporal de variables en ámbito: maximo_de_tres
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: maximo_de_tres
+Variable local 'max' agregada de tipo Type.INT en dirección 11010 a función 'maximo_de_tres'
+Iniciando declaración de variables en ámbito 'maximo_de_tres'
+Ámbito removido: maximo_de_tres, ámbito actual es ahora: global
+Declaración de función 'maximo_de_tres' terminada, regresado al ámbito: global
+Ámbito agregado: mostrar_tabla_multiplicar, pila de ámbitos actual: ['global', 'mostrar_tabla_multiplicar']
+Función 'mostrar_tabla_multiplicar' declarada con tipo de retorno Type.VOID, ámbito cambiado a: mostrar_tabla_multiplicar
+Parámetro 'numero' agregado de tipo Type.INT en dirección 11011 a función 'mostrar_tabla_multiplicar'
+Parámetro 'limite' agregado de tipo Type.INT en dirección 11012 a función 'mostrar_tabla_multiplicar'
+Agregando ID 'i' a lista temporal en ámbito: mostrar_tabla_multiplicar
+'i' agregado a lista temporal de variables en ámbito: mostrar_tabla_multiplicar
+Agregando ID 'producto' a lista temporal en ámbito: mostrar_tabla_multiplicar
+'producto' agregado a lista temporal de variables en ámbito: mostrar_tabla_multiplicar
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: mostrar_tabla_multiplicar
+Variable local 'i' agregada de tipo Type.INT en dirección 11013 a función 'mostrar_tabla_multiplicar'
+Variable local 'producto' agregada de tipo Type.INT en dirección 11014 a función 'mostrar_tabla_multiplicar'
+Iniciando declaración de variables en ámbito 'mostrar_tabla_multiplicar'
+Ámbito removido: mostrar_tabla_multiplicar, ámbito actual es ahora: global
+Declaración de función 'mostrar_tabla_multiplicar' terminada, regresado al ámbito: global
+Ámbito agregado: analizar_numero, pila de ámbitos actual: ['global', 'analizar_numero']
+Función 'analizar_numero' declarada con tipo de retorno Type.VOID, ámbito cambiado a: analizar_numero
+Parámetro 'num' agregado de tipo Type.INT en dirección 11015 a función 'analizar_numero'
+Ámbito removido: analizar_numero, ámbito actual es ahora: global
+Declaración de función 'analizar_numero' terminada, regresado al ámbito: global
+Ámbito agregado: mostrar_operaciones_basicas, pila de ámbitos actual: ['global', 'mostrar_operaciones_basicas']
+Función 'mostrar_operaciones_basicas' declarada con tipo de retorno Type.VOID, ámbito cambiado a: mostrar_operaciones_basicas
+Parámetro 'a' agregado de tipo Type.INT en dirección 11016 a función 'mostrar_operaciones_basicas'
+Parámetro 'b' agregado de tipo Type.INT en dirección 11017 a función 'mostrar_operaciones_basicas'
+Agregando ID 'suma' a lista temporal en ámbito: mostrar_operaciones_basicas
+'suma' agregado a lista temporal de variables en ámbito: mostrar_operaciones_basicas
+Agregando ID 'resta' a lista temporal en ámbito: mostrar_operaciones_basicas
+'resta' agregado a lista temporal de variables en ámbito: mostrar_operaciones_basicas
+Agregando ID 'multiplicacion' a lista temporal en ámbito: mostrar_operaciones_basicas
+'multiplicacion' agregado a lista temporal de variables en ámbito: mostrar_operaciones_basicas
+Agregando ID 'division' a lista temporal en ámbito: mostrar_operaciones_basicas
+'division' agregado a lista temporal de variables en ámbito: mostrar_operaciones_basicas
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: mostrar_operaciones_basicas
+Variable local 'suma' agregada de tipo Type.INT en dirección 11018 a función 'mostrar_operaciones_basicas'
+Variable local 'resta' agregada de tipo Type.INT en dirección 11019 a función 'mostrar_operaciones_basicas'
+Variable local 'multiplicacion' agregada de tipo Type.INT en dirección 11020 a función 'mostrar_operaciones_basicas'
+Variable local 'division' agregada de tipo Type.INT en dirección 11021 a función 'mostrar_operaciones_basicas'
+Iniciando declaración de variables en ámbito 'mostrar_operaciones_basicas'
+Ámbito removido: mostrar_operaciones_basicas, ámbito actual es ahora: global
+Declaración de función 'mostrar_operaciones_basicas' terminada, regresado al ámbito: global
+Ámbito agregado: calcular_promedio, pila de ámbitos actual: ['global', 'calcular_promedio']
+Función 'calcular_promedio' declarada con tipo de retorno Type.INT, ámbito cambiado a: calcular_promedio
+Parámetro 'a' agregado de tipo Type.INT en dirección 11022 a función 'calcular_promedio'
+Parámetro 'b' agregado de tipo Type.INT en dirección 11023 a función 'calcular_promedio'
+Parámetro 'c' agregado de tipo Type.INT en dirección 11024 a función 'calcular_promedio'
+Agregando ID 'suma' a lista temporal en ámbito: calcular_promedio
+'suma' agregado a lista temporal de variables en ámbito: calcular_promedio
+Agregando ID 'promedio' a lista temporal en ámbito: calcular_promedio
+'promedio' agregado a lista temporal de variables en ámbito: calcular_promedio
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: calcular_promedio
+Variable local 'suma' agregada de tipo Type.INT en dirección 11025 a función 'calcular_promedio'
+Variable local 'promedio' agregada de tipo Type.INT en dirección 11026 a función 'calcular_promedio'
+Iniciando declaración de variables en ámbito 'calcular_promedio'
+Ámbito removido: calcular_promedio, ámbito actual es ahora: global
+Declaración de función 'calcular_promedio' terminada, regresado al ámbito: global
+Ámbito agregado: mostrar_estadisticas, pila de ámbitos actual: ['global', 'mostrar_estadisticas']
+Función 'mostrar_estadisticas' declarada con tipo de retorno Type.VOID, ámbito cambiado a: mostrar_estadisticas
+Parámetro 'a' agregado de tipo Type.INT en dirección 11027 a función 'mostrar_estadisticas'
+Parámetro 'b' agregado de tipo Type.INT en dirección 11028 a función 'mostrar_estadisticas'
+Parámetro 'c' agregado de tipo Type.INT en dirección 11029 a función 'mostrar_estadisticas'
+Agregando ID 'suma' a lista temporal en ámbito: mostrar_estadisticas
+'suma' agregado a lista temporal de variables en ámbito: mostrar_estadisticas
+Agregando ID 'mayor' a lista temporal en ámbito: mostrar_estadisticas
+'mayor' agregado a lista temporal de variables en ámbito: mostrar_estadisticas
+Agregando ID 'menor' a lista temporal en ámbito: mostrar_estadisticas
+'menor' agregado a lista temporal de variables en ámbito: mostrar_estadisticas
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: mostrar_estadisticas
+Variable local 'suma' agregada de tipo Type.INT en dirección 11030 a función 'mostrar_estadisticas'
+Variable local 'mayor' agregada de tipo Type.INT en dirección 11031 a función 'mostrar_estadisticas'
+Variable local 'menor' agregada de tipo Type.INT en dirección 11032 a función 'mostrar_estadisticas'
+Iniciando declaración de variables en ámbito 'mostrar_estadisticas'
+Ámbito removido: mostrar_estadisticas, ámbito actual es ahora: global
+Declaración de función 'mostrar_estadisticas' terminada, regresado al ámbito: global
+Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
+Función main declarada, ámbito cambiado a main
+Programa calculadora_avanzada iniciado, ámbito reiniciado a global
+Programa calculadora_avanzada completado
 
 ===== QUADRUPLES WITH MEMORY ADDRESSES =====
 INDEX: (OPERATOR, LEFT_OPERAND, RIGHT_OPERAND, RESULT)
