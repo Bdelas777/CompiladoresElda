@@ -32,9 +32,9 @@ void tabla_multiplicar(numero : int)
     }
 ];
 
-void mcd(a : float, b : float)
+void mcd(a : int, b : int)
 [
-    var temp : float;
+    var temp : int;
     {
         print("Calculando MCD de ", a, " y ", b);
         

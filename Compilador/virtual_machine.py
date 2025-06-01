@@ -129,6 +129,9 @@ class VirtualMachine:
         # Stack para contextos de memoria local
         self.memory_context_stack = []
         
+        # Lista para almacenar los outputs del programa
+        self.program_outputs = []
+        
         # Inicializar tabla de constantes en memoria
         for value, address in constants_table.items():
             self.memory.set_value(address, value)
@@ -137,6 +140,7 @@ class VirtualMachine:
         """Ejecuta el programa completo"""
         print("=== INICIANDO EJECUCIÓN ===")
         self.instruction_pointer = 0
+        self.program_outputs = []  # Limpiar outputs anteriores
         
         while self.instruction_pointer < len(self.quadruples):
             quad = self.quadruples[self.instruction_pointer]
@@ -251,11 +255,14 @@ class VirtualMachine:
         """Ejecuta impresión"""
         if isinstance(quad.left_operand, str):
             # Es una cadena literal
-            print(f"OUTPUT: {quad.left_operand}")
+            output_value = quad.left_operand
+            print(f"OUTPUT: {output_value}")
+            self.program_outputs.append(output_value)
         else:
             # Es una dirección de memoria
             value = self.memory.get_value(quad.left_operand)
             print(f"OUTPUT: {value}")
+            self.program_outputs.append(str(value))
         return True
     
     def _execute_era(self, quad):
@@ -360,6 +367,20 @@ class VirtualMachine:
         
         # Continuar con ENDFUNC
         return self._execute_endfunc(quad)
+    
+    def print_program_outputs(self):
+        """Imprime solo los outputs del programa de manera limpia"""
+        print("\n=== SALIDA DEL PROGRAMA ===")
+        for i, output in enumerate(self.program_outputs, 1):
+            print(f"{output}", end="")
+            # Si el siguiente output no es un número, añadir nueva línea
+            if i < len(self.program_outputs) and not self.program_outputs[i].replace('.', '').replace('-', '').isdigit():
+                print()
+        print("\n" + "="*27)
+    
+    def get_program_outputs(self):
+        """Retorna la lista de outputs del programa"""
+        return self.program_outputs
     
     def print_memory_state(self):
         """Imprime el estado actual de la memoria segmentada"""

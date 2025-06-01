@@ -732,6 +732,7 @@ def execute_program(code):
     )
     vm.execute()
     vm.print_memory_state()
+    vm.print_program_outputs()
     
     return vm
     
@@ -771,9 +772,9 @@ void tabla_multiplicar(numero : int)
     }
 ];
 
-void mcd(a : float, b : float)
+void mcd(a : int, b : int)
 [
-    var temp : float;
+    var temp : int;
     {
         print("Calculando MCD de ", a, " y ", b);
         

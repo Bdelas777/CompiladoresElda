@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 9_funciones_matematicas.txt
-FECHA: 2025-05-31 23:54:26
+FECHA: 2025-06-01 00:07:50
 ==================================================
 
 SALIDA DEL PROGRAMA:
@@ -68,11 +68,11 @@ Tabla del
  = 
 70
 Calculando MCD de 
-48.0
+48
  y 
-18.0
+18
 MCD = 
-18.0
+6
 
 --------------------
 RESULTADO: FUNCIONÓ CORRECTAMENTE
