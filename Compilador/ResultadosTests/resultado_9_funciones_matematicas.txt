@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 9_funciones_matematicas.txt
-FECHA: 2025-06-01 00:07:50
+FECHA: 2025-06-01 00:40:21
 ==================================================
 
 SALIDA DEL PROGRAMA:

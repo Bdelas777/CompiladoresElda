@@ -738,33 +738,61 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = """
-program funciones_matematicas;
-var
-    num1, num2, resultado : int;
-
-void potencia(base : int, exponente : int)
+'''program calculadora_avanzada;
+var 
+    num1, num2, num3, resultado, factorial_num : int;
+    promedio_val : int;
+    
+int calcular_factorial(n : int)
 [
-    var resultado, i : int;
+    var i, fact : int;
+    {
+        fact = 1;
+        i = 1;
+        while (i < n + 1) do {
+            fact = fact * i;
+            i = i + 1;
+        };
+        return fact;
+    }
+];
+
+int potencia(base : int, exponente : int)
+[
+    var i, resultado : int;
     {
         resultado = 1;
         i = 1;
-        
         while (i < exponente + 1) do {
             resultado = resultado * base;
             i = i + 1;
         };
-        
-        print(base, " elevado a ", exponente, " = ", resultado);
+        return resultado;
     }
 ];
 
-void tabla_multiplicar(numero : int)
+int maximo_de_tres(a : int, b : int, c : int)
+[
+    var max : int;
+    {
+        max = a;
+        if (b > max) {
+            max = b;
+        };
+        if (c > max) {
+            max = c;
+        };
+        return max;
+    }
+];
+
+void mostrar_tabla_multiplicar(numero : int, limite : int)
 [
     var i, producto : int;
     {
-        print("Tabla del ", numero, ":");
+        print("Tabla de multiplicar del ", numero, ":");
         i = 1;
-        while (i < 11) do {
+        while (i < limite + 1) do {
             producto = numero * i;
             print(numero, " x ", i, " = ", producto);
             i = i + 1;
@@ -772,29 +800,122 @@ void tabla_multiplicar(numero : int)
     }
 ];
 
-void mcd(a : int, b : int)
+void analizar_numero(num : int)
 [
-    var temp : int;
     {
-        print("Calculando MCD de ", a, " y ", b);
+        print("Analizando el número: ", num);
         
-        while (b != 0) do {
-            temp = b;
-            b = a - (a / b) * b;
-            a = temp;
+        if (num > 0) {
+            print("El número es positivo");
+        } else {
+            if (num < 0) {
+                print("El número es negativo");
+            } else {
+                print("El número es cero");
+            };
         };
+                
+        if (num > 0) {
+            print("El número es par");
+        } else {
+            print("El número es impar");
+        };
+    }
+];
+
+void mostrar_operaciones_basicas(a : int, b : int)
+[
+    var suma, resta, multiplicacion, division : int;
+    {
+        suma = a + b;
+        resta = a - b;
+        multiplicacion = a * b;
         
-        print("MCD = ", a);
+        print("Operaciones básicas entre ", a, " y ", b, ":");
+        print("Suma: ", suma);
+        print("Resta: ", resta);
+        print("Multiplicación: ", multiplicacion);
+        
+        if (b > 0) {
+            division = a / b;
+            print("División: ", division);
+        } else {
+            print("No se puede dividir entre cero");
+        };
+    }
+];
+
+int calcular_promedio(a : int, b : int, c : int)
+[
+    var suma, promedio : int;
+    {
+        suma = a + b + c;
+        promedio = suma / 3;
+        return promedio;
+    }
+];
+
+void mostrar_estadisticas(a : int, b : int, c : int)
+[
+    var suma, mayor, menor : int;
+    {
+        suma = a + b + c;
+        mayor = maximo_de_tres(a, b, c);
+        
+        menor = a;
+        if (b < menor) {
+            menor = b;
+        };
+        if (c < menor) {
+            menor = c;
+        };
+            
+        print("=== ESTADÍSTICAS ===");
+        print("Números: ", a, ", ", b, ", ", c);
+        print("Suma total: ", suma);
+        print("Número mayor: ", mayor);
+        print("Número menor: ", menor);
+        print("Promedio: ", calcular_promedio(a, b, c));
     }
 ];
 
 main {
-    potencia(2, 5);
-    potencia(3, 4);
+    print("=== CALCULADORA AVANZADA ===");
     
-    tabla_multiplicar(7);
+    num1 = 12;
+    num2 = 8;
+    num3 = 15;
     
-    mcd(48, 18);
+    print("Números de trabajo: ", num1, ", ", num2, ", ", num3);
+    print("");
+    
+    mostrar_operaciones_basicas(num1, num2);
+    print("");
+    
+    analizar_numero(num1);
+    print("");
+    
+    mostrar_tabla_multiplicar(num2, 5);
+    print("");
+    
+    factorial_num = 5;
+    resultado = calcular_factorial(factorial_num);
+    print("Factorial de ", factorial_num, " es: ", resultado);
+    
+    resultado = potencia(num2, 3);
+    print(num2, " elevado a la 3 es: ", resultado);
+    
+    resultado = maximo_de_tres(num1, num2, num3);
+    print("El mayor de los tres números es: ", resultado);
+    
+    promedio_val = calcular_promedio(num1, num2, num3);
+    print("El promedio de los tres números es: ", promedio_val);
+    print("");
+    
+    mostrar_estadisticas(num1, num2, num3);
+    
+    print("");
+    print("=== FIN DEL PROGRAMA ===");
 }
 end
 """

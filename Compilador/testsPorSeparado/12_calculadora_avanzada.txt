@@ -115,6 +115,29 @@ int calcular_promedio(a : int, b : int, c : int)
     }
 ];
 
+void mostrar_estadisticas(a : int, b : int, c : int)
+[
+    var suma, mayor, menor : int;
+    {
+        suma = a + b + c;
+        mayor = maximo_de_tres(a, b, c);
+        
+        menor = a;
+        if (b < menor) {
+            menor = b;
+        };
+        if (c < menor) {
+            menor = c;
+        };
+            
+        print("=== ESTADÍSTICAS ===");
+        print("Números: ", a, ", ", b, ", ", c);
+        print("Suma total: ", suma);
+        print("Número mayor: ", mayor);
+        print("Número menor: ", menor);
+        print("Promedio: ", calcular_promedio(a, b, c));
+    }
+];
 
 main {
     print("=== CALCULADORA AVANZADA ===");
@@ -148,7 +171,10 @@ main {
     promedio_val = calcular_promedio(num1, num2, num3);
     print("El promedio de los tres números es: ", promedio_val);
     print("");
-
+    
+    mostrar_estadisticas(num1, num2, num3);
+    
+    print("");
     print("=== FIN DEL PROGRAMA ===");
 }
 end

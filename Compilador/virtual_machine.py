@@ -122,14 +122,11 @@ class VirtualMachine:
         self.instruction_pointer = 0
         self.call_stack = []
         
-        # Stack para manejar parámetros de funciones
         self.param_stack = []
         self.current_function = None
         
-        # Stack para contextos de memoria local
         self.memory_context_stack = []
         
-        # Lista para almacenar los outputs del programa
         self.program_outputs = []
         
         # Inicializar tabla de constantes en memoria
@@ -254,12 +251,10 @@ class VirtualMachine:
     def _execute_print(self, quad):
         """Ejecuta impresión"""
         if isinstance(quad.left_operand, str):
-            # Es una cadena literal
             output_value = quad.left_operand
             print(f"OUTPUT: {output_value}")
             self.program_outputs.append(output_value)
         else:
-            # Es una dirección de memoria
             value = self.memory.get_value(quad.left_operand)
             print(f"OUTPUT: {value}")
             self.program_outputs.append(str(value))
@@ -270,23 +265,14 @@ class VirtualMachine:
         func_name = quad.left_operand
         print(f"  ERA: Reservando espacio para función '{func_name}'")
         
-        # Guardar contexto de memoria local actual
-        if hasattr(self, 'current_function') and self.current_function:
-            context = self.memory.save_local_context()
-            self.memory_context_stack.append(context)
-        
-        # Limpiar memoria local para nueva función
-        self.memory.clear_local_memory()
-        
-        # Preparar para recibir parámetros
         self.param_stack = []
         self.current_function = func_name
+        
         return True
     
     def _execute_param(self, quad):
         """Pasa parámetro a función"""
         param_value = self.memory.get_value(quad.left_operand)
-        # Guardar el parámetro en el stack
         self.param_stack.append(param_value)
         print(f"  Parámetro: {param_value} -> posición {len(self.param_stack)}")
         return True
@@ -294,30 +280,31 @@ class VirtualMachine:
     def _execute_gosub(self, quad):
         """Llama a función"""
         func_name = quad.left_operand
-        return_address = quad.result  # Dirección donde guardar el valor de retorno
+        return_address = quad.result  
         
         if func_name in self.function_directory:
             func_info = self.function_directory[func_name]
             func_start = func_info.start_address
             
-            # Asignar parámetros a variables locales
+            if hasattr(self, 'current_function') and self.current_function:
+                context = self.memory.save_local_context()
+                self.memory_context_stack.append(context)
+            
+            self.memory.clear_local_memory()
+            
             if hasattr(func_info, 'local_vars') and self.param_stack:
                 param_vars = []
-                # Obtener las variables de parámetros (primeras variables locales)
                 for var_name, var_info in func_info.local_vars.items():
                     param_vars.append((var_name, var_info.address))
                 
-                # Ordenar por dirección para asegurar el orden correcto
                 param_vars.sort(key=lambda x: x[1])
-                
-                # Asignar valores de parámetros
+
                 for i, param_value in enumerate(self.param_stack):
                     if i < len(param_vars):
                         param_address = param_vars[i][1]
                         self.memory.set_value(param_address, param_value)
                         print(f"    Asignando parámetro {param_vars[i][0]} (addr: {param_address}) = {param_value}")
             
-            # Guardar contexto actual (incluyendo dirección de retorno si existe)
             context = {
                 'return_address': self.instruction_pointer + 1,
                 'return_value_address': return_address,
@@ -372,7 +359,7 @@ class VirtualMachine:
         """Imprime solo los outputs del programa de manera limpia"""
         print("\n=== SALIDA DEL PROGRAMA ===")
         for i, output in enumerate(self.program_outputs, 1):
-            print(f"{output}", end="")
+            print(f"{output}")
             # Si el siguiente output no es un número, añadir nueva línea
             if i < len(self.program_outputs) and not self.program_outputs[i].replace('.', '').replace('-', '').isdigit():
                 print()

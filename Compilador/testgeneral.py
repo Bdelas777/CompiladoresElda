@@ -697,6 +697,29 @@ int calcular_promedio(a : int, b : int, c : int)
     }
 ];
 
+void mostrar_estadisticas(a : int, b : int, c : int)
+[
+    var suma, mayor, menor : int;
+    {
+        suma = a + b + c;
+        mayor = maximo_de_tres(a, b, c);
+        
+        menor = a;
+        if (b < menor) {
+            menor = b;
+        };
+        if (c < menor) {
+            menor = c;
+        };
+            
+        print("=== ESTADÍSTICAS ===");
+        print("Números: ", a, ", ", b, ", ", c);
+        print("Suma total: ", suma);
+        print("Número mayor: ", mayor);
+        print("Número menor: ", menor);
+        print("Promedio: ", calcular_promedio(a, b, c));
+    }
+];
 
 main {
     print("=== CALCULADORA AVANZADA ===");
@@ -731,7 +754,9 @@ main {
     print("El promedio de los tres números es: ", promedio_val);
     print("");
     
+    mostrar_estadisticas(num1, num2, num3);
     
+    print("");
     print("=== FIN DEL PROGRAMA ===");
 }
 end'''
@@ -743,6 +768,8 @@ end'''
                       "8", " x ", "1", " = ", "8", "8", " x ", "5", " = ", "40",
                       "Factorial de", "5", "es:", "120", "8", "elevado a la 3 es:", "512",
                       "El mayor de los tres números es:", "15", "El promedio de los tres números es:", "11",
+                      "=== ESTADÍSTICAS ===", "Números:", "12", ",", "8", ",", "15",
+                      "Suma total:", "35", "Número mayor:", "15", "Número menor:", "8", "Promedio:", "11",
                       "=== FIN DEL PROGRAMA ==="]
     logger.test_case("Calculadora Avanzada", test12_code, test12_expected)
     

@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 11_for_con_funcion.txt
-FECHA: 2025-05-31 23:48:00
+FECHA: 2025-06-01 00:40:43
 ==================================================
 
 SALIDA DEL PROGRAMA:

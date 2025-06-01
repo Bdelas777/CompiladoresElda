@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 6_negativos.txt
-FECHA: 2025-05-31 23:43:14
+FECHA: 2025-06-01 00:39:52
 ==================================================
 
 SALIDA DEL PROGRAMA:
