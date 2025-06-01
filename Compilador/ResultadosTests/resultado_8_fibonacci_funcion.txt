@@ -1,0 +1,48 @@
+RESULTADO DE PRUEBA: 8_fibonacci_funcion.txt
+FECHA: 2025-05-31 23:45:16
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+Serie de Fibonacci de 
+7
+ términos:
+F(1) = 
+0
+F(2) = 
+1
+F(
+3
+) = 
+1
+F(
+4
+) = 
+2
+F(
+5
+) = 
+3
+F(
+6
+) = 
+5
+F(
+7
+) = 
+8
+Serie completada
+Fibonacci hasta 
+20
+:
+0
+1
+1
+2
+3
+5
+8
+13
+
+--------------------
+RESULTADO: FUNCIONÓ CORRECTAMENTE

@@ -1,0 +1,87 @@
+RESULTADO DE PRUEBA: 7_factorial_funcion.txt
+FECHA: 2025-05-31 23:43:26
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+Calculando factorial de 
+5
+Paso 
+1
+: 
+1
+Paso 
+2
+: 
+2
+Paso 
+3
+: 
+6
+Paso 
+4
+: 
+24
+Paso 
+5
+: 
+120
+Factorial de 
+5
+ es: 
+120
+Calculando factorial de 
+4
+Paso 
+1
+: 
+1
+Paso 
+2
+: 
+2
+Paso 
+3
+: 
+6
+Paso 
+4
+: 
+24
+Factorial de 
+4
+ es: 
+24
+Calculando factorial de 
+6
+Paso 
+1
+: 
+1
+Paso 
+2
+: 
+2
+Paso 
+3
+: 
+6
+Paso 
+4
+: 
+24
+Paso 
+5
+: 
+120
+Paso 
+6
+: 
+720
+Factorial de 
+6
+ es: 
+720
+
+--------------------
+RESULTADO: FUNCIONÓ CORRECTAMENTE

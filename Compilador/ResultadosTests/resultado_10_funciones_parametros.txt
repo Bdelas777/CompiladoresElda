@@ -1,0 +1,73 @@
+RESULTADO DE PRUEBA: 10_funciones_parametros.txt
+FECHA: 2025-05-31 23:47:52
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+Números: 
+4
+, 
+7
+, 
+2
+Suma: 
+13
+Producto: 
+56
+Promedio: 
+4
+Comparando 
+15
+ y 
+8
+15
+ es mayor que 
+8
+Comparando 
+5
+ y 
+12
+5
+ es menor que 
+12
+Comparando 
+9
+ y 
+9
+9
+ es igual a 
+9
+Serie aritmética:
+Inicio: 
+5
+, Diferencia: 
+3
+, Términos: 
+6
+Término 
+1
+: 
+5
+Término 
+2
+: 
+8
+Término 
+3
+: 
+11
+Término 
+4
+: 
+14
+Término 
+5
+: 
+17
+Término 
+6
+: 
+20
+
+--------------------
+RESULTADO: FUNCIONÓ CORRECTAMENTE

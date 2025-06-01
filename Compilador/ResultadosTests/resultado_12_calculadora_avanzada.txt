@@ -1,0 +1,78 @@
+RESULTADO DE PRUEBA: 12_calculadora_avanzada.txt
+FECHA: 2025-05-31 23:48:18
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+=== CALCULADORA AVANZADA ===
+Números de trabajo: 
+12
+, 
+8
+, 
+15
+
+Operaciones básicas entre 
+12
+ y 
+8
+:
+Suma: 
+20
+Resta: 
+4
+Multiplicación: 
+96
+División: 
+1
+
+Analizando el número: 
+12
+El número es positivo
+El número es par
+
+Tabla de multiplicar del 
+8
+:
+8
+ x 
+1
+ = 
+8
+8
+ x 
+2
+ = 
+16
+8
+ x 
+3
+ = 
+24
+8
+ x 
+4
+ = 
+32
+8
+ x 
+5
+ = 
+40
+
+Factorial de 
+5
+ es: 
+120
+8
+ elevado a la 3 es: 
+512
+El mayor de los tres números es: 
+15
+El promedio de los tres números es: 
+11
+
+=== FIN DEL PROGRAMA ===
+
+--------------------
+RESULTADO: FUNCIONÓ CORRECTAMENTE

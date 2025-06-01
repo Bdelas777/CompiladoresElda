@@ -1,0 +1,11 @@
+RESULTADO DE PRUEBA: 6_negativos.txt
+FECHA: 2025-05-31 23:43:14
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+Resultado con negativos: 
+-2
+
+--------------------
+RESULTADO: FUNCIONÓ CORRECTAMENTE

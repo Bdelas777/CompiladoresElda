@@ -1,0 +1,12 @@
+RESULTADO DE PRUEBA: 2_control_if.txt
+FECHA: 2025-05-31 23:42:23
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+El mayor es x: 
+15
+x es mayor o igual que 10
+
+--------------------
+RESULTADO: FUNCIONÓ CORRECTAMENTE

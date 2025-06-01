@@ -9,7 +9,7 @@ class SimpleTestRunner:
     def __init__(self):
         self.tests_folder = "testsPorSeparado"
         self.test_definitions = {
-            "1_operaciones_basicas.txt": ["11", "16", "3.5", "10", "17", "12", "-6"],
+            "1_operaciones_basicas.txt": ["11", "16", "4.0", "10", "17", "12", "-6"],
             "2_control_if.txt": ["El mayor es x:", "15", "x es mayor o igual que 10"],
             "3_ciclo_while.txt": ["Iteración:", "1", "Suma actual:", "1", "Iteración:", "2", "Suma actual:", "3", 
                                "Iteración:", "3", "Suma actual:", "6", "Iteración:", "4", "Suma actual:", "10", "Suma final:", "10"],

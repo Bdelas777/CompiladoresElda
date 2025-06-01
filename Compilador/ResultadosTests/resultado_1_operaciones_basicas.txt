@@ -1,0 +1,23 @@
+RESULTADO DE PRUEBA: 1_operaciones_basicas.txt
+FECHA: 2025-05-31 23:59:26
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+Resultado 1: 
+11
+Resultado 2: 
+16
+Resultado 3: 
+4.0
+Resultado 4: 
+10
+Resultado 5: 
+17
+Resultado 6: 
+12.0
+Resultado 7: 
+-6.0
+
+--------------------
+RESULTADO: NO FUNCIONÓ COMO SE ESPERABA

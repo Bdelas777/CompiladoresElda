@@ -737,26 +737,63 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = """
-program control_if;
+program funciones_matematicas;
 var
-    x, y, max : int;
+    num1, num2, resultado : int;
+
+void potencia(base : int, exponente : int)
+[
+    var resultado, i : int;
+    {
+        resultado = 1;
+        i = 1;
+        
+        while (i < exponente + 1) do {
+            resultado = resultado * base;
+            i = i + 1;
+        };
+        
+        print(base, " elevado a ", exponente, " = ", resultado);
+    }
+];
+
+void tabla_multiplicar(numero : int)
+[
+    var i, producto : int;
+    {
+        print("Tabla del ", numero, ":");
+        i = 1;
+        while (i < 11) do {
+            producto = numero * i;
+            print(numero, " x ", i, " = ", producto);
+            i = i + 1;
+        };
+    }
+];
+
+void mcd(a : float, b : float)
+[
+    var temp : float;
+    {
+        print("Calculando MCD de ", a, " y ", b);
+        
+        while (b != 0) do {
+            temp = b;
+            b = a - (a / b) * b;
+            a = temp;
+        };
+        
+        print("MCD = ", a);
+    }
+];
+
 main {
-    x = 15;
-    y = 7;
+    potencia(2, 5);
+    potencia(3, 4);
     
-    if (x > y) {
-        max = x;
-        print("El mayor es x: ", max);
-    } else {
-        max = y;
-        print("El mayor es y: ", max);
-    };
+    tabla_multiplicar(7);
     
-    if (x < 10) {
-        print("x es menor que 10");
-    } else {
-        print("x es mayor o igual que 10");
-    };
+    mcd(48, 18);
 }
 end
 """

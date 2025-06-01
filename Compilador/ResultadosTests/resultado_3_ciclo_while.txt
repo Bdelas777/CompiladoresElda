@@ -1,0 +1,27 @@
+RESULTADO DE PRUEBA: 3_ciclo_while.txt
+FECHA: 2025-05-31 23:42:45
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+Iteración: 
+1
+ Suma actual: 
+1
+Iteración: 
+2
+ Suma actual: 
+3
+Iteración: 
+3
+ Suma actual: 
+6
+Iteración: 
+4
+ Suma actual: 
+10
+Suma final: 
+10
+
+--------------------
+RESULTADO: FUNCIONÓ CORRECTAMENTE

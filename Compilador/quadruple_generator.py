@@ -257,7 +257,7 @@ class QuadrupleGenerator:
         func_info = self.semantic.function_directory.get(func_name)
         if func_info and func_info.return_type != Type.VOID:
             temp_result = self.new_temp(func_info.return_type)
-            quad = Quadruple('GOSUB', func_name, None, None)
+            quad = Quadruple('GOSUB', func_name, None, temp_result)
             self.PilaO.append(temp_result)
             self.PTypes.append(func_info.return_type)
         else:

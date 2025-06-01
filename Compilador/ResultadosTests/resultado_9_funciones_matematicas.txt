@@ -1,0 +1,78 @@
+RESULTADO DE PRUEBA: 9_funciones_matematicas.txt
+FECHA: 2025-05-31 23:54:26
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+2
+ elevado a 
+5
+ = 
+32
+3
+ elevado a 
+4
+ = 
+81
+Tabla del 
+7
+:
+7
+ x 
+1
+ = 
+7
+7
+ x 
+2
+ = 
+14
+7
+ x 
+3
+ = 
+21
+7
+ x 
+4
+ = 
+28
+7
+ x 
+5
+ = 
+35
+7
+ x 
+6
+ = 
+42
+7
+ x 
+7
+ = 
+49
+7
+ x 
+8
+ = 
+56
+7
+ x 
+9
+ = 
+63
+7
+ x 
+10
+ = 
+70
+Calculando MCD de 
+48.0
+ y 
+18.0
+MCD = 
+18.0
+
+--------------------
+RESULTADO: FUNCIONÓ CORRECTAMENTE

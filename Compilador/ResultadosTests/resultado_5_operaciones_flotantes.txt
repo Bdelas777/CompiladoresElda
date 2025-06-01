@@ -1,0 +1,11 @@
+RESULTADO DE PRUEBA: 5_operaciones_flotantes.txt
+FECHA: 2025-05-31 23:43:07
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+Resultado flotante: 
+8.5
+
+--------------------
+RESULTADO: FUNCIONÓ CORRECTAMENTE

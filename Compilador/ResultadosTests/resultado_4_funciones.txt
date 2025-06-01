@@ -1,0 +1,17 @@
+RESULTADO DE PRUEBA: 4_funciones.txt
+FECHA: 2025-05-31 23:42:59
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+La suma es: 
+11
+El producto es: 
+24
+La suma es: 
+12
+El producto es: 
+60
+
+--------------------
+RESULTADO: FUNCIONÓ CORRECTAMENTE
