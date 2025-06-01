@@ -40,7 +40,6 @@ class SimpleTestRunner:
             return []
         
         available = []
-        # Ordenar por el número al inicio del nombre del archivo
         sorted_files = sorted(self.test_definitions.keys(), key=lambda x: int(x.split('_')[0]))
         
         for i, filename in enumerate(sorted_files, 1):
@@ -82,7 +81,6 @@ class SimpleTestRunner:
             print(f"❌ Archivo no encontrado: {filename}")
             return
         
-        # Leer el código
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 code = f.read()
@@ -93,26 +91,22 @@ class SimpleTestRunner:
         print(f"\n🚀 EJECUTANDO: {filename}")
         print("=" * 60)
         
-        # Capturar output
         captured_output = io.StringIO()
         captured_error = io.StringIO()
         
         try:
-            # Ejecutar el programa
             with redirect_stdout(captured_output), redirect_stderr(captured_error):
                 result = execute_program(code)
             
             output_lines = captured_output.getvalue().strip()
             error_lines = captured_error.getvalue().strip()
             
-            # Filtrar solo las líneas de OUTPUT
             clean_output = []
             if output_lines:
                 for line in output_lines.split('\n'):
                     if line.startswith('OUTPUT: '):
                         clean_output.append(line.replace('OUTPUT: ', ''))
             
-            # Mostrar resultados
             print("📤 SALIDA DEL PROGRAMA:")
             print("-" * 30)
             if clean_output:
@@ -121,7 +115,6 @@ class SimpleTestRunner:
             else:
                 print("(Sin salida)")
             
-            # Verificar si funcionó
             expected = self.test_definitions.get(filename, [])
             success = self._verify_output(' '.join(clean_output), expected)
             
@@ -131,12 +124,11 @@ class SimpleTestRunner:
             else:
                 print("❌ RESULTADO: NO FUNCIONÓ COMO SE ESPERABA")
                 print("\n🎯 Se esperaba encontrar:")
-                for exp in expected[:5]:  # Mostrar solo los primeros 5 esperados
+                for exp in expected[:5]:  
                     print(f"  - {exp}")
                 if len(expected) > 5:
                     print(f"  ... y {len(expected) - 5} más")
             
-            # Guardar resultado en archivo
             self._save_result(filename, clean_output, success)
             
         except Exception as e:
@@ -158,7 +150,6 @@ class SimpleTestRunner:
     
     def _save_result(self, filename, output_lines, success):
         """Guarda el resultado en un archivo"""
-        # Crear carpeta si no existe
         results_folder = "ResultadosTests"
         if not os.path.exists(results_folder):
             os.makedirs(results_folder)
@@ -192,24 +183,20 @@ def main():
     runner = SimpleTestRunner()
     
     while True:
-        # Mostrar archivos disponibles
         available_tests = runner.list_available_tests()
         
         if not available_tests:
             print("\n❌ No hay archivos de prueba disponibles")
             break
         
-        # Seleccionar archivo
         selected_file = runner.select_test(available_tests)
         
         if selected_file is None:
             print("\n👋 ¡Hasta luego!")
             break
         
-        # Ejecutar prueba
         runner.run_test(selected_file)
         
-        # Preguntar si quiere continuar
         while True:
             continue_choice = input(f"\n🔄 ¿Quieres probar otro archivo? (s/n): ").strip().lower()
             if continue_choice in ['s', 'si', 'y', 'yes']:

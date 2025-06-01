@@ -26,12 +26,14 @@ class QuadrupleGenerator:
         self.main_goto_index = None 
         
     def new_temp(self, temp_type):
+        "Generar una variable temporal"
         temp = f"t{self.temp_counter}"
         self.temp_counter += 1
         temp_address = self.semantic.memory_manager.get_address(temp_type, self.semantic.current_scope, is_temp=True)
         return temp_address
         
     def generate_arithmetic_quad(self):
+        "Genera un cuádruplo para una operación aritmética o de comparación"
         if not self.POper or len(self.PilaO) < 2 or not self.PTypes:
             return False
         operator = self.POper[-1]
@@ -66,6 +68,7 @@ class QuadrupleGenerator:
                 return False
             
     def get_operand_address(self, operand):
+        "Genera la dirección de memoria de un operando"
         if isinstance(operand, int):
             return operand
         if self.semantic.current_scope != "global" and operand in self.semantic.function_directory[self.semantic.current_scope].local_vars:

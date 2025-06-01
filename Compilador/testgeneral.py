@@ -773,7 +773,6 @@ end'''
                       "=== FIN DEL PROGRAMA ==="]
     logger.test_case("Calculadora Avanzada", test12_code, test12_expected)
     
-    # Finalizar sesión de pruebas
     logger.end_session()
     
     print(f"\n🔍 Los resultados detallados se han guardado en: {logger.log_file}")

@@ -4,25 +4,15 @@ from MemoryManager import MemoryManager
 class ExecutionMemory:
     """Mapa de memoria para la ejecución con segmentación por tipos"""
     def __init__(self):
-        # Memoria física segmentada por tipo
-        # Globales
-        self.global_int_memory = {}      # 5000-7999: Enteros globales
-        self.global_float_memory = {}    # 8000-10999: Flotantes globales
-        
-        # Locales
-        self.local_int_memory = {}       # 11000-12999: Enteros locales
-        self.local_float_memory = {}     # 13000-14999: Flotantes locales
-        
-        # Temporales
-        self.temp_int_memory = {}        # 15000-16999: Enteros temporales
-        self.temp_float_memory = {}      # 17000-18999: Flotantes temporales
-        self.temp_bool_memory = {}       # 19000-19999: Booleanos temporales
-        
-        # Constantes
-        self.const_int_memory = {}       # 20000-20499: Constantes enteras
-        self.const_float_memory = {}     # 20500+: Constantes flotantes
-        
-        # Stack para llamadas a funciones
+        self.global_int_memory = {}     
+        self.global_float_memory = {}    
+        self.local_int_memory = {}       
+        self.local_float_memory = {}    
+        self.temp_int_memory = {}       
+        self.temp_float_memory = {}    
+        self.temp_bool_memory = {}       
+        self.const_int_memory = {}      
+        self.const_float_memory = {}   
         self.call_stack = []
         self.current_context = None
         
@@ -121,15 +111,10 @@ class VirtualMachine:
         self.function_directory = function_directory
         self.instruction_pointer = 0
         self.call_stack = []
-        
         self.param_stack = []
         self.current_function = None
-        
-        self.memory_context_stack = []
-        
+        self.memory_context_stack = []     
         self.program_outputs = []
-        
-        # Inicializar tabla de constantes en memoria
         for value, address in constants_table.items():
             self.memory.set_value(address, value)
     
@@ -137,17 +122,13 @@ class VirtualMachine:
         """Ejecuta el programa completo"""
         print("=== INICIANDO EJECUCIÓN ===")
         self.instruction_pointer = 0
-        self.program_outputs = []  # Limpiar outputs anteriores
-        
+        self.program_outputs = []  
         while self.instruction_pointer < len(self.quadruples):
             quad = self.quadruples[self.instruction_pointer]
             print(f"IP: {self.instruction_pointer} -> Ejecutando: {quad}")
-            
             if not self.execute_quadruple(quad):
-                break
-                
+                break   
             self.instruction_pointer += 1
-        
         print("=== EJECUCIÓN TERMINADA ===")
     
     def _execute_end(self, quad):
@@ -211,7 +192,6 @@ class VirtualMachine:
         left_val = self.memory.get_value(quad.left_operand)
         right_val = self.memory.get_value(quad.right_operand)
         result = operation(left_val, right_val)
-        # El resultado se almacena como 1 (true) o 0 (false) en memoria booleana
         self.memory.set_value(quad.result, result)
         print(f"  Comparación: {left_val} {quad.operator} {right_val} = {result}")
         return True
@@ -281,30 +261,23 @@ class VirtualMachine:
         """Llama a función"""
         func_name = quad.left_operand
         return_address = quad.result  
-        
         if func_name in self.function_directory:
             func_info = self.function_directory[func_name]
             func_start = func_info.start_address
-            
             if hasattr(self, 'current_function') and self.current_function:
                 context = self.memory.save_local_context()
-                self.memory_context_stack.append(context)
-            
+                self.memory_context_stack.append(context)          
             self.memory.clear_local_memory()
-            
             if hasattr(func_info, 'local_vars') and self.param_stack:
                 param_vars = []
                 for var_name, var_info in func_info.local_vars.items():
                     param_vars.append((var_name, var_info.address))
-                
                 param_vars.sort(key=lambda x: x[1])
-
                 for i, param_value in enumerate(self.param_stack):
                     if i < len(param_vars):
                         param_address = param_vars[i][1]
                         self.memory.set_value(param_address, param_value)
-                        print(f"    Asignando parámetro {param_vars[i][0]} (addr: {param_address}) = {param_value}")
-            
+                        print(f"    Asignando parámetro {param_vars[i][0]} (addr: {param_address}) = {param_value}")           
             context = {
                 'return_address': self.instruction_pointer + 1,
                 'return_value_address': return_address,
@@ -324,15 +297,11 @@ class VirtualMachine:
             context = self.call_stack.pop()
             self.instruction_pointer = context['return_address'] - 1
             print(f"  ENDFUNC: Retornando a dirección {context['return_address']}")
-            
-            # Restaurar contexto de memoria local anterior si existe
             if self.memory_context_stack:
                 previous_context = self.memory_context_stack.pop()
                 self.memory.restore_local_context(previous_context)
             else:
                 self.memory.clear_local_memory()
-            
-            # Limpiar contexto de función
             self.param_stack = []
             self.current_function = None
         return True
@@ -342,17 +311,13 @@ class VirtualMachine:
         if quad.left_operand is not None:
             return_value = self.memory.get_value(quad.left_operand)
             print(f"  RETURN: Retornando valor {return_value}")
-            
-            # Si hay un contexto de llamada y dirección de retorno, guardar el valor
             if self.call_stack:
-                context = self.call_stack[-1]  # Peek sin hacer pop
+                context = self.call_stack[-1] 
                 if context.get('return_value_address'):
                     self.memory.set_value(context['return_value_address'], return_value)
                     print(f"    Valor guardado en dirección temporal: {context['return_value_address']}")
         else:
             print(f"  RETURN: Retorno sin valor")
-        
-        # Continuar con ENDFUNC
         return self._execute_endfunc(quad)
     
     def print_program_outputs(self):
@@ -360,7 +325,6 @@ class VirtualMachine:
         print("\n=== SALIDA DEL PROGRAMA ===")
         for i, output in enumerate(self.program_outputs, 1):
             print(f"{output}")
-            # Si el siguiente output no es un número, añadir nueva línea
             if i < len(self.program_outputs) and not self.program_outputs[i].replace('.', '').replace('-', '').isdigit():
                 print()
         print("\n" + "="*27)

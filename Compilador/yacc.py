@@ -587,7 +587,6 @@ def p_for_cycle(p):
     loop_start = p[5]  
     quad_gen.generate_goto_quad()
     quad_gen.fill_quad(len(quad_gen.Quads) - 1, loop_start)
-
     gotof_index = p[7]
     quad_gen.fill_quad(gotof_index, len(quad_gen.Quads))
     
