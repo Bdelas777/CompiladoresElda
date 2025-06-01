@@ -583,11 +583,11 @@ def p_for_cycle(p):
         if p[9][0] == 'assign':
             var_name = p[9][1] 
             expr_result = get_operand_name(p[9][2])
-            quad_gen.generate_assignment_quad(var_name, expr_result)
-    loop_start = p[5]  
+            quad_gen.generate_assignment_quad(var_name, expr_result) 
+    loop_start = p[5]
     quad_gen.generate_goto_quad()
     quad_gen.fill_quad(len(quad_gen.Quads) - 1, loop_start)
-    gotof_index = p[7]
+    gotof_index = p[7]  
     quad_gen.fill_quad(gotof_index, len(quad_gen.Quads))
     
     p[0] = ('for', p[3], p[6], p[9], p[12])
@@ -607,9 +607,17 @@ def p_assign_for(p):
     p[0] = ('assign', p[1], p[3])
 
 def p_for_increment(p):
-    '''for_increment : assign_for
+    '''for_increment : assign_for_increment
                      | empty'''
     p[0] = p[1]
+
+def p_assign_for_increment(p):
+    '''assign_for_increment : TOKEN_ID TOKEN_ASSIGN expresion'''
+    var_type = semantic.check_variable(p[1])
+    expr_type = get_expr_type(p[3])
+    semantic.check_assignment_compatibility(p[1], expr_type)
+    expression_result = get_operand_name(p[3])
+    p[0] = ('assign', p[1], p[3])
 
 def p_saveQuadFor(p):
     '''saveQuadFor : empty'''
@@ -620,6 +628,7 @@ def p_GotoFFor(p):
     condition = get_operand_name(p[-1])  
     gotof_index = quad_gen.generate_gotof_quad(condition)
     p[0] = gotof_index
+
        
 def p_empty(p):
     'empty :'
@@ -737,7 +746,7 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = """
-'''program operaciones_basicas;
+program operaciones_basicas;
 var
     a, b, c, resultado, resultado2 : int;
     resultado3 : float;

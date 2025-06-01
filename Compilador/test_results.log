@@ -1,6 +1,6 @@
 
 ================================================================================
-SESIÓN DE PRUEBAS - 2025-06-01 00:00:25
+SESIÓN DE PRUEBAS - 2025-06-01 08:59:59
 ================================================================================
 
 
@@ -344,6 +344,30 @@ Constantes Enteras (20000-20499):
 Constantes Flotantes (20500+):
 ========================================
 
+=== SALIDA DEL PROGRAMA ===
+Resultado 1: 
+11
+
+Resultado 2: 
+16
+
+Resultado 3: 
+4.0
+
+Resultado 4: 
+10
+
+Resultado 5: 
+17
+
+Resultado 6: 
+12.0
+
+Resultado 7: 
+-6.0
+
+===========================
+
 RESULTADOS ESPERADOS:
   - 11
   - 16
@@ -514,6 +538,14 @@ Constantes Enteras (20000-20499):
   [20002]: 10
 Constantes Flotantes (20500+):
 ========================================
+
+=== SALIDA DEL PROGRAMA ===
+El mayor es x: 
+15
+
+x es mayor o igual que 10
+
+===========================
 
 RESULTADOS ESPERADOS:
   - El mayor es x:
@@ -747,6 +779,36 @@ Constantes Enteras (20000-20499):
   [20002]: 5
 Constantes Flotantes (20500+):
 ========================================
+
+=== SALIDA DEL PROGRAMA ===
+Iteración: 
+1
+
+ Suma actual: 
+1
+
+Iteración: 
+2
+
+ Suma actual: 
+3
+
+Iteración: 
+3
+
+ Suma actual: 
+6
+
+Iteración: 
+4
+
+ Suma actual: 
+10
+
+Suma final: 
+10
+
+===========================
 
 RESULTADOS ESPERADOS:
   - Iteración:
@@ -1088,6 +1150,21 @@ Constantes Enteras (20000-20499):
 Constantes Flotantes (20500+):
 ========================================
 
+=== SALIDA DEL PROGRAMA ===
+La suma es: 
+11
+
+El producto es: 
+24
+
+La suma es: 
+12
+
+El producto es: 
+60
+
+===========================
+
 RESULTADOS ESPERADOS:
   - La suma es:
   - 11
@@ -1221,6 +1298,12 @@ Constantes Flotantes (20500+):
   [20501]: 1.5
 ========================================
 
+=== SALIDA DEL PROGRAMA ===
+Resultado flotante: 
+8.5
+
+===========================
+
 RESULTADOS ESPERADOS:
   - 8.5
 
@@ -1342,6 +1425,12 @@ Constantes Enteras (20000-20499):
   [20002]: 3
 Constantes Flotantes (20500+):
 ========================================
+
+=== SALIDA DEL PROGRAMA ===
+Resultado con negativos: 
+-2
+
+===========================
 
 RESULTADOS ESPERADOS:
   - -2
@@ -2012,6 +2101,126 @@ Constantes Enteras (20000-20499):
   [20003]: 6
 Constantes Flotantes (20500+):
 ========================================
+
+=== SALIDA DEL PROGRAMA ===
+Calculando factorial de 
+5
+
+Paso 
+1
+
+: 
+1
+
+Paso 
+2
+
+: 
+2
+
+Paso 
+3
+
+: 
+6
+
+Paso 
+4
+
+: 
+24
+
+Paso 
+5
+
+: 
+120
+
+Factorial de 
+5
+
+ es: 
+120
+
+Calculando factorial de 
+4
+
+Paso 
+1
+
+: 
+1
+
+Paso 
+2
+
+: 
+2
+
+Paso 
+3
+
+: 
+6
+
+Paso 
+4
+
+: 
+24
+
+Factorial de 
+4
+
+ es: 
+24
+
+Calculando factorial de 
+6
+
+Paso 
+1
+
+: 
+1
+
+Paso 
+2
+
+: 
+2
+
+Paso 
+3
+
+: 
+6
+
+Paso 
+4
+
+: 
+24
+
+Paso 
+5
+
+: 
+120
+
+Paso 
+6
+
+: 
+720
+
+Factorial de 
+6
+
+ es: 
+720
+
+===========================
 
 RESULTADOS ESPERADOS:
   - Calculando factorial de
@@ -2768,6 +2977,65 @@ Constantes Enteras (20000-20499):
 Constantes Flotantes (20500+):
 ========================================
 
+=== SALIDA DEL PROGRAMA ===
+Serie de Fibonacci de 
+7
+
+ términos:
+
+F(1) = 
+0
+
+F(2) = 
+1
+
+F(
+3
+
+) = 
+1
+
+F(
+4
+
+) = 
+2
+
+F(
+5
+
+) = 
+3
+
+F(
+6
+
+) = 
+5
+
+F(
+7
+
+) = 
+8
+
+Serie completada
+
+Fibonacci hasta 
+20
+
+:
+0
+1
+1
+2
+3
+5
+8
+13
+
+===========================
+
 RESULTADOS ESPERADOS:
   - Serie de Fibonacci de
   - 7
@@ -2848,9 +3116,9 @@ CÓDIGO:
 32:     }
 33: ];
 34: 
-35: void mcd(a : float, b : float)
+35: void mcd(a : int, b : int)
 36: [
-37:     var temp : float;
+37:     var temp : int;
 38:     {
 39:         print("Calculando MCD de ", a, " y ", b);
 40:         
@@ -2918,13 +3186,13 @@ Iniciando declaración de variables en ámbito 'tabla_multiplicar'
 Declaración de función 'tabla_multiplicar' terminada, regresado al ámbito: global
 Ámbito agregado: mcd, pila de ámbitos actual: ['global', 'mcd']
 Función 'mcd' declarada con tipo de retorno Type.VOID, ámbito cambiado a: mcd
-Parámetro 'a' agregado de tipo Type.FLOAT en dirección 13000 a función 'mcd'
-Parámetro 'b' agregado de tipo Type.FLOAT en dirección 13001 a función 'mcd'
+Parámetro 'a' agregado de tipo Type.INT en dirección 11007 a función 'mcd'
+Parámetro 'b' agregado de tipo Type.INT en dirección 11008 a función 'mcd'
 Agregando ID 'temp' a lista temporal en ámbito: mcd
 'temp' agregado a lista temporal de variables en ámbito: mcd
-Tipo actual establecido a Type.FLOAT
+Tipo actual establecido a Type.INT
 Agregando variables a tabla en ámbito: mcd
-Variable local 'temp' agregada de tipo Type.FLOAT en dirección 13002 a función 'mcd'
+Variable local 'temp' agregada de tipo Type.INT en dirección 11009 a función 'mcd'
 Iniciando declaración de variables en ámbito 'mcd'
 Ámbito removido: mcd, ámbito actual es ahora: global
 Declaración de función 'mcd' terminada, regresado al ámbito: global
@@ -3063,38 +3331,38 @@ Inicia en el cuádruplo 34
 34: (print, Calculando MCD de , None, None)
         imprimir valor dir:Calculando MCD de 
 ----------------------------------------------------------------------
-35: (print, 13000, None, None)
-        imprimir valor dir:13000
+35: (print, 11007, None, None)
+        imprimir valor dir:11007
 ----------------------------------------------------------------------
 36: (print,  y , None, None)
         imprimir valor dir: y 
 ----------------------------------------------------------------------
-37: (print, 13001, None, None)
-        imprimir valor dir:13001
+37: (print, 11008, None, None)
+        imprimir valor dir:11008
 ----------------------------------------------------------------------
-38: (!=, 13001, 20002, 19002)
-        comparar si dir:13001 es diferente de constante(0), guardar resultado booleano en dir:19002
+38: (!=, 11008, 20002, 19002)
+        comparar si dir:11008 es diferente de constante(0), guardar resultado booleano en dir:19002
 ----------------------------------------------------------------------
 39: (gotof, 19002, None, 47)
         si dir:19002 es falso, saltar al cuádruplo 47
 ----------------------------------------------------------------------
-40: (=, 13001, None, 13002)
-        asignar valor de dir:13001 a dir:13002
+40: (=, 11008, None, 11009)
+        asignar valor de dir:11008 a dir:11009
 ----------------------------------------------------------------------
-41: (/, 13000, 13001, 17000)
-        dividir dir:13000 y dir:13001, guardar resultado en dir:17000
+41: (/, 11007, 11008, 15005)
+        dividir dir:11007 y dir:11008, guardar resultado en dir:15005
 ----------------------------------------------------------------------
-42: (*, 17000, 13001, 17001)
-        multiplicar dir:17000 y dir:13001, guardar resultado en dir:17001
+42: (*, 15005, 11008, 15006)
+        multiplicar dir:15005 y dir:11008, guardar resultado en dir:15006
 ----------------------------------------------------------------------
-43: (-, 13000, 17001, 17002)
-        restar dir:13000 y dir:17001, guardar resultado en dir:17002
+43: (-, 11007, 15006, 15007)
+        restar dir:11007 y dir:15006, guardar resultado en dir:15007
 ----------------------------------------------------------------------
-44: (=, 17002, None, 13001)
-        asignar valor de dir:17002 a dir:13001
+44: (=, 15007, None, 11008)
+        asignar valor de dir:15007 a dir:11008
 ----------------------------------------------------------------------
-45: (=, 13002, None, 13000)
-        asignar valor de dir:13002 a dir:13000
+45: (=, 11009, None, 11007)
+        asignar valor de dir:11009 a dir:11007
 ----------------------------------------------------------------------
 46: (goto, None, None, 38)
         saltar al cuádruplo 38
@@ -3102,8 +3370,8 @@ Inicia en el cuádruplo 34
 47: (print, MCD = , None, None)
         imprimir valor dir:MCD = 
 ----------------------------------------------------------------------
-48: (print, 13000, None, None)
-        imprimir valor dir:13000
+48: (print, 11007, None, None)
+        imprimir valor dir:11007
 ----------------------------------------------------------------------
 49: (ENDFUNC, None, None, None)
         realizar operación ENDFUNC con operando None
@@ -3640,43 +3908,79 @@ IP: 62 -> Ejecutando: (parámetro, 20008, par1, None)
 IP: 63 -> Ejecutando: (parámetro, 20009, par2, None)
   Parámetro: 18 -> posición 2
 IP: 64 -> Ejecutando: (GOSUB, mcd, None, None)
-    Asignando parámetro a (addr: 13000) = 48
-    Asignando parámetro b (addr: 13001) = 18
+    Asignando parámetro a (addr: 11007) = 48
+    Asignando parámetro b (addr: 11008) = 18
   GOSUB: Llamando función 'mcd' en dirección 34
 IP: 34 -> Ejecutando: (print, Calculando MCD de , None, None)
 OUTPUT: Calculando MCD de 
-IP: 35 -> Ejecutando: (print, 13000, None, None)
-OUTPUT: 48.0
+IP: 35 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 48
 IP: 36 -> Ejecutando: (print,  y , None, None)
 OUTPUT:  y 
-IP: 37 -> Ejecutando: (print, 13001, None, None)
-OUTPUT: 18.0
-IP: 38 -> Ejecutando: (!=, 13001, 20002, 19002)
-  Comparación: 18.0 != 0 = True
+IP: 37 -> Ejecutando: (print, 11008, None, None)
+OUTPUT: 18
+IP: 38 -> Ejecutando: (!=, 11008, 20002, 19002)
+  Comparación: 18 != 0 = True
 IP: 39 -> Ejecutando: (gotof, 19002, None, 47)
   No hay salto (condición verdadera)
-IP: 40 -> Ejecutando: (=, 13001, None, 13002)
-  Asignación: direccion[13002] = 18.0
-IP: 41 -> Ejecutando: (/, 13000, 13001, 17000)
-  Aritmética: 48.0 / 18.0 = 2.6666666666666665
-IP: 42 -> Ejecutando: (*, 17000, 13001, 17001)
-  Aritmética: 2.6666666666666665 * 18.0 = 48.0
-IP: 43 -> Ejecutando: (-, 13000, 17001, 17002)
-  Aritmética: 48.0 - 48.0 = 0.0
-IP: 44 -> Ejecutando: (=, 17002, None, 13001)
-  Asignación: direccion[13001] = 0.0
-IP: 45 -> Ejecutando: (=, 13002, None, 13000)
-  Asignación: direccion[13000] = 18.0
+IP: 40 -> Ejecutando: (=, 11008, None, 11009)
+  Asignación: direccion[11009] = 18
+IP: 41 -> Ejecutando: (/, 11007, 11008, 15005)
+  Aritmética: 48 / 18 = 2.6666666666666665
+IP: 42 -> Ejecutando: (*, 15005, 11008, 15006)
+  Aritmética: 2 * 18 = 36
+IP: 43 -> Ejecutando: (-, 11007, 15006, 15007)
+  Aritmética: 48 - 36 = 12
+IP: 44 -> Ejecutando: (=, 15007, None, 11008)
+  Asignación: direccion[11008] = 12
+IP: 45 -> Ejecutando: (=, 11009, None, 11007)
+  Asignación: direccion[11007] = 18
 IP: 46 -> Ejecutando: (goto, None, None, 38)
   Salto a: 38
-IP: 38 -> Ejecutando: (!=, 13001, 20002, 19002)
-  Comparación: 0.0 != 0 = False
+IP: 38 -> Ejecutando: (!=, 11008, 20002, 19002)
+  Comparación: 12 != 0 = True
+IP: 39 -> Ejecutando: (gotof, 19002, None, 47)
+  No hay salto (condición verdadera)
+IP: 40 -> Ejecutando: (=, 11008, None, 11009)
+  Asignación: direccion[11009] = 12
+IP: 41 -> Ejecutando: (/, 11007, 11008, 15005)
+  Aritmética: 18 / 12 = 1.5
+IP: 42 -> Ejecutando: (*, 15005, 11008, 15006)
+  Aritmética: 1 * 12 = 12
+IP: 43 -> Ejecutando: (-, 11007, 15006, 15007)
+  Aritmética: 18 - 12 = 6
+IP: 44 -> Ejecutando: (=, 15007, None, 11008)
+  Asignación: direccion[11008] = 6
+IP: 45 -> Ejecutando: (=, 11009, None, 11007)
+  Asignación: direccion[11007] = 12
+IP: 46 -> Ejecutando: (goto, None, None, 38)
+  Salto a: 38
+IP: 38 -> Ejecutando: (!=, 11008, 20002, 19002)
+  Comparación: 6 != 0 = True
+IP: 39 -> Ejecutando: (gotof, 19002, None, 47)
+  No hay salto (condición verdadera)
+IP: 40 -> Ejecutando: (=, 11008, None, 11009)
+  Asignación: direccion[11009] = 6
+IP: 41 -> Ejecutando: (/, 11007, 11008, 15005)
+  Aritmética: 12 / 6 = 2.0
+IP: 42 -> Ejecutando: (*, 15005, 11008, 15006)
+  Aritmética: 2 * 6 = 12
+IP: 43 -> Ejecutando: (-, 11007, 15006, 15007)
+  Aritmética: 12 - 12 = 0
+IP: 44 -> Ejecutando: (=, 15007, None, 11008)
+  Asignación: direccion[11008] = 0
+IP: 45 -> Ejecutando: (=, 11009, None, 11007)
+  Asignación: direccion[11007] = 6
+IP: 46 -> Ejecutando: (goto, None, None, 38)
+  Salto a: 38
+IP: 38 -> Ejecutando: (!=, 11008, 20002, 19002)
+  Comparación: 0 != 0 = False
 IP: 39 -> Ejecutando: (gotof, 19002, None, 47)
   Salto condicional a: 47 (condición falsa)
 IP: 47 -> Ejecutando: (print, MCD = , None, None)
 OUTPUT: MCD = 
-IP: 48 -> Ejecutando: (print, 13000, None, None)
-OUTPUT: 18.0
+IP: 48 -> Ejecutando: (print, 11007, None, None)
+OUTPUT: 6
 IP: 49 -> Ejecutando: (ENDFUNC, None, None, None)
   ENDFUNC: Retornando a dirección 65
 IP: 65 -> Ejecutando: (END, None, None, None)
@@ -3694,10 +3998,10 @@ Memoria Temporal Enteros (15000-16999):
   [15002]: 5
   [15003]: 70
   [15004]: 11
+  [15005]: 2
+  [15006]: 12
+  [15007]: 0
 Memoria Temporal Flotantes (17000-18999):
-  [17000]: 2.6666666666666665
-  [17001]: 48.0
-  [17002]: 0.0
 Memoria Temporal Booleanos (19000-19999):
   [19000]: False
   [19001]: False
@@ -3715,6 +4019,108 @@ Constantes Enteras (20000-20499):
   [20009]: 18
 Constantes Flotantes (20500+):
 ========================================
+
+=== SALIDA DEL PROGRAMA ===
+2
+
+ elevado a 
+5
+
+ = 
+32
+3
+
+ elevado a 
+4
+
+ = 
+81
+
+Tabla del 
+7
+
+:
+7
+
+ x 
+1
+
+ = 
+7
+7
+
+ x 
+2
+
+ = 
+14
+7
+
+ x 
+3
+
+ = 
+21
+7
+
+ x 
+4
+
+ = 
+28
+7
+
+ x 
+5
+
+ = 
+35
+7
+
+ x 
+6
+
+ = 
+42
+7
+
+ x 
+7
+
+ = 
+49
+7
+
+ x 
+8
+
+ = 
+56
+7
+
+ x 
+9
+
+ = 
+63
+7
+
+ x 
+10
+
+ = 
+70
+
+Calculando MCD de 
+48
+
+ y 
+18
+
+MCD = 
+6
+
+===========================
 
 RESULTADOS ESPERADOS:
   - 2
@@ -4551,6 +4957,104 @@ Constantes Enteras (20000-20499):
   [20011]: 6
 Constantes Flotantes (20500+):
 ========================================
+
+=== SALIDA DEL PROGRAMA ===
+Números: 
+4
+
+, 
+7
+
+, 
+2
+
+Suma: 
+13
+
+Producto: 
+56
+
+Promedio: 
+4
+
+Comparando 
+15
+
+ y 
+8
+15
+
+ es mayor que 
+8
+
+Comparando 
+5
+
+ y 
+12
+5
+
+ es menor que 
+12
+
+Comparando 
+9
+
+ y 
+9
+9
+
+ es igual a 
+9
+
+Serie aritmética:
+
+Inicio: 
+5
+
+, Diferencia: 
+3
+
+, Términos: 
+6
+
+Término 
+1
+
+: 
+5
+
+Término 
+2
+
+: 
+8
+
+Término 
+3
+
+: 
+11
+
+Término 
+4
+
+: 
+14
+
+Término 
+5
+
+: 
+17
+
+Término 
+6
+
+: 
+20
+
+===========================
 
 RESULTADOS ESPERADOS:
   - Números:
@@ -5631,6 +6135,191 @@ Constantes Enteras (20000-20499):
 Constantes Flotantes (20500+):
 ========================================
 
+=== SALIDA DEL PROGRAMA ===
+Contando hasta 
+5
+
+:
+
+Contador: 
+1
+
+ (i = 
+2
+
+)
+
+Contador: 
+2
+
+ (i = 
+3
+
+)
+
+Contador: 
+3
+
+ (i = 
+4
+
+)
+
+Contador: 
+4
+
+ (i = 
+5
+
+)
+
+Contador: 
+5
+
+ (i = 
+6
+
+)
+
+Terminé de contar hasta 
+5
+
+Tabla de cuadrados hasta 
+4
+
+:
+2
+
+ al cuadrado = 
+4
+3
+
+ al cuadrado = 
+9
+4
+
+ al cuadrado = 
+16
+5
+
+ al cuadrado = 
+25
+
+FOR anidado:
+
+Tabla del 
+2
+
+:
+
+Contando hasta 
+2
+
+:
+
+Contador: 
+1
+
+ (i = 
+2
+
+)
+
+Contador: 
+2
+
+ (i = 
+3
+
+)
+
+Terminé de contar hasta 
+2
+
+Tabla del 
+3
+
+:
+
+Contando hasta 
+3
+
+:
+
+Contador: 
+1
+
+ (i = 
+2
+
+)
+
+Contador: 
+2
+
+ (i = 
+3
+
+)
+
+Contador: 
+3
+
+ (i = 
+4
+
+)
+
+Terminé de contar hasta 
+3
+
+Tabla del 
+4
+
+:
+
+Contando hasta 
+4
+
+:
+
+Contador: 
+1
+
+ (i = 
+2
+
+)
+
+Contador: 
+2
+
+ (i = 
+3
+
+)
+
+Contador: 
+3
+
+ (i = 
+4
+
+)
+
+Contador: 
+4
+
+ (i = 
+5
+
+)
+
+Terminé de contar hasta 
+4
+
+===========================
+
 RESULTADOS ESPERADOS:
   - Contando hasta
   - 5
@@ -5785,44 +6474,69 @@ CÓDIGO:
 115:     }
 116: ];
 117: 
-118: 
-119: main {
-120:     print("=== CALCULADORA AVANZADA ===");
-121:     
-122:     num1 = 12;
-123:     num2 = 8;
-124:     num3 = 15;
-125:     
-126:     print("Números de trabajo: ", num1, ", ", num2, ", ", num3);
-127:     print("");
-128:     
-129:     mostrar_operaciones_basicas(num1, num2);
-130:     print("");
-131:     
-132:     analizar_numero(num1);
-133:     print("");
-134:     
-135:     mostrar_tabla_multiplicar(num2, 5);
-136:     print("");
-137:     
-138:     factorial_num = 5;
-139:     resultado = calcular_factorial(factorial_num);
-140:     print("Factorial de ", factorial_num, " es: ", resultado);
-141:     
-142:     resultado = potencia(num2, 3);
-143:     print(num2, " elevado a la 3 es: ", resultado);
+118: void mostrar_estadisticas(a : int, b : int, c : int)
+119: [
+120:     var suma, mayor, menor : int;
+121:     {
+122:         suma = a + b + c;
+123:         mayor = maximo_de_tres(a, b, c);
+124:         
+125:         menor = a;
+126:         if (b < menor) {
+127:             menor = b;
+128:         };
+129:         if (c < menor) {
+130:             menor = c;
+131:         };
+132:             
+133:         print("=== ESTADÍSTICAS ===");
+134:         print("Números: ", a, ", ", b, ", ", c);
+135:         print("Suma total: ", suma);
+136:         print("Número mayor: ", mayor);
+137:         print("Número menor: ", menor);
+138:         print("Promedio: ", calcular_promedio(a, b, c));
+139:     }
+140: ];
+141: 
+142: main {
+143:     print("=== CALCULADORA AVANZADA ===");
 144:     
-145:     resultado = maximo_de_tres(num1, num2, num3);
-146:     print("El mayor de los tres números es: ", resultado);
-147:     
-148:     promedio_val = calcular_promedio(num1, num2, num3);
-149:     print("El promedio de los tres números es: ", promedio_val);
+145:     num1 = 12;
+146:     num2 = 8;
+147:     num3 = 15;
+148:     
+149:     print("Números de trabajo: ", num1, ", ", num2, ", ", num3);
 150:     print("");
 151:     
-152:     
-153:     print("=== FIN DEL PROGRAMA ===");
-154: }
-155: end
+152:     mostrar_operaciones_basicas(num1, num2);
+153:     print("");
+154:     
+155:     analizar_numero(num1);
+156:     print("");
+157:     
+158:     mostrar_tabla_multiplicar(num2, 5);
+159:     print("");
+160:     
+161:     factorial_num = 5;
+162:     resultado = calcular_factorial(factorial_num);
+163:     print("Factorial de ", factorial_num, " es: ", resultado);
+164:     
+165:     resultado = potencia(num2, 3);
+166:     print(num2, " elevado a la 3 es: ", resultado);
+167:     
+168:     resultado = maximo_de_tres(num1, num2, num3);
+169:     print("El mayor de los tres números es: ", resultado);
+170:     
+171:     promedio_val = calcular_promedio(num1, num2, num3);
+172:     print("El promedio de los tres números es: ", promedio_val);
+173:     print("");
+174:     
+175:     mostrar_estadisticas(num1, num2, num3);
+176:     
+177:     print("");
+178:     print("=== FIN DEL PROGRAMA ===");
+179: }
+180: end
 
 SALIDA OBTENIDA:
 Agregando ID 'num1' a lista temporal en ámbito: global
@@ -5947,6 +6661,25 @@ Variable local 'promedio' agregada de tipo Type.INT en dirección 11026 a funci�
 Iniciando declaración de variables en ámbito 'calcular_promedio'
 Ámbito removido: calcular_promedio, ámbito actual es ahora: global
 Declaración de función 'calcular_promedio' terminada, regresado al ámbito: global
+Ámbito agregado: mostrar_estadisticas, pila de ámbitos actual: ['global', 'mostrar_estadisticas']
+Función 'mostrar_estadisticas' declarada con tipo de retorno Type.VOID, ámbito cambiado a: mostrar_estadisticas
+Parámetro 'a' agregado de tipo Type.INT en dirección 11027 a función 'mostrar_estadisticas'
+Parámetro 'b' agregado de tipo Type.INT en dirección 11028 a función 'mostrar_estadisticas'
+Parámetro 'c' agregado de tipo Type.INT en dirección 11029 a función 'mostrar_estadisticas'
+Agregando ID 'suma' a lista temporal en ámbito: mostrar_estadisticas
+'suma' agregado a lista temporal de variables en ámbito: mostrar_estadisticas
+Agregando ID 'mayor' a lista temporal en ámbito: mostrar_estadisticas
+'mayor' agregado a lista temporal de variables en ámbito: mostrar_estadisticas
+Agregando ID 'menor' a lista temporal en ámbito: mostrar_estadisticas
+'menor' agregado a lista temporal de variables en ámbito: mostrar_estadisticas
+Tipo actual establecido a Type.INT
+Agregando variables a tabla en ámbito: mostrar_estadisticas
+Variable local 'suma' agregada de tipo Type.INT en dirección 11030 a función 'mostrar_estadisticas'
+Variable local 'mayor' agregada de tipo Type.INT en dirección 11031 a función 'mostrar_estadisticas'
+Variable local 'menor' agregada de tipo Type.INT en dirección 11032 a función 'mostrar_estadisticas'
+Iniciando declaración de variables en ámbito 'mostrar_estadisticas'
+Ámbito removido: mostrar_estadisticas, ámbito actual es ahora: global
+Declaración de función 'mostrar_estadisticas' terminada, regresado al ámbito: global
 Ámbito agregado: main, pila de ámbitos actual: ['global', 'main']
 Función main declarada, ámbito cambiado a main
 Programa calculadora_avanzada iniciado, ámbito reiniciado a global
@@ -5965,10 +6698,11 @@ Función: mostrar_tabla_multiplicar - Dirección de Inicio: 36
 Función: analizar_numero - Dirección de Inicio: 54
 Función: mostrar_operaciones_basicas - Dirección de Inicio: 71
 Función: calcular_promedio - Dirección de Inicio: 97
-Función: main - Dirección de Inicio: 104
+Función: mostrar_estadisticas - Dirección de Inicio: 104
+Función: main - Dirección de Inicio: 143
 ----------------------------------------------------------------------
-0: (goto, None, None, 104)
-        saltar al cuádruplo 104
+0: (goto, None, None, 143)
+        saltar al cuádruplo 143
 ----------------------------------------------------------------------
 
 ==================== FUNCIÓN: calcular_factorial ====================
@@ -6315,161 +7049,166 @@ Inicia en el cuádruplo 97
 ==================== FIN DE calcular_promedio ====================
 ----------------------------------------------------------------------
 
-==================== FUNCIÓN: main ====================
+==================== FUNCIÓN: mostrar_estadisticas ====================
 Inicia en el cuádruplo 104
 ----------------------------------------------------------------------
-104: (print, === CALCULADORA AVANZADA ===, None, None)
-        imprimir valor dir:=== CALCULADORA AVANZADA ===
+104: (+, 11027, 11028, 15016)
+        sumar dir:11027 y dir:11028, guardar resultado en dir:15016
 ----------------------------------------------------------------------
-105: (=, 20003, None, 5000)
-        asignar valor de constante(12) a num1 (global)
+105: (+, 15016, 11029, 15017)
+        sumar dir:15016 y dir:11029, guardar resultado en dir:15017
 ----------------------------------------------------------------------
-106: (=, 20004, None, 5001)
-        asignar valor de constante(8) a num2 (global)
+106: (=, 15017, None, 11030)
+        asignar valor de dir:15017 a dir:11030
 ----------------------------------------------------------------------
-107: (=, 20005, None, 5002)
-        asignar valor de constante(15) a num3 (global)
-----------------------------------------------------------------------
-108: (print, Números de trabajo: , None, None)
-        imprimir valor dir:Números de trabajo: 
-----------------------------------------------------------------------
-109: (print, 5000, None, None)
-        imprimir valor num1 (global)
-----------------------------------------------------------------------
-110: (print, , , None, None)
-        imprimir valor dir:, 
-----------------------------------------------------------------------
-111: (print, 5001, None, None)
-        imprimir valor num2 (global)
-----------------------------------------------------------------------
-112: (print, , , None, None)
-        imprimir valor dir:, 
-----------------------------------------------------------------------
-113: (print, 5002, None, None)
-        imprimir valor num3 (global)
-----------------------------------------------------------------------
-114: (print, , None, None)
-        imprimir valor dir:
-----------------------------------------------------------------------
-115: (ERA, mostrar_operaciones_basicas, None, None)
-        realizar operación ERA con operando dir:mostrar_operaciones_basicas
-----------------------------------------------------------------------
-116: (parámetro, 5000, par1, None)
-        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
-----------------------------------------------------------------------
-117: (parámetro, 5001, par2, None)
-        realizar operación parámetro con operandos num2 (global), dir:par2, resultado en None
-----------------------------------------------------------------------
-118: (GOSUB, mostrar_operaciones_basicas, None, None)
-        realizar operación GOSUB con operando dir:mostrar_operaciones_basicas
-----------------------------------------------------------------------
-119: (print, , None, None)
-        imprimir valor dir:
-----------------------------------------------------------------------
-120: (ERA, analizar_numero, None, None)
-        realizar operación ERA con operando dir:analizar_numero
-----------------------------------------------------------------------
-121: (parámetro, 5000, par1, None)
-        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
-----------------------------------------------------------------------
-122: (GOSUB, analizar_numero, None, None)
-        realizar operación GOSUB con operando dir:analizar_numero
-----------------------------------------------------------------------
-123: (print, , None, None)
-        imprimir valor dir:
-----------------------------------------------------------------------
-124: (ERA, mostrar_tabla_multiplicar, None, None)
-        realizar operación ERA con operando dir:mostrar_tabla_multiplicar
-----------------------------------------------------------------------
-125: (parámetro, 5001, par1, None)
-        realizar operación parámetro con operandos num2 (global), dir:par1, resultado en None
-----------------------------------------------------------------------
-126: (parámetro, 20006, par2, None)
-        realizar operación parámetro con operandos constante(5), dir:par2, resultado en None
-----------------------------------------------------------------------
-127: (GOSUB, mostrar_tabla_multiplicar, None, None)
-        realizar operación GOSUB con operando dir:mostrar_tabla_multiplicar
-----------------------------------------------------------------------
-128: (print, , None, None)
-        imprimir valor dir:
-----------------------------------------------------------------------
-129: (=, 20006, None, 5004)
-        asignar valor de constante(5) a factorial_num (global)
-----------------------------------------------------------------------
-130: (ERA, calcular_factorial, None, None)
-        realizar operación ERA con operando dir:calcular_factorial
-----------------------------------------------------------------------
-131: (parámetro, 5004, par1, None)
-        realizar operación parámetro con operandos factorial_num (global), dir:par1, resultado en None
-----------------------------------------------------------------------
-132: (GOSUB, calcular_factorial, None, 15016)
-        realizar operación GOSUB con operando dir:calcular_factorial, resultado en dir:15016
-----------------------------------------------------------------------
-133: (=, 15016, None, 5003)
-        asignar valor de dir:15016 a resultado (global)
-----------------------------------------------------------------------
-134: (print, Factorial de , None, None)
-        imprimir valor dir:Factorial de 
-----------------------------------------------------------------------
-135: (print, 5004, None, None)
-        imprimir valor factorial_num (global)
-----------------------------------------------------------------------
-136: (print,  es: , None, None)
-        imprimir valor dir: es: 
-----------------------------------------------------------------------
-137: (print, 5003, None, None)
-        imprimir valor resultado (global)
-----------------------------------------------------------------------
-138: (ERA, potencia, None, None)
-        realizar operación ERA con operando dir:potencia
-----------------------------------------------------------------------
-139: (parámetro, 5001, par1, None)
-        realizar operación parámetro con operandos num2 (global), dir:par1, resultado en None
-----------------------------------------------------------------------
-140: (parámetro, 20002, par2, None)
-        realizar operación parámetro con operandos constante(3), dir:par2, resultado en None
-----------------------------------------------------------------------
-141: (GOSUB, potencia, None, 15017)
-        realizar operación GOSUB con operando dir:potencia, resultado en dir:15017
-----------------------------------------------------------------------
-142: (=, 15017, None, 5003)
-        asignar valor de dir:15017 a resultado (global)
-----------------------------------------------------------------------
-143: (print, 5001, None, None)
-        imprimir valor num2 (global)
-----------------------------------------------------------------------
-144: (print,  elevado a la 3 es: , None, None)
-        imprimir valor dir: elevado a la 3 es: 
-----------------------------------------------------------------------
-145: (print, 5003, None, None)
-        imprimir valor resultado (global)
-----------------------------------------------------------------------
-146: (ERA, maximo_de_tres, None, None)
+107: (ERA, maximo_de_tres, None, None)
         realizar operación ERA con operando dir:maximo_de_tres
 ----------------------------------------------------------------------
-147: (parámetro, 5000, par1, None)
-        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
+108: (parámetro, 11027, par1, None)
+        realizar operación parámetro con operandos dir:11027, dir:par1, resultado en None
 ----------------------------------------------------------------------
-148: (parámetro, 5001, par2, None)
-        realizar operación parámetro con operandos num2 (global), dir:par2, resultado en None
+109: (parámetro, 11028, par2, None)
+        realizar operación parámetro con operandos dir:11028, dir:par2, resultado en None
 ----------------------------------------------------------------------
-149: (parámetro, 5002, par3, None)
-        realizar operación parámetro con operandos num3 (global), dir:par3, resultado en None
+110: (parámetro, 11029, par3, None)
+        realizar operación parámetro con operandos dir:11029, dir:par3, resultado en None
 ----------------------------------------------------------------------
-150: (GOSUB, maximo_de_tres, None, 15018)
+111: (GOSUB, maximo_de_tres, None, 15018)
         realizar operación GOSUB con operando dir:maximo_de_tres, resultado en dir:15018
 ----------------------------------------------------------------------
-151: (=, 15018, None, 5003)
-        asignar valor de dir:15018 a resultado (global)
+112: (=, 15018, None, 11031)
+        asignar valor de dir:15018 a dir:11031
 ----------------------------------------------------------------------
-152: (print, El mayor de los tres números es: , None, None)
-        imprimir valor dir:El mayor de los tres números es: 
+113: (=, 11027, None, 11032)
+        asignar valor de dir:11027 a dir:11032
 ----------------------------------------------------------------------
-153: (print, 5003, None, None)
-        imprimir valor resultado (global)
+114: (<, 11028, 11032, 19009)
+        comparar si dir:11028 es menor que dir:11032, guardar resultado booleano en dir:19009
 ----------------------------------------------------------------------
-154: (ERA, calcular_promedio, None, None)
+115: (gotof, 19009, None, 118)
+        si dir:19009 es falso, saltar al cuádruplo 118
+----------------------------------------------------------------------
+116: (=, 11028, None, 11032)
+        asignar valor de dir:11028 a dir:11032
+----------------------------------------------------------------------
+117: (goto, None, None, 118)
+        saltar al cuádruplo 118
+----------------------------------------------------------------------
+118: (<, 11029, 11032, 19010)
+        comparar si dir:11029 es menor que dir:11032, guardar resultado booleano en dir:19010
+----------------------------------------------------------------------
+119: (gotof, 19010, None, 122)
+        si dir:19010 es falso, saltar al cuádruplo 122
+----------------------------------------------------------------------
+120: (=, 11029, None, 11032)
+        asignar valor de dir:11029 a dir:11032
+----------------------------------------------------------------------
+121: (goto, None, None, 122)
+        saltar al cuádruplo 122
+----------------------------------------------------------------------
+122: (print, === ESTADÍSTICAS ===, None, None)
+        imprimir valor dir:=== ESTADÍSTICAS ===
+----------------------------------------------------------------------
+123: (print, Números: , None, None)
+        imprimir valor dir:Números: 
+----------------------------------------------------------------------
+124: (print, 11027, None, None)
+        imprimir valor dir:11027
+----------------------------------------------------------------------
+125: (print, , , None, None)
+        imprimir valor dir:, 
+----------------------------------------------------------------------
+126: (print, 11028, None, None)
+        imprimir valor dir:11028
+----------------------------------------------------------------------
+127: (print, , , None, None)
+        imprimir valor dir:, 
+----------------------------------------------------------------------
+128: (print, 11029, None, None)
+        imprimir valor dir:11029
+----------------------------------------------------------------------
+129: (print, Suma total: , None, None)
+        imprimir valor dir:Suma total: 
+----------------------------------------------------------------------
+130: (print, 11030, None, None)
+        imprimir valor dir:11030
+----------------------------------------------------------------------
+131: (print, Número mayor: , None, None)
+        imprimir valor dir:Número mayor: 
+----------------------------------------------------------------------
+132: (print, 11031, None, None)
+        imprimir valor dir:11031
+----------------------------------------------------------------------
+133: (print, Número menor: , None, None)
+        imprimir valor dir:Número menor: 
+----------------------------------------------------------------------
+134: (print, 11032, None, None)
+        imprimir valor dir:11032
+----------------------------------------------------------------------
+135: (ERA, calcular_promedio, None, None)
         realizar operación ERA con operando dir:calcular_promedio
+----------------------------------------------------------------------
+136: (parámetro, 11027, par1, None)
+        realizar operación parámetro con operandos dir:11027, dir:par1, resultado en None
+----------------------------------------------------------------------
+137: (parámetro, 11028, par2, None)
+        realizar operación parámetro con operandos dir:11028, dir:par2, resultado en None
+----------------------------------------------------------------------
+138: (parámetro, 11029, par3, None)
+        realizar operación parámetro con operandos dir:11029, dir:par3, resultado en None
+----------------------------------------------------------------------
+139: (GOSUB, calcular_promedio, None, 15019)
+        realizar operación GOSUB con operando dir:calcular_promedio, resultado en dir:15019
+----------------------------------------------------------------------
+140: (print, Promedio: , None, None)
+        imprimir valor dir:Promedio: 
+----------------------------------------------------------------------
+141: (print, 15019, None, None)
+        imprimir valor dir:15019
+----------------------------------------------------------------------
+142: (ENDFUNC, None, None, None)
+        realizar operación ENDFUNC con operando None
+==================== FIN DE mostrar_estadisticas ====================
+----------------------------------------------------------------------
+
+==================== FUNCIÓN: main ====================
+Inicia en el cuádruplo 143
+----------------------------------------------------------------------
+143: (print, === CALCULADORA AVANZADA ===, None, None)
+        imprimir valor dir:=== CALCULADORA AVANZADA ===
+----------------------------------------------------------------------
+144: (=, 20003, None, 5000)
+        asignar valor de constante(12) a num1 (global)
+----------------------------------------------------------------------
+145: (=, 20004, None, 5001)
+        asignar valor de constante(8) a num2 (global)
+----------------------------------------------------------------------
+146: (=, 20005, None, 5002)
+        asignar valor de constante(15) a num3 (global)
+----------------------------------------------------------------------
+147: (print, Números de trabajo: , None, None)
+        imprimir valor dir:Números de trabajo: 
+----------------------------------------------------------------------
+148: (print, 5000, None, None)
+        imprimir valor num1 (global)
+----------------------------------------------------------------------
+149: (print, , , None, None)
+        imprimir valor dir:, 
+----------------------------------------------------------------------
+150: (print, 5001, None, None)
+        imprimir valor num2 (global)
+----------------------------------------------------------------------
+151: (print, , , None, None)
+        imprimir valor dir:, 
+----------------------------------------------------------------------
+152: (print, 5002, None, None)
+        imprimir valor num3 (global)
+----------------------------------------------------------------------
+153: (print, , None, None)
+        imprimir valor dir:
+----------------------------------------------------------------------
+154: (ERA, mostrar_operaciones_basicas, None, None)
+        realizar operación ERA con operando dir:mostrar_operaciones_basicas
 ----------------------------------------------------------------------
 155: (parámetro, 5000, par1, None)
         realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
@@ -6477,62 +7216,197 @@ Inicia en el cuádruplo 104
 156: (parámetro, 5001, par2, None)
         realizar operación parámetro con operandos num2 (global), dir:par2, resultado en None
 ----------------------------------------------------------------------
-157: (parámetro, 5002, par3, None)
-        realizar operación parámetro con operandos num3 (global), dir:par3, resultado en None
+157: (GOSUB, mostrar_operaciones_basicas, None, None)
+        realizar operación GOSUB con operando dir:mostrar_operaciones_basicas
 ----------------------------------------------------------------------
-158: (GOSUB, calcular_promedio, None, 15019)
-        realizar operación GOSUB con operando dir:calcular_promedio, resultado en dir:15019
+158: (print, , None, None)
+        imprimir valor dir:
 ----------------------------------------------------------------------
-159: (=, 15019, None, 5005)
-        asignar valor de dir:15019 a promedio_val (global)
+159: (ERA, analizar_numero, None, None)
+        realizar operación ERA con operando dir:analizar_numero
 ----------------------------------------------------------------------
-160: (print, El promedio de los tres números es: , None, None)
-        imprimir valor dir:El promedio de los tres números es: 
+160: (parámetro, 5000, par1, None)
+        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
 ----------------------------------------------------------------------
-161: (print, 5005, None, None)
-        imprimir valor promedio_val (global)
+161: (GOSUB, analizar_numero, None, None)
+        realizar operación GOSUB con operando dir:analizar_numero
 ----------------------------------------------------------------------
 162: (print, , None, None)
         imprimir valor dir:
 ----------------------------------------------------------------------
-163: (print, === FIN DEL PROGRAMA ===, None, None)
+163: (ERA, mostrar_tabla_multiplicar, None, None)
+        realizar operación ERA con operando dir:mostrar_tabla_multiplicar
+----------------------------------------------------------------------
+164: (parámetro, 5001, par1, None)
+        realizar operación parámetro con operandos num2 (global), dir:par1, resultado en None
+----------------------------------------------------------------------
+165: (parámetro, 20006, par2, None)
+        realizar operación parámetro con operandos constante(5), dir:par2, resultado en None
+----------------------------------------------------------------------
+166: (GOSUB, mostrar_tabla_multiplicar, None, None)
+        realizar operación GOSUB con operando dir:mostrar_tabla_multiplicar
+----------------------------------------------------------------------
+167: (print, , None, None)
+        imprimir valor dir:
+----------------------------------------------------------------------
+168: (=, 20006, None, 5004)
+        asignar valor de constante(5) a factorial_num (global)
+----------------------------------------------------------------------
+169: (ERA, calcular_factorial, None, None)
+        realizar operación ERA con operando dir:calcular_factorial
+----------------------------------------------------------------------
+170: (parámetro, 5004, par1, None)
+        realizar operación parámetro con operandos factorial_num (global), dir:par1, resultado en None
+----------------------------------------------------------------------
+171: (GOSUB, calcular_factorial, None, 15020)
+        realizar operación GOSUB con operando dir:calcular_factorial, resultado en dir:15020
+----------------------------------------------------------------------
+172: (=, 15020, None, 5003)
+        asignar valor de dir:15020 a resultado (global)
+----------------------------------------------------------------------
+173: (print, Factorial de , None, None)
+        imprimir valor dir:Factorial de 
+----------------------------------------------------------------------
+174: (print, 5004, None, None)
+        imprimir valor factorial_num (global)
+----------------------------------------------------------------------
+175: (print,  es: , None, None)
+        imprimir valor dir: es: 
+----------------------------------------------------------------------
+176: (print, 5003, None, None)
+        imprimir valor resultado (global)
+----------------------------------------------------------------------
+177: (ERA, potencia, None, None)
+        realizar operación ERA con operando dir:potencia
+----------------------------------------------------------------------
+178: (parámetro, 5001, par1, None)
+        realizar operación parámetro con operandos num2 (global), dir:par1, resultado en None
+----------------------------------------------------------------------
+179: (parámetro, 20002, par2, None)
+        realizar operación parámetro con operandos constante(3), dir:par2, resultado en None
+----------------------------------------------------------------------
+180: (GOSUB, potencia, None, 15021)
+        realizar operación GOSUB con operando dir:potencia, resultado en dir:15021
+----------------------------------------------------------------------
+181: (=, 15021, None, 5003)
+        asignar valor de dir:15021 a resultado (global)
+----------------------------------------------------------------------
+182: (print, 5001, None, None)
+        imprimir valor num2 (global)
+----------------------------------------------------------------------
+183: (print,  elevado a la 3 es: , None, None)
+        imprimir valor dir: elevado a la 3 es: 
+----------------------------------------------------------------------
+184: (print, 5003, None, None)
+        imprimir valor resultado (global)
+----------------------------------------------------------------------
+185: (ERA, maximo_de_tres, None, None)
+        realizar operación ERA con operando dir:maximo_de_tres
+----------------------------------------------------------------------
+186: (parámetro, 5000, par1, None)
+        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
+----------------------------------------------------------------------
+187: (parámetro, 5001, par2, None)
+        realizar operación parámetro con operandos num2 (global), dir:par2, resultado en None
+----------------------------------------------------------------------
+188: (parámetro, 5002, par3, None)
+        realizar operación parámetro con operandos num3 (global), dir:par3, resultado en None
+----------------------------------------------------------------------
+189: (GOSUB, maximo_de_tres, None, 15022)
+        realizar operación GOSUB con operando dir:maximo_de_tres, resultado en dir:15022
+----------------------------------------------------------------------
+190: (=, 15022, None, 5003)
+        asignar valor de dir:15022 a resultado (global)
+----------------------------------------------------------------------
+191: (print, El mayor de los tres números es: , None, None)
+        imprimir valor dir:El mayor de los tres números es: 
+----------------------------------------------------------------------
+192: (print, 5003, None, None)
+        imprimir valor resultado (global)
+----------------------------------------------------------------------
+193: (ERA, calcular_promedio, None, None)
+        realizar operación ERA con operando dir:calcular_promedio
+----------------------------------------------------------------------
+194: (parámetro, 5000, par1, None)
+        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
+----------------------------------------------------------------------
+195: (parámetro, 5001, par2, None)
+        realizar operación parámetro con operandos num2 (global), dir:par2, resultado en None
+----------------------------------------------------------------------
+196: (parámetro, 5002, par3, None)
+        realizar operación parámetro con operandos num3 (global), dir:par3, resultado en None
+----------------------------------------------------------------------
+197: (GOSUB, calcular_promedio, None, 15023)
+        realizar operación GOSUB con operando dir:calcular_promedio, resultado en dir:15023
+----------------------------------------------------------------------
+198: (=, 15023, None, 5005)
+        asignar valor de dir:15023 a promedio_val (global)
+----------------------------------------------------------------------
+199: (print, El promedio de los tres números es: , None, None)
+        imprimir valor dir:El promedio de los tres números es: 
+----------------------------------------------------------------------
+200: (print, 5005, None, None)
+        imprimir valor promedio_val (global)
+----------------------------------------------------------------------
+201: (print, , None, None)
+        imprimir valor dir:
+----------------------------------------------------------------------
+202: (ERA, mostrar_estadisticas, None, None)
+        realizar operación ERA con operando dir:mostrar_estadisticas
+----------------------------------------------------------------------
+203: (parámetro, 5000, par1, None)
+        realizar operación parámetro con operandos num1 (global), dir:par1, resultado en None
+----------------------------------------------------------------------
+204: (parámetro, 5001, par2, None)
+        realizar operación parámetro con operandos num2 (global), dir:par2, resultado en None
+----------------------------------------------------------------------
+205: (parámetro, 5002, par3, None)
+        realizar operación parámetro con operandos num3 (global), dir:par3, resultado en None
+----------------------------------------------------------------------
+206: (GOSUB, mostrar_estadisticas, None, None)
+        realizar operación GOSUB con operando dir:mostrar_estadisticas
+----------------------------------------------------------------------
+207: (print, , None, None)
+        imprimir valor dir:
+----------------------------------------------------------------------
+208: (print, === FIN DEL PROGRAMA ===, None, None)
         imprimir valor dir:=== FIN DEL PROGRAMA ===
 ----------------------------------------------------------------------
-164: (END, None, None, None)
+209: (END, None, None, None)
         realizar operación END con operando None
 ----------------------------------------------------------------------
 === INICIANDO EJECUCIÓN ===
-IP: 0 -> Ejecutando: (goto, None, None, 104)
-  Salto a: 104
-IP: 104 -> Ejecutando: (print, === CALCULADORA AVANZADA ===, None, None)
+IP: 0 -> Ejecutando: (goto, None, None, 143)
+  Salto a: 143
+IP: 143 -> Ejecutando: (print, === CALCULADORA AVANZADA ===, None, None)
 OUTPUT: === CALCULADORA AVANZADA ===
-IP: 105 -> Ejecutando: (=, 20003, None, 5000)
+IP: 144 -> Ejecutando: (=, 20003, None, 5000)
   Asignación: direccion[5000] = 12
-IP: 106 -> Ejecutando: (=, 20004, None, 5001)
+IP: 145 -> Ejecutando: (=, 20004, None, 5001)
   Asignación: direccion[5001] = 8
-IP: 107 -> Ejecutando: (=, 20005, None, 5002)
+IP: 146 -> Ejecutando: (=, 20005, None, 5002)
   Asignación: direccion[5002] = 15
-IP: 108 -> Ejecutando: (print, Números de trabajo: , None, None)
+IP: 147 -> Ejecutando: (print, Números de trabajo: , None, None)
 OUTPUT: Números de trabajo: 
-IP: 109 -> Ejecutando: (print, 5000, None, None)
+IP: 148 -> Ejecutando: (print, 5000, None, None)
 OUTPUT: 12
-IP: 110 -> Ejecutando: (print, , , None, None)
+IP: 149 -> Ejecutando: (print, , , None, None)
 OUTPUT: , 
-IP: 111 -> Ejecutando: (print, 5001, None, None)
+IP: 150 -> Ejecutando: (print, 5001, None, None)
 OUTPUT: 8
-IP: 112 -> Ejecutando: (print, , , None, None)
+IP: 151 -> Ejecutando: (print, , , None, None)
 OUTPUT: , 
-IP: 113 -> Ejecutando: (print, 5002, None, None)
+IP: 152 -> Ejecutando: (print, 5002, None, None)
 OUTPUT: 15
-IP: 114 -> Ejecutando: (print, , None, None)
+IP: 153 -> Ejecutando: (print, , None, None)
 OUTPUT: 
-IP: 115 -> Ejecutando: (ERA, mostrar_operaciones_basicas, None, None)
+IP: 154 -> Ejecutando: (ERA, mostrar_operaciones_basicas, None, None)
   ERA: Reservando espacio para función 'mostrar_operaciones_basicas'
-IP: 116 -> Ejecutando: (parámetro, 5000, par1, None)
+IP: 155 -> Ejecutando: (parámetro, 5000, par1, None)
   Parámetro: 12 -> posición 1
-IP: 117 -> Ejecutando: (parámetro, 5001, par2, None)
+IP: 156 -> Ejecutando: (parámetro, 5001, par2, None)
   Parámetro: 8 -> posición 2
-IP: 118 -> Ejecutando: (GOSUB, mostrar_operaciones_basicas, None, None)
+IP: 157 -> Ejecutando: (GOSUB, mostrar_operaciones_basicas, None, None)
     Asignando parámetro a (addr: 11016) = 12
     Asignando parámetro b (addr: 11017) = 8
   GOSUB: Llamando función 'mostrar_operaciones_basicas' en dirección 71
@@ -6585,14 +7459,14 @@ OUTPUT: 1
 IP: 94 -> Ejecutando: (goto, None, None, 96)
   Salto a: 96
 IP: 96 -> Ejecutando: (ENDFUNC, None, None, None)
-  ENDFUNC: Retornando a dirección 119
-IP: 119 -> Ejecutando: (print, , None, None)
+  ENDFUNC: Retornando a dirección 158
+IP: 158 -> Ejecutando: (print, , None, None)
 OUTPUT: 
-IP: 120 -> Ejecutando: (ERA, analizar_numero, None, None)
+IP: 159 -> Ejecutando: (ERA, analizar_numero, None, None)
   ERA: Reservando espacio para función 'analizar_numero'
-IP: 121 -> Ejecutando: (parámetro, 5000, par1, None)
+IP: 160 -> Ejecutando: (parámetro, 5000, par1, None)
   Parámetro: 12 -> posición 1
-IP: 122 -> Ejecutando: (GOSUB, analizar_numero, None, None)
+IP: 161 -> Ejecutando: (GOSUB, analizar_numero, None, None)
     Asignando parámetro num (addr: 11015) = 12
   GOSUB: Llamando función 'analizar_numero' en dirección 54
 IP: 54 -> Ejecutando: (print, Analizando el número: , None, None)
@@ -6616,16 +7490,16 @@ OUTPUT: El número es par
 IP: 68 -> Ejecutando: (goto, None, None, 70)
   Salto a: 70
 IP: 70 -> Ejecutando: (ENDFUNC, None, None, None)
-  ENDFUNC: Retornando a dirección 123
-IP: 123 -> Ejecutando: (print, , None, None)
+  ENDFUNC: Retornando a dirección 162
+IP: 162 -> Ejecutando: (print, , None, None)
 OUTPUT: 
-IP: 124 -> Ejecutando: (ERA, mostrar_tabla_multiplicar, None, None)
+IP: 163 -> Ejecutando: (ERA, mostrar_tabla_multiplicar, None, None)
   ERA: Reservando espacio para función 'mostrar_tabla_multiplicar'
-IP: 125 -> Ejecutando: (parámetro, 5001, par1, None)
+IP: 164 -> Ejecutando: (parámetro, 5001, par1, None)
   Parámetro: 8 -> posición 1
-IP: 126 -> Ejecutando: (parámetro, 20006, par2, None)
+IP: 165 -> Ejecutando: (parámetro, 20006, par2, None)
   Parámetro: 5 -> posición 2
-IP: 127 -> Ejecutando: (GOSUB, mostrar_tabla_multiplicar, None, None)
+IP: 166 -> Ejecutando: (GOSUB, mostrar_tabla_multiplicar, None, None)
     Asignando parámetro numero (addr: 11011) = 8
     Asignando parámetro limite (addr: 11012) = 5
   GOSUB: Llamando función 'mostrar_tabla_multiplicar' en dirección 36
@@ -6774,19 +7648,19 @@ IP: 41 -> Ejecutando: (<, 11013, 15006, 19004)
 IP: 42 -> Ejecutando: (gotof, 19004, None, 53)
   Salto condicional a: 53 (condición falsa)
 IP: 53 -> Ejecutando: (ENDFUNC, None, None, None)
-  ENDFUNC: Retornando a dirección 128
-IP: 128 -> Ejecutando: (print, , None, None)
+  ENDFUNC: Retornando a dirección 167
+IP: 167 -> Ejecutando: (print, , None, None)
 OUTPUT: 
-IP: 129 -> Ejecutando: (=, 20006, None, 5004)
+IP: 168 -> Ejecutando: (=, 20006, None, 5004)
   Asignación: direccion[5004] = 5
-IP: 130 -> Ejecutando: (ERA, calcular_factorial, None, None)
+IP: 169 -> Ejecutando: (ERA, calcular_factorial, None, None)
   ERA: Reservando espacio para función 'calcular_factorial'
-IP: 131 -> Ejecutando: (parámetro, 5004, par1, None)
+IP: 170 -> Ejecutando: (parámetro, 5004, par1, None)
   Parámetro: 5 -> posición 1
-IP: 132 -> Ejecutando: (GOSUB, calcular_factorial, None, 15016)
+IP: 171 -> Ejecutando: (GOSUB, calcular_factorial, None, 15020)
     Asignando parámetro n (addr: 11000) = 5
   GOSUB: Llamando función 'calcular_factorial' en dirección 1
-    Valor de retorno se guardará en dirección: 15016
+    Valor de retorno se guardará en dirección: 15020
 IP: 1 -> Ejecutando: (=, 20000, None, 11002)
   Asignación: direccion[11002] = 1
 IP: 2 -> Ejecutando: (=, 20000, None, 11001)
@@ -6879,29 +7753,29 @@ IP: 5 -> Ejecutando: (gotof, 19000, None, 11)
   Salto condicional a: 11 (condición falsa)
 IP: 11 -> Ejecutando: (RETURN, 11002, None, None)
   RETURN: Retornando valor 120
-    Valor guardado en dirección temporal: 15016
-  ENDFUNC: Retornando a dirección 133
-IP: 133 -> Ejecutando: (=, 15016, None, 5003)
+    Valor guardado en dirección temporal: 15020
+  ENDFUNC: Retornando a dirección 172
+IP: 172 -> Ejecutando: (=, 15020, None, 5003)
   Asignación: direccion[5003] = 120
-IP: 134 -> Ejecutando: (print, Factorial de , None, None)
+IP: 173 -> Ejecutando: (print, Factorial de , None, None)
 OUTPUT: Factorial de 
-IP: 135 -> Ejecutando: (print, 5004, None, None)
+IP: 174 -> Ejecutando: (print, 5004, None, None)
 OUTPUT: 5
-IP: 136 -> Ejecutando: (print,  es: , None, None)
+IP: 175 -> Ejecutando: (print,  es: , None, None)
 OUTPUT:  es: 
-IP: 137 -> Ejecutando: (print, 5003, None, None)
+IP: 176 -> Ejecutando: (print, 5003, None, None)
 OUTPUT: 120
-IP: 138 -> Ejecutando: (ERA, potencia, None, None)
+IP: 177 -> Ejecutando: (ERA, potencia, None, None)
   ERA: Reservando espacio para función 'potencia'
-IP: 139 -> Ejecutando: (parámetro, 5001, par1, None)
+IP: 178 -> Ejecutando: (parámetro, 5001, par1, None)
   Parámetro: 8 -> posición 1
-IP: 140 -> Ejecutando: (parámetro, 20002, par2, None)
+IP: 179 -> Ejecutando: (parámetro, 20002, par2, None)
   Parámetro: 3 -> posición 2
-IP: 141 -> Ejecutando: (GOSUB, potencia, None, 15017)
+IP: 180 -> Ejecutando: (GOSUB, potencia, None, 15021)
     Asignando parámetro base (addr: 11003) = 8
     Asignando parámetro exponente (addr: 11004) = 3
   GOSUB: Llamando función 'potencia' en dirección 13
-    Valor de retorno se guardará en dirección: 15017
+    Valor de retorno se guardará en dirección: 15021
 IP: 13 -> Ejecutando: (=, 20000, None, 11006)
   Asignación: direccion[11006] = 1
 IP: 14 -> Ejecutando: (=, 20000, None, 11005)
@@ -6962,25 +7836,118 @@ IP: 17 -> Ejecutando: (gotof, 19001, None, 23)
   Salto condicional a: 23 (condición falsa)
 IP: 23 -> Ejecutando: (RETURN, 11006, None, None)
   RETURN: Retornando valor 512
-    Valor guardado en dirección temporal: 15017
-  ENDFUNC: Retornando a dirección 142
-IP: 142 -> Ejecutando: (=, 15017, None, 5003)
+    Valor guardado en dirección temporal: 15021
+  ENDFUNC: Retornando a dirección 181
+IP: 181 -> Ejecutando: (=, 15021, None, 5003)
   Asignación: direccion[5003] = 512
-IP: 143 -> Ejecutando: (print, 5001, None, None)
+IP: 182 -> Ejecutando: (print, 5001, None, None)
 OUTPUT: 8
-IP: 144 -> Ejecutando: (print,  elevado a la 3 es: , None, None)
+IP: 183 -> Ejecutando: (print,  elevado a la 3 es: , None, None)
 OUTPUT:  elevado a la 3 es: 
-IP: 145 -> Ejecutando: (print, 5003, None, None)
+IP: 184 -> Ejecutando: (print, 5003, None, None)
 OUTPUT: 512
-IP: 146 -> Ejecutando: (ERA, maximo_de_tres, None, None)
+IP: 185 -> Ejecutando: (ERA, maximo_de_tres, None, None)
   ERA: Reservando espacio para función 'maximo_de_tres'
-IP: 147 -> Ejecutando: (parámetro, 5000, par1, None)
+IP: 186 -> Ejecutando: (parámetro, 5000, par1, None)
   Parámetro: 12 -> posición 1
-IP: 148 -> Ejecutando: (parámetro, 5001, par2, None)
+IP: 187 -> Ejecutando: (parámetro, 5001, par2, None)
   Parámetro: 8 -> posición 2
-IP: 149 -> Ejecutando: (parámetro, 5002, par3, None)
+IP: 188 -> Ejecutando: (parámetro, 5002, par3, None)
   Parámetro: 15 -> posición 3
-IP: 150 -> Ejecutando: (GOSUB, maximo_de_tres, None, 15018)
+IP: 189 -> Ejecutando: (GOSUB, maximo_de_tres, None, 15022)
+    Asignando parámetro a (addr: 11007) = 12
+    Asignando parámetro b (addr: 11008) = 8
+    Asignando parámetro c (addr: 11009) = 15
+  GOSUB: Llamando función 'maximo_de_tres' en dirección 25
+    Valor de retorno se guardará en dirección: 15022
+IP: 25 -> Ejecutando: (=, 11007, None, 11010)
+  Asignación: direccion[11010] = 12
+IP: 26 -> Ejecutando: (>, 11008, 11010, 19002)
+  Comparación: 8 > 12 = False
+IP: 27 -> Ejecutando: (gotof, 19002, None, 30)
+  Salto condicional a: 30 (condición falsa)
+IP: 30 -> Ejecutando: (>, 11009, 11010, 19003)
+  Comparación: 15 > 12 = True
+IP: 31 -> Ejecutando: (gotof, 19003, None, 34)
+  No hay salto (condición verdadera)
+IP: 32 -> Ejecutando: (=, 11009, None, 11010)
+  Asignación: direccion[11010] = 15
+IP: 33 -> Ejecutando: (goto, None, None, 34)
+  Salto a: 34
+IP: 34 -> Ejecutando: (RETURN, 11010, None, None)
+  RETURN: Retornando valor 15
+    Valor guardado en dirección temporal: 15022
+  ENDFUNC: Retornando a dirección 190
+IP: 190 -> Ejecutando: (=, 15022, None, 5003)
+  Asignación: direccion[5003] = 15
+IP: 191 -> Ejecutando: (print, El mayor de los tres números es: , None, None)
+OUTPUT: El mayor de los tres números es: 
+IP: 192 -> Ejecutando: (print, 5003, None, None)
+OUTPUT: 15
+IP: 193 -> Ejecutando: (ERA, calcular_promedio, None, None)
+  ERA: Reservando espacio para función 'calcular_promedio'
+IP: 194 -> Ejecutando: (parámetro, 5000, par1, None)
+  Parámetro: 12 -> posición 1
+IP: 195 -> Ejecutando: (parámetro, 5001, par2, None)
+  Parámetro: 8 -> posición 2
+IP: 196 -> Ejecutando: (parámetro, 5002, par3, None)
+  Parámetro: 15 -> posición 3
+IP: 197 -> Ejecutando: (GOSUB, calcular_promedio, None, 15023)
+    Asignando parámetro a (addr: 11022) = 12
+    Asignando parámetro b (addr: 11023) = 8
+    Asignando parámetro c (addr: 11024) = 15
+  GOSUB: Llamando función 'calcular_promedio' en dirección 97
+    Valor de retorno se guardará en dirección: 15023
+IP: 97 -> Ejecutando: (+, 11022, 11023, 15013)
+  Aritmética: 12 + 8 = 20
+IP: 98 -> Ejecutando: (+, 15013, 11024, 15014)
+  Aritmética: 20 + 15 = 35
+IP: 99 -> Ejecutando: (=, 15014, None, 11025)
+  Asignación: direccion[11025] = 35
+IP: 100 -> Ejecutando: (/, 11025, 20002, 15015)
+  Aritmética: 35 / 3 = 11.666666666666666
+IP: 101 -> Ejecutando: (=, 15015, None, 11026)
+  Asignación: direccion[11026] = 11
+IP: 102 -> Ejecutando: (RETURN, 11026, None, None)
+  RETURN: Retornando valor 11
+    Valor guardado en dirección temporal: 15023
+  ENDFUNC: Retornando a dirección 198
+IP: 198 -> Ejecutando: (=, 15023, None, 5005)
+  Asignación: direccion[5005] = 11
+IP: 199 -> Ejecutando: (print, El promedio de los tres números es: , None, None)
+OUTPUT: El promedio de los tres números es: 
+IP: 200 -> Ejecutando: (print, 5005, None, None)
+OUTPUT: 11
+IP: 201 -> Ejecutando: (print, , None, None)
+OUTPUT: 
+IP: 202 -> Ejecutando: (ERA, mostrar_estadisticas, None, None)
+  ERA: Reservando espacio para función 'mostrar_estadisticas'
+IP: 203 -> Ejecutando: (parámetro, 5000, par1, None)
+  Parámetro: 12 -> posición 1
+IP: 204 -> Ejecutando: (parámetro, 5001, par2, None)
+  Parámetro: 8 -> posición 2
+IP: 205 -> Ejecutando: (parámetro, 5002, par3, None)
+  Parámetro: 15 -> posición 3
+IP: 206 -> Ejecutando: (GOSUB, mostrar_estadisticas, None, None)
+    Asignando parámetro a (addr: 11027) = 12
+    Asignando parámetro b (addr: 11028) = 8
+    Asignando parámetro c (addr: 11029) = 15
+  GOSUB: Llamando función 'mostrar_estadisticas' en dirección 104
+IP: 104 -> Ejecutando: (+, 11027, 11028, 15016)
+  Aritmética: 12 + 8 = 20
+IP: 105 -> Ejecutando: (+, 15016, 11029, 15017)
+  Aritmética: 20 + 15 = 35
+IP: 106 -> Ejecutando: (=, 15017, None, 11030)
+  Asignación: direccion[11030] = 35
+IP: 107 -> Ejecutando: (ERA, maximo_de_tres, None, None)
+  ERA: Reservando espacio para función 'maximo_de_tres'
+IP: 108 -> Ejecutando: (parámetro, 11027, par1, None)
+  Parámetro: 12 -> posición 1
+IP: 109 -> Ejecutando: (parámetro, 11028, par2, None)
+  Parámetro: 8 -> posición 2
+IP: 110 -> Ejecutando: (parámetro, 11029, par3, None)
+  Parámetro: 15 -> posición 3
+IP: 111 -> Ejecutando: (GOSUB, maximo_de_tres, None, 15018)
     Asignando parámetro a (addr: 11007) = 12
     Asignando parámetro b (addr: 11008) = 8
     Asignando parámetro c (addr: 11009) = 15
@@ -7003,22 +7970,58 @@ IP: 33 -> Ejecutando: (goto, None, None, 34)
 IP: 34 -> Ejecutando: (RETURN, 11010, None, None)
   RETURN: Retornando valor 15
     Valor guardado en dirección temporal: 15018
-  ENDFUNC: Retornando a dirección 151
-IP: 151 -> Ejecutando: (=, 15018, None, 5003)
-  Asignación: direccion[5003] = 15
-IP: 152 -> Ejecutando: (print, El mayor de los tres números es: , None, None)
-OUTPUT: El mayor de los tres números es: 
-IP: 153 -> Ejecutando: (print, 5003, None, None)
+  ENDFUNC: Retornando a dirección 112
+IP: 112 -> Ejecutando: (=, 15018, None, 11031)
+  Asignación: direccion[11031] = 15
+IP: 113 -> Ejecutando: (=, 11027, None, 11032)
+  Asignación: direccion[11032] = 12
+IP: 114 -> Ejecutando: (<, 11028, 11032, 19009)
+  Comparación: 8 < 12 = True
+IP: 115 -> Ejecutando: (gotof, 19009, None, 118)
+  No hay salto (condición verdadera)
+IP: 116 -> Ejecutando: (=, 11028, None, 11032)
+  Asignación: direccion[11032] = 8
+IP: 117 -> Ejecutando: (goto, None, None, 118)
+  Salto a: 118
+IP: 118 -> Ejecutando: (<, 11029, 11032, 19010)
+  Comparación: 15 < 8 = False
+IP: 119 -> Ejecutando: (gotof, 19010, None, 122)
+  Salto condicional a: 122 (condición falsa)
+IP: 122 -> Ejecutando: (print, === ESTADÍSTICAS ===, None, None)
+OUTPUT: === ESTADÍSTICAS ===
+IP: 123 -> Ejecutando: (print, Números: , None, None)
+OUTPUT: Números: 
+IP: 124 -> Ejecutando: (print, 11027, None, None)
+OUTPUT: 12
+IP: 125 -> Ejecutando: (print, , , None, None)
+OUTPUT: , 
+IP: 126 -> Ejecutando: (print, 11028, None, None)
+OUTPUT: 8
+IP: 127 -> Ejecutando: (print, , , None, None)
+OUTPUT: , 
+IP: 128 -> Ejecutando: (print, 11029, None, None)
 OUTPUT: 15
-IP: 154 -> Ejecutando: (ERA, calcular_promedio, None, None)
+IP: 129 -> Ejecutando: (print, Suma total: , None, None)
+OUTPUT: Suma total: 
+IP: 130 -> Ejecutando: (print, 11030, None, None)
+OUTPUT: 35
+IP: 131 -> Ejecutando: (print, Número mayor: , None, None)
+OUTPUT: Número mayor: 
+IP: 132 -> Ejecutando: (print, 11031, None, None)
+OUTPUT: 15
+IP: 133 -> Ejecutando: (print, Número menor: , None, None)
+OUTPUT: Número menor: 
+IP: 134 -> Ejecutando: (print, 11032, None, None)
+OUTPUT: 8
+IP: 135 -> Ejecutando: (ERA, calcular_promedio, None, None)
   ERA: Reservando espacio para función 'calcular_promedio'
-IP: 155 -> Ejecutando: (parámetro, 5000, par1, None)
+IP: 136 -> Ejecutando: (parámetro, 11027, par1, None)
   Parámetro: 12 -> posición 1
-IP: 156 -> Ejecutando: (parámetro, 5001, par2, None)
+IP: 137 -> Ejecutando: (parámetro, 11028, par2, None)
   Parámetro: 8 -> posición 2
-IP: 157 -> Ejecutando: (parámetro, 5002, par3, None)
+IP: 138 -> Ejecutando: (parámetro, 11029, par3, None)
   Parámetro: 15 -> posición 3
-IP: 158 -> Ejecutando: (GOSUB, calcular_promedio, None, 15019)
+IP: 139 -> Ejecutando: (GOSUB, calcular_promedio, None, 15019)
     Asignando parámetro a (addr: 11022) = 12
     Asignando parámetro b (addr: 11023) = 8
     Asignando parámetro c (addr: 11024) = 15
@@ -7037,18 +8040,18 @@ IP: 101 -> Ejecutando: (=, 15015, None, 11026)
 IP: 102 -> Ejecutando: (RETURN, 11026, None, None)
   RETURN: Retornando valor 11
     Valor guardado en dirección temporal: 15019
-  ENDFUNC: Retornando a dirección 159
-IP: 159 -> Ejecutando: (=, 15019, None, 5005)
-  Asignación: direccion[5005] = 11
-IP: 160 -> Ejecutando: (print, El promedio de los tres números es: , None, None)
-OUTPUT: El promedio de los tres números es: 
-IP: 161 -> Ejecutando: (print, 5005, None, None)
+  ENDFUNC: Retornando a dirección 140
+IP: 140 -> Ejecutando: (print, Promedio: , None, None)
+OUTPUT: Promedio: 
+IP: 141 -> Ejecutando: (print, 15019, None, None)
 OUTPUT: 11
-IP: 162 -> Ejecutando: (print, , None, None)
+IP: 142 -> Ejecutando: (ENDFUNC, None, None, None)
+  ENDFUNC: Retornando a dirección 207
+IP: 207 -> Ejecutando: (print, , None, None)
 OUTPUT: 
-IP: 163 -> Ejecutando: (print, === FIN DEL PROGRAMA ===, None, None)
+IP: 208 -> Ejecutando: (print, === FIN DEL PROGRAMA ===, None, None)
 OUTPUT: === FIN DEL PROGRAMA ===
-IP: 164 -> Ejecutando: (END, None, None, None)
+IP: 209 -> Ejecutando: (END, None, None, None)
   END: Terminando programa
 === EJECUCIÓN TERMINADA ===
 
@@ -7080,10 +8083,14 @@ Memoria Temporal Enteros (15000-16999):
   [15013]: 20
   [15014]: 35
   [15015]: 11
-  [15016]: 120
-  [15017]: 512
+  [15016]: 20
+  [15017]: 35
   [15018]: 15
   [15019]: 11
+  [15020]: 120
+  [15021]: 512
+  [15022]: 15
+  [15023]: 11
 Memoria Temporal Flotantes (17000-18999):
 Memoria Temporal Booleanos (19000-19999):
   [19000]: False
@@ -7094,6 +8101,8 @@ Memoria Temporal Booleanos (19000-19999):
   [19005]: True
   [19007]: True
   [19008]: True
+  [19009]: True
+  [19010]: False
 Constantes Enteras (20000-20499):
   [20000]: 1
   [20001]: 0
@@ -7104,6 +8113,140 @@ Constantes Enteras (20000-20499):
   [20006]: 5
 Constantes Flotantes (20500+):
 ========================================
+
+=== SALIDA DEL PROGRAMA ===
+=== CALCULADORA AVANZADA ===
+
+Números de trabajo: 
+12
+
+, 
+8
+
+, 
+15
+
+
+
+Operaciones básicas entre 
+12
+
+ y 
+8
+
+:
+
+Suma: 
+20
+
+Resta: 
+4
+
+Multiplicación: 
+96
+
+División: 
+1
+
+
+
+Analizando el número: 
+12
+
+El número es positivo
+
+El número es par
+
+
+
+Tabla de multiplicar del 
+8
+
+:
+8
+
+ x 
+1
+
+ = 
+8
+8
+
+ x 
+2
+
+ = 
+16
+8
+
+ x 
+3
+
+ = 
+24
+8
+
+ x 
+4
+
+ = 
+32
+8
+
+ x 
+5
+
+ = 
+40
+
+
+
+Factorial de 
+5
+
+ es: 
+120
+8
+
+ elevado a la 3 es: 
+512
+
+El mayor de los tres números es: 
+15
+
+El promedio de los tres números es: 
+11
+
+
+
+=== ESTADÍSTICAS ===
+
+Números: 
+12
+
+, 
+8
+
+, 
+15
+
+Suma total: 
+35
+
+Número mayor: 
+15
+
+Número menor: 
+8
+
+Promedio: 
+11
+
+
+
+=== FIN DEL PROGRAMA ===
+
+===========================
 
 RESULTADOS ESPERADOS:
   - === CALCULADORA AVANZADA ===
@@ -7151,6 +8294,21 @@ RESULTADOS ESPERADOS:
   - El mayor de los tres números es:
   - 15
   - El promedio de los tres números es:
+  - 11
+  - === ESTADÍSTICAS ===
+  - Números:
+  - 12
+  - ,
+  - 8
+  - ,
+  - 15
+  - Suma total:
+  - 35
+  - Número mayor:
+  - 15
+  - Número menor:
+  - 8
+  - Promedio:
   - 11
   - === FIN DEL PROGRAMA ===
 
