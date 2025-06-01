@@ -1,0 +1,64 @@
+program funciones_parametros;
+var
+    a, b, c : int;
+    resultado : float;
+
+void operaciones_basicas(x : int, y : int, z : int)
+[
+    var suma, producto, promedio : int;
+    {
+        suma = x + y + z;
+        producto = x * y * z;
+        promedio = suma / 3;
+        
+        print("Números: ", x, ", ", y, ", ", z);
+        print("Suma: ", suma);
+        print("Producto: ", producto);
+        print("Promedio: ", promedio);
+    }
+];
+
+void comparar_numeros(num1 : int, num2 : int)
+[
+    {
+        print("Comparando ", num1, " y ", num2);
+        
+        if (num1 > num2) {
+            print(num1, " es mayor que ", num2);
+        } else {
+            if (num1 < num2) {
+                print(num1, " es menor que ", num2);
+            } else {
+                print(num1, " es igual a ", num2);
+            };
+        };
+    }
+];
+
+void serie_aritmetica(inicio : int, diferencia : int, terminos : int)
+[
+    var i, valor : int;
+    {
+        print("Serie aritmética:");
+        print("Inicio: ", inicio, ", Diferencia: ", diferencia, ", Términos: ", terminos);
+        
+        i = 0;
+        valor = inicio;
+        while (i < terminos) do {
+            print("Término ", i + 1, ": ", valor);
+            valor = valor + diferencia;
+            i = i + 1;
+        };
+    }
+];
+
+main {
+    operaciones_basicas(4, 7, 2);
+    
+    comparar_numeros(15, 8);
+    comparar_numeros(5, 12);
+    comparar_numeros(9, 9);
+    
+    serie_aritmetica(5, 3, 6);
+}
+end

@@ -1,0 +1,16 @@
+program ciclo_while;
+var
+    contador, suma : int;
+main {
+    contador = 1;
+    suma = 0;
+    
+    while (contador < 5) do {
+        suma = suma + contador;
+        print("Iteración: ", contador, " Suma actual: ", suma);
+        contador = contador + 1;
+    };
+    
+    print("Suma final: ", suma);
+}
+end

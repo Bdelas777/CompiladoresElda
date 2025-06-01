@@ -1,0 +1,22 @@
+program control_if;
+var
+    x, y, max : int;
+main {
+    x = 15;
+    y = 7;
+    
+    if (x > y) {
+        max = x;
+        print("El mayor es x: ", max);
+    } else {
+        max = y;
+        print("El mayor es y: ", max);
+    };
+    
+    if (x < 10) {
+        print("x es menor que 10");
+    } else {
+        print("x es mayor o igual que 10");
+    };
+}
+end

@@ -1,0 +1,65 @@
+program fibonacci_funcion;
+var
+    cantidad : int;
+
+void generar_fibonacci(n : int)
+[
+    var i, fib1, fib2, siguiente : int;
+    {
+        fib1 = 0;
+        fib2 = 1;
+        
+        print("Serie de Fibonacci de ", n, " términos:");
+        
+        if (n > 2) {
+            print("F(1) = ", fib1);
+        };
+        
+        if (n > 3) {
+            print("F(2) = ", fib2);
+        };
+        
+        i = 3;
+        while (i < n + 1) do {
+            siguiente = fib1 + fib2;
+            print("F(", i, ") = ", siguiente);
+            fib1 = fib2;
+            fib2 = siguiente;
+            i = i + 1;
+        };
+        
+        print("Serie completada");
+    }
+];
+
+void mostrar_fibonacci_hasta(limite : int)
+[
+    var fib1, fib2, siguiente : int;
+    {
+        fib1 = 0;
+        fib2 = 1;
+        
+        print("Fibonacci hasta ", limite, ":");
+        print(fib1);
+        
+        if (fib2 < limite + 1) {
+            print(fib2);
+        };
+        
+        siguiente = fib1 + fib2;
+        while (siguiente < limite + 1) do {
+            print(siguiente);
+            fib1 = fib2;
+            fib2 = siguiente;
+            siguiente = fib1 + fib2;
+        };
+    }
+];
+
+main {
+    cantidad = 7;
+    generar_fibonacci(cantidad);
+    
+    mostrar_fibonacci_hasta(20);
+}
+end
