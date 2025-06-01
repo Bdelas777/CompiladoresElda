@@ -158,8 +158,7 @@ class SemanticAnalyzer:
     def declare_function(self, func_id, return_type=Type.VOID):
         if func_id in self.function_directory and not self.allow_function_redefinition:
             return self.add_error(f"Función '{func_id}' ya declarada")
-        
-        new_function = Function(func_id, return_type)  # Pasar el return_type
+        new_function = Function(func_id, return_type)  
         self.function_directory[func_id] = new_function
         self.push_scope(func_id)
         print(f"Función '{func_id}' declarada con tipo de retorno {return_type}, ámbito cambiado a: {self.current_scope}")
