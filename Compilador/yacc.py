@@ -496,7 +496,7 @@ def p_f_call(p):
                 param_type = param.type
                 result_type = get_result_type(param_type, arg_type, Operation.ASSIGN)
                 if result_type == Type.ERROR:
-                    semantic.add_error(f"Parameter type mismatch in call to '{p[1]}': Parameter {i+1} expects {param_type}, got {arg_type}")
+                    semantic.add_error(f"No hay coincidencia de tipo parametro en la llamada '{p[1]}': Parametro{i+1} espera {param_type}, obtiene {arg_type}")
         
     p[0] = ('function_call', p[1], p[4] if p[4] else [])
 
@@ -506,14 +506,14 @@ def p_function_call_expr(p):
     if func:
         args = p[4] if p[4] else []
         if len(args) != len(func.parameters):
-            semantic.add_error(f"Function '{p[1]}' expects {len(func.parameters)} arguments, got {len(args)}")
+            semantic.add_error(f"Funcion '{p[1]}' espera {len(func.parameters)} argumentos, obtiene {len(args)}")
         else:
             for i, (arg, param) in enumerate(zip(args, func.parameters)):
                 arg_type = get_expr_type(arg)
                 param_type = param.type
                 result_type = get_result_type(param_type, arg_type, Operation.ASSIGN)
                 if result_type == Type.ERROR:
-                    semantic.add_error(f"Parameter type mismatch in call to '{p[1]}': Parameter {i+1} expects {param_type}, got {arg_type}")
+                    semantic.add_error(f"No hay coincidencia de tipo parametro en la llamada '{p[1]}': Parametro{i+1} espera {param_type}, obtiene {arg_type}")
     p[0] = ('function_call_expr', p[1], p[4] if p[4] else [])
     if func and func.return_type != Type.VOID:
         p[0] = set_expr_type(p[0], func.return_type)
@@ -627,11 +627,11 @@ def p_empty(p):
     
 def p_error(p):
     if p:
-        print(f"Syntax error at '{p.value}', line {p.lineno}, token type: {p.type}")
-        error_msg = f"Syntax error at '{p.value}' on line {p.lineno}"
+        print(f"Error sintactico en '{p.value}', liea {p.lineno}, token de tipe: {p.type}")
+        error_msg = f"Error sintactico '{p.value}' en la linea {p.lineno}"
     else:
-        print("Syntax error at EOF")
-        error_msg = "Syntax error at EOF"
+        print("Error sintactico en EOF")
+        error_msg = "Error sintactico en EOF"
     raise SyntaxError(error_msg)
         
 def token_to_operation(token):
@@ -652,7 +652,7 @@ def token_to_operation(token):
     elif token == '=' or token == 'TOKEN_ASSIGN':
         return Operation.ASSIGN
     else:
-        raise SyntaxError("error_msg: Invalid operation token {token}")
+        raise SyntaxError("error_msg: token invalido {token}")
         
 def set_expr_type(expr_node, expr_type):
     if isinstance(expr_node, tuple):
@@ -737,184 +737,36 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = """
-'''program calculadora_avanzada;
-var 
-    num1, num2, num3, resultado, factorial_num : int;
-    promedio_val : int;
-    
-int calcular_factorial(n : int)
-[
-    var i, fact : int;
-    {
-        fact = 1;
-        i = 1;
-        while (i < n + 1) do {
-            fact = fact * i;
-            i = i + 1;
-        };
-        return fact;
-    }
-];
-
-int potencia(base : int, exponente : int)
-[
-    var i, resultado : int;
-    {
-        resultado = 1;
-        i = 1;
-        while (i < exponente + 1) do {
-            resultado = resultado * base;
-            i = i + 1;
-        };
-        return resultado;
-    }
-];
-
-int maximo_de_tres(a : int, b : int, c : int)
-[
-    var max : int;
-    {
-        max = a;
-        if (b > max) {
-            max = b;
-        };
-        if (c > max) {
-            max = c;
-        };
-        return max;
-    }
-];
-
-void mostrar_tabla_multiplicar(numero : int, limite : int)
-[
-    var i, producto : int;
-    {
-        print("Tabla de multiplicar del ", numero, ":");
-        i = 1;
-        while (i < limite + 1) do {
-            producto = numero * i;
-            print(numero, " x ", i, " = ", producto);
-            i = i + 1;
-        };
-    }
-];
-
-void analizar_numero(num : int)
-[
-    {
-        print("Analizando el número: ", num);
-        
-        if (num > 0) {
-            print("El número es positivo");
-        } else {
-            if (num < 0) {
-                print("El número es negativo");
-            } else {
-                print("El número es cero");
-            };
-        };
-                
-        if (num > 0) {
-            print("El número es par");
-        } else {
-            print("El número es impar");
-        };
-    }
-];
-
-void mostrar_operaciones_basicas(a : int, b : int)
-[
-    var suma, resta, multiplicacion, division : int;
-    {
-        suma = a + b;
-        resta = a - b;
-        multiplicacion = a * b;
-        
-        print("Operaciones básicas entre ", a, " y ", b, ":");
-        print("Suma: ", suma);
-        print("Resta: ", resta);
-        print("Multiplicación: ", multiplicacion);
-        
-        if (b > 0) {
-            division = a / b;
-            print("División: ", division);
-        } else {
-            print("No se puede dividir entre cero");
-        };
-    }
-];
-
-int calcular_promedio(a : int, b : int, c : int)
-[
-    var suma, promedio : int;
-    {
-        suma = a + b + c;
-        promedio = suma / 3;
-        return promedio;
-    }
-];
-
-void mostrar_estadisticas(a : int, b : int, c : int)
-[
-    var suma, mayor, menor : int;
-    {
-        suma = a + b + c;
-        mayor = maximo_de_tres(a, b, c);
-        
-        menor = a;
-        if (b < menor) {
-            menor = b;
-        };
-        if (c < menor) {
-            menor = c;
-        };
-            
-        print("=== ESTADÍSTICAS ===");
-        print("Números: ", a, ", ", b, ", ", c);
-        print("Suma total: ", suma);
-        print("Número mayor: ", mayor);
-        print("Número menor: ", menor);
-        print("Promedio: ", calcular_promedio(a, b, c));
-    }
-];
+'''program operaciones_basicas;
+var
+    a, b, c, resultado, resultado2 : int;
+    resultado3 : float;
 
 main {
-    print("=== CALCULADORA AVANZADA ===");
+    a = 5;
+    b = 3;
+    c = 2;
     
-    num1 = 12;
-    num2 = 8;
-    num3 = 15;
+    resultado = a + b * c;
+    print("Resultado 1: ", resultado);
     
-    print("Números de trabajo: ", num1, ", ", num2, ", ", num3);
-    print("");
+    resultado2 = (a + b) * c;
+    print("Resultado 2: ", resultado2);
     
-    mostrar_operaciones_basicas(num1, num2);
-    print("");
+    resultado3 = a - b / c;
+    print("Resultado 3: ", resultado3);
     
-    analizar_numero(num1);
-    print("");
+    resultado = a + b + c;
+    print("Resultado 4: ", resultado);
     
-    mostrar_tabla_multiplicar(num2, 5);
-    print("");
+    resultado2 = a + b * c * 2;
+    print("Resultado 5: ", resultado2);
     
-    factorial_num = 5;
-    resultado = calcular_factorial(factorial_num);
-    print("Factorial de ", factorial_num, " es: ", resultado);
+    resultado3 = a + b + c * 2;
+    print("Resultado 6: ", resultado3);
     
-    resultado = potencia(num2, 3);
-    print(num2, " elevado a la 3 es: ", resultado);
-    
-    resultado = maximo_de_tres(num1, num2, num3);
-    print("El mayor de los tres números es: ", resultado);
-    
-    promedio_val = calcular_promedio(num1, num2, num3);
-    print("El promedio de los tres números es: ", promedio_val);
-    print("");
-    
-    mostrar_estadisticas(num1, num2, num3);
-    
-    print("");
-    print("=== FIN DEL PROGRAMA ===");
+    resultado3 = a  - b * c *2 + 1 ;
+    print("Resultado 7: ", resultado3);
 }
 end
 """

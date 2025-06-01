@@ -1,0 +1,281 @@
+== INICIO DE PRUEBAS - 2025-06-01 08:58:31.504367 ==
+
+
+==================================================
+Running test: P-FUNC-01 - Funcion con parametros correctos
+==================================================
+
+Código:
+program test1;
+
+var
+    i, j, k, a : int;
+    x, y : float;
+
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main {
+    a = 1 + 2;
+}
+
+end
+
+
+Parse result: Success
+
+No semantic errors found.
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-02 - Funcion con variable doblemente declarada
+==================================================
+
+Código:
+program test2;
+
+var
+    i, j,a, k, k : int;
+    x, y : float;
+
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main {
+    a = 1 + 2;
+}
+
+end
+
+
+Parse result: Success
+
+Found 1 semantic errors:
+  1. Error semántico: Variable 'k' declarada múltiples veces en la misma declaración
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-03 - Funciones duplicadas
+==================================================
+
+Código:
+program pelos;
+
+var
+    i, j, k,a  : int;
+    x, y : float;
+
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main {
+    a = 1 + 2;
+}
+
+end
+
+
+Parse result: Success
+
+Found 4 semantic errors:
+  1. Error semántico: Función 'uno' ya declarada
+  2. Error semántico: No se pueden declarar parámetros en ámbito global
+  3. Error semántico: Variable 'x' ya declarada en ámbito global
+  4. Error semántico: No está dentro de una declaración de función
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-04 - Funcion y main sin errores
+==================================================
+
+Código:
+program uno;
+
+var
+    i, j, k ,a : int;
+    x, y : float;
+
+void uno(i : int)
+[
+    var x : int;
+    {
+        x = 1;
+    }
+];
+
+main {
+    a = 1 + 2;
+}
+
+end
+
+
+Parse result: Success
+
+No semantic errors found.
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-05 - Programa sin main
+==================================================
+
+Código:
+program sinmain;
+
+var a : int;
+
+void saluda() [
+    {
+        a = 3;
+    }
+];
+
+end
+
+
+Error durante la prueba:
+Traceback (most recent call last):
+  File "c:\Users\6QV46LA\OneDrive\Documentos\GitHub\CompiladoresElda\Compilador\testSemantica.py", line 210, in run_test
+    result, errors = parse_program(code)
+                     ^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\6QV46LA\OneDrive\Documentos\GitHub\CompiladoresElda\Compilador\yacc.py", line 714, in parse_program
+    result = parser.parse(code)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\6QV46LA\AppData\Local\Programs\Python\Python312\Lib\site-packages\ply\yacc.py", line 333, in parse
+    return self.parseopt_notrack(input, lexer, debug, tracking, tokenfunc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\6QV46LA\AppData\Local\Programs\Python\Python312\Lib\site-packages\ply\yacc.py", line 1201, in parseopt_notrack
+    tok = call_errorfunc(self.errorfunc, errtoken, self)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\6QV46LA\AppData\Local\Programs\Python\Python312\Lib\site-packages\ply\yacc.py", line 192, in call_errorfunc
+    r = errorfunc(token)
+        ^^^^^^^^^^^^^^^^
+  File "c:\Users\6QV46LA\OneDrive\Documentos\GitHub\CompiladoresElda\Compilador\yacc.py", line 635, in p_error
+    raise SyntaxError(error_msg)
+SyntaxError: Error sintactico 'end' en la linea 100
+
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-07 - Uso de variable no declarada
+==================================================
+
+Código:
+program undeclared_var;
+
+main {
+    a = 5;  
+}
+
+end
+
+
+Parse result: Success
+
+Found 2 semantic errors:
+  1. Error semántico: Variable 'a' no declarada
+  2. Error semántico: Variable 'a' no declarada
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-08 - Asignación con error de tipo
+==================================================
+
+Código:
+program wrongtype;
+
+var a : int;
+
+main {
+    a = 3.5; 
+}
+
+end
+
+
+Parse result: Success
+
+No semantic errors found.
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-09 - Polimorfismo en un nombre
+==================================================
+
+Código:
+program nameconflict;
+
+var prueba : int;
+
+void prueba() [  
+    {
+        prueba = 3;
+    }
+];
+
+main {
+    prueba = 1;
+}
+
+end
+
+
+Parse result: Success
+
+No semantic errors found.
+--------------------------------------------------------------------------------
+
+
+==================================================
+Running test: P-FUNC-10 - Llamada a función no declarada
+==================================================
+
+Código:
+program callfunc;
+
+main {
+    uno(); 
+}
+
+end
+
+
+Parse result: Success
+
+Found 1 semantic errors:
+  1. Error semántico: Función 'uno' no declarada
+--------------------------------------------------------------------------------
+
+
+== FIN DE PRUEBAS - 2025-06-01 08:58:32.149066 ==
+
