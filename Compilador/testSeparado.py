@@ -49,7 +49,8 @@ class SimpleTestRunner:
                       "El mayor de los tres números es:", "15", "El promedio de los tres números es:", "11",
                       "=== ESTADÍSTICAS ===", "Números:", "12", ",", "8", ",", "15",
                       "Suma total:", "35", "Número mayor:", "15", "Número menor:", "8", "Promedio:", "11",
-                      "=== FIN DEL PROGRAMA ==="]
+                      "=== FIN DEL PROGRAMA ==="],
+            "13_fibonnaciRecursivo.txt": ["El termino Fibonacci de", "6", "es:", "8"],
         }
     
     def list_available_tests(self):

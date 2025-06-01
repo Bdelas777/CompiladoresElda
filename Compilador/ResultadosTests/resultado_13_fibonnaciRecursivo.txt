@@ -1,0 +1,14 @@
+RESULTADO DE PRUEBA: 13_fibonnaciRecursivo.txt
+FECHA: 2025-06-01 16:31:22
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+Calculadora de Fibonacci
+El termino Fibonacci de
+6
+es:
+8
+
+--------------------
+RESULTADO: FUNCIONÓ CORRECTAMENTE
