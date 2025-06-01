@@ -18,6 +18,7 @@ class Operation(Enum):
     LESS = auto()      # 
     NOT_EQUAL = auto() # !=
     ASSIGN = auto()    # =
+    GREATER_EQUAL = auto()  # >=
 
 # Cubo semántico implementado como un diccionario tridimensional
 # [operando1][operando2][operación] = tipo_resultado
@@ -30,6 +31,7 @@ semantic_cube = {
             Operation.DIVIDE: Type.INT,  
             Operation.GREATER: Type.BOOL,
             Operation.LESS: Type.BOOL,
+            Operation.GREATER_EQUAL: Type.BOOL,
             Operation.NOT_EQUAL: Type.BOOL,
             Operation.ASSIGN: Type.INT
         },
@@ -40,6 +42,7 @@ semantic_cube = {
             Operation.DIVIDE: Type.FLOAT,
             Operation.GREATER: Type.BOOL,
             Operation.LESS: Type.BOOL,
+            Operation.GREATER_EQUAL: Type.BOOL,
             Operation.NOT_EQUAL: Type.BOOL,
             Operation.ASSIGN: Type.FLOAT
         }
@@ -52,6 +55,7 @@ semantic_cube = {
             Operation.DIVIDE: Type.FLOAT,
             Operation.GREATER: Type.BOOL,
             Operation.LESS: Type.BOOL,
+            Operation.GREATER_EQUAL: Type.BOOL,
             Operation.NOT_EQUAL: Type.BOOL,
             Operation.ASSIGN: Type.FLOAT
         },
@@ -63,13 +67,15 @@ semantic_cube = {
             Operation.GREATER: Type.BOOL,
             Operation.LESS: Type.BOOL,
             Operation.NOT_EQUAL: Type.BOOL,
+            Operation.GREATER_EQUAL: Type.BOOL,
             Operation.ASSIGN: Type.FLOAT
         }
     },
     Type.BOOL: {
         Type.BOOL: {
             Operation.NOT_EQUAL: Type.BOOL,
-            Operation.ASSIGN: Type.BOOL
+            Operation.ASSIGN: Type.BOOL,
+            Operation.GREATER_EQUAL: Type.BOOL,
         }
     },
     Type.STRING: {

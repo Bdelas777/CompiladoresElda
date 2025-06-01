@@ -154,6 +154,8 @@ class VirtualMachine:
             return self._execute_comparison(quad, lambda a, b: a < b)
         elif op == '!=':
             return self._execute_comparison(quad, lambda a, b: a != b)
+        elif op == '>=':
+            return self._execute_comparison(quad, lambda a, b: a >= b)
         elif op == '=':
             return self._execute_assignment(quad)
         elif op == 'goto':

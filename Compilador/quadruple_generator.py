@@ -37,7 +37,7 @@ class QuadrupleGenerator:
         if not self.POper or len(self.PilaO) < 2 or not self.PTypes:
             return False
         operator = self.POper[-1]
-        if operator in ['+', '-', '*', '/', '>', '<', '!=']:
+        if operator in ['+', '-', '*', '/', '>', '<', '!=', ">="]:
             right_operand = self.PilaO.pop()
             right_type = self.PTypes.pop()
             left_operand = self.PilaO.pop()
@@ -51,6 +51,7 @@ class QuadrupleGenerator:
             elif operator == '>': operation = Operation.GREATER
             elif operator == '<': operation = Operation.LESS
             elif operator == '!=': operation = Operation.NOT_EQUAL
+            elif operator == '>=': operation = Operation.GREATER_EQUAL
             result_type = get_result_type(left_type, right_type, operation)
             
             if result_type != Type.ERROR:
@@ -181,8 +182,8 @@ class QuadrupleGenerator:
             return f"{op_map[op]} {left_name} y {right_name}, guardar resultado en {result_name}"
         elif op == '=':
             return f"asignar valor de {left_name} a {result_name}"
-        elif op in ['>', '<', '!=']:
-            op_map = {'>': 'mayor que', '<': 'menor que', '!=': 'diferente de'}
+        elif op in ['>', '<', '!=','>=']:
+            op_map = {'>': 'mayor que', '<': 'menor que', '!=': 'diferente de', '>=': 'mayor o igual que'}
             return f"comparar si {left_name} es {op_map[op]} {right_name}, guardar resultado booleano en {result_name}"
         elif op == 'goto':
             return f"saltar al cuádruplo {result}"
