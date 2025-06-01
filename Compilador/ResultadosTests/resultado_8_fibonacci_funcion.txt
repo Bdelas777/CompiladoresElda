@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 8_fibonacci_funcion.txt
-FECHA: 2025-06-01 15:55:30
+FECHA: 2025-06-01 16:01:40
 ==================================================
 
 SALIDA DEL PROGRAMA:

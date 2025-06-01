@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 3_ciclo_while.txt
-FECHA: 2025-06-01 15:55:07
+FECHA: 2025-06-01 16:01:30
 ==================================================
 
 SALIDA DEL PROGRAMA:

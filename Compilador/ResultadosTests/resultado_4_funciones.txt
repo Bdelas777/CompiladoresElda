@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 4_funciones.txt
-FECHA: 2025-06-01 15:55:17
+FECHA: 2025-06-01 16:01:31
 ==================================================
 
 SALIDA DEL PROGRAMA:
