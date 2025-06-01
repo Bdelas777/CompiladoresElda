@@ -746,36 +746,44 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = """
-program operaciones_basicas;
+program fibonacci ;
 var
-    a, b, c, resultado, resultado2 : int;
-    resultado3 : float;
+  num : int ;
+  result : int ;
+
+void fibonacci ( n : int )
+  [ var temp1, temp2 : int ;
+  {
+    if ( n < 1 ) {
+      result = 0 ;
+    } else {
+      if ( n < 2 ) {
+        result = 1 ;
+      } else {
+        temp1 = n - 1 ;
+        fibonacci ( temp1 ) ;
+        temp1 = result ;
+
+        temp2 = n - 2 ;
+        fibonacci ( temp2 ) ;
+        temp2 = result ;
+
+        result = temp1 + temp2 ;
+      } ;
+    } ;
+  }
+];
 
 main {
-    a = 5;
-    b = 3;
-    c = 2;
-    
-    resultado = a + b * c;
-    print("Resultado 1: ", resultado);
-    
-    resultado2 = (a + b) * c;
-    print("Resultado 2: ", resultado2);
-    
-    resultado3 = a - b / c;
-    print("Resultado 3: ", resultado3);
-    
-    resultado = a + b + c;
-    print("Resultado 4: ", resultado);
-    
-    resultado2 = a + b * c * 2;
-    print("Resultado 5: ", resultado2);
-    
-    resultado3 = a + b + c * 2;
-    print("Resultado 6: ", resultado3);
-    
-    resultado3 = a  - b * c *2 + 1 ;
-    print("Resultado 7: ", resultado3);
+  print ( "Calculadora de Fibonacci" ) ;
+  num = 6 ;
+
+  if ( num < 0 ) {
+    print ( "Error: No se puede calcular Fibonacci de numero negativo" ) ;
+  } else {
+    fibonacci ( num ) ;
+    print ( "El termino Fibonacci de", num, "es:", result ) ;
+  } ;
 }
 end
 """
