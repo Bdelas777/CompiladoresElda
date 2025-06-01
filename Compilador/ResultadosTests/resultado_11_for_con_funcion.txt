@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 11_for_con_funcion.txt
-FECHA: 2025-06-01 00:40:43
+FECHA: 2025-06-01 15:55:38
 ==================================================
 
 SALIDA DEL PROGRAMA:
@@ -10,33 +10,36 @@ Contando hasta
 Contador: 
 1
  (i = 
-2
+1
 )
 Contador: 
 2
  (i = 
-3
+2
 )
 Contador: 
 3
  (i = 
-4
+3
 )
 Contador: 
 4
  (i = 
-5
+4
 )
 Contador: 
 5
  (i = 
-6
+5
 )
 Terminé de contar hasta 
 5
 Tabla de cuadrados hasta 
 4
 :
+1
+ al cuadrado = 
+1
 2
  al cuadrado = 
 4
@@ -46,11 +49,21 @@ Tabla de cuadrados hasta
 4
  al cuadrado = 
 16
-5
- al cuadrado = 
-25
 FOR anidado:
 Tabla del 
+1
+:
+Contando hasta 
+1
+:
+Contador: 
+1
+ (i = 
+1
+)
+Terminé de contar hasta 
+1
+Tabla del 
 2
 :
 Contando hasta 
@@ -59,12 +72,12 @@ Contando hasta
 Contador: 
 1
  (i = 
-2
+1
 )
 Contador: 
 2
  (i = 
-3
+2
 )
 Terminé de contar hasta 
 2
@@ -77,48 +90,20 @@ Contando hasta
 Contador: 
 1
  (i = 
-2
-)
-Contador: 
-2
- (i = 
-3
-)
-Contador: 
-3
- (i = 
-4
-)
-Terminé de contar hasta 
-3
-Tabla del 
-4
-:
-Contando hasta 
-4
-:
-Contador: 
 1
- (i = 
-2
 )
 Contador: 
 2
  (i = 
-3
+2
 )
 Contador: 
 3
  (i = 
-4
-)
-Contador: 
-4
- (i = 
-5
+3
 )
 Terminé de contar hasta 
-4
+3
 
 --------------------
 RESULTADO: FUNCIONÓ CORRECTAMENTE

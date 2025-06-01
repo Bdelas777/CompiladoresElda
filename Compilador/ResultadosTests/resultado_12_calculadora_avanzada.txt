@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 12_calculadora_avanzada.txt
-FECHA: 2025-06-01 00:42:10
+FECHA: 2025-06-01 15:55:43
 ==================================================
 
 SALIDA DEL PROGRAMA:
