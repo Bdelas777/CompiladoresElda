@@ -41,6 +41,7 @@ tokens = [
     'TOKEN_RBRACE',
     'TOKEN_LCOL',   
     'TOKEN_RCOL',   
+    'TOKEN_GREATER_EQUAL',
 ] + list(reserved.values())
 
 # Expresiones regulares para los tokens de operaciones y delimitadores
@@ -61,6 +62,7 @@ t_TOKEN_LBRACE = r'\{'
 t_TOKEN_RBRACE = r'\}'
 t_TOKEN_LCOL = r'\['   
 t_TOKEN_RCOL = r'\]' 
+t_TOKEN_GREATER_EQUAL = r'>='
 
 # Definimos las reglas de los tokens
 def t_TOKEN_CTE_FLOAT(t):
