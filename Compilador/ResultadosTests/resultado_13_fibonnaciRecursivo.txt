@@ -1,14 +1,14 @@
 RESULTADO DE PRUEBA: 13_fibonnaciRecursivo.txt
-FECHA: 2025-06-01 16:31:22
+FECHA: 2025-06-01 18:03:32
 ==================================================
 
 SALIDA DEL PROGRAMA:
 --------------------
 Calculadora de Fibonacci
 El termino Fibonacci de
-6
+20
 es:
-8
+6765
 
 --------------------
-RESULTADO: FUNCIONÓ CORRECTAMENTE
+RESULTADO: NO FUNCIONÓ COMO SE ESPERABA

@@ -1,0 +1,14 @@
+RESULTADO DE PRUEBA: 13_fiboRecursivo.txt
+FECHA: 2025-06-01 18:21:18
+==================================================
+
+SALIDA DEL PROGRAMA:
+--------------------
+Calculadora de Fibonacci
+El termino Fibonacci de
+20
+es:
+6765
+
+--------------------
+RESULTADO: FUNCIONÓ CORRECTAMENTE

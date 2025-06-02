@@ -219,8 +219,8 @@ class QuadrupleGenerator:
                 print(f"Inicia en el cuádruplo {i}")
                 print("-" * 70)
             print(f"{i}: {quad}")
-            explanation = self._get_quad_explanation(quad)
-            print(f"        {explanation}")
+            # explanation = self._get_quad_explanation(quad)
+            # print(f"        {explanation}")
             if quad.operator == 'ENDFUNC':
                 print(f"{'='*20} FIN DE {current_function} {'='*20}")
                 current_function = None 

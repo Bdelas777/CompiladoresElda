@@ -21,9 +21,15 @@ def get_operand_name(expr_node):
             result = expr_node[1]
             return result
         elif expr_node[0] == 'function_call_expr':
+            if hasattr(expr_node, '__len__') and len(expr_node) > 3:
+                for i, item in enumerate(expr_node):
+                    if item == 'temp_result' and i + 1 < len(expr_node):
+                        return expr_node[i + 1]
             if quad_gen.PilaO:
                 result = quad_gen.PilaO[-1]
                 return result
+            else:
+                return f"func_result_{expr_node[1]}"
         elif expr_node[0] in ['operation', 'comparison', 'unary']:
             if quad_gen.PilaO:
                 result = quad_gen.PilaO[-1]
@@ -515,8 +521,12 @@ def p_function_call_expr(p):
                 if result_type == Type.ERROR:
                     semantic.add_error(f"No hay coincidencia de tipo parametro en la llamada '{p[1]}': Parametro{i+1} espera {param_type}, obtiene {arg_type}")
     p[0] = ('function_call_expr', p[1], p[4] if p[4] else [])
+
     if func and func.return_type != Type.VOID:
         p[0] = set_expr_type(p[0], func.return_type)
+        if quad_gen.PilaO:
+            temp_result = quad_gen.PilaO[-1]
+            p[0] = p[0] + ('temp_result', temp_result)
         
 def p_era_quad(p):
     '''era_quad : empty'''
@@ -746,45 +756,33 @@ def execute_program(code):
     
 if __name__ == "__main__":
     test_code = """
-program fibonacci ;
+program factorial_recursivo;
 var
-  num : int ;
-  result : int ;
+    numero, resultado : int;
 
-void fibonacci ( n : int )
-  [ var temp1, temp2 : int ;
-  {
-    if ( n < 1 ) {
-      result = 0 ;
-    } else {
-      if ( n < 2 ) {
-        result = 1 ;
-      } else {
-        temp1 = n - 1 ;
-        fibonacci ( temp1 ) ;
-        temp1 = result ;
-
-        temp2 = n - 2 ;
-        fibonacci ( temp2 ) ;
-        temp2 = result ;
-
-        result = temp1 + temp2 ;
-      } ;
-    } ;
-  }
+int factorial(n : int)
+[
+    {
+        if (n < 1)  {
+            return 1;
+        } else {
+            return n * factorial(n - 1);
+        };
+    }
 ];
 
 main {
-  print ( "Calculadora de Fibonacci" ) ;
-  num = 6 ;
+    numero = 5;
+    resultado = factorial(numero);
+    print("Factorial de ", numero, " es: ", resultado);
 
-  if ( num < 0 ) {
-    print ( "Error: No se puede calcular Fibonacci de numero negativo" ) ;
-  } else {
-    fibonacci ( num ) ;
-    print ( "El termino Fibonacci de", num, "es:", result ) ;
-  } ;
+    resultado = factorial(4);
+    print("Factorial de 4 es: ", resultado);
+
+    resultado = factorial(6);
+    print("Factorial de 6 es: ", resultado);
 }
 end
+
 """
     execute_program(test_code)

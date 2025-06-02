@@ -50,7 +50,7 @@ class SimpleTestRunner:
                       "=== ESTADÍSTICAS ===", "Números:", "12", ",", "8", ",", "15",
                       "Suma total:", "35", "Número mayor:", "15", "Número menor:", "8", "Promedio:", "11",
                       "=== FIN DEL PROGRAMA ==="],
-            "13_fibonnaciRecursivo.txt": ["El termino Fibonacci de", "6", "es:", "8"],
+            "13_fiboRecursivo.txt": ["El termino Fibonacci de", "20", "es:", "6765"],
         }
     
     def list_available_tests(self):
