@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 7_factorial_funcion.txt
-FECHA: 2025-06-01 16:01:37
+FECHA: 2025-06-01 18:24:42
 ==================================================
 
 SALIDA DEL PROGRAMA:

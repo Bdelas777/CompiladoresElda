@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 10_funciones_parametros.txt
-FECHA: 2025-06-01 16:01:46
+FECHA: 2025-06-01 18:24:49
 ==================================================
 
 SALIDA DEL PROGRAMA:

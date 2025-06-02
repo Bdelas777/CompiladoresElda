@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 2_control_if.txt
-FECHA: 2025-06-01 16:01:28
+FECHA: 2025-06-01 18:24:24
 ==================================================
 
 SALIDA DEL PROGRAMA:

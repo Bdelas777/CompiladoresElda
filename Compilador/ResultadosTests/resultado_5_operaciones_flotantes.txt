@@ -1,5 +1,5 @@
 RESULTADO DE PRUEBA: 5_operaciones_flotantes.txt
-FECHA: 2025-06-01 16:01:33
+FECHA: 2025-06-01 18:24:37
 ==================================================
 
 SALIDA DEL PROGRAMA:
